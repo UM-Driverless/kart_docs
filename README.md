@@ -34,4 +34,8 @@ mkdocs gh-deploy
 
 Make sure GitHub Pages is enabled in the repo settings → Pages → Source: `gh-pages` branch.
 
+## Branch structure
+
+The `gh-pages` branch is automatically managed by `mkdocs gh-deploy`. It holds only the generated site files and should be treated as read-only. All Markdown documentation resides on the `main` branch. Edit files on `main` and deploy to update `gh-pages`.
+
 ---
