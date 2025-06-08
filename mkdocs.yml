@@ -1,0 +1,7 @@
+site_name: Formula Student KART
+theme:
+  name: material
+nav:
+  - Home: index.md
+repo_url: https://github.com/rubenayla/kart-docs
+edit_uri: edit/main/docs/
