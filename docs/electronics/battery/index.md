@@ -8,14 +8,20 @@ For battery placement rationale see the [FAQ](../../faq.md#battery).
 
 | Parameter | Value |
 |-----------|-------|
+| BMS Cutoff voltage | 39.0 V (13 * 3.0V) |
+| Configuration | 13S4P (13 cells in series, 4 in parallel) |
 | Nominal voltage | 48 V |
 | Maximum charging voltage | 54.6 V (13 * 4.2V) |
 | Minimum voltage | 41.6 V (13 * 3.2V) |
-| BMS Cutoff voltage | 39.0 V (13 * 3.0V) |
 | Power Capacity | 808 Wh (3.7V * 4.2 Ah * 13 * 4) |
 | Charge capacity | 16.8 Ah (4 * 4200 mAh) |
 | Maximum continuous discharge current | 180 A (4 * 45 A. 9828W at 100% charge!!) |
 | Maximum continuous charge current | 32 A (4 * 8 A. about 1.7kW) |
+| Cell type | Molicel P42A |
+| Cell capacity | 4200 mAh (4.2 Ah) |
+| Cell nominal voltage | 3.7 V |
+| Cell maximum voltage | 4.2 V |
+| Cell minimum voltage | 3.2 V |
 
 ## BMS
 - Jiabaida BMS, 100A BT UART, NMC 6S-21S
