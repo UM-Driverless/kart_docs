@@ -8,6 +8,7 @@ nav:
       - Battery: electronics/battery/index.md
   - Powertrain: powertrain/index.md
   - EBS: ebs/index.md
+  - FAQ: faq.md
   - Contact: contact.md
 repo_url: https://github.com/UM-Driverless/kart-docs
 edit_uri: edit/main/docs/

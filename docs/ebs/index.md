@@ -1,3 +1,3 @@
 # Emergency Braking System
 
-PLACEHOLDER
+The kart uses a pneumatic piston to depress the brake pedal when commanded. The reasoning behind this choice is explained in the [FAQ](../faq.md#emergency-braking-system).
