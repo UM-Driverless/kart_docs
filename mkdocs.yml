@@ -4,4 +4,10 @@ theme:
 nav:
   - Home: index.md
 repo_url: https://github.com/UM-Driverless/kart-docs
+  - Electronics:
+      - Wiring: electronics/wiring.md
+      - Battery: electronics/battery/index.md
+  - Powertrain: powertrain/index.md
+  - EBS: ebs/index.md
+  - Contact: contact.md
 edit_uri: edit/main/docs/
