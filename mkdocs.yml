@@ -3,5 +3,5 @@ theme:
   name: material
 nav:
   - Home: index.md
-repo_url: https://github.com/rubenayla/kart-docs
+repo_url: https://github.com/UM-Driverless/kart-docs
 edit_uri: edit/main/docs/

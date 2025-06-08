@@ -4,7 +4,7 @@ Documentation for the Formula Student KART project.
 
 This site is built with [MkDocs](https://www.mkdocs.org/) using the [Material theme](https://squidfunk.github.io/mkdocs-material/).
 
-📘 Live site: *[TBD – will be https://rubenayla.github.io/kart-docs after deployment]*  
+📘 Live site: <https://um-driverless.github.io/kart-docs/>
 🧠 Main source: [Notion Kart Documentation](https://www.notion.so/KART-1b378747314380acb23ee354a4a4c4c7)
 
 ---
@@ -12,7 +12,7 @@ This site is built with [MkDocs](https://www.mkdocs.org/) using the [Material th
 ## 🔧 Setup
 
 ```bash
-git clone git@github.com:rubenayla/kart-docs.git
+git clone git@github.com:UM-Driverless/kart-docs.git
 cd kart-docs
 ./dev.sh
 ```
