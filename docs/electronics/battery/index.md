@@ -16,3 +16,10 @@ For battery placement rationale see the [FAQ](../../faq.md#battery).
 | Charge capacity | 16.8 Ah (4 * 4200 mAh) |
 | Maximum continuous discharge current | 180 A (4 * 45 A. 9828W at 100% charge!!) |
 | Maximum continuous charge current | 32 A (4 * 8 A. about 1.7kW) |
+
+## BMS
+- Jiabaida BMS, 100A BT UART, NMC 6S-21S
+- https://es.aliexpress.com/item/1005007223779359.html
+![https://jiabaida-bms.com/blogs/content/jiabaida-sp22s003b-smart-bms-wiring-diagram?spm=a2g0o.detail.1000023.4.58c53GRk3GRk3N](index/20250608185913.png)
+- 
+
