@@ -1,4 +1,4 @@
-# Welcome to the Formula Student KART docs
+# KART Documentation
 
 ## General Description
 

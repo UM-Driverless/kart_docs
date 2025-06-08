@@ -1,6 +1,6 @@
 # kart-docs
 
-Documentation for the Formula Student KART project.
+Documentation for the autonomous KART project.
 
 This site is built with [MkDocs](https://www.mkdocs.org/) using the [Material theme](https://squidfunk.github.io/mkdocs-material/).
 
