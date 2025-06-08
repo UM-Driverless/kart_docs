@@ -24,6 +24,28 @@ This script:
 
 ---
 
+## ✅ Checking changes locally
+
+Preview your edits before committing or pushing to make sure everything looks correct.
+
+**Option 1 – build the static site**
+
+```bash
+mkdocs build
+# open site/index.html in your browser
+```
+
+**Option 2 – run the dev server (auto reloads)**
+
+```bash
+mkdocs serve
+# then visit http://127.0.0.1:8000
+```
+
+These commands do not create any Git commits or deploy the site—they are purely for local review. Use `mkdocs gh-deploy` only when you're ready to publish.
+
+---
+
 ## 🚀 Deployment
 
 To deploy to GitHub Pages run this in the project root:
