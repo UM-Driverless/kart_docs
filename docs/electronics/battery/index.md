@@ -2,7 +2,7 @@
 
 > To charge the battery with a bench power supply, see this tutorial: [Cómo Cargar una Batería de Litio con una Fuente](https://youtu.be/g1jsSbjsiTo?si=uZ7mVjXA2c-43zzz)
 
-The main pack uses **Molicel P42A** cells in a 13S4P configuration, providing a nominal voltage of about 48 V. A separate 12 V car battery supplies the sensors to remain compatible with the Formula Student car. The pack is monitored with a [JBD BMS](https://www.notion.so/BMS-Bater-a-Kart-JBD-16078747314380e68688c3ab787fc1f7?pvs=21).
+The main pack uses **Molicel P42A** cells in a 13S4P configuration, providing a nominal voltage of about 48 V. A separate 12 V car battery supplies the sensors to remain compatible with the Formula Student car.
 
 For battery placement rationale see the [FAQ](../../faq.md#battery).
 
@@ -19,6 +19,7 @@ For battery placement rationale see the [FAQ](../../faq.md#battery).
 
 ## BMS
 - Jiabaida BMS, 100A BT UART, NMC 6S-21S
+- https://www.notion.so/BMS-Bater-a-Kart-JBD-16078747314380e68688c3ab787fc1f7?pvs=21
 - https://es.aliexpress.com/item/1005007223779359.html
 ![https://jiabaida-bms.com/blogs/content/jiabaida-sp22s003b-smart-bms-wiring-diagram?spm=a2g0o.detail.1000023.4.58c53GRk3GRk3N](index/20250608185913.png)
 - 
