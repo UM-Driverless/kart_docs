@@ -26,7 +26,7 @@ This script:
 
 ## 🚀 Deployment
 
-To deploy to GitHub Pages:
+To deploy to GitHub Pages run this in the project root:
 
 ```bash
 mkdocs gh-deploy
