@@ -11,6 +11,12 @@ This site is built with [MkDocs](https://www.mkdocs.org/) using the [Material th
 
 ## 🔧 Setup
 
+Install uv:
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+If you dont have curl in your system check this [page](https://docs.astral.sh/uv/getting-started/installation/#installation-methods)
+
 ```bash
 git clone git@github.com:UM-Driverless/kart-docs.git
 cd kart-docs
