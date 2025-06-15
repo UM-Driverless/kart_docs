@@ -1,4 +1,5 @@
 # Software
+The software documentation will include its own repository, since it must be common and independent from Kart or Formula Student car.
 
 - 2024 version of the software, using Python:
     - [https://github.com/UM-Driverless/driverless.git](https://github.com/UM-Driverless/driverless.git)
