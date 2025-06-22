@@ -4,12 +4,23 @@
 
 24V motor, we will use it at 12V, estimated about 300W
 
-## Gpt controller suggestions
-- Pololu VNH5019 Driver (12 A cont, 30 A peak)
-- Cytron MD30C (30 A cont, 80 A peak)
-- Sabertooth 2x32: Overkill but excellent for dual motors, up to 32 A per channel
-- Simple BTS7960: Cheap dual half-bridge module, supports 43 A per channel, needs external PWM and logic control
+## Motor controller
+We need to move the steering shaft to the target angle.
 
-Most controllers required 5V PWM input. Neither the Nvidia Jetson Orin nor the Blue Pill can do that. To simplify and not use level shifters or external pcbs with can drivers, we choose a Teensy 4.0 (or similar), which is capable of 5V PWM output (via its GPIO pins) and includes a CAN driver.
+1. Micro controller reads target position from main computer (Orin) and current position from the Hall effect sensor
+    - Micro controller may be a Blue Pill, Teensy 4.0, or one with CAN transceiver builtin.
+2. Calculates PWM % value with PID. Sends PWM 3.3V to H-bridge
+3. H-bridge (MD30C) receives PWM and powers the DC motor
+    - ChatGpt said it can't work with 3.3V PWM, just 5V PWM, but the datasheet says otherwise [here](docs/assets/datasheets/MD30C%20User's%20Manual.pdf)
 
-Orin will send data to Teensy, Teensy sends PWM to the MD30C H-bridge controller, which powers the DC motor.
+### Reasoning
+Suggested H-bridges by gpt:
+- **Cytron MD30C** (30 A cont, 80 A peak)
+    - https://www.cytron.io/p-30amp-5v-30v-dc-motor-driver
+    - https://www.cytron.io/p-30amp-5v-30v-dc-motor-driver?srsltid=AfmBOoo-TCLyyRQ5SBEhwpIMcAhQIaXDzO-NgCP_LdYCx8KNeVAThvSF
+    - https://docs.google.com/document/d/178uDa3dmoG0ZX859rWUOS2Xyafkd8hSsSET5-ZLXMYQ/view
+- **Pololu VNH5019 Driver** (12 A cont, 30 A peak)
+    - https://www.pololu.com/product/1451?utm_source=chatgpt.com
+- ~~Sabertooth 2x32: Overkill but excellent for dual motors, up to 32 A per channel~~
+- ~~Simple BTS7960: Cheap dual half-bridge module, supports 43 A per channel, needs external PWM and logic control~~
+
