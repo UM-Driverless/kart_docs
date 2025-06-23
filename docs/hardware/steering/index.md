@@ -15,12 +15,12 @@ We need to move the steering shaft to the target angle.
 
 ### Reasoning
 Suggested H-bridges by gpt:
-- **Cytron MD30C** (30 A cont, 80 A peak)
-    - https://www.cytron.io/p-30amp-5v-30v-dc-motor-driver
-    - https://www.cytron.io/p-30amp-5v-30v-dc-motor-driver?srsltid=AfmBOoo-TCLyyRQ5SBEhwpIMcAhQIaXDzO-NgCP_LdYCx8KNeVAThvSF
-    - https://docs.google.com/document/d/178uDa3dmoG0ZX859rWUOS2Xyafkd8hSsSET5-ZLXMYQ/view
-- **Pololu VNH5019 Driver** (12 A cont, 30 A peak)
-    - https://www.pololu.com/product/1451?utm_source=chatgpt.com
-- ~~Sabertooth 2x32: Overkill but excellent for dual motors, up to 32 A per channel~~
-- ~~Simple BTS7960: Cheap dual half-bridge module, supports 43 A per channel, needs external PWM and logic control~~
+- **Cytron MD30C** (30 A cont, 80 A peak)  
+    - https://www.cytron.io/p-30amp-5v-30v-dc-motor-driver  
+    - https://www.cytron.io/p-30amp-5v-30v-dc-motor-driver?srsltid=AfmBOoo-TCLyyRQ5SBEhwpIMcAhQIaXDzO-NgCP_LdYCx8KNeVAThvSF  
+    - https://docs.google.com/document/d/178uDa3dmoG0ZX859rWUOS2Xyafkd8hSsSET5-ZLXMYQ/view  
+- **Pololu VNH5019 Driver** (12 A cont, 30 A peak)  
+    - https://www.pololu.com/product/1451?utm_source=chatgpt.com  
+- ~~Sabertooth 2x32: Overkill but excellent for dual motors, up to 32 A per channel~~  
+- ~~Simple BTS7960: Cheap dual half-bridge module, supports 43 A per channel, needs external PWM and logic control~~  
 
