@@ -8,7 +8,9 @@ nav:
       - Camera: hardware/camera/index.md
       - Computer: hardware/computer/index.md
       - Motor: hardware/motor/index.md
-      - Steering Angle Sensor: hardware/steering_angle_sensor/index.md
+      - Steering:
+          - Overview: hardware/steering/index.md
+          - Steering Angle Sensor: hardware/steering/sensor/index.md
       - Emergency Braking System: hardware/ebs/index.md
   - Electronics:
       - Wiring: electronics/wiring.md
