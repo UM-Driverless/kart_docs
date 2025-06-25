@@ -11,7 +11,7 @@ We need to move the steering shaft to the target angle.
     - Micro controller may be a Blue Pill, Teensy 4.0, or one with CAN transceiver builtin.
 2. Calculates PWM % value with PID. Sends PWM 3.3V to H-bridge
 3. H-bridge (MD30C) receives PWM and powers the DC motor
-    - ChatGpt said it can't work with 3.3V PWM, just 5V PWM, but the datasheet says otherwise [here](docs/assets/datasheets/MD30C%20User's%20Manual.pdf)
+    - ChatGpt said it can't work with 3.3V PWM, just 5V PWM, but the datasheet says otherwise [here](/assets/datasheets/MD30C%20Users%20Manual.pdf)
 
 ### Reasoning
 Suggested H-bridges by gpt:

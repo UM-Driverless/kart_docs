@@ -19,3 +19,14 @@ nav:
   - Contact: contact.md
 repo_url: https://github.com/UM-Driverless/kart-docs
 edit_uri: edit/main/docs/
+plugins:
+  - search
+  - exporter:
+      enabled: !ENV [EXPORT_PDF, false] # ← only runs when EXPORT_PDF=true
+      formats:
+        pdf:
+          pages:
+            enabled: false # keep only the book-size PDF
+          aggregator:
+            enabled: true
+            output: kart-documentation.pdf

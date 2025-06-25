@@ -2,68 +2,81 @@
 
 Documentation for the autonomous KART project.
 
-This site is built with [MkDocs](https://www.mkdocs.org/) using the [Material theme](https://squidfunk.github.io/mkdocs-material/).
-
-📘 Live site: <https://um-driverless.github.io/kart-docs/>
+📘 Live site: <https://um-driverless.github.io/kart-docs/>  
 🧠 Main source: [Notion Kart Documentation](https://www.notion.so/KART-1b378747314380acb23ee354a4a4c4c7)
+
+Built with [MkDocs](https://www.mkdocs.org/) using the [Material theme](https://squidfunk.github.io/mkdocs-material/).
 
 ---
 
-## 🔧 Setup
+## 🔧 Setup (using Poetry)
 
-Install uv:
+Install Poetry:
+
 ```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
+curl -sSL https://install.python-poetry.org | python3 -
 ```
-If you dont have curl in your system check this [page](https://docs.astral.sh/uv/getting-started/installation/#installation-methods)
+
+If you don’t have `curl`, check [Poetry’s install methods](https://python-poetry.org/docs/#installation).
+
+---
+
+Clone the repo and set up the project:
 
 ```bash
 git clone git@github.com:UM-Driverless/kart-docs.git
 cd kart-docs
-./dev.sh
+poetry install
+poetry run playwright install --force chrome
 ```
 
-This script:
-- Sets up a Python virtual environment using `uv`
-- Installs MkDocs + Material theme
-- Launches a local preview server at `http://127.0.0.1:8000`
+This:
+- Creates a project-local virtual environment (uses `pyenv` Python if available)
+- Installs MkDocs and plugins
+- Downloads a headless Chrome browser for PDF export
 
 ---
 
-## ✅ Checking changes locally
-
-Preview your edits before committing or pushing to make sure everything looks correct.
-
-**Option 1 – build the static site**
+## ✅ Preview locally
 
 ```bash
-mkdocs build
-# open site/index.html in your browser
+poetry run mkdocs serve
+# Open http://127.0.0.1:8000 in your browser
 ```
 
-**Option 2 – run the dev server (auto reloads)**
+To build the static site:
 
 ```bash
-mkdocs serve
-# then visit http://127.0.0.1:8000
+poetry run mkdocs build
+# Output: site/
 ```
-
-These commands do not create any Git commits or deploy the site—they are purely for local review. Use `mkdocs gh-deploy` only when you're ready to publish.
 
 ---
 
-## 🚀 Deployment
+## 📟 PDF Export (optional)
 
-To deploy to GitHub Pages run this in the project root:
+PDF export is disabled by default to speed up builds. To export PDFs explicitly:
 
 ```bash
-mkdocs gh-deploy
+EXPORT_PDF=true poetry run mkdocs build
+# Outputs: site/pdf/kart-documentation.pdf
 ```
 
-Make sure GitHub Pages is enabled in the repo settings → Pages → Source: `gh-pages` branch.
+---
 
-## Branch structure
+## 🚀 Deploy to GitHub Pages
 
-The `gh-pages` branch is automatically managed by `mkdocs gh-deploy`. It holds only the generated site files and should be treated as read-only. All Markdown documentation resides on the `main` branch. Edit files on `main` and deploy to update `gh-pages`.
+```bash
+poetry run mkdocs gh-deploy
+```
+
+> GitHub Pages must be enabled in the repo settings (branch: `gh-pages`).
 
 ---
+
+## 🗂 Branch structure
+
+- `main` → Markdown source
+- `gh-pages` → Auto-generated static site (read-only)
+
+Do all edits on `main`.

@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "kart-docs"
+version = "0.1.0"
+description = ""
+authors = ["Rubén <ruben.jimenezmejias@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+mkdocs = "^1.6.1"
+mkdocs-material = "^9.6.14"
+mkdocs-exporter = "^6.2.0"
+playwright = "^1.52.0"
+pypdf = "^5.6.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
