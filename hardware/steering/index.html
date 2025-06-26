@@ -468,7 +468,16 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Motor controller">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#h-bridge-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      H-bridge data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="H-bridge data">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -722,7 +731,16 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Motor controller">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#h-bridge-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      H-bridge data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="H-bridge data">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -774,16 +792,28 @@
 </ul>
 </li>
 </ol>
+<h2 id="h-bridge-data">H-bridge data</h2>
+<ul>
+<li><strong>Cytron MD30C</strong> (30 A cont, 80 A peak)  <ul>
+<li>https://www.cytron.io/p-30amp-5v-30v-dc-motor-driver  </li>
+<li>Bought here to ship to Spain: https://opencircuit.es/producto/30amp-5v-30v-dc-motor-driver</li>
+<li>https://www.cytron.io/p-30amp-5v-30v-dc-motor-driver?srsltid=AfmBOoo-TCLyyRQ5SBEhwpIMcAhQIaXDzO-NgCP_LdYCx8KNeVAThvSF  </li>
+<li>https://docs.google.com/document/d/178uDa3dmoG0ZX859rWUOS2Xyafkd8hSsSET5-ZLXMYQ/view  </li>
+<li>https://github.com/CytronTechnologies/CytronMotorDriver</li>
+<li>https://www.cytron.io/tutorial/controlling-md10c-with-arduino</li>
+<li>https://www.instructables.com/Controlling-Motor-Speed/</li>
+</ul>
+</li>
+</ul>
 <h3 id="reasoning">Reasoning</h3>
 <p>Suggested H-bridges by gpt:
 - <strong>Cytron MD30C</strong> (30 A cont, 80 A peak)<br />
-    - https://www.cytron.io/p-30amp-5v-30v-dc-motor-driver<br />
-    - https://www.cytron.io/p-30amp-5v-30v-dc-motor-driver?srsltid=AfmBOoo-TCLyyRQ5SBEhwpIMcAhQIaXDzO-NgCP_LdYCx8KNeVAThvSF<br />
-    - https://docs.google.com/document/d/178uDa3dmoG0ZX859rWUOS2Xyafkd8hSsSET5-ZLXMYQ/view<br />
 - <strong>Pololu VNH5019 Driver</strong> (12 A cont, 30 A peak)<br />
     - https://www.pololu.com/product/1451?utm_source=chatgpt.com<br />
 - ~~Sabertooth 2x32: Overkill but excellent for dual motors, up to 32 A per channel~~<br />
-- ~~Simple BTS7960: Cheap dual half-bridge module, supports 43 A per channel, needs external PWM and logic control~~  </p>
+- ~~Simple BTS7960: Cheap dual half-bridge module, supports 43 A per channel, needs external PWM and logic control~~<br />
+- ~~IBT-4~~
+    - Needs two synced pwm signals to control the H bridge, so it's harder to use. Otherwise it would work and it's cheaper</p>
 
 
 
