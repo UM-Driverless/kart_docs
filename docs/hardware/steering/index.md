@@ -25,6 +25,7 @@ We need to move the steering shaft to the target angle.
 
 ### Reasoning
 Suggested H-bridges by gpt:
+r
 - **Cytron MD30C** (30 A cont, 80 A peak)  
 - **Pololu VNH5019 Driver** (12 A cont, 30 A peak)  
     - https://www.pololu.com/product/1451?utm_source=chatgpt.com  
