@@ -1,0 +1,3 @@
+# Brakes
+
+We are using flexible brake hoses with M10x1.0 female connectors. Our pressure sensor is the Sensata PTE7100, code `PTE7100-32DC-0B200BN`, [datasheet here](../../assets/datasheets/sensata_pte7100_hermetic_analog_pressure_sensor_da-1919220.pdf), [mouser here](https://www.mouser.es/ProductDetail/Sensata-Technologies/PTE7100-32DC-0B200BN?qs=sGAEpiMZZMv1xWCHBjbGeVR9W0yhknQ8lfjrm5f%2FK5xVuiB%2F1oy1aA%3D%3D). It has a 1/4-18NPT pressure port, a Packard Metri-Pack 150 connector, no o-ring seal, a 0.5–4.5 Vdc output (to 32Vdc), a 0–200 bar pressure range, and no mating connector or snubber. To connect the sensor to the brake lines, we use a male M10x1.0 to female 1/4-18NPT adapter.
