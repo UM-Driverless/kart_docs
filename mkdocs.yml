@@ -14,6 +14,7 @@ nav:
           - Steering Angle Sensor: hardware/steering/sensor/index.md
       - Emergency Braking System: hardware/ebs/index.md
       - Brakes: hardware/brakes/index.md
+      - Blue Pill: hardware/blue-pill/index.md
   - Electronics:
       - Wiring: electronics/wiring.md
   - Software: software/index.md
