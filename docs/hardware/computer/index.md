@@ -10,7 +10,7 @@ TODO link here to datasheets in the repo itself
 ## Power
 - Power consumption: 
 - Voltage range:
-- Power connectors: USB-C, barrel TODO something, 5.5mm maybe + add inner diameter
+- Power connectors: USB-C, DC Power Jack 5.5mm OD 2.5mm ID center positive 9-20V
 
 ## Specs
 TODO
