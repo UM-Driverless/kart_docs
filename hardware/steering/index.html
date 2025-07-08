@@ -12,7 +12,7 @@
         <link rel="prev" href="../motor/">
       
       
-        <link rel="next" href="sensor/">
+        <link rel="next" href="h-bridge/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -462,9 +462,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#motor-controller" class="md-nav__link">
+  <a href="#main-process" class="md-nav__link">
     <span class="md-ellipsis">
-      Motor controller
+      Main process
     </span>
   </a>
   
@@ -477,27 +477,35 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="H-bridge data">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#reasoning" class="md-nav__link">
-    <span class="md-ellipsis">
-      Reasoning
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="h-bridge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    H-bridge
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -748,9 +756,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#motor-controller" class="md-nav__link">
+  <a href="#main-process" class="md-nav__link">
     <span class="md-ellipsis">
-      Motor controller
+      Main process
     </span>
   </a>
   
@@ -762,21 +770,6 @@
       H-bridge data
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="H-bridge data">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#reasoning" class="md-nav__link">
-    <span class="md-ellipsis">
-      Reasoning
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -802,7 +795,7 @@
 <h1 id="motor-data">Motor Data</h1>
 <p><img alt="" src="index/20250622200050.png" /></p>
 <p>24V motor, we will use it at 12V, estimated about 300W</p>
-<h2 id="motor-controller">Motor controller</h2>
+<h2 id="main-process">Main process</h2>
 <p>We need to move the steering shaft to the target angle.</p>
 <ol>
 <li>Micro controller reads target position from main computer (Orin) and current position from the Hall effect sensor<ul>
@@ -811,33 +804,12 @@
 </li>
 <li>Calculates PWM % value with PID. Sends PWM 3.3V to H-bridge</li>
 <li>H-bridge (MD30C) receives PWM and powers the DC motor<ul>
-<li>ChatGpt said it can't work with 3.3V PWM, just 5V PWM, but the datasheet says otherwise <a href="/assets/datasheets/MD30C%20Users%20Manual.pdf">here</a></li>
+<li>ChatGpt said it can't work with 3.3V PWM, just 5V PWM, but the datasheet says otherwise <a href="../../assets/datasheets/MD30C%20Users%20Manual.pdf">here</a></li>
 </ul>
 </li>
 </ol>
 <h2 id="h-bridge-data">H-bridge data</h2>
-<ul>
-<li><strong>Cytron MD30C</strong> (30 A cont, 80 A peak)  <ul>
-<li>https://www.cytron.io/p-30amp-5v-30v-dc-motor-driver  </li>
-<li>Bought here to ship to Spain: https://opencircuit.es/producto/30amp-5v-30v-dc-motor-driver</li>
-<li>https://www.cytron.io/p-30amp-5v-30v-dc-motor-driver?srsltid=AfmBOoo-TCLyyRQ5SBEhwpIMcAhQIaXDzO-NgCP_LdYCx8KNeVAThvSF  </li>
-<li>https://docs.google.com/document/d/178uDa3dmoG0ZX859rWUOS2Xyafkd8hSsSET5-ZLXMYQ/view  </li>
-<li>https://github.com/CytronTechnologies/CytronMotorDriver</li>
-<li>https://www.cytron.io/tutorial/controlling-md10c-with-arduino</li>
-<li>https://www.instructables.com/Controlling-Motor-Speed/</li>
-</ul>
-</li>
-</ul>
-<h3 id="reasoning">Reasoning</h3>
-<p>Suggested H-bridges by gpt:
-r
-- <strong>Cytron MD30C</strong> (30 A cont, 80 A peak)<br />
-- <strong>Pololu VNH5019 Driver</strong> (12 A cont, 30 A peak)<br />
-    - https://www.pololu.com/product/1451?utm_source=chatgpt.com<br />
-- ~~Sabertooth 2x32: Overkill but excellent for dual motors, up to 32 A per channel~~<br />
-- ~~Simple BTS7960: Cheap dual half-bridge module, supports 43 A per channel, needs external PWM and logic control~~<br />
-- ~~IBT-4~~
-    - Needs two synced pwm signals to control the H bridge, so it's harder to use. Otherwise it would work and it's cheaper</p>
+<p>See <a href="h-bridge/">H-bridge</a> for more details.</p>
 
 
 
