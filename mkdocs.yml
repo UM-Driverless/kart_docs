@@ -10,6 +10,7 @@ nav:
       - Motor: hardware/motor/index.md
       - Steering:
           - Overview: hardware/steering/index.md
+          - H-bridge: hardware/steering/h-bridge.md
           - Steering Angle Sensor: hardware/steering/sensor/index.md
       - Emergency Braking System: hardware/ebs/index.md
       - Brakes: hardware/brakes/index.md
