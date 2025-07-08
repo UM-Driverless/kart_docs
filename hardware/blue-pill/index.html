@@ -591,6 +591,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#pin-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pin use
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -776,6 +785,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#pin-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pin use
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -808,7 +826,65 @@
 <li><strong>ADCs:</strong> 10-channel, 12-bit</li>
 <li><strong>Timers:</strong> 3 general-purpose timers, 1 advanced-control timer</li>
 <li><strong>Communication Interfaces:</strong> I2C, SPI, USART, USB, CAN</li>
+<li></li>
 </ul>
+<h2 id="pin-use">Pin use</h2>
+<table>
+<thead>
+<tr>
+<th>Pin Name</th>
+<th>Physical Chip pin</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PA10</td>
+<td>31</td>
+<td>RXD for debugging</td>
+</tr>
+<tr>
+<td>PA9</td>
+<td>30</td>
+<td>TXD for debugging</td>
+</tr>
+<tr>
+<td>PA0</td>
+<td>10</td>
+<td>PWM output to H-bridge, 0-3.3V</td>
+</tr>
+<tr>
+<td>PA1</td>
+<td>11</td>
+<td>DIR, gpio output, either high (3.3V) or low (0V) for the turn direction of the steering motor</td>
+</tr>
+<tr>
+<td>PB6</td>
+<td>42</td>
+<td>SCL I2C input at 3.3V, from the Hall effect sensor of steering column</td>
+</tr>
+<tr>
+<td>PB7</td>
+<td>43</td>
+<td>SDA I2C input at 3.3V, from the Hall effect sensor of steering column</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>TODO input target angle from Orin</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>TODO CAN TX</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>TODO CAN RX</td>
+</tr>
+</tbody>
+</table>
 
 
 
