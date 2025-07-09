@@ -1,0 +1,6 @@
+- Añadir pagina para el DAC
+    - A largo plazo habrá que hacer una v2 de la placa de la blue pill que tenga un header que no se atasque al enchufar pero incluya el DAC y libere algunos pines más para poder conectar cosas varias
+    - A corto plazo, usaremos el modulo DAC de aliexpress, pero lo malo es que el voltaje de alimentación es directamente el que se usa en i2c y como voltaje maximo del dac, pero la Orin sólo soporta i2c a 3.3V y el kart necesita señal analógica hasta 5V. El chip sirve pero hay que utilizarlo diferente en la pcb. Por ahora lo usaremos a 3.3V y tendremos como máxima aceleración un 66%
+        - https://es.aliexpress.com/item/1005006264677757.html?spm=a2g0o.order_list.order_list_main.5.21ef194dQOMfSn&gatewayAdapt=glo2esp
+- Añadir pagina para el driver can
+    - https://es.aliexpress.com/item/1005006299445174.html?spm=a2g0o.order_list.order_list_main.4.21ef194dQOMfSn&gatewayAdapt=glo2esp
