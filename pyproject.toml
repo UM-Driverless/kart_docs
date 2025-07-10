@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "kart-docs"
+name = "kart_docs"
 version = "0.1.0"
 description = ""
 authors = ["Rubén <ruben.jimenezmejias@gmail.com>"]

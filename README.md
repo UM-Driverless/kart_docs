@@ -1,8 +1,8 @@
-# kart-docs
+# kart_docs
 
 Documentation for the autonomous KART project.
 
-📘 Live site: <https://um-driverless.github.io/kart-docs/>  
+📘 Live site: <https://um-driverless.github.io/kart_docs/>  
 🧠 Main source: [Notion Kart Documentation](https://www.notion.so/KART-1b378747314380acb23ee354a4a4c4c7)
 
 Built with [MkDocs](https://www.mkdocs.org/) using the [Material theme](https://squidfunk.github.io/mkdocs-material/).
@@ -24,8 +24,8 @@ If you don’t have `curl`, check [Poetry’s install methods](https://python-po
 Clone the repo and set up the project:
 
 ```bash
-git clone git@github.com:UM-Driverless/kart-docs.git
-cd kart-docs
+git clone git@github.com:UM-Driverless/kart_docs.git
+cd kart_docs
 poetry install
 poetry run playwright install --force chrome
 ```

@@ -20,7 +20,7 @@ nav:
   - Software: software/index.md
   - FAQ: faq.md
   - Contact: contact.md
-repo_url: https://github.com/UM-Driverless/kart-docs
+repo_url: https://github.com/UM-Driverless/kart_docs
 edit_uri: edit/main/docs/
 plugins:
   - search
