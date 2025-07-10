@@ -12,9 +12,11 @@ nav:
           - Overview: hardware/steering/index.md
           - H-bridge: hardware/steering/h-bridge.md
           - Steering Angle Sensor: hardware/steering/sensor/index.md
-      - Emergency Braking System: hardware/ebs/index.md
       - Brakes: hardware/brakes/index.md
       - Blue Pill: hardware/blue-pill/index.md
+      - Wiring: hardware/wiring/index.md
+      - Pneumatics: hardware/pneumatics/index.md
+      - Hydraulics: hardware/hydraulics/index.md
   - Electronics:
       - Wiring: electronics/wiring.md
   - Software: software/index.md
