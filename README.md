@@ -9,6 +9,9 @@ Built with [MkDocs](https://www.mkdocs.org/) using the [Material theme](https://
 
 ---
 
+## (Beta) Automated Installation
+Just run `install.sh` in Linux or macOS:
+
 ## 🔧 Setup (using Poetry)
 
 Install Poetry:
