@@ -569,6 +569,19 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Pneumatics
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -580,6 +593,43 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#simplified-design-todo-simulate-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simplified design (TODO simulate it)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Components
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -693,6 +743,32 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#simplified-design-todo-simulate-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simplified design (TODO simulate it)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Components
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -711,10 +787,41 @@
 
 
 <h1 id="pneumatics">Pneumatics</h1>
+<p>We need an emergency braking system that can be activated on loss of electrical power or error from the shutdown loop, and a proportional braking system that can be controlled by the main computer when the robot is running.</p>
+<p>TODO redesign circuit with the valves we have, instead of using two different ones. </p>
+<p>TODO order components: proportional valve, adapters to have no problems using any of our tanks, pressure sensors, </p>
 <blockquote>
-<p>Ruben Idea:
-If the proportional valve does close both ways when not powered, we can get rid of the valve that goes in series with it and the valve with the ball at the top.</p>
+<p>Original Idea:
+Use a ball valve to merge the proportional braking line with the emergency one, and an extra electrovalve to stop flow to the proportional valve when emergency.</p>
 </blockquote>
+<h2 id="simplified-design-todo-simulate-it">Simplified design (TODO simulate it)</h2>
+<p>If the proportional valve does close both ways when not powered, we can get rid of the valve that goes in series with it. If we close port 3 of the emergency electrovalve, we can get rid of the valve with the ball at the top.</p>
+<p><img alt="" src="2025-07-11-13-57-41.png" /></p>
+<h2 id="components">Components</h2>
+<ul>
+<li><a href="https://www.festo.com/tw/en/a/575488/">Solenoid valve</a>
+    &gt; For emergency braking<ul>
+<li><a href="../assets/datasheets/575488datasheet.pdf">Datasheet local</a></li>
+<li><a href="https://www.festo.com/tw/en/a/download-document/datasheet/575488">Datasheet online</a></li>
+<li>G1/4 female thread</li>
+</ul>
+</li>
+<li><a href="https://www.festo.com/es/es/a/8153644/">Proportional Valve</a>
+    &gt; For normal controlled braking<ul>
+<li>TODO CONSIDER AN 8-PIN M16 PROPORTIONAL VALVE SO WE CAN USE IT AS PRESSURE SENSOR</li>
+<li><a href="https://www.festo.com/es/es/a/download-document/datasheet/8153644">Datasheet online</a></li>
+<li><a href="../assets/datasheets/8153644datasheet.pdf">Datasheet local</a></li>
+<li><a href="../assets/datasheets/206533_documentation.pdf">206533 documentation</a></li>
+<li>TODO QUESTION: Can we get the reading of pressure from this valve? There are some that allow it</li>
+</ul>
+</li>
+<li>Fittings:<ul>
+<li>90º TODO what thread what size, what tube material and OD/ID.</li>
+<li>Straight TODO what adapters</li>
+</ul>
+</li>
+<li>Pressure sensor</li>
+</ul>
 
 
 
