@@ -2,15 +2,15 @@
 Our computer is based on the NVidia Jetson Orin Development Kit.
 
 # Links
-- Main Nvidia Jetson Orin page: https://developer.nvidia.com/embedded/learn/jetson-agx-orin-devkit-user-guide/developer_kit_layout.html
+- Main Nvidia Jetson AGX Orin page: https://developer.nvidia.com/embedded/learn/jetson-agx-orin-devkit-user-guide/developer_kit_layout.html
 - Datasheets for NVidia Jetson Orin: https://developer.nvidia.com/embedded/downloads
 TODO link here to datasheets in the repo itself
 
 # Data
 ## Power
 - Power consumption: 
-- Voltage range:
-- Power connectors: USB-C, DC Power Jack 5.5mm OD 2.5mm ID center positive 9-20V
+- Voltage range: 9-20VDC, typically 19V
+- Power connector: Barrel Jack 5.5mm OD 2.5mm ID center positive
 
 ## Specs
 TODO
