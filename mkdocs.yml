@@ -14,6 +14,7 @@ nav:
           - Steering Angle Sensor: hardware/steering/sensor/index.md
       
       - Blue Pill: hardware/blue-pill/index.md
+      - ESP32: hardware/esp32/index.md
   - Wiring: wiring/index.md
   - Pneumatics: pneumatics/index.md
   - Hydraulics: hydraulics/index.md

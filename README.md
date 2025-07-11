@@ -56,6 +56,16 @@ poetry run mkdocs build
 
 ---
 
+## 🚀 Deploy to GitHub Pages
+
+```bash
+poetry run mkdocs gh-deploy
+```
+
+> GitHub Pages must be enabled in the repo settings (branch: `gh-pages`).
+
+---
+
 ## 📟 PDF Export (optional)
 
 PDF export is disabled by default to speed up builds. To export PDFs explicitly:
@@ -67,15 +77,6 @@ EXPORT_PDF=true poetry run mkdocs build
 
 ---
 
-## 🚀 Deploy to GitHub Pages
-
-```bash
-poetry run mkdocs gh-deploy
-```
-
-> GitHub Pages must be enabled in the repo settings (branch: `gh-pages`).
-
----
 
 ## 🗂 Branch structure
 
