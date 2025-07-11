@@ -14,8 +14,11 @@ If the proportional valve does close both ways when not powered, we can get rid 
 ![](2025-07-11-13-57-41.png)
 
 ## Components
-- Solenoid valve
+- [Solenoid valve](https://www.festo.com/tw/en/a/575488/)
     > For emergency braking
+    - [Datasheet local](../assets/datasheets/575488datasheet.pdf)
+    - [Datasheet online](https://www.festo.com/tw/en/a/download-document/datasheet/575488)
+    - G1/4 female thread
 - [Proportional Valve](https://www.festo.com/es/es/a/8153644/)
     > For normal controlled braking
     - TODO CONSIDER AN 8-PIN M16 PROPORTIONAL VALVE SO WE CAN USE IT AS PRESSURE SENSOR
