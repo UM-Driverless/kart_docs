@@ -12,7 +12,7 @@ nav:
           - Overview: hardware/steering/index.md
           - H-bridge: hardware/steering/h-bridge.md
           - Steering Angle Sensor: hardware/steering/sensor/index.md
-      - Brakes: hardware/brakes/index.md
+      
       - Blue Pill: hardware/blue-pill/index.md
   - Wiring: wiring/index.md
   - Pneumatics: pneumatics/index.md
@@ -20,7 +20,7 @@ nav:
   - Software: software/index.md
   - FAQ: faq.md
   - Contact: contact.md
-repo_url: https://github.com/UM-Driverless/kart_docs
+repo_url: https://github.com/um-driverless/kart_docs
 edit_uri: edit/main/docs/
 plugins:
   - search
