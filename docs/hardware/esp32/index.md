@@ -4,7 +4,7 @@ The ESP32 is a series of low-cost, low-power system on a chip microcontrollers w
 
 ## Key Features
 
-![ESP32 Pinout](index/ESP32-pinout-diagram.jpg)
+[![ESP32 Pinout](index/ESP32-pinout-diagram.jpg)](https://www.teachmemicro.com/)
 
 *   **CPU:** Xtensa dual-core (or single-core) 32-bit LX6 microprocessor
 *   **Clock Speed:** Up to 240 MHz
