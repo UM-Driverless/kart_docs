@@ -14,3 +14,8 @@ We are using flexible brake hoses with M10x1.0 female connectors. Our pressure s
 - To connect the sensor to the brake lines, we use a male M10x1.0 to female 1/4-18NPT adapter.
 
 ![](index/20250703193056.png)
+
+The brake pedal sensor have the following meaning each cable:
+Red: Vcc
+Yellow: Ground
+Green/Blue: signal
