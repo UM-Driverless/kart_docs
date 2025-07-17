@@ -16,3 +16,7 @@ Our pressure sensor is the Sensata PTE7100, code `PTE7100-33CC-2E200BN`, [datash
 
 ![](index/20250703193056.png)
 
+The brake pedal sensor have the following meaning each cable:
+Red: Vcc
+Yellow: Ground
+Green/Blue: signal
