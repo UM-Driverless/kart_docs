@@ -2,8 +2,10 @@
 
 ## Motor
 
-We use a **Brushless DC (BLDC) motor** from [Kunray](https://kunraymotors.com/shop/) (model **MY1020**, 72V 3000W), along with its supplied controller.  
+We use a **Brushless DC (BLDC) motor** from [Kunray](https://kunraymotors.com/shop/), model **MY1020**, along with its supplied controller.  
 The motivation for selecting an electric motor over a combustion engine is discussed in the [FAQ](/docs/faq.md#motor-choice).
+
+>  **Note:** The exact configuration of our motor is still to be confirmed — see the specifications below with `?` markers.
 
 ---
 
@@ -11,40 +13,41 @@ The motivation for selecting an electric motor over a combustion engine is discu
 
 - **Type:** High-speed BLDC motor (Brushless DC)
 - **Model:** Kunray MY1020
-- **Nominal voltage:** 72VDC
-- **Nominal power:** 3000W
-- **Nominal current:** 45A
-- **Rated speed:** 4900 RPM
-- **Max speed:** ~5800 RPM
-- **Max torque:** 5.4 N·m
+- **Nominal voltage:** 48VDC *(?)*
+- **Nominal power:** 2000W–2500W *(?)*
+- **Nominal current:** *(?)*
+- **Rated speed:** *(?)*
+- **Max speed:** *(?)*
+- **Max torque:** *(?)*
 - **Sprocket:** T8F 11T (compatible with T8F chain)
 - **Material:** Aluminum housing, full copper winding
-- **Weight:** ~8 kg
-- **Dimensions:** ~16.9 cm length x 9.6 cm height
-- **Product link (Amazon):** [Kunray 72V 3000W Motor Kit](https://www.amazon.es/dp/B0C6WXYZ/ref=cm_sw_em_r_mt_dp_xyz)
+- **Weight:** ~8 kg *(?)*
+- **Dimensions:** ~16.9 cm length x 9.6 cm height *(?)*
+- **Battery configuration:** 13S Li-ion *(?)*
+- **Product link (reference only):** [Kunray 72V 3000W Motor Kit](https://www.amazon.es/dp/B0C6WXYZ/ref=cm_sw_em_r_mt_dp_xyz) *(not our version)*
 
 ---
 
 ## Controller Specifications
 
-- **Input voltage:** 48V–72V
-- **Max current:** 50A
-- **Max supported power:** 3000W
-- **MOSFETs:** 24
-- **Phase angle:** 120°
-- **Undervoltage protection:** 42V
+- **Input voltage:** 48V *(?)*
+- **Max current:** *(?)*
+- **Max supported power:** *(?)*
+- **MOSFETs:** *(?)*
+- **Phase angle:** *(?)*
+- **Undervoltage protection:** *(?)*
 - **Built-in features:**
-  - Reverse mode
-  - PWM speed control
-  - Three speed modes (low/medium/high)
-  - High/low-level braking input
-  - Hall sensor support
-  - Sensorless mode supported
-  - Ignition lock (anti-theft)
-  - Cruise control
-  - Soft start
-  - Twist-grip throttle control
-- **Product link (AliExpress):** [Kunray BLDC Controller 72V](https://www.aliexpress.com/item/...)
+  - Reverse mode *(?)*
+  - PWM speed control *(?)*
+  - Three speed modes (low/medium/high) *(?)*
+  - High/low-level braking input *(?)*
+  - Hall sensor support *(?)*
+  - Sensorless mode supported *(?)*
+  - Ignition lock (anti-theft) *(?)*
+  - Cruise control *(?)*
+  - Soft start *(?)*
+  - Twist-grip throttle control *(?)*
+- **Product link (reference only):** [Kunray BLDC Controller 72V](https://www.aliexpress.com/item/...) *(not our version)*
 
 ---
 
