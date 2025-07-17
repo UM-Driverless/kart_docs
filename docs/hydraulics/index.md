@@ -15,8 +15,3 @@ Our pressure sensor is the Sensata PTE7100, code `PTE7100-33CC-2E200BN`, [datash
 - Adapter: To connect the sensor to the brake lines, we use a `male M10x1.0 inverted flare to female 7/16-20 UNF adapter`
 
 ![](index/20250703193056.png)
-
-The brake pedal sensor have the following meaning each cable:
-Red: Vcc
-Yellow: Ground
-Green/Blue: signal

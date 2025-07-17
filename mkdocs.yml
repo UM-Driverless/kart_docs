@@ -13,9 +13,9 @@ nav:
           - H-bridge: hardware/steering/h-bridge.md
           - Steering Angle Sensor: hardware/steering/sensor/index.md
       
-      - Blue Pill: hardware/blue-pill/index.md
+      # - Blue Pill: hardware/blue-pill/index.md # commented out because it is not used anymore
       - ESP32: hardware/esp32/index.md
-  - Wiring: wiring/index.md
+  - Electrical: electrical/index.md
   - Pneumatics: pneumatics/index.md
   - Hydraulics: hydraulics/index.md
   - Software: software/index.md
