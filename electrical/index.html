@@ -20,7 +20,7 @@
     
     
       
-        <title>Wiring - Driverless Kart Documentation</title>
+        <title>Electrical - Driverless Kart Documentation</title>
       
     
     
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Wiring
+              Electrical
             
           </span>
         </div>
@@ -485,29 +485,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../hardware/blue-pill/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Blue Pill
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../hardware/esp32/" class="md-nav__link">
         
   
@@ -547,17 +524,67 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Electrical
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
-    Wiring
+    Electrical
     
   </span>
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#throttle-pedal-sensor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Throttle pedal sensor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esp32-wiring" class="md-nav__link">
+    <span class="md-ellipsis">
+      ESP32 wiring
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -693,6 +720,32 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#throttle-pedal-sensor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Throttle pedal sensor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#esp32-wiring" class="md-nav__link">
+    <span class="md-ellipsis">
+      ESP32 wiring
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -711,7 +764,33 @@
 
 
 <h1 id="wiring">Wiring</h1>
-<p>TODO: Add content</p>
+<p>TODO global diagram (Fritzing?)</p>
+<h2 id="throttle-pedal-sensor">Throttle pedal sensor</h2>
+<p>It's a linear hall effect sensor, powered at 5V and outputs an analog voltage in 0-5V range. 0V = 0%, 5V = 100%.</p>
+<table>
+<thead>
+<tr>
+<th>Cable Color</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Red</td>
+<td>Vcc</td>
+</tr>
+<tr>
+<td>Yellow</td>
+<td>Ground</td>
+</tr>
+<tr>
+<td>Teal (Green/Blue)</td>
+<td>Signal</td>
+</tr>
+</tbody>
+</table>
+<h2 id="esp32-wiring">ESP32 wiring</h2>
+<p>TODO</p>
 
 
 
