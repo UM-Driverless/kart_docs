@@ -3,7 +3,7 @@
 ## Motor
 
 We use a **Brushless DC (BLDC) motor** from [Kunray](https://kunraymotors.com/shop/) (model **MY1020**, 72V 3000W), along with its supplied controller.  
-The motivation for selecting an electric motor over a combustion engine is discussed in the [FAQ](/docs/faq.md#motor-choice).
+The motivation for selecting an electric motor over a combustion engine is discussed in the [FAQ](../../faq.md#motor-choice).
 
 ---
 
