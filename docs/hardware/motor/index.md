@@ -11,12 +11,12 @@ The motivation for selecting an electric motor over a combustion engine is discu
 
 - **Type:** High-speed BLDC motor (Brushless DC)
 - **Model:** Kunray MY1020
-- **Nominal voltage:** 72VDC
-- **Nominal power:** 3000W
-- **Nominal current:** 45A
-- **Rated speed:** 4900 RPM
-- **Max speed:** ~5800 RPM
-- **Max torque:** 5.4 N·m
+- **Nominal voltage:** 48VDC *(?)*
+- **Nominal power:** 2000W–2500W *(?)*
+- **Nominal current:** *(?)*
+- **Rated speed:** *(?)*
+- **Max speed:** *(?)*
+- **Max torque:** *(?)*
 - **Sprocket:** T8F 11T (compatible with T8F chain)
 - **Material:** Aluminum housing, full copper winding
 - **Weight:** ~8 kg
@@ -27,12 +27,12 @@ The motivation for selecting an electric motor over a combustion engine is discu
 
 ## Controller Specifications
 
-- **Input voltage:** 48V–72V
-- **Max current:** 50A
-- **Max supported power:** 3000W
-- **MOSFETs:** 24
-- **Phase angle:** 120°
-- **Undervoltage protection:** 42V
+- **Input voltage:** 48V *(?)*
+- **Max current:** *(?)*
+- **Max supported power:** *(?)*
+- **MOSFETs:** *(?)*
+- **Phase angle:** *(?)*
+- **Undervoltage protection:** *(?)*
 - **Built-in features:**
   - Reverse mode
   - PWM speed control
