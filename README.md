@@ -29,6 +29,7 @@ Clone the repo and set up the project:
 ```bash
 git clone git@github.com:UM-Driverless/kart_docs.git
 cd kart_docs
+poetry config virtualenvs.in-project true
 poetry install
 poetry run playwright install --force chrome
 ```
