@@ -15,3 +15,8 @@ Our pressure sensor is the Sensata PTE7100, code `PTE7100-33CC-2E200BN`, [datash
 - Adapter: To connect the sensor to the brake lines, we use a `male M10x1.0 inverted flare to female 7/16-20 UNF adapter`
 
 ![](index/20250703193056.png)
+
+### Possible alternative
+- [Bosch Motorsport PSS-260 --- PN0261545188](https://xtramotorsport.com/product/bosch-motorsport-pss-260-brake-pressure-sensor/)
+    - 0.5-4.5V, 0-260 bar
+
