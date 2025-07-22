@@ -2,7 +2,7 @@
 
 ## Motor
 
-We use a **Brushless DC (BLDC) motor** from [Kunray](https://kunraymotors.com/shop/) (model **MY1020**, 72V 3000W), along with its supplied controller.  
+We use a **Brushless DC (BLDC) motor** from [Kunray](https://kunraymotors.com/shop/) (model **MY1020**, 48V 2000W), along with its supplied controller.  
 The motivation for selecting an electric motor over a combustion engine is discussed in the [FAQ](../../faq.md#motor-choice).
 
 ---
@@ -11,28 +11,28 @@ The motivation for selecting an electric motor over a combustion engine is discu
 
 - **Type:** High-speed BLDC motor (Brushless DC)
 - **Model:** Kunray MY1020
-- **Nominal voltage:** 48VDC *(?)*
-- **Nominal power:** 2000W–2500W *(?)*
-- **Nominal current:** *(?)*
-- **Rated speed:** *(?)*
-- **Max speed:** *(?)*
-- **Max torque:** *(?)*
+- **Nominal voltage:** 48VDC (13S battery configuration)
+- **Nominal power:** 2000W
+- **Nominal current:** *(to be confirmed)*
+- **Rated speed:** *(to be confirmed)*
+- **Max speed:** *(to be confirmed)*
+- **Max torque:** *(to be confirmed)*
 - **Sprocket:** T8F 11T (compatible with T8F chain)
 - **Material:** Aluminum housing, full copper winding
 - **Weight:** ~8 kg
 - **Dimensions:** ~16.9 cm length x 9.6 cm height
-- **Product link (Amazon):** [Kunray 72V 3000W Motor Kit](https://www.amazon.es/dp/B0C6WXYZ/ref=cm_sw_em_r_mt_dp_xyz)
+- **Product link (AliExpress):** [Kunray 48V 2000W Motor Kit](https://a.aliexpress.com/_EGHEGIw)
 
 ---
 
 ## Controller Specifications
 
-- **Input voltage:** 48V *(?)*
-- **Max current:** *(?)*
-- **Max supported power:** *(?)*
-- **MOSFETs:** *(?)*
-- **Phase angle:** *(?)*
-- **Undervoltage protection:** *(?)*
+- **Input voltage:** 48V
+- **Max current:** *(to be confirmed)*
+- **Max supported power:** 2000W
+- **MOSFETs:** *(to be confirmed)*
+- **Phase angle:** *(to be confirmed)*
+- **Undervoltage protection:** *(to be confirmed)*
 - **Built-in features:**
   - Reverse mode
   - PWM speed control
@@ -44,7 +44,6 @@ The motivation for selecting an electric motor over a combustion engine is discu
   - Cruise control
   - Soft start
   - Twist-grip throttle control
-- **Product link (AliExpress):** [Kunray BLDC Controller 72V](https://www.aliexpress.com/item/...)
 
 ---
 
