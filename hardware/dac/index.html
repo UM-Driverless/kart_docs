@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../camera/">
+        <link rel="prev" href="../steering/sensor/">
       
       
-        <link rel="next" href="../motor/">
+        <link rel="next" href="../esp32/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Computer - Driverless Kart Documentation</title>
+        <title>DAC - Driverless Kart Documentation</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#computer" class="md-skip">
+        <a href="#dac-digital-to-analog-conversion" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Computer
+              DAC
             
           </span>
         </div>
@@ -323,19 +323,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../computer/" class="md-nav__link">
         
   
   
@@ -346,7 +337,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -494,10 +484,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../dac/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    DAC
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -508,6 +518,33 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dac-digital-to-analog-conversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      DAC – Digital to Analog Conversion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -714,8 +751,23 @@
   
   
   
-    
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dac-digital-to-analog-conversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      DAC – Digital to Analog Conversion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -734,36 +786,16 @@
   
 
 
-<h1 id="computer">Computer</h1>
-<p>Our computer is based on the NVidia Jetson AGX Orin Development Kit.</p>
-<h1 id="links">Links</h1>
-<ul>
-<li>Main Nvidia Jetson AGX Orin page: https://developer.nvidia.com/embedded/learn/jetson-agx-orin-devkit-user-guide/developer_kit_layout.html</li>
-<li>Datasheets for NVidia Jetson Orin: https://developer.nvidia.com/embedded/downloads
-TODO link here to datasheets in the repo itself</li>
-</ul>
-<h1 id="data">Data</h1>
-<h2 id="power">Power</h2>
-<ul>
-<li>Power consumption: </li>
-<li>Voltage range: 9-20VDC, typically 19V</li>
-<li>Power connector: Barrel Jack 5.5mm OD 2.5mm ID center positive</li>
-</ul>
-<h2 id="specs">Specs</h2>
-<p>TODO</p>
-<h1 id="to-connect-it-to-the-rest-of-the-kart-we-use-a-custom-made-adapter-board">To connect it to the rest of the kart, we use a custom made adapter board</h1>
-<h2 id="this-is-the-version-10-of-the-adapter-board">This is the version 1.0 of the adapter board</h2>
-<p>Designed with <a href="https://easyeda.com/">easyeda</a>, can be downloaded <a href="index/ProProject_Orin%20Adapter_2025-03-09.epro">here</a>
-<img alt="" src="index/20250712031143.png" />
-<img alt="" src="index/20250712031115.png" /></p>
-<p>The path in our Owncloud folder is: <code>formula/formula 24-25/DV/ORIN/adapter/ProProject_Orin Adapter_2025-03-09.epro</code></p>
-<h1 id="notes">Notes</h1>
-<h2 id="how-to-install-anydesk-in-nvidia-jetson-orin">How to install Anydesk in Nvidia Jetson Orin</h2>
-<pre><code class="language-bash">wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | sudo apt-key add -
-echo 'deb http://deb.anydesk.com/ all main' | sudo tee /etc/apt/sources.list.d/anydesk.list
-sudo apt update                                                     
-sudo apt install -y anydesk
-</code></pre>
+  <h1>DAC</h1>
+
+<h3 id="dac-digital-to-analog-conversion">DAC – Digital to Analog Conversion</h3>
+<p><strong>Model:</strong> MCP4725 I²C DAC Breakout Module<br />
+<strong>Power supply voltage:</strong> 5V<br />
+<strong>Communication:</strong> I²C @ 3.3V (logic level)<br />
+<strong>Detected issue:</strong><br />
+The MCP4725 operates at 5V for power, but its I²C communication lines also run at that voltage. This creates a level mismatch when interfacing with a 3.3V microcontroller like the ESP32, which may result in communication errors or even damage to the I²C pins.</p>
+<p><strong>Proposed or pending solution:</strong><br />
+Use a <strong>bidirectional I²C level shifter</strong> (e.g., TXS0108E or BSS138-based) between the microcontroller and the DAC to safely interface 3.3V and 5V logic.</p>
 
 
 
