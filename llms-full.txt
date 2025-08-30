@@ -1,0 +1,614 @@
+# Driverless Kart Documentation - Complete Content
+
+This document contains the complete documentation for the autonomous KART project by Ü Motorsport Formula Student team.
+
+---
+
+## Home
+
+## General Description
+
+This project equips a standard competition kart with autonomous capabilities by integrating perception, control, and actuation systems. It serves as a modular platform for rapid development and testing of driverless technologies in outdoor environments.
+
+## Motivation
+
+In Driverless, our objective is to enable a single-seater vehicle to autonomously navigate a circuit delimited by cones.
+
+Until now, teachers and researchers lacked a practical outdoor testbed for their algorithms. This year, Henakart donated a kart chassis, which we’re converting to electric and equipping with autonomous systems. It’s simpler and safer than the Formula car, making it ideal for early development and testing.
+
+## Objectives
+
+- Build a modular testbed for autonomous driving components (perception, planning, control).
+- Enable outdoor algorithm validation for students, teachers, and researchers.
+- Reuse and adapt developed components for the single-seater Formula vehicle.
+- Maintain manual drive capability for supervised operation and data collection.
+
+We are currently migrating from a Python-based stack to a ROS-based architecture to ensure compatibility with more complex vehicle platforms.
+
+## Current Status (2025-06-18)
+
+- The kart is fully operational in manual mode.
+- Actuation systems for steering and braking are ordered.
+- An emergency brake and telemetry system are in development.
+- The camera used for cone detection is mounted.
+- Work is ongoing to improve cone detection accuracy and software speed.
+
+## Regulatory Requirements and Limitations
+
+This prototype is not intended to compete, so no specific racing regulations apply. Development follows general safety and engineering standards, and deviations are documented. Manual driving must be preserved. Standard kart components are preferred; custom parts are used only when justified.
+
+---
+
+## Hardware - Battery
+
+> To charge the battery with a bench power supply, see this tutorial: [Cómo Cargar una Batería de Litio con una Fuente](https://youtu.be/g1jsSbjsiTo?si=uZ7mVjXA2c-43zzz)
+
+The main pack uses **Molicel P42A** cells in a 13S4P configuration, providing a nominal voltage of about 48 V. A separate 12 V car battery supplies the sensors to remain compatible with the Formula Student car.
+
+For battery placement rationale see the [FAQ](../../faq.md#battery).
+
+| Parameter | Value |
+|-----------|-------|
+| BMS Cutoff voltage | 39.0 V (13 * 3.0V) |
+| Configuration | 13S4P (13 cells in series, 4 in parallel) |
+| Nominal voltage | 48 V |
+| Maximum charging voltage | 54.6 V (13 * 4.2V) |
+| Minimum voltage | 41.6 V (13 * 3.2V) |
+| Power Capacity | 808 Wh (3.7V * 4.2 Ah * 13 * 4) |
+| Charge capacity | 16.8 Ah (4 * 4200 mAh) |
+| Maximum continuous discharge current | 180 A (4 * 45 A. 9828W at 100% charge!!) |
+| Maximum continuous charge current | 32 A (4 * 8 A. about 1.7kW) |
+| Cell type | Molicel P42A |
+| Cell capacity | 4200 mAh (4.2 Ah) |
+| Cell nominal voltage | 3.7 V |
+| Cell maximum voltage | 4.2 V |
+| Cell minimum voltage | 3.2 V |
+
+## BMS
+- Jiabaida BMS, 100A BT UART, NMC 6S-21S
+- https://www.notion.so/BMS-Bater-a-Kart-JBD-16078747314380e68688c3ab787fc1f7?pvs=21
+- https://es.aliexpress.com/item/1005007223779359.html
+![https://jiabaida-bms.com/blogs/content/jiabaida-sp22s003b-smart-bms-wiring-diagram?spm=a2g0o.detail.1000023.4.58c53GRk3GRk3N](index/20250608185913.png)
+-
+
+---
+
+## Hardware - Camera
+
+## Overview
+
+This document describes the integration of the **ZED2 stereo camera** into the kart, its usage through the **ROS 2 wrapper**, and the combination with **YOLOv5** for cone detection. 
+
+## Official Resources
+
+- **ZED2 Camera Overview**: [https://www.stereolabs.com/zed-2/](https://www.stereolabs.com/zed-2/)
+- **ZED ROS 2 Wrapper Documentation**: [https://docs.stereolabs.com/ros2/](https://docs.stereolabs.com/ros2/)
+
+## Hardware: ZED2 Camera
+
+The [ZED2](https://www.stereolabs.com/zed-2/) camera by Stereolabs is a stereo vision camera capable of providing:
+
+- High-definition left and right stereo images
+- Depth sensing
+- 3D point clouds
+- Positional tracking (6DoF)
+- Integrated IMU sensors (accelerometer, gyroscope, magnetometer)
+- Environmental sensors (barometer, temperature sensor)
+
+## ROS 2 Integration
+
+The ZED2 camera is integrated into the project using the **official Stereolabs ZED ROS 2 Wrapper**:
+
+- GitHub: [https://github.com/stereolabs/zed-ros2-wrapper](https://github.com/stereolabs/zed-ros2-wrapper)
+
+
+### Installation Requirements
+
+To properly install and run the **ZED ROS 2 Wrapper** with the ZED2 camera, you must ensure the following dependencies and system configuration are in place.
+
+- Operating System
+
+    - **Ubuntu 24.04 LTS** is the recommended version for this setup.
+    - Other Ubuntu versions may be used; however, note that dependencies such as CUDA, TensorRT, ROS2, and the ZED SDK may require different versions and additional compatibility testing.
+
+- ROS 2 Jazzy
+
+    - Install **ROS 2 Jazzy** by following the official instructions here:  
+  [https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html](https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html)
+
+- CUDA Toolkit (12.0 to 12.9)
+
+    - Install **CUDA 12.x** (any version from 12.0 to 12.9 is compatible).
+    - Download from the official NVIDIA website:  
+  [https://developer.nvidia.com/cuda-downloads](https://developer.nvidia.com/cuda-downloads)
+
+- ZED SDK (v5.0)
+
+    - Download and install **ZED SDK v5.0** for Ubuntu 24.04 with CUDA 12 and TensorRT 10 from the official release page:  
+  [https://www.stereolabs.com/en-es/developers/release/5.0#82af3640d775](https://www.stereolabs.com/en-es/developers/release/5.0#82af3640d775)
+
+- TensorRT 10
+
+    - Download the **TensorRT 10** `.deb` package for Ubuntu 24.04 + CUDA 12.9 from the official NVIDIA repository:  
+  [https://developer.nvidia.com/downloads/compute/machine-learning/tensorrt/10.10.0/local_repo/nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9_1.0-1_amd64.deb](https://developer.nvidia.com/downloads/compute/machine-learning/tensorrt/10.10.0/local_repo/nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9_1.0-1_amd64.deb)
+  
+
+    After downloading the `.deb` file, run the following commands to install it:
+
+```bash
+sudo dpkg -i nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9_1.0-1_amd64.deb
+sudo apt update
+```
+
+If you encounter **GPG key errors**, follow these additional steps:
+
+```bash
+sudo cp /var/nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9/*.gpg /usr/share/keyrings/
+
+sudo nano /etc/apt/sources.list.d/nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9.list
+```
+
+Replace the content of the file with:
+
+```bash
+deb [signed-by=/usr/share/keyrings/nv-tensorrt-local-CD20EDBE-keyring.gpg] file:///var/nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9 /
+```
+
+Then update again:
+
+```bash
+sudo apt update
+```
+
+This should resolve the key issues.
+
+Finally, install the required TensorRT runtime libraries:
+
+```bash
+sudo apt-get install libnvinfer10 libnvinfer-dev libnvinfer-plugin-dev python3-libnvinfer
+```
+
+- ZED ROS 2 Wrapper
+
+    - Clone and build the **zed-ros2-wrapper** package in your existing ROS 2 workspace:
+
+```bash
+cd ~/ros2_ws/src
+git clone https://github.com/stereolabs/zed-ros2-wrapper.git
+cd ..
+rosdep install --from-paths src --ignore-src -r -y
+colcon build --symlink-install
+```
+
+Official repository:  
+[https://github.com/stereolabs/zed-ros2-wrapper](https://github.com/stereolabs/zed-ros2-wrapper)
+
+---
+
+Once all the dependencies are installed and the wrapper is successfully built, you should be able to launch the ZED2 ROS 2 node without issues.
+
+### Launching the Camera
+
+The camera is launched using a provided launch file, typically:
+
+```bash
+ros2 launch zed_wrapper zed_camera.launch.py camera_model:=zed2
+```
+
+<!-- ### Published Topics of Interest
+
+CORREGIR POR TOPICS CORRECTOS
+
+| Topic Name                             | Message Type                | Description                                    |
+|----------------------------------------|-----------------------------|------------------------------------------------|
+| `/zed2/zed_node/left/image_rect_color` | `sensor_msgs/Image`         | Rectified color image from left camera         |
+| `/zed2/zed_node/depth/depth_registered`| `sensor_msgs/Image`         | Depth image aligned to the left camera         |
+| `/zed2/zed_node/imu/data`              | `sensor_msgs/Imu`           | IMU data (accelerometer + gyroscope + orientation) |
+| `/zed2/zed_node/point_cloud/cloud_registered` | `sensor_msgs/PointCloud2` | Registered 3D point cloud                      |
+| `/zed2/zed_node/odom`                  | `nav_msgs/Odometry`         | Visual odometry (pose estimation)              | -->
+
+## Cone Detection with YOLOv5
+
+In this project, **YOLOv5** is used to perform **real-time cone detection** on images captured by the ZED2 camera.
+The ZED ROS 2 Wrapper supports custom object detection models through **ONNX integration**, allowing you to run your own trained detectors such as YOLOv5 directly on the GPU using **TensorRT** for real-time inference.
+
+### Exporting and Using a Custom YOLOv5 Model
+
+If you have trained a YOLOv5 model (e.g., for cone detection), follow these steps to integrate it into the ZED wrapper:
+
+1. **Export the model to ONNX format**:  
+   You can do this using PyTorch and the YOLOv5 export tools (e.g., `export.py` script from the [YOLOv5 repository](https://github.com/ultralytics/yolov5)):
+
+   This will generate a `.onnx` file.
+
+2. **Enable object detection in the ZED wrapper** by editing the configuration file:
+
+   Open your `common_stereo.yaml` (located in your ROS 2 workspace, inside `zed-ros2-wrapper/zed_wrapper/config`), and modify or add the following lines:
+
+   ```yaml
+   object_detection:
+        od_enabled: true 
+        model: 'CUSTOM_YOLOLIKE_BOX_OBJECTS'
+        custom_onnx_file: '$path to model'
+   ```
+
+### First-Time Optimization
+
+The first time you launch the node with your custom ONNX model, **TensorRT will optimize the model for inference**, which may take additional time (several seconds to minutes depending on the system).  
+Subsequent runs will be much faster, as the optimized engine will be cached and reused.
+
+---
+
+Once all dependencies are correctly installed and the YOLOv5 model is configured, you should be able to run real-time object detection with the ZED2 camera using ROS 2.
+
+---
+
+## Hardware - Computer
+
+Our computer is based on the NVidia Jetson AGX Orin Development Kit.
+
+# Links
+- Main Nvidia Jetson AGX Orin page: https://developer.nvidia.com/embedded/learn/jetson-agx-orin-devkit-user-guide/developer_kit_layout.html
+- Datasheets for NVidia Jetson Orin: https://developer.nvidia.com/embedded/downloads
+TODO link here to datasheets in the repo itself
+
+# Data
+## Power
+- Power consumption: 
+- Voltage range: 9-20VDC, typically 19V
+- Power connector: Barrel Jack 5.5mm OD 2.5mm ID center positive
+
+## Specs
+TODO
+
+# To connect it to the rest of the kart, we use a custom made adapter board
+## This is the version 1.0 of the adapter board
+Designed with [easyeda](https://easyeda.com/), can be downloaded [here](./index/ProProject_Orin Adapter_2025-03-09.epro)
+![](index/20250712031143.png)
+![](index/20250712031115.png)
+
+The path in our Owncloud folder is: `formula/formula 24-25/DV/ORIN/adapter/ProProject_Orin Adapter_2025-03-09.epro`
+
+# Notes
+## How to install Anydesk in Nvidia Jetson Orin
+```bash
+wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | sudo apt-key add -
+echo 'deb http://deb.anydesk.com/ all main' | sudo tee /etc/apt/sources.list.d/anydesk.list
+sudo apt update                                                     
+sudo apt install -y anydesk
+```
+
+---
+
+## Hardware - Motor
+
+## Motor
+
+We use a **Brushless DC (BLDC) motor** from [Kunray](https://kunraymotors.com/shop/) (model **MY1020**, 72V 3000W), along with its supplied controller.  
+The motivation for selecting an electric motor over a combustion engine is discussed in the [FAQ](../../faq.md#motor-choice).
+
+---
+
+## Motor Specifications
+
+- **Type:** High-speed BLDC motor (Brushless DC)
+- **Model:** Kunray MY1020
+- **Nominal voltage:** 48VDC *(?)*
+- **Nominal power:** 2000W–2500W *(?)*
+- **Nominal current:** *(?)*
+- **Rated speed:** *(?)*
+- **Max speed:** *(?)*
+- **Max torque:** *(?)*
+- **Sprocket:** T8F 11T (compatible with T8F chain)
+- **Material:** Aluminum housing, full copper winding
+- **Weight:** ~8 kg
+- **Dimensions:** ~16.9 cm length x 9.6 cm height
+- **Product link (Amazon):** [Kunray 72V 3000W Motor Kit](https://www.amazon.es/dp/B0C6WXYZ/ref=cm_sw_em_r_mt_dp_xyz)
+
+---
+
+## Controller Specifications
+
+- **Input voltage:** 48V *(?)*
+- **Max current:** *(?)*
+- **Max supported power:** *(?)*
+- **MOSFETs:** *(?)*
+- **Phase angle:** *(?)*
+- **Undervoltage protection:** *(?)*
+- **Built-in features:**
+  - Reverse mode
+  - PWM speed control
+  - Three speed modes (low/medium/high)
+  - High/low-level braking input
+  - Hall sensor support
+  - Sensorless mode supported
+  - Ignition lock (anti-theft)
+  - Cruise control
+  - Soft start
+  - Twist-grip throttle control
+- **Product link (AliExpress):** [Kunray BLDC Controller 72V](https://www.aliexpress.com/item/...)
+
+---
+
+## Throttle Pedal Sensor
+
+The throttle pedal sensor has the following wire assignments:
+
+- **Red:** Vcc  
+- **Yellow:** Ground  
+- **Green/Blue:** Signal  
+
+The twist-grip throttle that comes with the motor kit also includes:
+
+- **Voltage range:** 12V–72V  
+- **Functions:** Throttle signal, 3-speed selector, reverse mode  
+- **Cable length:** ~1.5 m  
+- **Material:** Rubber + ABS  
+
+---
+
+## Assembly
+
+*This section will include real photos of the kart assembly taken from OwnCloud.*
+
+>  **Important:** During the first installation, the **red steering part** was mounted in the wrong orientation. Refer to these pictures to ensure correct assembly in future setups.
+
+*(Insert images here once available)*
+
+---
+
+## To be added:
+
+- Full wiring table (cable color, pin name, voltage, function)
+- Integration with control system (e.g., microcontroller / bluepill)
+- DAC details (used to convert PWM signal if applicable)
+
+---
+
+## Hardware - Overview
+
+![](index/20250622200050.png)
+
+24V motor, we will use it at 12V, estimated about 300W
+
+## Main process
+We need to move the steering shaft to the target angle.
+
+1. Micro controller reads target position from main computer (Orin) and current position from the Hall effect sensor
+    - Micro controller may be a Blue Pill, Teensy 4.0, or one with CAN transceiver builtin.
+2. Calculates PWM % value with PID. Sends PWM 3.3V to H-bridge
+3. H-bridge (MD30C) receives PWM and powers the DC motor
+    - ChatGpt said it can't work with 3.3V PWM, just 5V PWM, but the datasheet says otherwise [here](../../assets/datasheets/MD30C%20Users%20Manual.pdf)
+
+## H-bridge data
+See [H-bridge](h-bridge.md) for more details.
+
+---
+
+## Hardware - H-bridge
+
+- **Cytron MD30C** (30 A cont, 80 A peak)  
+    - <https://www.cytron.io/p-30amp-5v-30v-dc-motor-driver>  
+    - Bought here to ship to Spain: <https://opencircuit.es/producto/30amp-5v-30v-dc-motor-driver>
+    - <https://www.cytron.io/p-30amp-5v-30v-dc-motor-driver?srsltid=AfmBOoo-TCLyyRQ5SBEhwpIMcAhQIaXDzO-NgCP_LdYCx8KNeVAThvSF>  
+    - <https://docs.google.com/document/d/178uDa3dmoG0ZX859rWUOS2Xyafkd8hSsSET5-ZLXMYQ/view>  
+    - <https://github.com/CytronTechnologies/CytronMotorDriver>
+    - <https://www.cytron.io/tutorial/controlling-md10c-with-arduino>
+    - <https://www.instructables.com/Controlling-Motor-Speed/>
+
+### Reasoning
+Suggested H-bridges by gpt:
+
+- **Cytron MD30C** (30 A cont, 80 A peak)  
+- **Pololu VNH5019 Driver** (12 A cont, 30 A peak)  
+    - <https://www.pololu.com/product/1451?utm_source=chatgpt.com>  
+- ~~Sabertooth 2x32: Overkill but excellent for dual motors, up to 32 A per channel~~  
+- ~~Simple BTS7960: Cheap dual half-bridge module, supports 43 A per channel, needs external PWM and logic control~~  
+- ~~IBT-4~~
+    - Needs two synced pwm signals to control the H bridge, so it's harder to use. Otherwise it would work and it's cheaper
+
+---
+
+## Hardware - Steering Angle Sensor
+
+Sensor used is the cheap AS5600
+![](20250608181732.png)
+
+Intended for use with a diametrically magnetized magnet, but works with a normal one turned 90 degrees too.
+It may be a good idea to find bigger neodymium diametric magnets.
+
+Repo with basic code to read the steering angle sensor (Arduino HAL with VSCode Platformio, no IDE): https://github.com/rubenayla/bluepill-angle-arduino.git
+
+![](20250608181003.png)
+![](20250608181018.png)
+
+---
+
+## Hardware - DAC
+
+### DAC – Digital to Analog Conversion
+
+**Model:** [full name of the chip or board]  
+**Power supply voltage:** 5V  
+**Communication:** I2C @ 3.3V  
+**Detected issue:**  
+The DAC requires a 5V power supply, but the I2C line operates at 3.3V. This may damage the microcontroller or cause communication failures.
+
+**Proposed or pending solution:**  
+Use a **bidirectional I2C level shifter** (e.g., TXS0108E or BSS138) between the microcontroller and the DAC.
+
+---
+
+## Hardware - ESP32
+
+The ESP32 is a series of low-cost, low-power system on a chip microcontrollers with integrated Wi-Fi and dual-mode Bluetooth. The ESP32 series employs a Tensilica Xtensa LX6 microprocessor in both dual-core and single-core variations and includes built-in antenna switches, RF balun, power amplifier, low-noise receive amplifier, filters, and power management modules.
+
+## Key Features
+
+[![ESP32 Pinout](index/ESP32-pinout-diagram.jpg)](https://www.teachmemicro.com/)
+
+*   **CPU:** Xtensa dual-core (or single-core) 32-bit LX6 microprocessor
+*   **Clock Speed:** Up to 240 MHz
+*   **Wi-Fi:** 802.11 b/g/n
+*   **Bluetooth:** Bluetooth v4.2 BR/EDR and BLE
+*   **Flash Memory:** Up to 16 MB
+*   **SRAM:** 520 KB
+*   **GPIOs:** 34
+*   **ADCs:** 18-channel, 12-bit
+*   **DACs:** 2-channel, 8-bit
+*   **Communication Interfaces:** SPI, I2C, UART, CAN, I2S
+
+## Pin Use
+
+| Pin Name | Function |
+| -------- | -------- |
+| GPIOXX   | Describe its function |
+
+---
+
+## Electrical - Wiring
+
+TODO global diagram (Fritzing?)
+
+## Throttle pedal sensor
+It's a linear hall effect sensor, powered at 5V and outputs an analog voltage in 0-5V range. 0V = 0%, 5V = 100%.
+
+| Cable Color       | Function |
+| ----------------- | -------- |
+| Red               | Vcc      |
+| Yellow            | Ground   |
+| Teal (Green/Blue) | Signal   |
+
+## ESP32 wiring
+TODO
+
+---
+
+## Assembly Instructions
+
+This section contains instructions for assembling the kart.
+
+# Stuff
+
+- The red plastic piece of the steering column goes on top of the bolt that holds it
+- The bearings on the wheels are separated with tube of ? ID x ? OD x ? length to allow compressing them with the bolts without applying constant shear force on the bearings
+- ...
+
+---
+
+## Pneumatics
+
+We need an emergency braking system that can be activated on loss of electrical power or error from the shutdown loop, and a proportional braking system that can be controlled by the main computer when the robot is running.
+
+TODO redesign circuit with the valves we have, instead of using two different ones. 
+
+TODO order components: proportional valve, adapters to have no problems using any of our tanks, pressure sensors, 
+
+> Original Idea:
+> Use a ball valve to merge the proportional braking line with the emergency one, and an extra electrovalve to stop flow to the proportional valve when emergency.
+
+## Simplified design (TODO simulate it)
+If the proportional valve does close both ways when not powered, we can get rid of the valve that goes in series with it. If we close port 3 of the emergency electrovalve, we can get rid of the valve with the ball at the top.
+
+![](2025-07-11-13-57-41.png)
+
+## Components
+- [Solenoid valve](https://www.festo.com/tw/en/a/575488/)
+    > For emergency braking
+    - [Datasheet local](../assets/datasheets/575488datasheet.pdf)
+    - [Datasheet online](https://www.festo.com/tw/en/a/download-document/datasheet/575488)
+    - G1/4 female thread
+- [Proportional Valve](https://www.festo.com/es/es/a/8153644/)
+    > For normal controlled braking
+    - TODO CONSIDER AN 8-PIN M16 PROPORTIONAL VALVE SO WE CAN USE IT AS PRESSURE SENSOR
+    - [Datasheet online](https://www.festo.com/es/es/a/download-document/datasheet/8153644)
+    - [Datasheet local](../assets/datasheets/8153644datasheet.pdf)
+    - [206533 documentation](../assets/datasheets/206533_documentation.pdf)
+    - TODO QUESTION: Can we get the reading of pressure from this valve? There are some that allow it
+- Fittings:
+    - 90º TODO what thread what size, what tube material and OD/ID.
+    - Straight TODO what adapters
+- Pressure sensor
+
+---
+
+## Hydraulics
+
+- We are using flexible brake hoses with `M10x1.0 female inverted flare` connectors
+
+
+## Brake Pressure Sensor
+Our pressure sensor is the Sensata PTE7100, code `PTE7100-33CC-2E200BN`, [datasheet here](../assets/datasheets/sensata_pte7100_hermetic_analog_pressure_sensor_da-1919220.pdf), [mouser here](https://www.mouser.es/ProductDetail/Sensata-Technologies/PTE7100-32DC-0B200BN?qs=sGAEpiMZZMv1xWCHBjbGeVR9W0yhknQ8lfjrm5f%2FKxVuiB%2F1oy1aA%3D%3D).
+
+
+- 7/16-20 UNF-2A (MALE) pressure port
+- Packard Metri-Pack 150 connector
+- HNBR o-ring
+- 1-5Vdc/8-32Vdc
+- 0–200 bar pressure range
+- no mating connector or snubber
+- Adapter: To connect the sensor to the brake lines, we use a `male M10x1.0 inverted flare to female 7/16-20 UNF adapter`
+
+![](index/20250703193056.png)
+
+### Possible alternative
+- [Bosch Motorsport PSS-260 --- PN0261545188](https://xtramotorsport.com/product/bosch-motorsport-pss-260-brake-pressure-sensor/)
+    - 0.5-4.5V, 0-260 bar
+
+---
+
+## Software
+
+The software documentation will include its own repository, since it must be common and independent from Kart or Formula Student car.
+
+- 2024 version of the software, using Python:
+    - [https://github.com/UM-Driverless/driverless.git](https://github.com/UM-Driverless/driverless.git)
+    - Tutorial: [https://youtu.be/wZSFr2eYE4M?si=K0gPpFHeWrK2Y9I8](https://youtu.be/wZSFr2eYE4M?si=K0gPpFHeWrK2Y9I8)
+- 2025 version of the software, using ROS:
+    - https://github.com/UM-Driverless/KART_SW.git
+    - git@github.com:UM-Driverless/KART_SW.git
+-
+
+---
+
+## Frequently Asked Questions
+
+## Emergency Braking System
+
+### Why are you using a pneumatic actuator for the braking system?
+
+If we need a force of 100 kgf at a speed of 0.5 m/s the power requirement is roughly 500 W. An electric actuator capable of that is bulky and hard to source. A cable and pulley system with a motor and pressure feedback was considered, but cables cannot bend sharply. Since we already have a pneumatic piston from our sponsor Festo, it is the simplest solution.
+
+## Battery
+
+### Why is the battery placed at the back?
+
+The rear of the kart offered the most practical space for such a large and heavy component. Because the seat, wheels and pedals remain in their original positions, placing the pack behind the driver was the best compromise. Handling is less of a concern since the kart will usually run autonomously without a driver's weight.
+
+## Motor choice
+
+### Why not use a thermal engine?
+
+A combustion engine would add unnecessary complexity such as fuel, exhaust and cooling. Electric motors require little maintenance and are simpler to control electronically. Since this prototype focuses on sensors, actuators and software, the type of engine does not matter as long as the vehicle moves when throttle is applied.
+
+---
+
+## Contact
+
+You can reach the Ü Motorsport Formula Student team via email at [marketingumotorsport@gmail.com](mailto:marketingumotorsport@gmail.com).
+
+Our workshop is located at
+[Ü‑Motorsport – C. del Molino, S/N, 28943 Fuenlabrada, Madrid](https://maps.app.goo.gl/aSBnuLuFuLq2rfQt5) (40.280670, -3.822346).
+
+Our website: [https://u-motorsport.urjc.es/](https://u-motorsport.urjc.es/)
+
+**Social media**
+- [Instagram](https://www.instagram.com/_umotorsport/)
+- [LinkedIn](https://www.linkedin.com/company/u-motorsport/)
+- [TikTok](https://www.tiktok.com/@_umotorsport?is_from_webapp=1&sender_device=pc)
+- [X](https://twitter.com/_umotorsport)
+- [Facebook](https://www.facebook.com/umotorsport)
+
+---
+
+*This documentation is available at https://um-driverless.github.io/kart_docs/ and follows the llms.txt standard for LLM consumption.*

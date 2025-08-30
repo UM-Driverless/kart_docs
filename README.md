@@ -45,14 +45,35 @@ This:
 
 ```bash
 poetry run mkdocs serve
-# Open http://127.0.0.1:8000 in your browser
 ```
+You can then access the documentation in your web browser, usually at `http://127.0.0.1:8000`.
 
-To build the static site:
+To just build the static site:
 
 ```bash
 poetry run mkdocs build
 # Output: site/
+```
+
+---
+
+## 🤖 LLM-Friendly Documentation
+
+This documentation includes LLM-optimized formats following the [llms.txt standard](https://llmstxt.org/):
+
+- **llms.txt**: Sitemap-style overview of all documentation pages
+- **llms-full.txt**: Complete documentation content in one consumable file
+
+These files are automatically generated during the build process and are available at:
+- Live site: https://um-driverless.github.io/kart_docs/llms.txt
+- Live site: https://um-driverless.github.io/kart_docs/llms-full.txt
+
+### Manual Generation
+
+To manually generate the LLM files:
+
+```bash
+poetry run python generate_llm_files.py
 ```
 
 ---

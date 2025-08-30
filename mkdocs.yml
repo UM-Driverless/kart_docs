@@ -35,3 +35,6 @@ plugins:
           aggregator:
             enabled: true
             output: kart-documentation.pdf
+
+hooks:
+  - generate_llm_hook.py
