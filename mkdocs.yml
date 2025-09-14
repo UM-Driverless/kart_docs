@@ -8,22 +8,29 @@ markdown_extensions:
 nav:
   - Home: index.md
   - BOM: bom/index.md
-  - Hardware:
-      - Battery: hardware/battery/index.md
-      - Camera: hardware/camera/index.md
-      - Computer: hardware/computer/index.md
-      - Motor: hardware/motor/index.md
-      - Transmission: hardware/transmission/index.md
-      - Throttle Pedal: hardware/throttle-pedal/index.md
+  - Assemblies:
+      - Powertrain:
+          - Overview: assemblies/powertrain/index.md
+          - Motor: assemblies/powertrain/motor.md
+          - Transmission: assemblies/powertrain/transmission.md
+          - Throttle Pedal: assemblies/powertrain/throttle-pedal.md
+          - Fasteners: assemblies/powertrain/fasteners.md
       - Steering:
-          - Overview: hardware/steering/index.md
-          - H-bridge: hardware/steering/h-bridge.md
-          - Steering Angle Sensor: hardware/steering/sensor/index.md
-      - DAC: hardware/dac/index.md
-      # - Blue Pill: hardware/blue-pill/index.md # commented out because it is not used anymore
-      - ESP32: hardware/esp32/index.md
-  - Electrical: electrical/index.md
-  - Assembly: assembly/index.md
+          - Overview: assemblies/steering/index.md
+          - Motor & Coupling: assemblies/steering/index.md
+          - H-bridge: assemblies/steering/h-bridge.md
+          - Angle Sensor: assemblies/steering/sensor/index.md
+          - Fasteners: assemblies/steering/fasteners.md
+      - Electronics:
+          - Microcontroller: assemblies/electronics/microcontroller.md
+          - Computer: assemblies/electronics/computer.md
+          - DAC: assemblies/electronics/dac.md
+          - Wiring: assemblies/electronics/wiring.md
+      - Power:
+          - Battery: assemblies/power/battery.md
+      - Sensors:
+          - Camera: assemblies/sensors/camera.md
+  - Assembly Instructions: assembly/index.md
   - Pneumatics: pneumatics/index.md
   - Hydraulics: hydraulics/index.md
   - Software: software/index.md

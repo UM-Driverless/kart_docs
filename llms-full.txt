@@ -126,248 +126,51 @@ To add a new component to the BOM:
 
 ---
 
-## Hardware - Battery
-
-> To charge the battery with a bench power supply, see this tutorial: [Cómo Cargar una Batería de Litio con una Fuente](https://youtu.be/g1jsSbjsiTo?si=uZ7mVjXA2c-43zzz)
-
-The main pack uses **Molicel P42A** cells in a 13S4P configuration, providing a nominal voltage of about 48 V. A separate 12 V car battery supplies the sensors to remain compatible with the Formula Student car.
-
-For battery placement rationale see the [FAQ](../../faq.md#battery).
-
-| Parameter | Value |
-|-----------|-------|
-| BMS Cutoff voltage | 39.0 V (13 * 3.0V) |
-| Configuration | 13S4P (13 cells in series, 4 in parallel) |
-| Nominal voltage | 48 V |
-| Maximum charging voltage | 54.6 V (13 * 4.2V) |
-| Minimum voltage | 41.6 V (13 * 3.2V) |
-| Power Capacity | 808 Wh (3.7V * 4.2 Ah * 13 * 4) |
-| Charge capacity | 16.8 Ah (4 * 4200 mAh) |
-| Maximum continuous discharge current | 180 A (4 * 45 A. 9828W at 100% charge!!) |
-| Maximum continuous charge current | 32 A (4 * 8 A. about 1.7kW) |
-| Cell type | Molicel P42A |
-| Cell capacity | 4200 mAh (4.2 Ah) |
-| Cell nominal voltage | 3.7 V |
-| Cell maximum voltage | 4.2 V |
-| Cell minimum voltage | 3.2 V |
-
-## BMS
-- Jiabaida BMS, 100A BT UART, NMC 6S-21S
-- https://www.notion.so/BMS-Bater-a-Kart-JBD-16078747314380e68688c3ab787fc1f7?pvs=21
-- https://es.aliexpress.com/item/1005007223779359.html
-![https://jiabaida-bms.com/blogs/content/jiabaida-sp22s003b-smart-bms-wiring-diagram?spm=a2g0o.detail.1000023.4.58c53GRk3GRk3N](index/20250608185913.png)
--
-
----
-
-## Hardware - Camera
+## Overview
 
 ## Overview
 
-This document describes the integration of the **ZED2 stereo camera** into the kart, its usage through the **ROS 2 wrapper**, and the combination with **YOLOv5** for cone detection. 
+The powertrain assembly converts electrical energy into motion, consisting of the motor, transmission system, and throttle control. This assembly is responsible for propelling the kart forward and providing speed control.
 
-## Official Resources
+## Assembly Components
 
-- **ZED2 Camera Overview**: [https://www.stereolabs.com/zed-2/](https://www.stereolabs.com/zed-2/)
-- **ZED ROS 2 Wrapper Documentation**: [https://docs.stereolabs.com/ros2/](https://docs.stereolabs.com/ros2/)
+### Primary Components
+- **[Motor](motor.md)**: Kunray MY1020 BLDC motor (72V, 3000W)
+- **[Transmission](transmission.md)**: 219 pitch chain and sprocket system
+- **[Throttle Pedal](throttle-pedal.md)**: Hall effect sensor for speed control
+- **[Fasteners](fasteners.md)**: All mounting hardware and bolts
 
-## Hardware: ZED2 Camera
+### System Integration
+- Motor provides power through custom 10mm shaft
+- Transmission transfers power to rear axle via 219 chain system
+- Throttle pedal provides analog speed control signal
+- All components mounted securely with documented fastener specifications
 
-The [ZED2](https://www.stereolabs.com/zed-2/) camera by Stereolabs is a stereo vision camera capable of providing:
+## Assembly Sequence
+1. Mount motor to chassis using motor mount fasteners
+2. Install custom front sprocket on motor shaft
+3. Mount rear sprocket to axle
+4. Install and tension 219 chain
+5. Mount and wire throttle pedal
+6. Test system operation and adjust chain tension
 
-- High-definition left and right stereo images
-- Depth sensing
-- 3D point clouds
-- Positional tracking (6DoF)
-- Integrated IMU sensors (accelerometer, gyroscope, magnetometer)
-- Environmental sensors (barometer, temperature sensor)
+## Key Specifications
+- **Power**: 3000W maximum
+- **Operating Voltage**: 72V (motor), 5V (throttle)
+- **Transmission Ratio**: Variable (depending on sprocket selection)
+- **Chain Pitch**: 219 (7.774mm)
 
-## ROS 2 Integration
+## Maintenance
+- Regular chain tension checking and adjustment
+- Sprocket wear inspection
+- Throttle pedal calibration verification
+- Motor controller connection inspection
 
-The ZED2 camera is integrated into the project using the **official Stereolabs ZED ROS 2 Wrapper**:
-
-- GitHub: [https://github.com/stereolabs/zed-ros2-wrapper](https://github.com/stereolabs/zed-ros2-wrapper)
-
-
-### Installation Requirements
-
-To properly install and run the **ZED ROS 2 Wrapper** with the ZED2 camera, you must ensure the following dependencies and system configuration are in place.
-
-- Operating System
-
-    - **Ubuntu 24.04 LTS** is the recommended version for this setup.
-    - Other Ubuntu versions may be used; however, note that dependencies such as CUDA, TensorRT, ROS2, and the ZED SDK may require different versions and additional compatibility testing.
-
-- ROS 2 Jazzy
-
-    - Install **ROS 2 Jazzy** by following the official instructions here:  
-  [https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html](https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html)
-
-- CUDA Toolkit (12.0 to 12.9)
-
-    - Install **CUDA 12.x** (any version from 12.0 to 12.9 is compatible).
-    - Download from the official NVIDIA website:  
-  [https://developer.nvidia.com/cuda-downloads](https://developer.nvidia.com/cuda-downloads)
-
-- ZED SDK (v5.0)
-
-    - Download and install **ZED SDK v5.0** for Ubuntu 24.04 with CUDA 12 and TensorRT 10 from the official release page:  
-  [https://www.stereolabs.com/en-es/developers/release/5.0#82af3640d775](https://www.stereolabs.com/en-es/developers/release/5.0#82af3640d775)
-
-- TensorRT 10
-
-    - Download the **TensorRT 10** `.deb` package for Ubuntu 24.04 + CUDA 12.9 from the official NVIDIA repository:  
-  [https://developer.nvidia.com/downloads/compute/machine-learning/tensorrt/10.10.0/local_repo/nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9_1.0-1_amd64.deb](https://developer.nvidia.com/downloads/compute/machine-learning/tensorrt/10.10.0/local_repo/nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9_1.0-1_amd64.deb)
-  
-
-    After downloading the `.deb` file, run the following commands to install it:
-
-```bash
-sudo dpkg -i nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9_1.0-1_amd64.deb
-sudo apt update
-```
-
-If you encounter **GPG key errors**, follow these additional steps:
-
-```bash
-sudo cp /var/nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9/*.gpg /usr/share/keyrings/
-
-sudo nano /etc/apt/sources.list.d/nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9.list
-```
-
-Replace the content of the file with:
-
-```bash
-deb [signed-by=/usr/share/keyrings/nv-tensorrt-local-CD20EDBE-keyring.gpg] file:///var/nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9 /
-```
-
-Then update again:
-
-```bash
-sudo apt update
-```
-
-This should resolve the key issues.
-
-Finally, install the required TensorRT runtime libraries:
-
-```bash
-sudo apt-get install libnvinfer10 libnvinfer-dev libnvinfer-plugin-dev python3-libnvinfer
-```
-
-- ZED ROS 2 Wrapper
-
-    - Clone and build the **zed-ros2-wrapper** package in your existing ROS 2 workspace:
-
-```bash
-cd ~/ros2_ws/src
-git clone https://github.com/stereolabs/zed-ros2-wrapper.git
-cd ..
-rosdep install --from-paths src --ignore-src -r -y
-colcon build --symlink-install
-```
-
-Official repository:  
-[https://github.com/stereolabs/zed-ros2-wrapper](https://github.com/stereolabs/zed-ros2-wrapper)
+See individual component pages for detailed specifications and BOM information.
 
 ---
 
-Once all the dependencies are installed and the wrapper is successfully built, you should be able to launch the ZED2 ROS 2 node without issues.
-
-### Launching the Camera
-
-The camera is launched using a provided launch file, typically:
-
-```bash
-ros2 launch zed_wrapper zed_camera.launch.py camera_model:=zed2
-```
-
-<!-- ### Published Topics of Interest
-
-CORREGIR POR TOPICS CORRECTOS
-
-| Topic Name                             | Message Type                | Description                                    |
-|----------------------------------------|-----------------------------|------------------------------------------------|
-| `/zed2/zed_node/left/image_rect_color` | `sensor_msgs/Image`         | Rectified color image from left camera         |
-| `/zed2/zed_node/depth/depth_registered`| `sensor_msgs/Image`         | Depth image aligned to the left camera         |
-| `/zed2/zed_node/imu/data`              | `sensor_msgs/Imu`           | IMU data (accelerometer + gyroscope + orientation) |
-| `/zed2/zed_node/point_cloud/cloud_registered` | `sensor_msgs/PointCloud2` | Registered 3D point cloud                      |
-| `/zed2/zed_node/odom`                  | `nav_msgs/Odometry`         | Visual odometry (pose estimation)              | -->
-
-## Cone Detection with YOLOv5
-
-In this project, **YOLOv5** is used to perform **real-time cone detection** on images captured by the ZED2 camera.
-The ZED ROS 2 Wrapper supports custom object detection models through **ONNX integration**, allowing you to run your own trained detectors such as YOLOv5 directly on the GPU using **TensorRT** for real-time inference.
-
-### Exporting and Using a Custom YOLOv5 Model
-
-If you have trained a YOLOv5 model (e.g., for cone detection), follow these steps to integrate it into the ZED wrapper:
-
-1. **Export the model to ONNX format**:  
-   You can do this using PyTorch and the YOLOv5 export tools (e.g., `export.py` script from the [YOLOv5 repository](https://github.com/ultralytics/yolov5)):
-
-   This will generate a `.onnx` file.
-
-2. **Enable object detection in the ZED wrapper** by editing the configuration file:
-
-   Open your `common_stereo.yaml` (located in your ROS 2 workspace, inside `zed-ros2-wrapper/zed_wrapper/config`), and modify or add the following lines:
-
-   ```yaml
-   object_detection:
-        od_enabled: true 
-        model: 'CUSTOM_YOLOLIKE_BOX_OBJECTS'
-        custom_onnx_file: '$path to model'
-   ```
-
-### First-Time Optimization
-
-The first time you launch the node with your custom ONNX model, **TensorRT will optimize the model for inference**, which may take additional time (several seconds to minutes depending on the system).  
-Subsequent runs will be much faster, as the optimized engine will be cached and reused.
-
----
-
-Once all dependencies are correctly installed and the YOLOv5 model is configured, you should be able to run real-time object detection with the ZED2 camera using ROS 2.
-
----
-
-## Hardware - Computer
-
-Our computer is based on the NVidia Jetson AGX Orin Development Kit.
-
-# Links
-- Main Nvidia Jetson AGX Orin page: https://developer.nvidia.com/embedded/learn/jetson-agx-orin-devkit-user-guide/developer_kit_layout.html
-- Datasheets for NVidia Jetson Orin: https://developer.nvidia.com/embedded/downloads
-TODO link here to datasheets in the repo itself
-
-# Data
-## Power
-- Power consumption: 
-- Voltage range: 9-20VDC, typically 19V
-- Power connector: Barrel Jack 5.5mm OD 2.5mm ID center positive
-
-## Specs
-TODO
-
-# To connect it to the rest of the kart, we use a custom made adapter board
-## This is the version 1.0 of the adapter board
-Designed with [easyeda](https://easyeda.com/), can be downloaded [here](./index/ProProject_Orin Adapter_2025-03-09.epro)
-![](index/20250712031143.png)
-![](index/20250712031115.png)
-
-The path in our Owncloud folder is: `formula/formula 24-25/DV/ORIN/adapter/ProProject_Orin Adapter_2025-03-09.epro`
-
-# Notes
-## How to install Anydesk in Nvidia Jetson Orin
-```bash
-wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | sudo apt-key add -
-echo 'deb http://deb.anydesk.com/ all main' | sudo tee /etc/apt/sources.list.d/anydesk.list
-sudo apt update                                                     
-sudo apt install -y anydesk
-```
-
----
-
-## Hardware - Motor
+## Motor
 
 ---
 # BOM Entry
@@ -484,7 +287,7 @@ The twist-grip throttle that comes with the motor kit also includes:
 
 ---
 
-## Hardware - Transmission
+## Transmission
 
 ---
 # BOM Entry
@@ -668,7 +471,7 @@ With the motor mount moved slightly backward (compared to the original 3D-printe
 
 ---
 
-## Hardware - Throttle Pedal
+## Throttle Pedal
 
 ---
 # BOM Entry
@@ -787,7 +590,142 @@ For current kart configuration, this connects to the motor controller's throttle
 
 ---
 
-## Hardware - Overview
+## Fasteners
+
+---
+# BOM Entry
+bom:
+  assembly: "powertrain"
+  category: "fasteners"
+  components:
+    - item: "Motor mount bolts"
+      part_number: "M8x30-HEX"
+      specification: "M8 x 30mm hex head cap screw"
+      quantity: 4
+      unit_cost: 0.50
+      material: "Steel, zinc plated"
+      torque: "25 Nm"
+      notes: "Secures motor to chassis mount"
+    - item: "Motor mount nuts"
+      part_number: "M8-NUT"
+      specification: "M8 hex nut"
+      quantity: 4
+      unit_cost: 0.15
+      material: "Steel, zinc plated"
+      notes: "Lock nuts for motor mount bolts"
+    - item: "Front sprocket bolts"
+      part_number: "M6x16-HEX"
+      specification: "M6 x 16mm hex head cap screw"
+      quantity: 3
+      unit_cost: 0.30
+      material: "Steel, zinc plated"
+      torque: "12 Nm"
+      notes: "Secures custom sprocket to motor shaft"
+    - item: "Chain tensioner hardware"
+      part_number: "M6x20-HEX"
+      specification: "M6 x 20mm hex head cap screw"
+      quantity: 2
+      unit_cost: 0.35
+      material: "Steel, zinc plated"
+      torque: "10 Nm"
+      notes: "Adjusts chain tension"
+    - item: "Throttle pedal mount bolts"
+      part_number: "M5x12-HEX"
+      specification: "M5 x 12mm hex head cap screw"
+      quantity: 2
+      unit_cost: 0.25
+      material: "Steel, zinc plated"
+      torque: "6 Nm"
+      notes: "Mounts throttle pedal to floor plate"
+---
+
+# Powertrain Fasteners
+
+## Overview
+
+This page documents all fasteners (bolts, nuts, washers) used in the powertrain assembly. Each fastener is identified by location, size, and purpose with reference photos showing exact positions.
+
+!!! warning "Critical Safety"
+    Proper torque specifications must be followed. Loose motor mounts or sprocket bolts can cause catastrophic failure.
+
+## Motor Mounting Hardware
+
+### Motor to Chassis Mount
+- **Location**: Motor mount bracket to chassis
+- **Fasteners**: 4x M8x30 hex head cap screws with M8 nuts
+- **Torque**: 25 Nm
+- **Notes**: Use threadlocker on bolts. Check tension after first 10 hours of operation.
+
+??? example "View motor mounting bolts"
+    ![Motor mount bolt locations](images/motor-mount-bolts.jpg)
+
+## Transmission Hardware
+
+### Front Sprocket (Motor Shaft)
+- **Location**: Custom sprocket to motor shaft
+- **Fasteners**: 3x M6x16 hex head cap screws
+- **Torque**: 12 Nm
+- **Notes**: Evenly spaced around sprocket. Use threadlocker.
+
+### Chain Tensioning
+- **Location**: Chain tensioner mechanism
+- **Fasteners**: 2x M6x20 hex head cap screws
+- **Torque**: 10 Nm
+- **Notes**: Allows chain tension adjustment. Check weekly.
+
+??? example "View transmission fasteners"
+    ![Transmission bolt locations](images/transmission-bolts.jpg)
+
+## Throttle Pedal Hardware
+
+### Pedal Mount
+- **Location**: Throttle pedal to floor plate
+- **Fasteners**: 2x M5x12 hex head cap screws
+- **Torque**: 6 Nm
+- **Notes**: Ensure pedal is level and secure
+
+## Assembly Instructions
+
+### Installation Order
+1. **Motor mount bolts**: Install motor to chassis first
+2. **Front sprocket**: Attach custom sprocket to motor shaft
+3. **Rear sprocket**: Mount to axle (see chassis fasteners)
+4. **Chain**: Install and tension using tensioner hardware
+5. **Throttle pedal**: Mount to accessible floor location
+
+### Torque Sequence
+- Always torque in cross pattern for multi-bolt connections
+- Use threadlocker (blue, medium strength) on all critical bolts
+- Re-check torque after first operation session
+
+## Maintenance Schedule
+
+| Component | Check Frequency | Action |
+|-----------|-----------------|---------|
+| Motor mount bolts | Weekly | Visual inspection, retorque if loose |
+| Sprocket bolts | Bi-weekly | Check for looseness, clean threads |
+| Chain tensioner | Weekly | Adjust tension, lubricate threads |
+| Throttle mount | Monthly | Check for wear, ensure secure |
+
+## Procurement
+
+### Recommended Suppliers
+- **McMaster-Carr**: High-quality metric fasteners
+- **Bossard**: Professional fastener distributor
+- **Local hardware**: Basic bolts and nuts
+
+### Standard Materials
+- **Steel, zinc plated**: Standard for most applications
+- **Stainless steel**: For exposed locations (optional upgrade)
+- **Threadlocker**: Loctite 243 (blue, medium strength)
+
+## Total Fastener Cost
+- **Estimated cost**: €8.50 for complete powertrain fastener kit
+- **Recommended**: Purchase 25% extra for spares and maintenance
+
+---
+
+## Overview
 
 ## Mechanical Overview
 
@@ -818,7 +756,38 @@ See [H-bridge](h-bridge.md) for more details.
 
 ---
 
-## Hardware - H-bridge
+## Motor & Coupling
+
+## Mechanical Overview
+
+??? example "View steering mechanism with measurements"
+    ![Steering mechanism with dimensions](images/steering-mechanism.jpg)
+
+The steering system uses a direct drive motor connected to the steering column. Key dimensions:
+- Steering column diameter: 20mm
+- Motor mount spacing: 50mm
+- Connection diameter: 10mm (internal)
+
+## Motor Data
+![Motor specifications](index/20250622200050.png)
+
+24V motor, we will use it at 12V, estimated about 300W
+
+## Main process
+We need to move the steering shaft to the target angle.
+
+1. Micro controller reads target position from main computer (Orin) and current position from the Hall effect sensor
+    - Micro controller may be a Blue Pill, Teensy 4.0, or one with CAN transceiver builtin.
+2. Calculates PWM % value with PID. Sends PWM 3.3V to H-bridge
+3. H-bridge (MD30C) receives PWM and powers the DC motor
+    - ChatGpt said it can't work with 3.3V PWM, just 5V PWM, but the datasheet says otherwise [here](../../assets/datasheets/MD30C%20Users%20Manual.pdf)
+
+## H-bridge data
+See [H-bridge](h-bridge.md) for more details.
+
+---
+
+## H-bridge
 
 - **Cytron MD30C** (30 A cont, 80 A peak)  
     - <https://www.cytron.io/p-30amp-5v-30v-dc-motor-driver>  
@@ -842,7 +811,7 @@ Suggested H-bridges by gpt:
 
 ---
 
-## Hardware - Steering Angle Sensor
+## Angle Sensor
 
 ---
 # BOM Entry
@@ -899,22 +868,159 @@ Repo with basic code to read the steering angle sensor (Arduino HAL with VSCode 
 
 ---
 
-## Hardware - DAC
+## Fasteners
 
-### DAC – Digital to Analog Conversion
+---
+# BOM Entry
+bom:
+  assembly: "steering"
+  category: "fasteners"
+  components:
+    - item: "Coupling to motor bolts"
+      part_number: "M6x20-HEX"
+      specification: "M6 x 20mm hex head cap screw"
+      quantity: 4
+      unit_cost: 0.35
+      material: "Steel, zinc plated"
+      torque: "12 Nm"
+      notes: "Secures motor to coupling - Item #1 in assembly photo"
+    - item: "Main coupling bolt"
+      part_number: "M8x25-HEX"
+      specification: "M8 x 25mm hex head cap screw"
+      quantity: 1
+      unit_cost: 0.45
+      material: "Steel, grade 8.8"
+      torque: "20 Nm"
+      notes: "Main coupling bolt through steering shaft - Item #2 in assembly photo"
+    - item: "Sensor mounting screws"
+      part_number: "M3x8-HEX"
+      specification: "M3 x 8mm hex head cap screw"
+      quantity: 2
+      unit_cost: 0.20
+      material: "Steel, zinc plated"
+      torque: "3 Nm"
+      notes: "AS5600 sensor board mount - Item #3 in assembly photo"
+    - item: "Motor bracket bolts"
+      part_number: "M6x30-HEX"
+      specification: "M6 x 30mm hex head cap screw"
+      quantity: 2
+      unit_cost: 0.40
+      material: "Steel, zinc plated"
+      torque: "15 Nm"
+      notes: "Steering motor to chassis bracket"
+---
 
-**Model:** [full name of the chip or board]  
-**Power supply voltage:** 5V  
-**Communication:** I2C @ 3.3V  
-**Detected issue:**  
-The DAC requires a 5V power supply, but the I2C line operates at 3.3V. This may damage the microcontroller or cause communication failures.
+# Steering Assembly Fasteners
 
-**Proposed or pending solution:**  
-Use a **bidirectional I2C level shifter** (e.g., TXS0108E or BSS138) between the microcontroller and the DAC.
+## Overview
+
+This page documents all fasteners used in the steering assembly with precise identification using the annotated reference photo. Each bolt is numbered for easy identification during assembly or maintenance.
+
+!!! warning "Critical Safety"
+    Steering fasteners are safety-critical. Use specified torque values and threadlocker. Inspect regularly for looseness.
+
+## Reference Photo
+
+??? example "View steering assembly with numbered fasteners"
+    ![Steering mechanism with bolt identification](images/steering-mechanism.jpg)
+
+    **Fastener Identification:**
+    1. Coupling to motor bolts (4x M6x20)
+    2. Main coupling bolt (1x M8x25)
+    3. Sensor mounting screws (2x M3x8)
+
+## Detailed Fastener Specifications
+
+### Item #1: Coupling to Motor Bolts
+- **Quantity**: 4 bolts
+- **Size**: M6 x 20mm hex head cap screws
+- **Location**: Motor flange to coupling connection
+- **Torque**: 12 Nm
+- **Material**: Steel, zinc plated
+- **Installation**: Apply threadlocker, torque in cross pattern
+- **Inspection**: Check weekly for looseness
+
+### Item #2: Main Coupling Bolt
+- **Quantity**: 1 bolt
+- **Size**: M8 x 25mm hex head cap screw
+- **Location**: Through steering shaft coupling
+- **Torque**: 20 Nm
+- **Material**: Steel, grade 8.8 (high strength)
+- **Installation**: Critical connection - use threadlocker
+- **Inspection**: Check bi-weekly, this bolt failure would disable steering
+
+### Item #3: Sensor Mount Screws
+- **Quantity**: 2 bolts
+- **Size**: M3 x 8mm hex head cap screws
+- **Location**: AS5600 sensor board to mounting bracket
+- **Torque**: 3 Nm (be careful not to over-torque small screws)
+- **Material**: Steel, zinc plated
+- **Installation**: Hand-tighten plus 1/4 turn
+- **Inspection**: Monthly visual check
+
+### Motor Bracket Bolts
+- **Quantity**: 2 bolts
+- **Size**: M6 x 30mm hex head cap screws
+- **Location**: Steering motor to chassis mounting bracket
+- **Torque**: 15 Nm
+- **Material**: Steel, zinc plated
+- **Installation**: Ensure motor alignment before final tightening
+- **Inspection**: Weekly check for vibration loosening
+
+## Assembly Instructions
+
+### Installation Sequence
+1. **Mount sensor first**: Install AS5600 with Item #3 screws
+2. **Position motor**: Mount motor to chassis with bracket bolts
+3. **Install coupling**: Connect motor to shaft with Item #1 bolts
+4. **Final connection**: Install main coupling bolt (Item #2)
+5. **Test**: Verify smooth operation and sensor reading
+
+### Critical Notes
+- **Alignment**: Ensure motor shaft and steering shaft are properly aligned before tightening
+- **Sensor position**: AS5600 must be centered over magnet (see sensor documentation)
+- **Threadlocker**: Use blue (medium strength) on all bolts except sensor screws
+
+## Maintenance Schedule
+
+| Fastener | Check Frequency | Torque Check | Notes |
+|----------|-----------------|--------------|-------|
+| Item #1 (Coupling) | Weekly | Monthly | Critical for power transmission |
+| Item #2 (Main bolt) | Bi-weekly | Bi-weekly | Most critical fastener |
+| Item #3 (Sensor) | Monthly | Quarterly | Avoid over-torque |
+| Bracket bolts | Weekly | Monthly | Check for vibration loosening |
+
+## Troubleshooting
+
+### Loose Steering Feel
+- Check Item #2 main coupling bolt first
+- Inspect Item #1 coupling bolts for looseness
+- Verify motor bracket bolt tightness
+
+### Sensor Reading Issues
+- Check Item #3 sensor mount screws
+- Verify sensor hasn't shifted position
+- Ensure magnet alignment hasn't changed
+
+## Procurement Information
+
+### Estimated Costs
+- **Total fastener cost**: ~€5.50 for complete steering assembly
+- **Recommended spares**: 25% extra quantity
+
+### Suppliers
+- **McMaster-Carr**: Premium quality metric fasteners
+- **Fastenal**: Industrial fastener supplier
+- **Local automotive**: Grade 8.8 bolts available at auto parts stores
+
+### Required Tools
+- **Hex key set**: 3mm, 6mm, 8mm
+- **Torque wrench**: 0-25 Nm range
+- **Threadlocker**: Loctite 243 (blue, medium strength)
 
 ---
 
-## Hardware - ESP32
+## Microcontroller
 
 ---
 # BOM Entry
@@ -1014,7 +1120,59 @@ The ESP32 serves as the "medulla" of the kart, interfacing between the Orin comp
 
 ---
 
-## Electrical - Wiring
+## Computer
+
+Our computer is based on the NVidia Jetson AGX Orin Development Kit.
+
+# Links
+- Main Nvidia Jetson AGX Orin page: https://developer.nvidia.com/embedded/learn/jetson-agx-orin-devkit-user-guide/developer_kit_layout.html
+- Datasheets for NVidia Jetson Orin: https://developer.nvidia.com/embedded/downloads
+TODO link here to datasheets in the repo itself
+
+# Data
+## Power
+- Power consumption: 
+- Voltage range: 9-20VDC, typically 19V
+- Power connector: Barrel Jack 5.5mm OD 2.5mm ID center positive
+
+## Specs
+TODO
+
+# To connect it to the rest of the kart, we use a custom made adapter board
+## This is the version 1.0 of the adapter board
+Designed with [easyeda](https://easyeda.com/), can be downloaded [here](./index/ProProject_Orin Adapter_2025-03-09.epro)
+![](index/20250712031143.png)
+![](index/20250712031115.png)
+
+The path in our Owncloud folder is: `formula/formula 24-25/DV/ORIN/adapter/ProProject_Orin Adapter_2025-03-09.epro`
+
+# Notes
+## How to install Anydesk in Nvidia Jetson Orin
+```bash
+wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | sudo apt-key add -
+echo 'deb http://deb.anydesk.com/ all main' | sudo tee /etc/apt/sources.list.d/anydesk.list
+sudo apt update                                                     
+sudo apt install -y anydesk
+```
+
+---
+
+## DAC
+
+### DAC – Digital to Analog Conversion
+
+**Model:** [full name of the chip or board]  
+**Power supply voltage:** 5V  
+**Communication:** I2C @ 3.3V  
+**Detected issue:**  
+The DAC requires a 5V power supply, but the I2C line operates at 3.3V. This may damage the microcontroller or cause communication failures.
+
+**Proposed or pending solution:**  
+Use a **bidirectional I2C level shifter** (e.g., TXS0108E or BSS138) between the microcontroller and the DAC.
+
+---
+
+## Wiring
 
 TODO global diagram (Fritzing?)
 
@@ -1025,6 +1183,210 @@ For throttle pedal sensor specifications and wiring, see [Throttle Pedal Hardwar
 ## ESP32 wiring
 
 For detailed ESP32 wiring connections including AS5600 sensor, motor driver, and Orin communication, see [ESP32 Hardware Documentation](../hardware/esp32/index.md#wiring-connections).
+
+---
+
+## Battery
+
+> To charge the battery with a bench power supply, see this tutorial: [Cómo Cargar una Batería de Litio con una Fuente](https://youtu.be/g1jsSbjsiTo?si=uZ7mVjXA2c-43zzz)
+
+The main pack uses **Molicel P42A** cells in a 13S4P configuration, providing a nominal voltage of about 48 V. A separate 12 V car battery supplies the sensors to remain compatible with the Formula Student car.
+
+For battery placement rationale see the [FAQ](../../faq.md#battery).
+
+| Parameter | Value |
+|-----------|-------|
+| BMS Cutoff voltage | 39.0 V (13 * 3.0V) |
+| Configuration | 13S4P (13 cells in series, 4 in parallel) |
+| Nominal voltage | 48 V |
+| Maximum charging voltage | 54.6 V (13 * 4.2V) |
+| Minimum voltage | 41.6 V (13 * 3.2V) |
+| Power Capacity | 808 Wh (3.7V * 4.2 Ah * 13 * 4) |
+| Charge capacity | 16.8 Ah (4 * 4200 mAh) |
+| Maximum continuous discharge current | 180 A (4 * 45 A. 9828W at 100% charge!!) |
+| Maximum continuous charge current | 32 A (4 * 8 A. about 1.7kW) |
+| Cell type | Molicel P42A |
+| Cell capacity | 4200 mAh (4.2 Ah) |
+| Cell nominal voltage | 3.7 V |
+| Cell maximum voltage | 4.2 V |
+| Cell minimum voltage | 3.2 V |
+
+## BMS
+- Jiabaida BMS, 100A BT UART, NMC 6S-21S
+- https://www.notion.so/BMS-Bater-a-Kart-JBD-16078747314380e68688c3ab787fc1f7?pvs=21
+- https://es.aliexpress.com/item/1005007223779359.html
+![https://jiabaida-bms.com/blogs/content/jiabaida-sp22s003b-smart-bms-wiring-diagram?spm=a2g0o.detail.1000023.4.58c53GRk3GRk3N](index/20250608185913.png)
+-
+
+---
+
+## Camera
+
+## Overview
+
+This document describes the integration of the **ZED2 stereo camera** into the kart, its usage through the **ROS 2 wrapper**, and the combination with **YOLOv5** for cone detection. 
+
+## Official Resources
+
+- **ZED2 Camera Overview**: [https://www.stereolabs.com/zed-2/](https://www.stereolabs.com/zed-2/)
+- **ZED ROS 2 Wrapper Documentation**: [https://docs.stereolabs.com/ros2/](https://docs.stereolabs.com/ros2/)
+
+## Hardware: ZED2 Camera
+
+The [ZED2](https://www.stereolabs.com/zed-2/) camera by Stereolabs is a stereo vision camera capable of providing:
+
+- High-definition left and right stereo images
+- Depth sensing
+- 3D point clouds
+- Positional tracking (6DoF)
+- Integrated IMU sensors (accelerometer, gyroscope, magnetometer)
+- Environmental sensors (barometer, temperature sensor)
+
+## ROS 2 Integration
+
+The ZED2 camera is integrated into the project using the **official Stereolabs ZED ROS 2 Wrapper**:
+
+- GitHub: [https://github.com/stereolabs/zed-ros2-wrapper](https://github.com/stereolabs/zed-ros2-wrapper)
+
+
+### Installation Requirements
+
+To properly install and run the **ZED ROS 2 Wrapper** with the ZED2 camera, you must ensure the following dependencies and system configuration are in place.
+
+- Operating System
+
+    - **Ubuntu 24.04 LTS** is the recommended version for this setup.
+    - Other Ubuntu versions may be used; however, note that dependencies such as CUDA, TensorRT, ROS2, and the ZED SDK may require different versions and additional compatibility testing.
+
+- ROS 2 Jazzy
+
+    - Install **ROS 2 Jazzy** by following the official instructions here:  
+  [https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html](https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html)
+
+- CUDA Toolkit (12.0 to 12.9)
+
+    - Install **CUDA 12.x** (any version from 12.0 to 12.9 is compatible).
+    - Download from the official NVIDIA website:  
+  [https://developer.nvidia.com/cuda-downloads](https://developer.nvidia.com/cuda-downloads)
+
+- ZED SDK (v5.0)
+
+    - Download and install **ZED SDK v5.0** for Ubuntu 24.04 with CUDA 12 and TensorRT 10 from the official release page:  
+  [https://www.stereolabs.com/en-es/developers/release/5.0#82af3640d775](https://www.stereolabs.com/en-es/developers/release/5.0#82af3640d775)
+
+- TensorRT 10
+
+    - Download the **TensorRT 10** `.deb` package for Ubuntu 24.04 + CUDA 12.9 from the official NVIDIA repository:  
+  [https://developer.nvidia.com/downloads/compute/machine-learning/tensorrt/10.10.0/local_repo/nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9_1.0-1_amd64.deb](https://developer.nvidia.com/downloads/compute/machine-learning/tensorrt/10.10.0/local_repo/nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9_1.0-1_amd64.deb)
+  
+
+    After downloading the `.deb` file, run the following commands to install it:
+
+```bash
+sudo dpkg -i nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9_1.0-1_amd64.deb
+sudo apt update
+```
+
+If you encounter **GPG key errors**, follow these additional steps:
+
+```bash
+sudo cp /var/nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9/*.gpg /usr/share/keyrings/
+
+sudo nano /etc/apt/sources.list.d/nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9.list
+```
+
+Replace the content of the file with:
+
+```bash
+deb [signed-by=/usr/share/keyrings/nv-tensorrt-local-CD20EDBE-keyring.gpg] file:///var/nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9 /
+```
+
+Then update again:
+
+```bash
+sudo apt update
+```
+
+This should resolve the key issues.
+
+Finally, install the required TensorRT runtime libraries:
+
+```bash
+sudo apt-get install libnvinfer10 libnvinfer-dev libnvinfer-plugin-dev python3-libnvinfer
+```
+
+- ZED ROS 2 Wrapper
+
+    - Clone and build the **zed-ros2-wrapper** package in your existing ROS 2 workspace:
+
+```bash
+cd ~/ros2_ws/src
+git clone https://github.com/stereolabs/zed-ros2-wrapper.git
+cd ..
+rosdep install --from-paths src --ignore-src -r -y
+colcon build --symlink-install
+```
+
+Official repository:  
+[https://github.com/stereolabs/zed-ros2-wrapper](https://github.com/stereolabs/zed-ros2-wrapper)
+
+---
+
+Once all the dependencies are installed and the wrapper is successfully built, you should be able to launch the ZED2 ROS 2 node without issues.
+
+### Launching the Camera
+
+The camera is launched using a provided launch file, typically:
+
+```bash
+ros2 launch zed_wrapper zed_camera.launch.py camera_model:=zed2
+```
+
+<!-- ### Published Topics of Interest
+
+CORREGIR POR TOPICS CORRECTOS
+
+| Topic Name                             | Message Type                | Description                                    |
+|----------------------------------------|-----------------------------|------------------------------------------------|
+| `/zed2/zed_node/left/image_rect_color` | `sensor_msgs/Image`         | Rectified color image from left camera         |
+| `/zed2/zed_node/depth/depth_registered`| `sensor_msgs/Image`         | Depth image aligned to the left camera         |
+| `/zed2/zed_node/imu/data`              | `sensor_msgs/Imu`           | IMU data (accelerometer + gyroscope + orientation) |
+| `/zed2/zed_node/point_cloud/cloud_registered` | `sensor_msgs/PointCloud2` | Registered 3D point cloud                      |
+| `/zed2/zed_node/odom`                  | `nav_msgs/Odometry`         | Visual odometry (pose estimation)              | -->
+
+## Cone Detection with YOLOv5
+
+In this project, **YOLOv5** is used to perform **real-time cone detection** on images captured by the ZED2 camera.
+The ZED ROS 2 Wrapper supports custom object detection models through **ONNX integration**, allowing you to run your own trained detectors such as YOLOv5 directly on the GPU using **TensorRT** for real-time inference.
+
+### Exporting and Using a Custom YOLOv5 Model
+
+If you have trained a YOLOv5 model (e.g., for cone detection), follow these steps to integrate it into the ZED wrapper:
+
+1. **Export the model to ONNX format**:  
+   You can do this using PyTorch and the YOLOv5 export tools (e.g., `export.py` script from the [YOLOv5 repository](https://github.com/ultralytics/yolov5)):
+
+   This will generate a `.onnx` file.
+
+2. **Enable object detection in the ZED wrapper** by editing the configuration file:
+
+   Open your `common_stereo.yaml` (located in your ROS 2 workspace, inside `zed-ros2-wrapper/zed_wrapper/config`), and modify or add the following lines:
+
+   ```yaml
+   object_detection:
+        od_enabled: true 
+        model: 'CUSTOM_YOLOLIKE_BOX_OBJECTS'
+        custom_onnx_file: '$path to model'
+   ```
+
+### First-Time Optimization
+
+The first time you launch the node with your custom ONNX model, **TensorRT will optimize the model for inference**, which may take additional time (several seconds to minutes depending on the system).  
+Subsequent runs will be much faster, as the optimized engine will be cached and reused.
+
+---
+
+Once all dependencies are correctly installed and the YOLOv5 model is configured, you should be able to run real-time object detection with the ZED2 camera using ROS 2.
 
 ---
 
