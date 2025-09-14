@@ -454,20 +454,68 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#specifications" class="md-nav__link">
+  <a href="#common-hall-sensor-specifications" class="md-nav__link">
     <span class="md-ellipsis">
-      Specifications
+      Common Hall Sensor Specifications
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Hall Sensor Specifications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ss49e-linear-hall-effect-sensor" class="md-nav__link">
+    <span class="md-ellipsis">
+      SS49E Linear Hall-Effect Sensor
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pedal-assembly-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pedal Assembly Specifications
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#product-information" class="md-nav__link">
+  <a href="#product-sources" class="md-nav__link">
     <span class="md-ellipsis">
-      Product Information
+      Product Sources
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Product Sources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#complete-pedal-assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complete Pedal Assembly
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replacement-hall-sensors-ss49e" class="md-nav__link">
+    <span class="md-ellipsis">
+      Replacement Hall Sensors (SS49E)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -880,20 +928,68 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#specifications" class="md-nav__link">
+  <a href="#common-hall-sensor-specifications" class="md-nav__link">
     <span class="md-ellipsis">
-      Specifications
+      Common Hall Sensor Specifications
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Hall Sensor Specifications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ss49e-linear-hall-effect-sensor" class="md-nav__link">
+    <span class="md-ellipsis">
+      SS49E Linear Hall-Effect Sensor
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pedal-assembly-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pedal Assembly Specifications
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#product-information" class="md-nav__link">
+  <a href="#product-sources" class="md-nav__link">
     <span class="md-ellipsis">
-      Product Information
+      Product Sources
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Product Sources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#complete-pedal-assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complete Pedal Assembly
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replacement-hall-sensors-ss49e" class="md-nav__link">
+    <span class="md-ellipsis">
+      Replacement Hall Sensors (SS49E)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -960,24 +1056,50 @@
 
 <h1 id="throttle-pedal-sensor">Throttle Pedal Sensor</h1>
 <h2 id="overview">Overview</h2>
-<p>The throttle pedal sensor is a linear Hall effect sensor that converts pedal position into an electrical signal for motor speed control.</p>
-<h2 id="specifications">Specifications</h2>
+<p>The throttle pedal sensor uses a linear Hall effect sensor (typically SS49E or similar) that converts pedal position into an electrical signal for motor speed control.</p>
+<h2 id="common-hall-sensor-specifications">Common Hall Sensor Specifications</h2>
+<h3 id="ss49e-linear-hall-effect-sensor">SS49E Linear Hall-Effect Sensor</h3>
 <ul>
-<li><strong>Type:</strong> Linear Hall effect sensor</li>
-<li><strong>Power Supply:</strong> 5V DC</li>
-<li><strong>Output:</strong> 0-5V analog voltage</li>
+<li><strong>Manufacturer:</strong> Honeywell / Various</li>
+<li><strong>Type:</strong> Bipolar linear Hall effect sensor</li>
+<li><strong>Operating Voltage:</strong> 2.7V to 6.5V DC (typically 5V)</li>
+<li><strong>Current Consumption:</strong> ~6mA at 5V</li>
+<li><strong>Sensitivity:</strong> 1.4-1.8 mV/Gauss</li>
+<li><strong>Output Type:</strong> Ratiometric analog voltage</li>
+<li><strong>Null Output:</strong> VCC/2 (2.5V at 5V supply with no magnetic field)</li>
 <li><strong>Output Range:</strong></li>
-<li>0V = 0% throttle (pedal released)</li>
-<li>5V = 100% throttle (pedal fully pressed)</li>
-<li><strong>Connector:</strong> 3-wire cable</li>
+<li>~0.86V with north pole magnetic field</li>
+<li>~2.5V with no magnetic field</li>
+<li>~4.2V with south pole magnetic field</li>
+<li><strong>Operating Temperature:</strong> -40°C to +85°C (up to +150°C for some variants)</li>
+<li><strong>Package:</strong> TO-92 (3-pin)</li>
+<li><strong>Datasheet:</strong> <a href="https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/ja/products/sensors/magnetic-sensors/linear-and-angle-sensor-ics/common/documents/sps-siot-ss39et-ss49e-ss59et-product-sheet-005850-3-en-ciid-50359.pdf">Honeywell SS49E</a></li>
 </ul>
-<h2 id="product-information">Product Information</h2>
+<h2 id="pedal-assembly-specifications">Pedal Assembly Specifications</h2>
 <ul>
-<li><strong>Product:</strong> Foot pedal accelerator for electric bicycle, scooter, tricycle</li>
-<li><strong>Price:</strong> ~2.46€</li>
-<li><strong>Link:</strong> <a href="https://es.aliexpress.com/item/1005007243711390.html" target="_blank">AliExpress - Throttle Pedal Sensor</a></li>
-<li><strong>Rating:</strong> 4.6/5 (11 reviews, 105+ sold)</li>
+<li><strong>Output Range (configured):</strong></li>
+<li>0-1V = 0% throttle (pedal released)</li>
+<li>4-5V = 100% throttle (pedal fully pressed)</li>
+<li><strong>Connector:</strong> 3-wire cable</li>
+<li><strong>Mechanical:</strong> Spring-return foot pedal with integrated magnet</li>
 </ul>
+<h2 id="product-sources">Product Sources</h2>
+<h3 id="complete-pedal-assembly">Complete Pedal Assembly</h3>
+<ul>
+<li><strong>AliExpress:</strong> <a href="https://es.aliexpress.com/item/1005007243711390.html" target="_blank">Foot Pedal Accelerator (~2.46€)</a></li>
+<li><strong>Amazon:</strong> Various electric scooter throttle pedal listings</li>
+</ul>
+<h3 id="replacement-hall-sensors-ss49e">Replacement Hall Sensors (SS49E)</h3>
+<ul>
+<li><strong>Honeywell (Official):</strong> <a href="https://www.mouser.com/ProductDetail/Honeywell/SS49E" target="_blank">Mouser Electronics - SS49E</a></li>
+<li><strong>Addicore:</strong> <a href="https://www.addicore.com/products/ss49e-linear-hall-effect-sensor" target="_blank">SS49E Linear Hall-Effect Sensor</a></li>
+<li><strong>eBay:</strong> <a href="https://www.ebay.com/itm/281782377861" target="_blank">5x SS49E Hall Sensors for Throttle Repair</a></li>
+<li><strong>Sunrom Electronics:</strong> <a href="https://www.sunrom.com/p/ss49e-hall-sensor-linear-analog" target="_blank">SS49E Hall Sensor Linear Analog</a></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Replacement Parts</p>
+<p>SS49E sensors commonly fail and typically need replacement yearly in high-use applications. Having spare sensors available is recommended for maintenance.</p>
+</div>
 <h2 id="wiring">Wiring</h2>
 <h3 id="cable-color-code">Cable Color Code</h3>
 <table>
