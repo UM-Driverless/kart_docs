@@ -39,6 +39,93 @@ This prototype is not intended to compete, so no specific racing regulations app
 
 ---
 
+## BOM
+
+## Overview
+
+This page provides a comprehensive list of all components required to build the driverless kart. Each component is documented with specifications, suppliers, costs, and alternatives.
+
+!!! info "BOM Management"
+    Component details are maintained in the individual hardware documentation pages using YAML frontmatter. This page provides consolidated views and summaries.
+
+## Summary by Category
+
+### Core Systems
+
+| Component | Quantity | Unit Cost | Total Cost | Status | Documentation |
+|-----------|----------|-----------|------------|--------|---------------|
+| ESP32 WROOM 32 | 1 | €3.50 | €3.50 | Active | [ESP32](../hardware/esp32/index.md) |
+| Kunray MY1020 Motor | 1 | €150.00 | €150.00 | Active | [Motor](../hardware/motor/index.md) |
+| AS5600 Angle Sensor | 1 | €2.00 | €2.00 | Active | [Steering Sensor](../hardware/steering/sensor/index.md) |
+| Throttle Pedal (w/ SS49E) | 1 | €2.46 | €2.46 | Active | [Throttle Pedal](../hardware/throttle-pedal/index.md) |
+
+### Transmission System
+
+| Component | Quantity | Unit Cost | Total Cost | Status | Documentation |
+|-----------|----------|-----------|------------|--------|---------------|
+| IRIS 219 Chain (100 links) | 1 | €15.00 | €15.00 | Active | [Transmission](../hardware/transmission/index.md) |
+| 219 Aluminum Sprocket | 1 | €20.00 | €20.00 | Needs Replacement | [Transmission](../hardware/transmission/index.md) |
+| Custom 219 Front Sprocket | 1 | €5.00 | €5.00 | Active | [Transmission](../hardware/transmission/index.md) |
+
+## Cost Summary
+
+| Category | Total Cost | Items |
+|----------|------------|-------|
+| Core Electronics | €157.96 | 4 |
+| Transmission | €40.00 | 3 |
+| **Project Total** | **€197.96** | **7** |
+
+### Cost Breakdown Details
+- **ESP32 WROOM 32**: €3.50
+- **Kunray MY1020 Motor**: €150.00
+- **AS5600 Angle Sensor**: €2.00
+- **Throttle Pedal (SS49E)**: €2.46
+- **IRIS 219 Chain**: €15.00
+- **219 Aluminum Sprocket**: €20.00 (needs replacement)
+- **Custom 219 Front Sprocket**: €5.00
+
+!!! warning "Incomplete BOM"
+    This BOM is being migrated from existing documentation. Additional components (battery, chassis, wiring, etc.) will be added as the migration continues.
+
+## Component Status
+
+- **Active**: Currently used in the kart
+- **Needs Replacement**: Known to be damaged/worn
+- **Deprecated**: No longer used but kept for reference
+- **Optional**: Not required for basic functionality
+
+## Supplier Recommendations
+
+### Primary Suppliers
+- **Electronic Components**: Mouser, Addicore, Sunrom
+- **Karting Parts**: KPS Racing
+- **General Parts**: AliExpress, Amazon
+
+### Quality Notes
+- Always prefer official distributors for critical electronic components
+- AliExpress/Amazon acceptable for mechanical parts and sensors
+- Verify component specifications before ordering
+
+## Assembly Priority
+
+1. **Core Electronics** (ESP32, sensors)
+2. **Motor System** (Motor, controller)
+3. **Transmission** (Chain, sprockets)
+4. **Mechanical** (Chassis, steering)
+5. **Power Systems** (Battery, wiring)
+
+---
+
+## Adding Components to BOM
+
+To add a new component to the BOM:
+
+1. Add YAML frontmatter to the component's documentation page
+2. Use the standardized structure shown in individual hardware pages
+3. The BOM summary will be updated manually or via script
+
+---
+
 ## Hardware - Battery
 
 > To charge the battery with a bench power supply, see this tutorial: [Cómo Cargar una Batería de Litio con una Fuente](https://youtu.be/g1jsSbjsiTo?si=uZ7mVjXA2c-43zzz)
@@ -282,6 +369,36 @@ sudo apt install -y anydesk
 
 ## Hardware - Motor
 
+---
+# BOM Entry
+bom:
+  component_id: "KUNRAY_MY1020"
+  part_number: "MY1020"
+  category: "motor"
+  quantity: 1
+  unit_cost: 150.00
+  currency: "EUR"
+  status: "active"
+  criticality: "essential"
+  suppliers:
+    - name: "Amazon"
+      part_number: "B0C6WXYZ"
+      url: "https://www.amazon.es/dp/B0C6WXYZ/ref=cm_sw_em_r_mt_dp_xyz"
+      verified: true
+    - name: "Kunray Official"
+      url: "https://kunraymotors.com/shop/"
+      verified: true
+  specifications:
+    voltage: "72V"
+    power: "3000W"
+    weight: "8kg"
+    shaft_diameter: "10mm"
+    shaft_type: "no keyway"
+  notes: "Includes motor controller"
+---
+
+# Powertrain
+
 ## Motor
 
 We use a **Brushless DC (BLDC) motor** from [Kunray](https://kunraymotors.com/shop/) (model **MY1020**, 72V 3000W), along with its supplied controller.  
@@ -368,6 +485,63 @@ The twist-grip throttle that comes with the motor kit also includes:
 ---
 
 ## Hardware - Transmission
+
+---
+# BOM Entry
+bom:
+  components:
+    - component_id: "IRIS_219_CHAIN"
+      part_number: "IRIS-219-100"
+      category: "transmission"
+      quantity: 1
+      unit_cost: 15.00
+      currency: "EUR"
+      status: "active"
+      criticality: "essential"
+      suppliers:
+        - name: "KPS Racing"
+          url: "https://kpsracing.es/cadenas-y-cubrecadenas/2434-649-cadena-iris-219.html#/254-numero_pasos_cadena-100"
+          verified: true
+      specifications:
+        pitch: "219"
+        links: 100
+        color: "gold"
+    - component_id: "CORONA_219_ALUMINUM"
+      part_number: "CORONA-219-ALU"
+      category: "transmission"
+      quantity: 1
+      unit_cost: 20.00
+      currency: "EUR"
+      status: "needs_replacement"
+      criticality: "essential"
+      suppliers:
+        - name: "KPS Racing"
+          url: "https://kpsracing.es/coronas/5957-9775-corona-aluminio-219-negra.html"
+          verified: true
+      specifications:
+        pitch: "219"
+        material: "aluminum"
+        color: "black"
+      notes: "Current sprocket damaged due to incompatible chain use"
+    - component_id: "CUSTOM_219_PINION"
+      part_number: "CUSTOM-219-PINION"
+      category: "transmission"
+      quantity: 1
+      unit_cost: 5.00
+      currency: "EUR"
+      status: "active"
+      criticality: "essential"
+      suppliers:
+        - name: "Laser Cutting Service"
+          notes: "Custom design for 10mm shaft"
+      specifications:
+        pitch: "219"
+        shaft_diameter: "10mm"
+        material: "steel"
+        manufacturing: "laser_cut"
+---
+
+# Transmission System
 
 ## Current Configuration - 219 Kit
 
@@ -495,6 +669,45 @@ With the motor mount moved slightly backward (compared to the original 3D-printe
 ---
 
 ## Hardware - Throttle Pedal
+
+---
+# BOM Entry
+bom:
+  component_id: "THROTTLE_PEDAL_SS49E"
+  part_number: "THROTTLE-PEDAL-HALL"
+  category: "sensor"
+  quantity: 1
+  unit_cost: 2.46
+  currency: "EUR"
+  status: "active"
+  criticality: "essential"
+  suppliers:
+    - name: "AliExpress"
+      url: "https://es.aliexpress.com/item/1005007243711390.html"
+      verified: true
+    - name: "Amazon"
+      notes: "Various electric scooter throttle pedal listings"
+      verified: false
+  specifications:
+    sensor_type: "SS49E Hall Effect"
+    voltage: "5V"
+    output: "0-5V analog"
+    connector: "3-wire"
+  alternatives:
+    - "Generic Hall effect throttle pedals"
+  replacement_parts:
+    - component_id: "SS49E_SENSOR"
+      part_number: "SS49E"
+      suppliers:
+        - name: "Mouser"
+          url: "https://www.mouser.com/ProductDetail/Honeywell/SS49E"
+        - name: "Addicore"
+          url: "https://www.addicore.com/products/ss49e-linear-hall-effect-sensor"
+      unit_cost: 1.50
+      notes: "Replacement sensor for throttle pedal"
+---
+
+# Throttle Pedal Sensor
 
 ## Overview
 
@@ -631,6 +844,34 @@ Suggested H-bridges by gpt:
 
 ## Hardware - Steering Angle Sensor
 
+---
+# BOM Entry
+bom:
+  component_id: "AS5600_MAGNETIC_ENCODER"
+  part_number: "AS5600"
+  category: "sensor"
+  quantity: 1
+  unit_cost: 2.00
+  currency: "EUR"
+  status: "active"
+  criticality: "essential"
+  suppliers:
+    - name: "AliExpress"
+      notes: "Various AS5600 breakout boards"
+      verified: false
+    - name: "Amazon"
+      notes: "AS5600 magnetic encoder modules"
+      verified: false
+  specifications:
+    resolution: "12-bit"
+    interface: "I2C"
+    voltage: "3.3V or 5V"
+    magnetic_range: "360°"
+  notes: "Works with diametrically magnetized magnet or normal magnet rotated 90°"
+---
+
+# Steering Angle Sensor
+
 Sensor used is the cheap AS5600
 ![](20250608181732.png)
 
@@ -674,6 +915,38 @@ Use a **bidirectional I2C level shifter** (e.g., TXS0108E or BSS138) between the
 ---
 
 ## Hardware - ESP32
+
+---
+# BOM Entry
+bom:
+  component_id: "ESP32_WROOM_32"
+  part_number: "ESP32-WROOM-32"
+  category: "microcontroller"
+  quantity: 1
+  unit_cost: 3.50
+  currency: "EUR"
+  status: "active"
+  criticality: "essential"
+  suppliers:
+    - name: "Mouser"
+      part_number: "356-ESP32WROOM32"
+      url: "https://www.mouser.com/ProductDetail/356-ESP32WROOM32"
+      verified: true
+    - name: "AliExpress"
+      url: "https://www.aliexpress.com/wholesale?SearchText=esp32+wroom+32"
+      verified: false
+  specifications:
+    voltage: "3.3V"
+    current: "240mA"
+    temperature: "-40°C to +85°C"
+    flash: "4MB"
+    ram: "520KB"
+  alternatives:
+    - "ESP32-S3"
+    - "ESP32-C3"
+---
+
+# ESP32
 
 The ESP32 is a series of low-cost, low-power system on a chip microcontrollers with integrated Wi-Fi and dual-mode Bluetooth. The ESP32 series employs a Tensilica Xtensa LX6 microprocessor in both dual-core and single-core variations and includes built-in antenna switches, RF balun, power amplifier, low-noise receive amplifier, filters, and power management modules.
 
