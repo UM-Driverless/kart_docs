@@ -7,6 +7,23 @@ This page provides a comprehensive list of all components required to build the 
 !!! info "New BOM Management System"
     Components are now managed via separate YAML files in each assembly folder. The folder structure represents the BOM tree itself, eliminating synchronization issues.
 
+## How to Add Components to BOM
+
+Adding a new component is simple:
+
+1. **Find the right folder** - Navigate to the appropriate assembly folder (e.g., `docs/assembly/steering/`)
+2. **Edit the bom.yaml file** - Open the `bom.yaml` file in that folder
+3. **Add your component** - Copy an existing component entry and modify it with your new component's details
+4. **Include key information**:
+   - `id`: unique identifier (e.g., "motor_controller_v2")
+   - `part_number`: manufacturer part number
+   - `description`: what it is
+   - `quantity`: how many needed
+   - `unit_cost`: price per unit
+   - `suppliers`: where to buy it (name, url)
+
+That's it! The component will automatically appear in BOM reports.
+
 ## BOM Structure
 
 The BOM is organized by assembly with YAML files containing detailed component specifications:
