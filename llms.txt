@@ -24,6 +24,9 @@ We use a Brushless DC (BLDC) motor from [Kunray](https://kunraymotors.com/shop/)
 https://um-driverless.github.io/kart_docs/hardware/transmission
 The kart currently uses a standard 219 pitch karting transmission system. This is the definitive ...
 
+https://um-driverless.github.io/kart_docs/hardware/throttle-pedal
+The throttle pedal sensor is a linear Hall effect sensor that converts pedal position into an ele...
+
 https://um-driverless.github.io/kart_docs/hardware/steering
 ![](index/20250622200050.png)
 
