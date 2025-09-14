@@ -13,6 +13,7 @@ nav:
       - Computer: hardware/computer/index.md
       - Motor: hardware/motor/index.md
       - Transmission: hardware/transmission/index.md
+      - Throttle Pedal: hardware/throttle-pedal/index.md
       - Steering:
           - Overview: hardware/steering/index.md
           - H-bridge: hardware/steering/h-bridge.md
