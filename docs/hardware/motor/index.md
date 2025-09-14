@@ -17,11 +17,13 @@ The motivation for selecting an electric motor over a combustion engine is discu
 - **Rated speed:** *(?)*
 - **Max speed:** *(?)*
 - **Max torque:** *(?)*
-- **Sprocket:** T8F 11T (compatible with T8F chain)
 - **Material:** Aluminum housing, full copper winding
 - **Weight:** ~8 kg
 - **Dimensions:** ~16.9 cm length x 9.6 cm height
-- **Product link (Amazon):** [Kunray 72V 3000W Motor Kit](https://www.amazon.es/dp/B0C6WXYZ/ref=cm_sw_em_r_mt_dp_xyz)
+- **Shaft:** 10mm diameter, no keyway (non-standard)
+- **Product link (Amazon):** <a href="https://www.amazon.es/dp/B0C6WXYZ/ref=cm_sw_em_r_mt_dp_xyz" target="_blank">Kunray 72V 3000W Motor Kit</a>
+
+> **Note:** For transmission system details (chain, sprockets), see [Transmission](../transmission/index.md)
 
 ---
 

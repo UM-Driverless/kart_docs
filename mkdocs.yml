@@ -1,6 +1,10 @@
 site_name: Driverless Kart Documentation
 theme:
   name: material
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
 nav:
   - Home: index.md
   - Hardware:
@@ -8,6 +12,7 @@ nav:
       - Camera: hardware/camera/index.md
       - Computer: hardware/computer/index.md
       - Motor: hardware/motor/index.md
+      - Transmission: hardware/transmission/index.md
       - Steering:
           - Overview: hardware/steering/index.md
           - H-bridge: hardware/steering/h-bridge.md
