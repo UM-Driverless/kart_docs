@@ -28,7 +28,7 @@ https://um-driverless.github.io/kart_docs/hardware/throttle-pedal
 The throttle pedal sensor uses a linear Hall effect sensor (typically SS49E or similar) that conv...
 
 https://um-driverless.github.io/kart_docs/hardware/steering
-![](index/20250622200050.png)
+??? example "View steering mechanism with measurements"
 
 https://um-driverless.github.io/kart_docs/hardware/steering/h-bridge
 - Cytron MD30C (30 A cont, 80 A peak)
