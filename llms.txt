@@ -21,6 +21,9 @@ Our computer is based on the NVidia Jetson AGX Orin Development Kit.
 https://um-driverless.github.io/kart_docs/hardware/motor
 We use a Brushless DC (BLDC) motor from [Kunray](https://kunraymotors.com/shop/) (model MY1020, 7...
 
+https://um-driverless.github.io/kart_docs/hardware/transmission
+The kart currently uses a standard 219 pitch karting transmission system. This is the definitive ...
+
 https://um-driverless.github.io/kart_docs/hardware/steering
 ![](index/20250622200050.png)
 
