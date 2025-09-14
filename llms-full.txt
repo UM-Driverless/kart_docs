@@ -890,7 +890,11 @@ TODO
 ## This is the version 1.0 of the adapter board
 Designed with [easyeda](https://easyeda.com/), can be downloaded [here](computer/images/ProProject_Orin Adapter_2025-03-09.epro)
 
+### BOM (Bill of Materials)
+![Orin Adapter Board BOM](computer/images/orin-adapter-bom.jpg)
+
 ### PCB Schematic
+![Orin Adapter Board Schematic](computer/images/orin-adapter-schematic.png)
 
 The schematic shows the component values and connections:
 - **Power Supply**: 3.3V, 5V regulated outputs
@@ -900,9 +904,11 @@ The schematic shows the component values and connections:
 - **Resistors**: R1,R2 (60Ω), R3,R_T (330Ω), R4 (30Ω)
 - **Test Points**: T1, T2 for debugging
 
-### PCB Layout
-![](computer/images/20250712031143.png)
-![](computer/images/20250712031115.png)
+### PCB Board Top View
+![PCB Board Top View](computer/images/orin-adapter-board-top.png)
+
+### 3D Visualization
+![Orin Adapter Board 3D View](computer/images/orin-adapter-3d.jpg)
 
 The path in our Owncloud folder is: `formula/formula 24-25/DV/ORIN/adapter/ProProject_Orin Adapter_2025-03-09.epro`
 
@@ -921,14 +927,14 @@ sudo apt install -y anydesk
 
 ### DAC – Digital to Analog Conversion
 
-**Model:** [full name of the chip or board]  
+**Model:** MCP4725 I²C DAC Breakout Module  
 **Power supply voltage:** 5V  
-**Communication:** I2C @ 3.3V  
+**Communication:** I²C @ 3.3V (logic level)  
 **Detected issue:**  
-The DAC requires a 5V power supply, but the I2C line operates at 3.3V. This may damage the microcontroller or cause communication failures.
+The MCP4725 operates at 5V for power, but its I²C communication lines also run at that voltage. This creates a level mismatch when interfacing with a 3.3V microcontroller like the ESP32, which may result in communication errors or even damage to the I²C pins.
 
 **Proposed or pending solution:**  
-Use a **bidirectional I2C level shifter** (e.g., TXS0108E or BSS138) between the microcontroller and the DAC.
+Use a **bidirectional I²C level shifter** (e.g., TXS0108E or BSS138-based) between the microcontroller and the DAC to safely interface 3.3V and 5V logic.
 
 ---
 

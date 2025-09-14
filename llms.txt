@@ -49,7 +49,7 @@ https://um-driverless.github.io/kart_docs/assembly/electronics/computer
 Our computer is based on the NVidia Jetson AGX Orin Development Kit.
 
 https://um-driverless.github.io/kart_docs/assembly/electronics/dac
-Model: [full name of the chip or board]
+Model: MCP4725 I²C DAC Breakout Module
 
 https://um-driverless.github.io/kart_docs/assembly/electronics/wiring
 TODO global diagram (Fritzing?)

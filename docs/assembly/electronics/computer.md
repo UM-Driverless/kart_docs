@@ -19,9 +19,11 @@ TODO
 ## This is the version 1.0 of the adapter board
 Designed with [easyeda](https://easyeda.com/), can be downloaded [here](computer/images/ProProject_Orin Adapter_2025-03-09.epro)
 
+### BOM (Bill of Materials)
+![Orin Adapter Board BOM](computer/images/orin-adapter-bom.jpg)
+
 ### PCB Schematic
-<!-- TODO: Add schematic image here once saved as orin-adapter-schematic.png -->
-<!-- ![Orin Adapter Board Schematic](computer/images/orin-adapter-schematic.png) -->
+![Orin Adapter Board Schematic](computer/images/orin-adapter-schematic.png)
 
 The schematic shows the component values and connections:
 - **Power Supply**: 3.3V, 5V regulated outputs
@@ -31,9 +33,11 @@ The schematic shows the component values and connections:
 - **Resistors**: R1,R2 (60Ω), R3,R_T (330Ω), R4 (30Ω)
 - **Test Points**: T1, T2 for debugging
 
-### PCB Layout
-![](computer/images/20250712031143.png)
-![](computer/images/20250712031115.png)
+### PCB Board Top View
+![PCB Board Top View](computer/images/orin-adapter-board-top.png)
+
+### 3D Visualization
+![Orin Adapter Board 3D View](computer/images/orin-adapter-3d.jpg)
 
 The path in our Owncloud folder is: `formula/formula 24-25/DV/ORIN/adapter/ProProject_Orin Adapter_2025-03-09.epro`
 
