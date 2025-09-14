@@ -471,30 +471,6 @@ This kit was never intended for permanent use because:
 
 ---
 
-## ⚠️ Critical Warning
-
-**NEVER mix T8F and 219 components!** The pitches are incompatible and will cause:
-
-- Rapid chain and sprocket wear
-- Complete destruction of aluminum sprockets within hours
-- Potential safety hazards from chain failure
-
-### What Happened (Historical Context)
-
-While waiting for the custom laser-cut sprockets, the team made a temporary setup mixing:
-
-- T8F chain (original)
-- 219 rear sprocket (newly purchased)
-- T8F front sprocket (original)
-
-This was a known temporary solution that resulted in:
-
-- The setup worked briefly for initial testing
-- The 219 aluminum rear sprocket was destroyed within hours
-- Confirmed that mixing pitches is absolutely not viable
-
----
-
 ## Installation Notes
 
 With the motor mount moved slightly backward (compared to the original 3D-printed mount), there is now sufficient clearance to properly install and tension the 219 chain.
