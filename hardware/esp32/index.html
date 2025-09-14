@@ -592,11 +592,68 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pin-use" class="md-nav__link">
+  <a href="#kart-medulla-esp32-wroom-32-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Pin Use
+      Kart Medulla - ESP32 WROOM 32 Configuration
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Kart Medulla - ESP32 WROOM 32 Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pin-assignments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pin Assignments
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wiring-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wiring Connections
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Wiring Connections">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#esp32-to-as5600-angle-sensor" class="md-nav__link">
+    <span class="md-ellipsis">
+      ESP32 to AS5600 Angle Sensor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#esp32-to-motor-driver" class="md-nav__link">
+    <span class="md-ellipsis">
+      ESP32 to Motor Driver
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#esp32-to-orin-uart-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      ESP32 to Orin (UART Communication)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -806,11 +863,68 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pin-use" class="md-nav__link">
+  <a href="#kart-medulla-esp32-wroom-32-configuration" class="md-nav__link">
     <span class="md-ellipsis">
-      Pin Use
+      Kart Medulla - ESP32 WROOM 32 Configuration
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Kart Medulla - ESP32 WROOM 32 Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pin-assignments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pin Assignments
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wiring-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wiring Connections
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Wiring Connections">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#esp32-to-as5600-angle-sensor" class="md-nav__link">
+    <span class="md-ellipsis">
+      ESP32 to AS5600 Angle Sensor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#esp32-to-motor-driver" class="md-nav__link">
+    <span class="md-ellipsis">
+      ESP32 to Motor Driver
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#esp32-to-orin-uart-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      ESP32 to Orin (UART Communication)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -849,18 +963,139 @@
 <li><strong>DACs:</strong> 2-channel, 8-bit</li>
 <li><strong>Communication Interfaces:</strong> SPI, I2C, UART, CAN, I2S</li>
 </ul>
-<h2 id="pin-use">Pin Use</h2>
+<h2 id="kart-medulla-esp32-wroom-32-configuration">Kart Medulla - ESP32 WROOM 32 Configuration</h2>
+<p>The ESP32 serves as the "medulla" of the kart, interfacing between the Orin computer, steering angle sensor, and motor driver.</p>
+<h3 id="pin-assignments">Pin Assignments</h3>
 <table>
 <thead>
 <tr>
-<th>Pin Name</th>
+<th>GPIO Pin</th>
 <th>Function</th>
+<th>Connected To</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>GPIOXX</td>
-<td>Describe its function</td>
+<td>GPIO 2</td>
+<td>LED</td>
+<td>Onboard LED</td>
+</tr>
+<tr>
+<td>GPIO 18</td>
+<td>UART RX</td>
+<td>Orin TX</td>
+</tr>
+<tr>
+<td>GPIO 19</td>
+<td>UART TX</td>
+<td>Orin RX</td>
+</tr>
+<tr>
+<td>GPIO 21</td>
+<td>I2C SDA</td>
+<td>AS5600 SDA</td>
+</tr>
+<tr>
+<td>GPIO 22</td>
+<td>I2C SCL</td>
+<td>AS5600 SCL</td>
+</tr>
+<tr>
+<td>GPIO 25</td>
+<td>PWM</td>
+<td>Motor Driver PWM</td>
+</tr>
+<tr>
+<td>GPIO 26</td>
+<td>DIR</td>
+<td>Motor Driver Direction</td>
+</tr>
+</tbody>
+</table>
+<h2 id="wiring-connections">Wiring Connections</h2>
+<h3 id="esp32-to-as5600-angle-sensor">ESP32 to AS5600 Angle Sensor</h3>
+<table>
+<thead>
+<tr>
+<th>AS5600 Pin</th>
+<th>ESP32 Pin</th>
+<th>Wire Color (2025)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SCL</td>
+<td>GPIO 22</td>
+<td>Blue</td>
+</tr>
+<tr>
+<td>SDA</td>
+<td>GPIO 21</td>
+<td>Green</td>
+</tr>
+<tr>
+<td>VCC</td>
+<td>3.3V</td>
+<td>White</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>GND</td>
+<td>Grey</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Temporary Color Code</p>
+<p>Wire colors are specific to the 2025 version and not official. Always verify connections.</p>
+</div>
+<h3 id="esp32-to-motor-driver">ESP32 to Motor Driver</h3>
+<table>
+<thead>
+<tr>
+<th>Motor Driver Pin</th>
+<th>ESP32 Pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PWM</td>
+<td>GPIO 25</td>
+</tr>
+<tr>
+<td>DIR</td>
+<td>GPIO 26</td>
+</tr>
+<tr>
+<td>VCC</td>
+<td>5V</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>GND</td>
+</tr>
+</tbody>
+</table>
+<h3 id="esp32-to-orin-uart-communication">ESP32 to Orin (UART Communication)</h3>
+<table>
+<thead>
+<tr>
+<th>Orin Pin</th>
+<th>ESP32 Pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TX</td>
+<td>GPIO 18</td>
+</tr>
+<tr>
+<td>RX</td>
+<td>GPIO 19</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>GND</td>
 </tr>
 </tbody>
 </table>
