@@ -1,3 +1,31 @@
+---
+# BOM Entry
+bom:
+  component_id: "KUNRAY_MY1020"
+  part_number: "MY1020"
+  category: "motor"
+  quantity: 1
+  unit_cost: 150.00
+  currency: "EUR"
+  status: "active"
+  criticality: "essential"
+  suppliers:
+    - name: "Amazon"
+      part_number: "B0C6WXYZ"
+      url: "https://www.amazon.es/dp/B0C6WXYZ/ref=cm_sw_em_r_mt_dp_xyz"
+      verified: true
+    - name: "Kunray Official"
+      url: "https://kunraymotors.com/shop/"
+      verified: true
+  specifications:
+    voltage: "72V"
+    power: "3000W"
+    weight: "8kg"
+    shaft_diameter: "10mm"
+    shaft_type: "no keyway"
+  notes: "Includes motor controller"
+---
+
 # Powertrain
 
 ## Motor

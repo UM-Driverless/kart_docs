@@ -1,3 +1,40 @@
+---
+# BOM Entry
+bom:
+  component_id: "THROTTLE_PEDAL_SS49E"
+  part_number: "THROTTLE-PEDAL-HALL"
+  category: "sensor"
+  quantity: 1
+  unit_cost: 2.46
+  currency: "EUR"
+  status: "active"
+  criticality: "essential"
+  suppliers:
+    - name: "AliExpress"
+      url: "https://es.aliexpress.com/item/1005007243711390.html"
+      verified: true
+    - name: "Amazon"
+      notes: "Various electric scooter throttle pedal listings"
+      verified: false
+  specifications:
+    sensor_type: "SS49E Hall Effect"
+    voltage: "5V"
+    output: "0-5V analog"
+    connector: "3-wire"
+  alternatives:
+    - "Generic Hall effect throttle pedals"
+  replacement_parts:
+    - component_id: "SS49E_SENSOR"
+      part_number: "SS49E"
+      suppliers:
+        - name: "Mouser"
+          url: "https://www.mouser.com/ProductDetail/Honeywell/SS49E"
+        - name: "Addicore"
+          url: "https://www.addicore.com/products/ss49e-linear-hall-effect-sensor"
+      unit_cost: 1.50
+      notes: "Replacement sensor for throttle pedal"
+---
+
 # Throttle Pedal Sensor
 
 ## Overview

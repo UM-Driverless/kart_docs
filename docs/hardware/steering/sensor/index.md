@@ -1,3 +1,29 @@
+---
+# BOM Entry
+bom:
+  component_id: "AS5600_MAGNETIC_ENCODER"
+  part_number: "AS5600"
+  category: "sensor"
+  quantity: 1
+  unit_cost: 2.00
+  currency: "EUR"
+  status: "active"
+  criticality: "essential"
+  suppliers:
+    - name: "AliExpress"
+      notes: "Various AS5600 breakout boards"
+      verified: false
+    - name: "Amazon"
+      notes: "AS5600 magnetic encoder modules"
+      verified: false
+  specifications:
+    resolution: "12-bit"
+    interface: "I2C"
+    voltage: "3.3V or 5V"
+    magnetic_range: "360°"
+  notes: "Works with diametrically magnetized magnet or normal magnet rotated 90°"
+---
+
 # Steering Angle Sensor
 
 Sensor used is the cheap AS5600

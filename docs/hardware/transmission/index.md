@@ -1,3 +1,58 @@
+---
+# BOM Entry
+bom:
+  components:
+    - component_id: "IRIS_219_CHAIN"
+      part_number: "IRIS-219-100"
+      category: "transmission"
+      quantity: 1
+      unit_cost: 15.00
+      currency: "EUR"
+      status: "active"
+      criticality: "essential"
+      suppliers:
+        - name: "KPS Racing"
+          url: "https://kpsracing.es/cadenas-y-cubrecadenas/2434-649-cadena-iris-219.html#/254-numero_pasos_cadena-100"
+          verified: true
+      specifications:
+        pitch: "219"
+        links: 100
+        color: "gold"
+    - component_id: "CORONA_219_ALUMINUM"
+      part_number: "CORONA-219-ALU"
+      category: "transmission"
+      quantity: 1
+      unit_cost: 20.00
+      currency: "EUR"
+      status: "needs_replacement"
+      criticality: "essential"
+      suppliers:
+        - name: "KPS Racing"
+          url: "https://kpsracing.es/coronas/5957-9775-corona-aluminio-219-negra.html"
+          verified: true
+      specifications:
+        pitch: "219"
+        material: "aluminum"
+        color: "black"
+      notes: "Current sprocket damaged due to incompatible chain use"
+    - component_id: "CUSTOM_219_PINION"
+      part_number: "CUSTOM-219-PINION"
+      category: "transmission"
+      quantity: 1
+      unit_cost: 5.00
+      currency: "EUR"
+      status: "active"
+      criticality: "essential"
+      suppliers:
+        - name: "Laser Cutting Service"
+          notes: "Custom design for 10mm shaft"
+      specifications:
+        pitch: "219"
+        shaft_diameter: "10mm"
+        material: "steel"
+        manufacturing: "laser_cut"
+---
+
 # Transmission System
 
 ## Current Configuration - 219 Kit

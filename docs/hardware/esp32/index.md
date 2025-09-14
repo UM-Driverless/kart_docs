@@ -1,3 +1,33 @@
+---
+# BOM Entry
+bom:
+  component_id: "ESP32_WROOM_32"
+  part_number: "ESP32-WROOM-32"
+  category: "microcontroller"
+  quantity: 1
+  unit_cost: 3.50
+  currency: "EUR"
+  status: "active"
+  criticality: "essential"
+  suppliers:
+    - name: "Mouser"
+      part_number: "356-ESP32WROOM32"
+      url: "https://www.mouser.com/ProductDetail/356-ESP32WROOM32"
+      verified: true
+    - name: "AliExpress"
+      url: "https://www.aliexpress.com/wholesale?SearchText=esp32+wroom+32"
+      verified: false
+  specifications:
+    voltage: "3.3V"
+    current: "240mA"
+    temperature: "-40°C to +85°C"
+    flash: "4MB"
+    ram: "520KB"
+  alternatives:
+    - "ESP32-S3"
+    - "ESP32-C3"
+---
+
 # ESP32
 
 The ESP32 is a series of low-cost, low-power system on a chip microcontrollers with integrated Wi-Fi and dual-mode Bluetooth. The ESP32 series employs a Tensilica Xtensa LX6 microprocessor in both dual-core and single-core variations and includes built-in antenna switches, RF balun, power amplifier, low-noise receive amplifier, filters, and power management modules.

@@ -7,6 +7,9 @@ This documentation provides comprehensive information about the autonomous KART 
 https://um-driverless.github.io/kart_docs
 This project equips a standard competition kart with autonomous capabilities by integrating perce...
 
+https://um-driverless.github.io/kart_docs/bom
+This page provides a comprehensive list of all components required to build the driverless kart. ...
+
 ## Hardware
 
 https://um-driverless.github.io/kart_docs/hardware/battery
@@ -19,13 +22,13 @@ https://um-driverless.github.io/kart_docs/hardware/computer
 Our computer is based on the NVidia Jetson AGX Orin Development Kit.
 
 https://um-driverless.github.io/kart_docs/hardware/motor
-We use a Brushless DC (BLDC) motor from [Kunray](https://kunraymotors.com/shop/) (model MY1020, 7...
+---
 
 https://um-driverless.github.io/kart_docs/hardware/transmission
-The kart currently uses a standard 219 pitch karting transmission system. This is the definitive ...
+---
 
 https://um-driverless.github.io/kart_docs/hardware/throttle-pedal
-The throttle pedal sensor uses a linear Hall effect sensor (typically SS49E or similar) that conv...
+---
 
 https://um-driverless.github.io/kart_docs/hardware/steering
 ??? example "View steering mechanism with measurements"
@@ -34,13 +37,13 @@ https://um-driverless.github.io/kart_docs/hardware/steering/h-bridge
 - Cytron MD30C (30 A cont, 80 A peak)
 
 https://um-driverless.github.io/kart_docs/hardware/steering/sensor
-Sensor used is the cheap AS5600
+---
 
 https://um-driverless.github.io/kart_docs/hardware/dac
 Model: [full name of the chip or board]
 
 https://um-driverless.github.io/kart_docs/hardware/esp32
-The ESP32 is a series of low-cost, low-power system on a chip microcontrollers with integrated Wi...
+---
 
 ## Systems
 
