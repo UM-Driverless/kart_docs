@@ -17,8 +17,49 @@ The ESP32 is a series of low-cost, low-power system on a chip microcontrollers w
 *   **DACs:** 2-channel, 8-bit
 *   **Communication Interfaces:** SPI, I2C, UART, CAN, I2S
 
-## Pin Use
+## Kart Medulla - ESP32 WROOM 32 Configuration
 
-| Pin Name | Function |
-| -------- | -------- |
-| GPIOXX   | Describe its function |
+The ESP32 serves as the "medulla" of the kart, interfacing between the Orin computer, steering angle sensor, and motor driver.
+
+### Pin Assignments
+
+| GPIO Pin | Function | Connected To |
+|----------|----------|--------------|
+| GPIO 2   | LED      | Onboard LED |
+| GPIO 18  | UART RX  | Orin TX |
+| GPIO 19  | UART TX  | Orin RX |
+| GPIO 21  | I2C SDA  | AS5600 SDA |
+| GPIO 22  | I2C SCL  | AS5600 SCL |
+| GPIO 25  | PWM      | Motor Driver PWM |
+| GPIO 26  | DIR      | Motor Driver Direction |
+
+## Wiring Connections
+
+### ESP32 to AS5600 Angle Sensor
+
+| AS5600 Pin | ESP32 Pin | Wire Color (2025) |
+|------------|-----------|-------------------|
+| SCL        | GPIO 22   | Blue |
+| SDA        | GPIO 21   | Green |
+| VCC        | 3.3V      | White |
+| GND        | GND       | Grey |
+
+!!! warning "Temporary Color Code"
+    Wire colors are specific to the 2025 version and not official. Always verify connections.
+
+### ESP32 to Motor Driver
+
+| Motor Driver Pin | ESP32 Pin |
+|------------------|-----------|
+| PWM              | GPIO 25   |
+| DIR              | GPIO 26   |
+| VCC              | 5V        |
+| GND              | GND       |
+
+### ESP32 to Orin (UART Communication)
+
+| Orin Pin | ESP32 Pin |
+|----------|-----------|
+| TX       | GPIO 18   |
+| RX       | GPIO 19   |
+| GND      | GND       |

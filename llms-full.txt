@@ -546,6 +546,20 @@ Sensor used is the cheap AS5600
 Intended for use with a diametrically magnetized magnet, but works with a normal one turned 90 degrees too.
 It may be a good idea to find bigger neodymium diametric magnets.
 
+## AS5600 Wire Colors (2025 Temporary)
+
+!!! warning "Temporary Color Code"
+    This color code is specific to the 2025 version wiring and is not official. Verify connections before use.
+
+| Color | Signal |
+|-------|--------|
+| Grey  | GND    |
+| White | 3.3V   |
+| Green | SDA    |
+| Blue  | SCL    |
+
+## Code Repository
+
 Repo with basic code to read the steering angle sensor (Arduino HAL with VSCode Platformio, no IDE): https://github.com/rubenayla/bluepill-angle-arduino.git
 
 ![](20250608181003.png)
@@ -587,11 +601,52 @@ The ESP32 is a series of low-cost, low-power system on a chip microcontrollers w
 *   **DACs:** 2-channel, 8-bit
 *   **Communication Interfaces:** SPI, I2C, UART, CAN, I2S
 
-## Pin Use
+## Kart Medulla - ESP32 WROOM 32 Configuration
 
-| Pin Name | Function |
-| -------- | -------- |
-| GPIOXX   | Describe its function |
+The ESP32 serves as the "medulla" of the kart, interfacing between the Orin computer, steering angle sensor, and motor driver.
+
+### Pin Assignments
+
+| GPIO Pin | Function | Connected To |
+|----------|----------|--------------|
+| GPIO 2   | LED      | Onboard LED |
+| GPIO 18  | UART RX  | Orin TX |
+| GPIO 19  | UART TX  | Orin RX |
+| GPIO 21  | I2C SDA  | AS5600 SDA |
+| GPIO 22  | I2C SCL  | AS5600 SCL |
+| GPIO 25  | PWM      | Motor Driver PWM |
+| GPIO 26  | DIR      | Motor Driver Direction |
+
+## Wiring Connections
+
+### ESP32 to AS5600 Angle Sensor
+
+| AS5600 Pin | ESP32 Pin | Wire Color (2025) |
+|------------|-----------|-------------------|
+| SCL        | GPIO 22   | Blue |
+| SDA        | GPIO 21   | Green |
+| VCC        | 3.3V      | White |
+| GND        | GND       | Grey |
+
+!!! warning "Temporary Color Code"
+    Wire colors are specific to the 2025 version and not official. Always verify connections.
+
+### ESP32 to Motor Driver
+
+| Motor Driver Pin | ESP32 Pin |
+|------------------|-----------|
+| PWM              | GPIO 25   |
+| DIR              | GPIO 26   |
+| VCC              | 5V        |
+| GND              | GND       |
+
+### ESP32 to Orin (UART Communication)
+
+| Orin Pin | ESP32 Pin |
+|----------|-----------|
+| TX       | GPIO 18   |
+| RX       | GPIO 19   |
+| GND      | GND       |
 
 ---
 
@@ -609,7 +664,8 @@ It's a linear hall effect sensor, powered at 5V and outputs an analog voltage in
 | Teal (Green/Blue) | Signal   |
 
 ## ESP32 wiring
-TODO
+
+For detailed ESP32 wiring connections including AS5600 sensor, motor driver, and Orin communication, see [ESP32 Hardware Documentation](../hardware/esp32/index.md#wiring-connections).
 
 ---
 

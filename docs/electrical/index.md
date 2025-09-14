@@ -11,4 +11,5 @@ It's a linear hall effect sensor, powered at 5V and outputs an analog voltage in
 | Teal (Green/Blue) | Signal   |
 
 ## ESP32 wiring
-TODO
+
+For detailed ESP32 wiring connections including AS5600 sensor, motor driver, and Orin communication, see [ESP32 Hardware Documentation](../hardware/esp32/index.md#wiring-connections).
