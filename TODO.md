@@ -1,8 +1,8 @@
 
-why assemblies in plural? it's a possibly super long tree of subsubsubassemblies, but the top one is the whole kart. I'm not sure about the plural name. Like, all the assemblies together are a single assembly: the kart.
 
 where bom saved
 
+why are the llm files separate?
 
 
 - Añadir pagina para el DAC

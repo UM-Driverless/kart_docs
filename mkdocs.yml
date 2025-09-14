@@ -8,7 +8,7 @@ markdown_extensions:
 nav:
   - Home: index.md
   - BOM: bom/index.md
-  - Assemblies:
+  - Assembly:
       - Powertrain:
           - Overview: assemblies/powertrain/index.md
           - Motor: assemblies/powertrain/motor.md
