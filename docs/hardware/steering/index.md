@@ -1,6 +1,18 @@
 
-# Motor Data
-![](index/20250622200050.png)
+# Steering System
+
+## Mechanical Overview
+
+??? example "View steering mechanism with measurements"
+    ![Steering mechanism with dimensions](images/steering-mechanism.jpg)
+
+The steering system uses a direct drive motor connected to the steering column. Key dimensions:
+- Steering column diameter: 20mm
+- Motor mount spacing: 50mm
+- Connection diameter: 10mm (internal)
+
+## Motor Data
+![Motor specifications](index/20250622200050.png)
 
 24V motor, we will use it at 12V, estimated about 300W
 
