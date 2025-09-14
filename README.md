@@ -57,6 +57,16 @@ poetry run mkdocs build
 
 ---
 
+## 🚀 Deploy to GitHub Pages
+
+```bash
+poetry run mkdocs gh-deploy
+```
+
+> GitHub Pages must be enabled in the repo settings (branch: `gh-pages`).
+
+---
+
 ## 🤖 LLM-Friendly Documentation
 
 This documentation includes LLM-optimized formats following the [llms.txt standard](https://llmstxt.org/):
@@ -75,16 +85,6 @@ To manually generate the LLM files:
 ```bash
 poetry run python generate_llm_files.py
 ```
-
----
-
-## 🚀 Deploy to GitHub Pages
-
-```bash
-poetry run mkdocs gh-deploy
-```
-
-> GitHub Pages must be enabled in the repo settings (branch: `gh-pages`).
 
 ---
 
