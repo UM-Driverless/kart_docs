@@ -2,83 +2,173 @@
 
 ## Overview
 
-This page provides a comprehensive list of all components required to build the driverless kart. Each component is documented with specifications, suppliers, costs, and alternatives.
+This page provides a comprehensive list of all components required to build the driverless kart. Component data is now stored in YAML files within each assembly folder, following the project structure.
 
-!!! info "BOM Management"
-    Component details are maintained in the individual hardware documentation pages using YAML frontmatter. This page provides consolidated views and summaries.
+!!! info "New BOM Management System"
+    Components are now managed via separate YAML files in each assembly folder. The folder structure represents the BOM tree itself, eliminating synchronization issues.
 
-## Summary by Category
+## BOM Structure
 
-### Core Systems
+The BOM is organized by assembly with YAML files containing detailed component specifications:
 
-| Component | Quantity | Unit Cost | Total Cost | Status | Documentation |
-|-----------|----------|-----------|------------|--------|---------------|
-| ESP32 WROOM 32 | 1 | €3.50 | €3.50 | Active | [ESP32](../hardware/esp32/index.md) |
-| Kunray MY1020 Motor | 1 | €150.00 | €150.00 | Active | [Motor](../hardware/motor/index.md) |
-| AS5600 Angle Sensor | 1 | €2.00 | €2.00 | Active | [Steering Sensor](../hardware/steering/sensor/index.md) |
-| Throttle Pedal (w/ SS49E) | 1 | €2.46 | €2.46 | Active | [Throttle Pedal](../hardware/throttle-pedal/index.md) |
+```
+docs/assembly/
+├── powertrain/
+│   ├── bom.yaml              # Motor, throttle pedal
+│   ├── transmission/bom.yaml # Chain, sprockets
+│   └── fasteners/bom.yaml    # All powertrain fasteners
+├── steering/
+│   ├── bom.yaml              # H-bridge, motor, sensor, coupling
+│   └── fasteners/bom.yaml    # All steering fasteners
+├── electronics/bom.yaml      # Orin, ESP32, DAC, level shifter
+├── power/bom.yaml            # Battery cells, BMS, auxiliary battery
+└── sensors/bom.yaml          # ZED2 camera, YOLOv5 models
+```
 
-### Transmission System
+## Assembly Overview
 
-| Component | Quantity | Unit Cost | Total Cost | Status | Documentation |
-|-----------|----------|-----------|------------|--------|---------------|
-| IRIS 219 Chain (100 links) | 1 | €15.00 | €15.00 | Active | [Transmission](../hardware/transmission/index.md) |
-| 219 Aluminum Sprocket | 1 | €20.00 | €20.00 | Needs Replacement | [Transmission](../hardware/transmission/index.md) |
-| Custom 219 Front Sprocket | 1 | €5.00 | €5.00 | Active | [Transmission](../hardware/transmission/index.md) |
+### 🔧 Powertrain Assembly
+**Components**: Motor, transmission system, throttle control
+- **Main Components**: [Powertrain BOM](../assembly/powertrain/bom.yaml)
+- **Transmission**: [Transmission BOM](../assembly/powertrain/transmission/bom.yaml)
+- **Fasteners**: [Powertrain Fasteners BOM](../assembly/powertrain/fasteners/bom.yaml)
+- **Documentation**: [Powertrain Assembly](../assembly/powertrain/index.md)
 
-## Cost Summary
+**Key Components:**
+- Kunray MY1020 3000W motor (€150.00)
+- IRIS 219 chain and sprocket system (€40.00)
+- Hall effect throttle pedal (€2.46)
 
-| Category | Total Cost | Items |
-|----------|------------|-------|
-| Core Electronics | €157.96 | 4 |
-| Transmission | €40.00 | 3 |
-| **Project Total** | **€197.96** | **7** |
+### 🎮 Steering Assembly
+**Components**: Motor, sensor, H-bridge, coupling
+- **Main Components**: [Steering BOM](../assembly/steering/bom.yaml)
+- **Fasteners**: [Steering Fasteners BOM](../assembly/steering/fasteners/bom.yaml)
+- **Documentation**: [Steering Assembly](../assembly/steering/index.md)
 
-### Cost Breakdown Details
-- **ESP32 WROOM 32**: €3.50
-- **Kunray MY1020 Motor**: €150.00
-- **AS5600 Angle Sensor**: €2.00
-- **Throttle Pedal (SS49E)**: €2.46
-- **IRIS 219 Chain**: €15.00
-- **219 Aluminum Sprocket**: €20.00 (needs replacement)
-- **Custom 219 Front Sprocket**: €5.00
+**Key Components:**
+- Cytron MD30C H-bridge (€45.00)
+- AS5600 magnetic angle sensor (€2.00)
+- 24V DC steering motor (€80.00)
 
-!!! warning "Incomplete BOM"
-    This BOM is being migrated from existing documentation. Additional components (battery, chassis, wiring, etc.) will be added as the migration continues.
+### 💻 Electronics Assembly
+**Components**: Computing, control, communication
+- **Main Components**: [Electronics BOM](../assembly/electronics/bom.yaml)
+- **Documentation**: [Electronics Assembly](../assembly/electronics/microcontroller.md)
+
+**Key Components:**
+- NVIDIA Jetson AGX Orin (€1500.00)
+- ESP32 WROOM-32 microcontroller (€3.50)
+- Custom Orin adapter board (€25.00)
+
+### ⚡ Power Assembly
+**Components**: Main battery pack, BMS, auxiliary power
+- **Main Components**: [Power BOM](../assembly/power/bom.yaml)
+- **Documentation**: [Power Assembly](../assembly/power/battery.md)
+
+**Key Components:**
+- 52x Molicel P42A cells in 13S4P (€234.00)
+- Jiabaida Smart BMS 100A (€85.00)
+- 12V auxiliary battery (€60.00)
+
+### 📷 Sensors Assembly
+**Components**: Vision system, AI models
+- **Main Components**: [Sensors BOM](../assembly/sensors/bom.yaml)
+- **Documentation**: [Sensors Assembly](../assembly/sensors/camera.md)
+
+**Key Components:**
+- Stereolabs ZED2 stereo camera (€450.00)
+- Custom YOLOv5 cone detection model
+
+## Estimated Project Costs
+
+| Assembly | Estimated Cost | Key Items |
+|----------|----------------|-----------|
+| **Powertrain** | **€195** | Motor (€150), transmission (€40), fasteners (€5) |
+| **Steering** | **€135** | H-bridge (€45), motor (€80), sensor (€2), fasteners (€8) |
+| **Electronics** | **€1530** | Orin computer (€1500), ESP32 (€4), adapter (€25) |
+| **Power** | **€380** | Li-ion cells (€234), BMS (€85), 12V battery (€60) |
+| **Sensors** | **€450** | ZED2 camera (€450) |
+| **Total** | **€2690** | *Excludes chassis, wiring, mechanical hardware* |
+
+!!! warning "Cost Estimates"
+    Prices are approximate and subject to change. Always verify current pricing from suppliers.
 
 ## Component Status
 
-- **Active**: Currently used in the kart
-- **Needs Replacement**: Known to be damaged/worn
-- **Deprecated**: No longer used but kept for reference
-- **Optional**: Not required for basic functionality
+### ✅ Active Components
+Currently used and functional in the kart.
 
-## Supplier Recommendations
+### ⚠️ Needs Replacement
+Known to be damaged or worn:
+- 219 aluminum rear sprocket (damaged from incompatible chain use)
+
+### 🔧 Custom Components
+Require fabrication:
+- Custom 219 front sprocket (laser cut for 10mm shaft)
+- Orin adapter board (EasyEDA design available)
+- Battery pack assembly (professional assembly recommended)
+
+## Supplier Information
 
 ### Primary Suppliers
-- **Electronic Components**: Mouser, Addicore, Sunrom
+- **Electronics**: Mouser, Digi-Key, Adafruit
 - **Karting Parts**: KPS Racing
-- **General Parts**: AliExpress, Amazon
+- **Batteries**: Authorized Molicel distributors
+- **Vision Systems**: Stereolabs
+- **General Components**: AliExpress, Amazon (for non-critical parts)
 
-### Quality Notes
-- Always prefer official distributors for critical electronic components
-- AliExpress/Amazon acceptable for mechanical parts and sensors
-- Verify component specifications before ordering
+### Quality Guidelines
+- ✅ Use official distributors for critical electronic components
+- ✅ Verify specifications before ordering
+- ⚠️ AliExpress/Amazon acceptable for mechanical parts and sensors
+- ❌ Avoid counterfeit components for safety-critical systems
 
 ## Assembly Priority
 
-1. **Core Electronics** (ESP32, sensors)
-2. **Motor System** (Motor, controller)
-3. **Transmission** (Chain, sprockets)
-4. **Mechanical** (Chassis, steering)
-5. **Power Systems** (Battery, wiring)
+1. **Power System** - Battery pack, BMS, charging setup
+2. **Core Electronics** - Orin computer, ESP32 microcontroller
+3. **Sensors** - ZED2 camera, angle sensors
+4. **Propulsion** - Motor, controller, transmission
+5. **Steering** - Motor, H-bridge, coupling
+6. **Integration** - Wiring, mounting, calibration
+
+## Working with YAML BOM Files
+
+### Adding New Components
+1. Locate the appropriate assembly folder
+2. Edit the `bom.yaml` file
+3. Follow the existing structure for consistency
+4. Include all required fields: id, part_number, description, quantity, cost, suppliers
+
+### YAML File Structure
+```yaml
+assembly: "assembly_name"
+description: "Assembly description"
+components:
+  - id: "unique_component_id"
+    part_number: "MANUFACTURER-PART-NUMBER"
+    description: "Component description"
+    quantity: 1
+    unit_cost: 0.00
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "Supplier Name"
+        url: "https://supplier.com/product"
+        verified: true
+    specifications:
+      key: "value"
+    notes: "Additional information"
+```
+
+### Future Automation
+A BOM aggregation script is planned to automatically generate:
+- Complete cost summaries
+- Supplier contact lists
+- Component status reports
+- Assembly checklists
 
 ---
 
-## Adding Components to BOM
-
-To add a new component to the BOM:
-
-1. Add YAML frontmatter to the component's documentation page
-2. Use the standardized structure shown in individual hardware pages
-3. The BOM summary will be updated manually or via script
+*This BOM system reflects the complete restructure from hardware-based to assembly-based organization, with component data stored in YAML files following the project's folder structure.*

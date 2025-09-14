@@ -10,27 +10,27 @@ nav:
   - BOM: bom/index.md
   - Assembly:
       - Powertrain:
-          - Overview: assemblies/powertrain/index.md
-          - Motor: assemblies/powertrain/motor.md
-          - Transmission: assemblies/powertrain/transmission.md
-          - Throttle Pedal: assemblies/powertrain/throttle-pedal.md
-          - Fasteners: assemblies/powertrain/fasteners.md
+          - Overview: assembly/powertrain/index.md
+          - Motor: assembly/powertrain/motor.md
+          - Transmission: assembly/powertrain/transmission.md
+          - Throttle Pedal: assembly/powertrain/throttle-pedal.md
+          - Fasteners: assembly/powertrain/fasteners.md
       - Steering:
-          - Overview: assemblies/steering/index.md
-          - Motor & Coupling: assemblies/steering/index.md
-          - H-bridge: assemblies/steering/h-bridge.md
-          - Angle Sensor: assemblies/steering/sensor/index.md
-          - Fasteners: assemblies/steering/fasteners.md
+          - Overview: assembly/steering/index.md
+          - Motor & Coupling: assembly/steering/index.md
+          - H-bridge: assembly/steering/h-bridge.md
+          - Angle Sensor: assembly/steering/sensor/index.md
+          - Fasteners: assembly/steering/fasteners.md
       - Electronics:
-          - Microcontroller: assemblies/electronics/microcontroller.md
-          - Computer: assemblies/electronics/computer.md
-          - DAC: assemblies/electronics/dac.md
-          - Wiring: assemblies/electronics/wiring.md
+          - Microcontroller: assembly/electronics/microcontroller.md
+          - Computer: assembly/electronics/computer.md
+          - DAC: assembly/electronics/dac.md
+          - Wiring: assembly/electronics/wiring.md
       - Power:
-          - Battery: assemblies/power/battery.md
+          - Battery: assembly/power/battery.md
       - Sensors:
-          - Camera: assemblies/sensors/camera.md
-  - Assembly Instructions: assembly/index.md
+          - Camera: assembly/sensors/camera.md
+      - Instructions: assembly/instructions.md
   - Pneumatics: pneumatics/index.md
   - Hydraulics: hydraulics/index.md
   - Software: software/index.md

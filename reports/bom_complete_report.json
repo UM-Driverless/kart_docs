@@ -1,0 +1,3528 @@
+{
+  "cost_summary": {
+    "by_assembly": {
+      "steering": {
+        "total": 142.0,
+        "count": 4,
+        "components": [
+          {
+            "id": "cytron_md30c",
+            "description": "30A H-bridge motor driver",
+            "unit_cost": 45.0,
+            "quantity": 1,
+            "total_cost": 45.0
+          },
+          {
+            "id": "steering_motor_24v",
+            "description": "24V DC steering motor (operated at 12V)",
+            "unit_cost": 80.0,
+            "quantity": 1,
+            "total_cost": 80.0
+          },
+          {
+            "id": "as5600_angle_sensor",
+            "description": "Hall effect rotary position sensor",
+            "unit_cost": 2.0,
+            "quantity": 1,
+            "total_cost": 2.0
+          },
+          {
+            "id": "steering_coupling",
+            "description": "Motor to steering shaft coupling",
+            "unit_cost": 15.0,
+            "quantity": 1,
+            "total_cost": 15.0
+          }
+        ]
+      },
+      "sensors": {
+        "total": 450.0,
+        "count": 2,
+        "components": [
+          {
+            "id": "stereolabs_zed2",
+            "description": "Stereolabs ZED2 stereo vision camera",
+            "unit_cost": 450.0,
+            "quantity": 1,
+            "total_cost": 450.0
+          },
+          {
+            "id": "yolov5_detection_model",
+            "description": "Custom YOLOv5 model for cone detection",
+            "unit_cost": 0.0,
+            "quantity": 1,
+            "total_cost": 0.0
+          }
+        ]
+      },
+      "powertrain": {
+        "total": 152.46,
+        "count": 2,
+        "components": [
+          {
+            "id": "kunray_my1020_motor",
+            "description": "Brushless DC motor with controller",
+            "unit_cost": 150.0,
+            "quantity": 1,
+            "total_cost": 150.0
+          },
+          {
+            "id": "throttle_pedal_ss49e",
+            "description": "Throttle pedal with SS49E Hall sensor",
+            "unit_cost": 2.46,
+            "quantity": 1,
+            "total_cost": 2.46
+          }
+        ]
+      },
+      "power": {
+        "total": 529.0,
+        "count": 55,
+        "components": [
+          {
+            "id": "molicel_p42a_cells",
+            "description": "Molicel P42A 21700 lithium-ion cells",
+            "unit_cost": 4.5,
+            "quantity": 52,
+            "total_cost": 234.0
+          },
+          {
+            "id": "jiabaida_bms_100a",
+            "description": "Jiabaida Smart BMS 100A with Bluetooth and UART",
+            "unit_cost": 85.0,
+            "quantity": 1,
+            "total_cost": 85.0
+          },
+          {
+            "id": "car_battery_12v",
+            "description": "12V automotive battery for sensors",
+            "unit_cost": 60.0,
+            "quantity": 1,
+            "total_cost": 60.0
+          },
+          {
+            "id": "battery_pack_assembly",
+            "description": "Custom 13S4P battery pack assembly",
+            "unit_cost": 150.0,
+            "quantity": 1,
+            "total_cost": 150.0
+          }
+        ]
+      },
+      "electronics": {
+        "total": 1546.0,
+        "count": 5,
+        "components": [
+          {
+            "id": "nvidia_jetson_agx_orin",
+            "description": "NVIDIA Jetson AGX Orin Development Kit",
+            "unit_cost": 1500.0,
+            "quantity": 1,
+            "total_cost": 1500.0
+          },
+          {
+            "id": "esp32_wroom_32",
+            "description": "ESP32 microcontroller module (Kart Medulla)",
+            "unit_cost": 3.5,
+            "quantity": 1,
+            "total_cost": 3.5
+          },
+          {
+            "id": "orin_adapter_board",
+            "description": "Custom Orin adapter board v1.0",
+            "unit_cost": 25.0,
+            "quantity": 1,
+            "total_cost": 25.0
+          },
+          {
+            "id": "dac_module",
+            "description": "Digital to Analog Converter module",
+            "unit_cost": 15.0,
+            "quantity": 1,
+            "total_cost": 15.0
+          },
+          {
+            "id": "i2c_level_shifter",
+            "description": "8-bit bidirectional voltage-level translator",
+            "unit_cost": 2.5,
+            "quantity": 1,
+            "total_cost": 2.5
+          }
+        ]
+      },
+      "steering_fasteners": {
+        "total": 3.05,
+        "count": 9,
+        "components": [
+          {
+            "id": "coupling_motor_bolts",
+            "description": "Coupling to motor bolts",
+            "unit_cost": 0.35,
+            "quantity": 4,
+            "total_cost": 1.4
+          },
+          {
+            "id": "main_coupling_bolt",
+            "description": "Main coupling bolt",
+            "unit_cost": 0.45,
+            "quantity": 1,
+            "total_cost": 0.45
+          },
+          {
+            "id": "sensor_mount_screws",
+            "description": "Sensor mounting screws",
+            "unit_cost": 0.2,
+            "quantity": 2,
+            "total_cost": 0.4
+          },
+          {
+            "id": "motor_bracket_bolts",
+            "description": "Motor bracket bolts",
+            "unit_cost": 0.4,
+            "quantity": 2,
+            "total_cost": 0.8
+          }
+        ]
+      },
+      "powertrain_transmission": {
+        "total": 40.0,
+        "count": 3,
+        "components": [
+          {
+            "id": "iris_219_chain",
+            "description": "IRIS 219 pitch gold chain",
+            "unit_cost": 15.0,
+            "quantity": 1,
+            "total_cost": 15.0
+          },
+          {
+            "id": "corona_219_aluminum",
+            "description": "219 pitch aluminum rear sprocket",
+            "unit_cost": 20.0,
+            "quantity": 1,
+            "total_cost": 20.0
+          },
+          {
+            "id": "custom_219_pinion",
+            "description": "Custom 219 pitch front sprocket",
+            "unit_cost": 5.0,
+            "quantity": 1,
+            "total_cost": 5.0
+          }
+        ]
+      },
+      "powertrain_fasteners": {
+        "total": 4.7,
+        "count": 15,
+        "components": [
+          {
+            "id": "motor_mount_bolts",
+            "description": "Motor mount bolts",
+            "unit_cost": 0.5,
+            "quantity": 4,
+            "total_cost": 2.0
+          },
+          {
+            "id": "motor_mount_nuts",
+            "description": "Motor mount nuts",
+            "unit_cost": 0.15,
+            "quantity": 4,
+            "total_cost": 0.6
+          },
+          {
+            "id": "front_sprocket_bolts",
+            "description": "Front sprocket bolts",
+            "unit_cost": 0.3,
+            "quantity": 3,
+            "total_cost": 0.8999999999999999
+          },
+          {
+            "id": "chain_tensioner_hardware",
+            "description": "Chain tensioner hardware",
+            "unit_cost": 0.35,
+            "quantity": 2,
+            "total_cost": 0.7
+          },
+          {
+            "id": "throttle_pedal_mount_bolts",
+            "description": "Throttle pedal mount bolts",
+            "unit_cost": 0.25,
+            "quantity": 2,
+            "total_cost": 0.5
+          }
+        ]
+      }
+    },
+    "by_status": {
+      "active": {
+        "total": 2829.71,
+        "count": 92
+      },
+      "needs_specification": {
+        "total": 15.0,
+        "count": 1
+      },
+      "pending": {
+        "total": 2.5,
+        "count": 1
+      },
+      "needs_replacement": {
+        "total": 20.0,
+        "count": 1
+      }
+    },
+    "by_criticality": {
+      "essential": {
+        "total": 2866.76,
+        "count": 94
+      },
+      "critical": {
+        "total": 0.45,
+        "count": 1
+      }
+    },
+    "total_project_cost": 2867.21,
+    "total_components": 29,
+    "currency": "EUR"
+  },
+  "supplier_list": {
+    "Cytron Technologies": {
+      "components": [
+        {
+          "component_id": "cytron_md30c",
+          "part_number": "MD30C",
+          "description": "30A H-bridge motor driver",
+          "assembly": "steering",
+          "url": "https://www.cytron.io/p-30amp-5v-30v-dc-motor-driver",
+          "verified": true,
+          "notes": null
+        }
+      ],
+      "verified_count": 1,
+      "total_components": 1
+    },
+    "OpenCircuit ES": {
+      "components": [
+        {
+          "component_id": "cytron_md30c",
+          "part_number": "MD30C",
+          "description": "30A H-bridge motor driver",
+          "assembly": "steering",
+          "url": "https://opencircuit.es/producto/30amp-5v-30v-dc-motor-driver",
+          "verified": true,
+          "notes": "Spanish distributor"
+        }
+      ],
+      "verified_count": 1,
+      "total_components": 1
+    },
+    "Generic Supplier": {
+      "components": [
+        {
+          "component_id": "steering_motor_24v",
+          "part_number": "STEERING-24V-MOTOR",
+          "description": "24V DC steering motor (operated at 12V)",
+          "assembly": "steering",
+          "url": null,
+          "verified": false,
+          "notes": "Need to identify specific supplier"
+        }
+      ],
+      "verified_count": 0,
+      "total_components": 1
+    },
+    "AliExpress": {
+      "components": [
+        {
+          "component_id": "as5600_angle_sensor",
+          "part_number": "AS5600",
+          "description": "Hall effect rotary position sensor",
+          "assembly": "steering",
+          "url": null,
+          "verified": false,
+          "notes": "Various AS5600 breakout boards"
+        },
+        {
+          "component_id": "throttle_pedal_ss49e",
+          "part_number": "THROTTLE-PEDAL-HALL",
+          "description": "Throttle pedal with SS49E Hall sensor",
+          "assembly": "powertrain",
+          "url": "https://es.aliexpress.com/item/1005007243711390.html",
+          "verified": true,
+          "notes": null
+        },
+        {
+          "component_id": "jiabaida_bms_100a",
+          "part_number": "JBD-SP22S003B",
+          "description": "Jiabaida Smart BMS 100A with Bluetooth and UART",
+          "assembly": "power",
+          "url": "https://es.aliexpress.com/item/1005007223779359.html",
+          "verified": true,
+          "notes": null
+        },
+        {
+          "component_id": "esp32_wroom_32",
+          "part_number": "ESP32-WROOM-32",
+          "description": "ESP32 microcontroller module (Kart Medulla)",
+          "assembly": "electronics",
+          "url": "https://www.aliexpress.com/wholesale?SearchText=esp32+wroom+32",
+          "verified": false,
+          "notes": null
+        }
+      ],
+      "verified_count": 2,
+      "total_components": 4
+    },
+    "Amazon": {
+      "components": [
+        {
+          "component_id": "as5600_angle_sensor",
+          "part_number": "AS5600",
+          "description": "Hall effect rotary position sensor",
+          "assembly": "steering",
+          "url": null,
+          "verified": false,
+          "notes": "AS5600 magnetic encoder modules"
+        },
+        {
+          "component_id": "kunray_my1020_motor",
+          "part_number": "MY1020",
+          "description": "Brushless DC motor with controller",
+          "assembly": "powertrain",
+          "url": "https://www.amazon.es/dp/B0C6WXYZ/ref=cm_sw_em_r_mt_dp_xyz",
+          "verified": true,
+          "notes": null
+        },
+        {
+          "component_id": "throttle_pedal_ss49e",
+          "part_number": "THROTTLE-PEDAL-HALL",
+          "description": "Throttle pedal with SS49E Hall sensor",
+          "assembly": "powertrain",
+          "url": null,
+          "verified": false,
+          "notes": "Various electric scooter throttle pedal listings"
+        }
+      ],
+      "verified_count": 1,
+      "total_components": 3
+    },
+    "Generic Mechanical Supplier": {
+      "components": [
+        {
+          "component_id": "steering_coupling",
+          "part_number": "STEERING-COUPLING-10MM",
+          "description": "Motor to steering shaft coupling",
+          "assembly": "steering",
+          "url": null,
+          "verified": false,
+          "notes": "Need specific supplier for 10mm coupling"
+        }
+      ],
+      "verified_count": 0,
+      "total_components": 1
+    },
+    "Stereolabs": {
+      "components": [
+        {
+          "component_id": "stereolabs_zed2",
+          "part_number": "ZED2",
+          "description": "Stereolabs ZED2 stereo vision camera",
+          "assembly": "sensors",
+          "url": "https://www.stereolabs.com/zed-2/",
+          "verified": true,
+          "notes": null
+        }
+      ],
+      "verified_count": 1,
+      "total_components": 1
+    },
+    "Authorized Stereolabs distributors": {
+      "components": [
+        {
+          "component_id": "stereolabs_zed2",
+          "part_number": "ZED2",
+          "description": "Stereolabs ZED2 stereo vision camera",
+          "assembly": "sensors",
+          "url": null,
+          "verified": false,
+          "notes": "Various electronics distributors"
+        }
+      ],
+      "verified_count": 0,
+      "total_components": 1
+    },
+    "Custom trained model": {
+      "components": [
+        {
+          "component_id": "yolov5_detection_model",
+          "part_number": "CUSTOM-YOLOV5-CONES",
+          "description": "Custom YOLOv5 model for cone detection",
+          "assembly": "sensors",
+          "url": null,
+          "verified": false,
+          "notes": "In-house training using YOLOv5 framework"
+        }
+      ],
+      "verified_count": 0,
+      "total_components": 1
+    },
+    "Kunray Official": {
+      "components": [
+        {
+          "component_id": "kunray_my1020_motor",
+          "part_number": "MY1020",
+          "description": "Brushless DC motor with controller",
+          "assembly": "powertrain",
+          "url": "https://kunraymotors.com/shop/",
+          "verified": true,
+          "notes": null
+        }
+      ],
+      "verified_count": 1,
+      "total_components": 1
+    },
+    "Battery specialists": {
+      "components": [
+        {
+          "component_id": "molicel_p42a_cells",
+          "part_number": "P42A",
+          "description": "Molicel P42A 21700 lithium-ion cells",
+          "assembly": "power",
+          "url": null,
+          "verified": false,
+          "notes": "Various 21700 battery suppliers"
+        }
+      ],
+      "verified_count": 0,
+      "total_components": 1
+    },
+    "Molicel authorized distributors": {
+      "components": [
+        {
+          "component_id": "molicel_p42a_cells",
+          "part_number": "P42A",
+          "description": "Molicel P42A 21700 lithium-ion cells",
+          "assembly": "power",
+          "url": null,
+          "verified": true,
+          "notes": null
+        }
+      ],
+      "verified_count": 1,
+      "total_components": 1
+    },
+    "Jiabaida Direct": {
+      "components": [
+        {
+          "component_id": "jiabaida_bms_100a",
+          "part_number": "JBD-SP22S003B",
+          "description": "Jiabaida Smart BMS 100A with Bluetooth and UART",
+          "assembly": "power",
+          "url": "https://jiabaida-bms.com/",
+          "verified": true,
+          "notes": null
+        }
+      ],
+      "verified_count": 1,
+      "total_components": 1
+    },
+    "Automotive parts stores": {
+      "components": [
+        {
+          "component_id": "car_battery_12v",
+          "part_number": "12V-CAR-BATTERY",
+          "description": "12V automotive battery for sensors",
+          "assembly": "power",
+          "url": null,
+          "verified": false,
+          "notes": "Standard car battery suppliers"
+        }
+      ],
+      "verified_count": 0,
+      "total_components": 1
+    },
+    "Custom battery pack builder": {
+      "components": [
+        {
+          "component_id": "battery_pack_assembly",
+          "part_number": "CUSTOM-PACK-13S4P",
+          "description": "Custom 13S4P battery pack assembly",
+          "assembly": "power",
+          "url": null,
+          "verified": false,
+          "notes": "Professional battery pack assembly service"
+        }
+      ],
+      "verified_count": 0,
+      "total_components": 1
+    },
+    "NVIDIA Developer": {
+      "components": [
+        {
+          "component_id": "nvidia_jetson_agx_orin",
+          "part_number": "JETSON-AGX-ORIN-DEVKIT",
+          "description": "NVIDIA Jetson AGX Orin Development Kit",
+          "assembly": "electronics",
+          "url": "https://developer.nvidia.com/embedded/learn/jetson-agx-orin-devkit-user-guide/",
+          "verified": true,
+          "notes": null
+        }
+      ],
+      "verified_count": 1,
+      "total_components": 1
+    },
+    "Authorized NVIDIA Distributors": {
+      "components": [
+        {
+          "component_id": "nvidia_jetson_agx_orin",
+          "part_number": "JETSON-AGX-ORIN-DEVKIT",
+          "description": "NVIDIA Jetson AGX Orin Development Kit",
+          "assembly": "electronics",
+          "url": null,
+          "verified": false,
+          "notes": "Various electronics distributors"
+        }
+      ],
+      "verified_count": 0,
+      "total_components": 1
+    },
+    "Mouser": {
+      "components": [
+        {
+          "component_id": "esp32_wroom_32",
+          "part_number": "ESP32-WROOM-32",
+          "description": "ESP32 microcontroller module (Kart Medulla)",
+          "assembly": "electronics",
+          "url": "https://www.mouser.com/ProductDetail/356-ESP32WROOM32",
+          "verified": true,
+          "notes": null
+        },
+        {
+          "component_id": "i2c_level_shifter",
+          "part_number": "TXS0108E",
+          "description": "8-bit bidirectional voltage-level translator",
+          "assembly": "electronics",
+          "url": null,
+          "verified": true,
+          "notes": null
+        }
+      ],
+      "verified_count": 2,
+      "total_components": 2
+    },
+    "Custom PCB Manufacturer": {
+      "components": [
+        {
+          "component_id": "orin_adapter_board",
+          "part_number": "CUSTOM-ORIN-ADAPTER-V1.0",
+          "description": "Custom Orin adapter board v1.0",
+          "assembly": "electronics",
+          "url": null,
+          "verified": false,
+          "notes": "Designed with EasyEDA"
+        }
+      ],
+      "verified_count": 0,
+      "total_components": 1
+    },
+    "TBD": {
+      "components": [
+        {
+          "component_id": "dac_module",
+          "part_number": "TBD-DAC-MODULE",
+          "description": "Digital to Analog Converter module",
+          "assembly": "electronics",
+          "url": null,
+          "verified": false,
+          "notes": "Need to identify specific DAC module"
+        }
+      ],
+      "verified_count": 0,
+      "total_components": 1
+    },
+    "Texas Instruments": {
+      "components": [
+        {
+          "component_id": "i2c_level_shifter",
+          "part_number": "TXS0108E",
+          "description": "8-bit bidirectional voltage-level translator",
+          "assembly": "electronics",
+          "url": null,
+          "verified": true,
+          "notes": null
+        }
+      ],
+      "verified_count": 1,
+      "total_components": 1
+    },
+    "Digi-Key": {
+      "components": [
+        {
+          "component_id": "i2c_level_shifter",
+          "part_number": "TXS0108E",
+          "description": "8-bit bidirectional voltage-level translator",
+          "assembly": "electronics",
+          "url": null,
+          "verified": true,
+          "notes": null
+        }
+      ],
+      "verified_count": 1,
+      "total_components": 1
+    },
+    "McMaster-Carr": {
+      "components": [
+        {
+          "component_id": "coupling_motor_bolts",
+          "part_number": "M6x20-HEX",
+          "description": "Coupling to motor bolts",
+          "assembly": "steering_fasteners",
+          "url": null,
+          "verified": true,
+          "notes": null
+        },
+        {
+          "component_id": "main_coupling_bolt",
+          "part_number": "M8x25-HEX",
+          "description": "Main coupling bolt",
+          "assembly": "steering_fasteners",
+          "url": null,
+          "verified": true,
+          "notes": null
+        },
+        {
+          "component_id": "sensor_mount_screws",
+          "part_number": "M3x8-HEX",
+          "description": "Sensor mounting screws",
+          "assembly": "steering_fasteners",
+          "url": null,
+          "verified": true,
+          "notes": null
+        },
+        {
+          "component_id": "motor_bracket_bolts",
+          "part_number": "M6x30-HEX",
+          "description": "Motor bracket bolts",
+          "assembly": "steering_fasteners",
+          "url": null,
+          "verified": true,
+          "notes": null
+        },
+        {
+          "component_id": "motor_mount_bolts",
+          "part_number": "M8x30-HEX",
+          "description": "Motor mount bolts",
+          "assembly": "powertrain_fasteners",
+          "url": null,
+          "verified": true,
+          "notes": null
+        },
+        {
+          "component_id": "motor_mount_nuts",
+          "part_number": "M8-NUT",
+          "description": "Motor mount nuts",
+          "assembly": "powertrain_fasteners",
+          "url": null,
+          "verified": true,
+          "notes": null
+        },
+        {
+          "component_id": "front_sprocket_bolts",
+          "part_number": "M6x16-HEX",
+          "description": "Front sprocket bolts",
+          "assembly": "powertrain_fasteners",
+          "url": null,
+          "verified": true,
+          "notes": null
+        },
+        {
+          "component_id": "chain_tensioner_hardware",
+          "part_number": "M6x20-HEX",
+          "description": "Chain tensioner hardware",
+          "assembly": "powertrain_fasteners",
+          "url": null,
+          "verified": true,
+          "notes": null
+        },
+        {
+          "component_id": "throttle_pedal_mount_bolts",
+          "part_number": "M5x12-HEX",
+          "description": "Throttle pedal mount bolts",
+          "assembly": "powertrain_fasteners",
+          "url": null,
+          "verified": true,
+          "notes": null
+        }
+      ],
+      "verified_count": 9,
+      "total_components": 9
+    },
+    "Fastenal": {
+      "components": [
+        {
+          "component_id": "coupling_motor_bolts",
+          "part_number": "M6x20-HEX",
+          "description": "Coupling to motor bolts",
+          "assembly": "steering_fasteners",
+          "url": null,
+          "verified": true,
+          "notes": null
+        },
+        {
+          "component_id": "motor_bracket_bolts",
+          "part_number": "M6x30-HEX",
+          "description": "Motor bracket bolts",
+          "assembly": "steering_fasteners",
+          "url": null,
+          "verified": true,
+          "notes": null
+        },
+        {
+          "component_id": "motor_mount_bolts",
+          "part_number": "M8x30-HEX",
+          "description": "Motor mount bolts",
+          "assembly": "powertrain_fasteners",
+          "url": null,
+          "verified": true,
+          "notes": null
+        },
+        {
+          "component_id": "motor_mount_nuts",
+          "part_number": "M8-NUT",
+          "description": "Motor mount nuts",
+          "assembly": "powertrain_fasteners",
+          "url": null,
+          "verified": true,
+          "notes": null
+        },
+        {
+          "component_id": "front_sprocket_bolts",
+          "part_number": "M6x16-HEX",
+          "description": "Front sprocket bolts",
+          "assembly": "powertrain_fasteners",
+          "url": null,
+          "verified": true,
+          "notes": null
+        },
+        {
+          "component_id": "chain_tensioner_hardware",
+          "part_number": "M6x20-HEX",
+          "description": "Chain tensioner hardware",
+          "assembly": "powertrain_fasteners",
+          "url": null,
+          "verified": true,
+          "notes": null
+        },
+        {
+          "component_id": "throttle_pedal_mount_bolts",
+          "part_number": "M5x12-HEX",
+          "description": "Throttle pedal mount bolts",
+          "assembly": "powertrain_fasteners",
+          "url": null,
+          "verified": true,
+          "notes": null
+        }
+      ],
+      "verified_count": 7,
+      "total_components": 7
+    },
+    "Auto parts stores": {
+      "components": [
+        {
+          "component_id": "main_coupling_bolt",
+          "part_number": "M8x25-HEX",
+          "description": "Main coupling bolt",
+          "assembly": "steering_fasteners",
+          "url": null,
+          "verified": false,
+          "notes": "Grade 8.8 bolts available locally"
+        }
+      ],
+      "verified_count": 0,
+      "total_components": 1
+    },
+    "Electronics suppliers": {
+      "components": [
+        {
+          "component_id": "sensor_mount_screws",
+          "part_number": "M3x8-HEX",
+          "description": "Sensor mounting screws",
+          "assembly": "steering_fasteners",
+          "url": null,
+          "verified": false,
+          "notes": "Common with sensor breakout boards"
+        }
+      ],
+      "verified_count": 0,
+      "total_components": 1
+    },
+    "KPS Racing": {
+      "components": [
+        {
+          "component_id": "iris_219_chain",
+          "part_number": "IRIS-219-100",
+          "description": "IRIS 219 pitch gold chain",
+          "assembly": "powertrain_transmission",
+          "url": "https://kpsracing.es/cadenas-y-cubrecadenas/2434-649-cadena-iris-219.html#/254-numero_pasos_cadena-100",
+          "verified": true,
+          "notes": null
+        },
+        {
+          "component_id": "corona_219_aluminum",
+          "part_number": "CORONA-219-ALU",
+          "description": "219 pitch aluminum rear sprocket",
+          "assembly": "powertrain_transmission",
+          "url": "https://kpsracing.es/coronas/5957-9775-corona-aluminio-219-negra.html",
+          "verified": true,
+          "notes": null
+        }
+      ],
+      "verified_count": 2,
+      "total_components": 2
+    },
+    "Laser Cutting Service": {
+      "components": [
+        {
+          "component_id": "custom_219_pinion",
+          "part_number": "CUSTOM-219-PINION",
+          "description": "Custom 219 pitch front sprocket",
+          "assembly": "powertrain_transmission",
+          "url": null,
+          "verified": false,
+          "notes": "Custom design for 10mm shaft"
+        }
+      ],
+      "verified_count": 0,
+      "total_components": 1
+    }
+  },
+  "status_report": {
+    "active": [
+      {
+        "id": "cytron_md30c",
+        "part_number": "MD30C",
+        "description": "30A H-bridge motor driver",
+        "assembly": "steering",
+        "unit_cost": 45.0,
+        "quantity": 1,
+        "criticality": "essential",
+        "notes": null
+      },
+      {
+        "id": "steering_motor_24v",
+        "part_number": "STEERING-24V-MOTOR",
+        "description": "24V DC steering motor (operated at 12V)",
+        "assembly": "steering",
+        "unit_cost": 80.0,
+        "quantity": 1,
+        "criticality": "essential",
+        "notes": "Operating at half rated voltage for reduced speed and power"
+      },
+      {
+        "id": "as5600_angle_sensor",
+        "part_number": "AS5600",
+        "description": "Hall effect rotary position sensor",
+        "assembly": "steering",
+        "unit_cost": 2.0,
+        "quantity": 1,
+        "criticality": "essential",
+        "notes": "Works with diametrically magnetized magnet or normal magnet rotated 90\u00b0"
+      },
+      {
+        "id": "steering_coupling",
+        "part_number": "STEERING-COUPLING-10MM",
+        "description": "Motor to steering shaft coupling",
+        "assembly": "steering",
+        "unit_cost": 15.0,
+        "quantity": 1,
+        "criticality": "essential",
+        "notes": "Connects motor shaft to steering column"
+      },
+      {
+        "id": "stereolabs_zed2",
+        "part_number": "ZED2",
+        "description": "Stereolabs ZED2 stereo vision camera",
+        "assembly": "sensors",
+        "unit_cost": 450.0,
+        "quantity": 1,
+        "criticality": "essential",
+        "notes": "Primary vision sensor for autonomous navigation and cone detection"
+      },
+      {
+        "id": "yolov5_detection_model",
+        "part_number": "CUSTOM-YOLOV5-CONES",
+        "description": "Custom YOLOv5 model for cone detection",
+        "assembly": "sensors",
+        "unit_cost": 0.0,
+        "quantity": 1,
+        "criticality": "essential",
+        "notes": "Real-time cone detection integrated with ZED2 camera through ROS 2 wrapper"
+      },
+      {
+        "id": "kunray_my1020_motor",
+        "part_number": "MY1020",
+        "description": "Brushless DC motor with controller",
+        "assembly": "powertrain",
+        "unit_cost": 150.0,
+        "quantity": 1,
+        "criticality": "essential",
+        "notes": "Includes motor controller"
+      },
+      {
+        "id": "throttle_pedal_ss49e",
+        "part_number": "THROTTLE-PEDAL-HALL",
+        "description": "Throttle pedal with SS49E Hall sensor",
+        "assembly": "powertrain",
+        "unit_cost": 2.46,
+        "quantity": 1,
+        "criticality": "essential",
+        "notes": null
+      },
+      {
+        "id": "molicel_p42a_cells",
+        "part_number": "P42A",
+        "description": "Molicel P42A 21700 lithium-ion cells",
+        "assembly": "power",
+        "unit_cost": 4.5,
+        "quantity": 52,
+        "criticality": "essential",
+        "notes": "Main traction battery pack in 13S4P configuration"
+      },
+      {
+        "id": "jiabaida_bms_100a",
+        "part_number": "JBD-SP22S003B",
+        "description": "Jiabaida Smart BMS 100A with Bluetooth and UART",
+        "assembly": "power",
+        "unit_cost": 85.0,
+        "quantity": 1,
+        "criticality": "essential",
+        "notes": "Smart BMS with mobile app monitoring and protection features"
+      },
+      {
+        "id": "car_battery_12v",
+        "part_number": "12V-CAR-BATTERY",
+        "description": "12V automotive battery for sensors",
+        "assembly": "power",
+        "unit_cost": 60.0,
+        "quantity": 1,
+        "criticality": "essential",
+        "notes": "Separate 12V supply for sensors to maintain Formula Student compatibility"
+      },
+      {
+        "id": "battery_pack_assembly",
+        "part_number": "CUSTOM-PACK-13S4P",
+        "description": "Custom 13S4P battery pack assembly",
+        "assembly": "power",
+        "unit_cost": 150.0,
+        "quantity": 1,
+        "criticality": "essential",
+        "notes": "Professional assembly recommended due to safety requirements"
+      },
+      {
+        "id": "nvidia_jetson_agx_orin",
+        "part_number": "JETSON-AGX-ORIN-DEVKIT",
+        "description": "NVIDIA Jetson AGX Orin Development Kit",
+        "assembly": "electronics",
+        "unit_cost": 1500.0,
+        "quantity": 1,
+        "criticality": "essential",
+        "notes": "Main autonomous driving computer"
+      },
+      {
+        "id": "esp32_wroom_32",
+        "part_number": "ESP32-WROOM-32",
+        "description": "ESP32 microcontroller module (Kart Medulla)",
+        "assembly": "electronics",
+        "unit_cost": 3.5,
+        "quantity": 1,
+        "criticality": "essential",
+        "notes": "Kart medulla - interfaces between Orin, sensors, and actuators"
+      },
+      {
+        "id": "orin_adapter_board",
+        "part_number": "CUSTOM-ORIN-ADAPTER-V1.0",
+        "description": "Custom Orin adapter board v1.0",
+        "assembly": "electronics",
+        "unit_cost": 25.0,
+        "quantity": 1,
+        "criticality": "essential",
+        "notes": "Custom adapter to connect Orin to kart systems"
+      },
+      {
+        "id": "coupling_motor_bolts",
+        "part_number": "M6x20-HEX",
+        "description": "Coupling to motor bolts",
+        "assembly": "steering_fasteners",
+        "unit_cost": 0.35,
+        "quantity": 4,
+        "criticality": "essential",
+        "notes": "Secures motor to coupling - Item #1 in assembly photo"
+      },
+      {
+        "id": "main_coupling_bolt",
+        "part_number": "M8x25-HEX",
+        "description": "Main coupling bolt",
+        "assembly": "steering_fasteners",
+        "unit_cost": 0.45,
+        "quantity": 1,
+        "criticality": "critical",
+        "notes": "Main coupling bolt through steering shaft - Item #2 in assembly photo. CRITICAL: Failure disables steering"
+      },
+      {
+        "id": "sensor_mount_screws",
+        "part_number": "M3x8-HEX",
+        "description": "Sensor mounting screws",
+        "assembly": "steering_fasteners",
+        "unit_cost": 0.2,
+        "quantity": 2,
+        "criticality": "essential",
+        "notes": "AS5600 sensor board mount - Item #3 in assembly photo. CAUTION: Do not over-torque"
+      },
+      {
+        "id": "motor_bracket_bolts",
+        "part_number": "M6x30-HEX",
+        "description": "Motor bracket bolts",
+        "assembly": "steering_fasteners",
+        "unit_cost": 0.4,
+        "quantity": 2,
+        "criticality": "essential",
+        "notes": "Steering motor to chassis bracket"
+      },
+      {
+        "id": "iris_219_chain",
+        "part_number": "IRIS-219-100",
+        "description": "IRIS 219 pitch gold chain",
+        "assembly": "powertrain_transmission",
+        "unit_cost": 15.0,
+        "quantity": 1,
+        "criticality": "essential",
+        "notes": null
+      },
+      {
+        "id": "custom_219_pinion",
+        "part_number": "CUSTOM-219-PINION",
+        "description": "Custom 219 pitch front sprocket",
+        "assembly": "powertrain_transmission",
+        "unit_cost": 5.0,
+        "quantity": 1,
+        "criticality": "essential",
+        "notes": null
+      },
+      {
+        "id": "motor_mount_bolts",
+        "part_number": "M8x30-HEX",
+        "description": "Motor mount bolts",
+        "assembly": "powertrain_fasteners",
+        "unit_cost": 0.5,
+        "quantity": 4,
+        "criticality": "essential",
+        "notes": "Secures motor to chassis mount"
+      },
+      {
+        "id": "motor_mount_nuts",
+        "part_number": "M8-NUT",
+        "description": "Motor mount nuts",
+        "assembly": "powertrain_fasteners",
+        "unit_cost": 0.15,
+        "quantity": 4,
+        "criticality": "essential",
+        "notes": "Lock nuts for motor mount bolts"
+      },
+      {
+        "id": "front_sprocket_bolts",
+        "part_number": "M6x16-HEX",
+        "description": "Front sprocket bolts",
+        "assembly": "powertrain_fasteners",
+        "unit_cost": 0.3,
+        "quantity": 3,
+        "criticality": "essential",
+        "notes": "Secures custom sprocket to motor shaft"
+      },
+      {
+        "id": "chain_tensioner_hardware",
+        "part_number": "M6x20-HEX",
+        "description": "Chain tensioner hardware",
+        "assembly": "powertrain_fasteners",
+        "unit_cost": 0.35,
+        "quantity": 2,
+        "criticality": "essential",
+        "notes": "Adjusts chain tension - critical for proper operation"
+      },
+      {
+        "id": "throttle_pedal_mount_bolts",
+        "part_number": "M5x12-HEX",
+        "description": "Throttle pedal mount bolts",
+        "assembly": "powertrain_fasteners",
+        "unit_cost": 0.25,
+        "quantity": 2,
+        "criticality": "essential",
+        "notes": "Mounts throttle pedal to floor plate"
+      }
+    ],
+    "needs_specification": [
+      {
+        "id": "dac_module",
+        "part_number": "TBD-DAC-MODULE",
+        "description": "Digital to Analog Converter module",
+        "assembly": "electronics",
+        "unit_cost": 15.0,
+        "quantity": 1,
+        "criticality": "essential",
+        "notes": "Requires level shifter due to voltage mismatch between 5V power and 3.3V I2C"
+      }
+    ],
+    "pending": [
+      {
+        "id": "i2c_level_shifter",
+        "part_number": "TXS0108E",
+        "description": "8-bit bidirectional voltage-level translator",
+        "assembly": "electronics",
+        "unit_cost": 2.5,
+        "quantity": 1,
+        "criticality": "essential",
+        "notes": "Solves DAC voltage level mismatch issue"
+      }
+    ],
+    "needs_replacement": [
+      {
+        "id": "corona_219_aluminum",
+        "part_number": "CORONA-219-ALU",
+        "description": "219 pitch aluminum rear sprocket",
+        "assembly": "powertrain_transmission",
+        "unit_cost": 20.0,
+        "quantity": 1,
+        "criticality": "essential",
+        "notes": "Current sprocket damaged due to incompatible chain use"
+      }
+    ]
+  },
+  "all_components": [
+    {
+      "id": "cytron_md30c",
+      "part_number": "MD30C",
+      "description": "30A H-bridge motor driver",
+      "category": "electronics",
+      "quantity": 1,
+      "unit_cost": 45.0,
+      "currency": "EUR",
+      "status": "active",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "Cytron Technologies",
+          "url": "https://www.cytron.io/p-30amp-5v-30v-dc-motor-driver",
+          "verified": true
+        },
+        {
+          "name": "OpenCircuit ES",
+          "url": "https://opencircuit.es/producto/30amp-5v-30v-dc-motor-driver",
+          "notes": "Spanish distributor",
+          "verified": true
+        }
+      ],
+      "specifications": {
+        "continuous_current": "30A",
+        "peak_current": "80A",
+        "voltage_range": "5V-30V",
+        "pwm_frequency": "20kHz",
+        "control_voltage": "3.3V/5V"
+      },
+      "documentation": {
+        "datasheet": "../../assets/datasheets/MD30C Users Manual.pdf",
+        "github": "https://github.com/CytronTechnologies/CytronMotorDriver",
+        "tutorials": [
+          "https://www.cytron.io/tutorial/controlling-md10c-with-arduino",
+          "https://www.instructables.com/Controlling-Motor-Speed/"
+        ]
+      },
+      "assembly": "steering",
+      "assembly_path": "steering"
+    },
+    {
+      "id": "steering_motor_24v",
+      "part_number": "STEERING-24V-MOTOR",
+      "description": "24V DC steering motor (operated at 12V)",
+      "category": "motor",
+      "quantity": 1,
+      "unit_cost": 80.0,
+      "currency": "EUR",
+      "status": "active",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "Generic Supplier",
+          "notes": "Need to identify specific supplier"
+        }
+      ],
+      "specifications": {
+        "rated_voltage": "24V",
+        "operating_voltage": "12V",
+        "estimated_power": "300W",
+        "shaft_diameter": "10mm",
+        "mount_spacing": "50mm"
+      },
+      "notes": "Operating at half rated voltage for reduced speed and power",
+      "assembly": "steering",
+      "assembly_path": "steering"
+    },
+    {
+      "id": "as5600_angle_sensor",
+      "part_number": "AS5600",
+      "description": "Hall effect rotary position sensor",
+      "category": "sensor",
+      "quantity": 1,
+      "unit_cost": 2.0,
+      "currency": "EUR",
+      "status": "active",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "AliExpress",
+          "notes": "Various AS5600 breakout boards",
+          "verified": false
+        },
+        {
+          "name": "Amazon",
+          "notes": "AS5600 magnetic encoder modules",
+          "verified": false
+        }
+      ],
+      "specifications": {
+        "resolution": "12-bit",
+        "interface": "I2C",
+        "voltage": "3.3V or 5V",
+        "magnetic_range": "360\u00b0"
+      },
+      "wire_colors_2025": {
+        "grey": "GND",
+        "white": "3.3V",
+        "green": "SDA",
+        "blue": "SCL"
+      },
+      "code_repository": "https://github.com/rubenayla/bluepill-angle-arduino.git",
+      "notes": "Works with diametrically magnetized magnet or normal magnet rotated 90\u00b0",
+      "assembly": "steering",
+      "assembly_path": "steering"
+    },
+    {
+      "id": "steering_coupling",
+      "part_number": "STEERING-COUPLING-10MM",
+      "description": "Motor to steering shaft coupling",
+      "category": "mechanical",
+      "quantity": 1,
+      "unit_cost": 15.0,
+      "currency": "EUR",
+      "status": "active",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "Generic Mechanical Supplier",
+          "notes": "Need specific supplier for 10mm coupling"
+        }
+      ],
+      "specifications": {
+        "inner_diameter": "10mm",
+        "shaft_connection": "Direct drive",
+        "material": "Aluminum alloy"
+      },
+      "notes": "Connects motor shaft to steering column",
+      "assembly": "steering",
+      "assembly_path": "steering"
+    },
+    {
+      "id": "stereolabs_zed2",
+      "part_number": "ZED2",
+      "description": "Stereolabs ZED2 stereo vision camera",
+      "category": "camera",
+      "quantity": 1,
+      "unit_cost": 450.0,
+      "currency": "EUR",
+      "status": "active",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "Stereolabs",
+          "url": "https://www.stereolabs.com/zed-2/",
+          "verified": true
+        },
+        {
+          "name": "Authorized Stereolabs distributors",
+          "notes": "Various electronics distributors"
+        }
+      ],
+      "specifications": {
+        "resolution": "2208x1242 @ 15fps, 1920x1080 @ 30fps",
+        "depth_range": "0.2m to 20m",
+        "field_of_view": "110\u00b0 (H) x 70\u00b0 (V) x 120\u00b0 (D)",
+        "frame_rate": "15-120 fps (depending on resolution)",
+        "interface": "USB 3.0",
+        "power_consumption": "5W",
+        "operating_temperature": "0\u00b0C to +45\u00b0C",
+        "imu": "9-axis (accelerometer, gyroscope, magnetometer)",
+        "additional_sensors": "barometer, temperature sensor",
+        "positional_tracking": "6DoF SLAM"
+      },
+      "capabilities": [
+        "Stereo vision and depth sensing",
+        "3D point cloud generation",
+        "Visual odometry",
+        "Object detection with AI models",
+        "Environmental sensing"
+      ],
+      "ros2_integration": {
+        "wrapper": "zed-ros2-wrapper",
+        "github": "https://github.com/stereolabs/zed-ros2-wrapper",
+        "supported_ros": "ROS 2 Jazzy"
+      },
+      "notes": "Primary vision sensor for autonomous navigation and cone detection",
+      "assembly": "sensors",
+      "assembly_path": "sensors"
+    },
+    {
+      "id": "yolov5_detection_model",
+      "part_number": "CUSTOM-YOLOV5-CONES",
+      "description": "Custom YOLOv5 model for cone detection",
+      "category": "software",
+      "quantity": 1,
+      "unit_cost": 0.0,
+      "currency": "EUR",
+      "status": "active",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "Custom trained model",
+          "notes": "In-house training using YOLOv5 framework"
+        }
+      ],
+      "specifications": {
+        "framework": "YOLOv5",
+        "format": "ONNX for TensorRT optimization",
+        "input_resolution": "TBD",
+        "classes": "Traffic cones (various types)",
+        "inference_engine": "TensorRT",
+        "optimization": "GPU-accelerated inference"
+      },
+      "requirements": [
+        "CUDA Toolkit 12.x",
+        "TensorRT 10",
+        "ZED SDK v5.0"
+      ],
+      "integration": {
+        "config_file": "common_stereo.yaml",
+        "detection_enabled": "od_enabled: true",
+        "model_type": "CUSTOM_YOLOLIKE_BOX_OBJECTS"
+      },
+      "notes": "Real-time cone detection integrated with ZED2 camera through ROS 2 wrapper",
+      "assembly": "sensors",
+      "assembly_path": "sensors"
+    },
+    {
+      "id": "kunray_my1020_motor",
+      "part_number": "MY1020",
+      "description": "Brushless DC motor with controller",
+      "category": "motor",
+      "quantity": 1,
+      "unit_cost": 150.0,
+      "currency": "EUR",
+      "status": "active",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "Amazon",
+          "part_number": "B0C6WXYZ",
+          "url": "https://www.amazon.es/dp/B0C6WXYZ/ref=cm_sw_em_r_mt_dp_xyz",
+          "verified": true
+        },
+        {
+          "name": "Kunray Official",
+          "url": "https://kunraymotors.com/shop/",
+          "verified": true
+        }
+      ],
+      "specifications": {
+        "voltage": "72V",
+        "power": "3000W",
+        "weight": "8kg",
+        "shaft_diameter": "10mm",
+        "shaft_type": "no keyway"
+      },
+      "notes": "Includes motor controller",
+      "assembly": "powertrain",
+      "assembly_path": "powertrain"
+    },
+    {
+      "id": "throttle_pedal_ss49e",
+      "part_number": "THROTTLE-PEDAL-HALL",
+      "description": "Throttle pedal with SS49E Hall sensor",
+      "category": "sensor",
+      "quantity": 1,
+      "unit_cost": 2.46,
+      "currency": "EUR",
+      "status": "active",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "AliExpress",
+          "url": "https://es.aliexpress.com/item/1005007243711390.html",
+          "verified": true
+        },
+        {
+          "name": "Amazon",
+          "notes": "Various electric scooter throttle pedal listings",
+          "verified": false
+        }
+      ],
+      "specifications": {
+        "sensor_type": "SS49E Hall Effect",
+        "voltage": "5V",
+        "output": "0-5V analog",
+        "connector": "3-wire"
+      },
+      "alternatives": [
+        "Generic Hall effect throttle pedals"
+      ],
+      "replacement_parts": [
+        {
+          "component_id": "ss49e_sensor",
+          "part_number": "SS49E",
+          "suppliers": [
+            {
+              "name": "Mouser",
+              "url": "https://www.mouser.com/ProductDetail/Honeywell/SS49E"
+            },
+            {
+              "name": "Addicore",
+              "url": "https://www.addicore.com/products/ss49e-linear-hall-effect-sensor"
+            }
+          ],
+          "unit_cost": 1.5,
+          "notes": "Replacement sensor for throttle pedal"
+        }
+      ],
+      "assembly": "powertrain",
+      "assembly_path": "powertrain"
+    },
+    {
+      "id": "molicel_p42a_cells",
+      "part_number": "P42A",
+      "description": "Molicel P42A 21700 lithium-ion cells",
+      "category": "battery_cells",
+      "quantity": 52,
+      "unit_cost": 4.5,
+      "currency": "EUR",
+      "status": "active",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "Battery specialists",
+          "notes": "Various 21700 battery suppliers"
+        },
+        {
+          "name": "Molicel authorized distributors",
+          "verified": true
+        }
+      ],
+      "specifications": {
+        "cell_type": "21700 Li-ion",
+        "capacity": "4200 mAh (4.2 Ah)",
+        "nominal_voltage": "3.7V",
+        "max_voltage": "4.2V",
+        "min_voltage": "3.2V",
+        "max_continuous_discharge": "45A",
+        "max_continuous_charge": "8A",
+        "chemistry": "NMC (Nickel Manganese Cobalt)"
+      },
+      "configuration": {
+        "series": 13,
+        "parallel": 4,
+        "total_cells": 52,
+        "pack_nominal_voltage": "48V",
+        "pack_capacity": "16.8Ah",
+        "pack_energy": "808Wh",
+        "max_discharge_current": "180A",
+        "max_charge_current": "32A"
+      },
+      "voltage_limits": {
+        "pack_minimum": "41.6V (13 * 3.2V)",
+        "pack_maximum": "54.6V (13 * 4.2V)",
+        "bms_cutoff": "39.0V (13 * 3.0V)"
+      },
+      "notes": "Main traction battery pack in 13S4P configuration",
+      "assembly": "power",
+      "assembly_path": "power"
+    },
+    {
+      "id": "jiabaida_bms_100a",
+      "part_number": "JBD-SP22S003B",
+      "description": "Jiabaida Smart BMS 100A with Bluetooth and UART",
+      "category": "bms",
+      "quantity": 1,
+      "unit_cost": 85.0,
+      "currency": "EUR",
+      "status": "active",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "AliExpress",
+          "url": "https://es.aliexpress.com/item/1005007223779359.html",
+          "verified": true
+        },
+        {
+          "name": "Jiabaida Direct",
+          "url": "https://jiabaida-bms.com/",
+          "verified": true
+        }
+      ],
+      "specifications": {
+        "max_current": "100A",
+        "cell_support": "6S-21S (NMC)",
+        "communication": "Bluetooth, UART",
+        "balancing": "Active cell balancing",
+        "protections": "Overvoltage, undervoltage, overcurrent, temperature",
+        "operating_temperature": "-20\u00b0C to +60\u00b0C"
+      },
+      "documentation": {
+        "wiring_diagram": "https://jiabaida-bms.com/blogs/content/jiabaida-sp22s003b-smart-bms-wiring-diagram",
+        "notion_docs": "https://www.notion.so/BMS-Bater-a-Kart-JBD-16078747314380e68688c3ab787fc1f7"
+      },
+      "notes": "Smart BMS with mobile app monitoring and protection features",
+      "assembly": "power",
+      "assembly_path": "power"
+    },
+    {
+      "id": "car_battery_12v",
+      "part_number": "12V-CAR-BATTERY",
+      "description": "12V automotive battery for sensors",
+      "category": "auxiliary_battery",
+      "quantity": 1,
+      "unit_cost": 60.0,
+      "currency": "EUR",
+      "status": "active",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "Automotive parts stores",
+          "notes": "Standard car battery suppliers"
+        }
+      ],
+      "specifications": {
+        "voltage": "12V",
+        "type": "Lead-acid automotive",
+        "capacity": "TBD Ah",
+        "application": "Sensor power supply",
+        "compatibility": "Formula Student car compatible"
+      },
+      "notes": "Separate 12V supply for sensors to maintain Formula Student compatibility",
+      "assembly": "power",
+      "assembly_path": "power"
+    },
+    {
+      "id": "battery_pack_assembly",
+      "part_number": "CUSTOM-PACK-13S4P",
+      "description": "Custom 13S4P battery pack assembly",
+      "category": "mechanical",
+      "quantity": 1,
+      "unit_cost": 150.0,
+      "currency": "EUR",
+      "status": "active",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "Custom battery pack builder",
+          "notes": "Professional battery pack assembly service"
+        }
+      ],
+      "specifications": {
+        "configuration": "13S4P",
+        "total_cells": 52,
+        "interconnects": "Nickel strips",
+        "insulation": "Kapton tape, heat shrink",
+        "housing": "Custom enclosure",
+        "cooling": "Passive air cooling",
+        "safety_features": "Fusing, thermal management"
+      },
+      "included_components": [
+        "52x Molicel P42A cells",
+        "Nickel strip interconnects",
+        "Insulation materials",
+        "Protective housing",
+        "Cell level fusing"
+      ],
+      "charging_tutorial": "https://youtu.be/g1jsSbjsiTo?si=uZ7mVjXA2c-43zzz",
+      "notes": "Professional assembly recommended due to safety requirements",
+      "assembly": "power",
+      "assembly_path": "power"
+    },
+    {
+      "id": "nvidia_jetson_agx_orin",
+      "part_number": "JETSON-AGX-ORIN-DEVKIT",
+      "description": "NVIDIA Jetson AGX Orin Development Kit",
+      "category": "computer",
+      "quantity": 1,
+      "unit_cost": 1500.0,
+      "currency": "EUR",
+      "status": "active",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "NVIDIA Developer",
+          "url": "https://developer.nvidia.com/embedded/learn/jetson-agx-orin-devkit-user-guide/",
+          "verified": true
+        },
+        {
+          "name": "Authorized NVIDIA Distributors",
+          "notes": "Various electronics distributors"
+        }
+      ],
+      "specifications": {
+        "power_consumption": "TBD",
+        "voltage_range": "9-20VDC",
+        "typical_voltage": "19V",
+        "power_connector": "Barrel Jack 5.5mm OD 2.5mm ID center positive",
+        "gpu": "2048-core NVIDIA Ampere architecture GPU",
+        "cpu": "12-core Arm Cortex-A78AE",
+        "memory": "64GB LPDDR5"
+      },
+      "documentation": {
+        "user_guide": "https://developer.nvidia.com/embedded/learn/jetson-agx-orin-devkit-user-guide/developer_kit_layout.html",
+        "datasheets": "https://developer.nvidia.com/embedded/downloads"
+      },
+      "notes": "Main autonomous driving computer",
+      "assembly": "electronics",
+      "assembly_path": "electronics"
+    },
+    {
+      "id": "esp32_wroom_32",
+      "part_number": "ESP32-WROOM-32",
+      "description": "ESP32 microcontroller module (Kart Medulla)",
+      "category": "microcontroller",
+      "quantity": 1,
+      "unit_cost": 3.5,
+      "currency": "EUR",
+      "status": "active",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "Mouser",
+          "part_number": "356-ESP32WROOM32",
+          "url": "https://www.mouser.com/ProductDetail/356-ESP32WROOM32",
+          "verified": true
+        },
+        {
+          "name": "AliExpress",
+          "url": "https://www.aliexpress.com/wholesale?SearchText=esp32+wroom+32",
+          "verified": false
+        }
+      ],
+      "specifications": {
+        "voltage": "3.3V",
+        "current": "240mA",
+        "temperature_range": "-40\u00b0C to +85\u00b0C",
+        "flash": "4MB",
+        "ram": "520KB",
+        "cpu": "Xtensa dual-core 32-bit LX6",
+        "clock_speed": "up to 240 MHz",
+        "wifi": "802.11 b/g/n",
+        "bluetooth": "v4.2 BR/EDR and BLE",
+        "gpios": 34,
+        "adcs": "18-channel, 12-bit",
+        "dacs": "2-channel, 8-bit",
+        "interfaces": "SPI, I2C, UART, CAN, I2S"
+      },
+      "pin_assignments": {
+        "gpio_2": "Onboard LED",
+        "gpio_18": "UART RX (from Orin)",
+        "gpio_19": "UART TX (to Orin)",
+        "gpio_21": "I2C SDA (AS5600)",
+        "gpio_22": "I2C SCL (AS5600)",
+        "gpio_25": "PWM (Motor Driver)",
+        "gpio_26": "Direction (Motor Driver)"
+      },
+      "alternatives": [
+        "ESP32-S3",
+        "ESP32-C3"
+      ],
+      "notes": "Kart medulla - interfaces between Orin, sensors, and actuators",
+      "assembly": "electronics",
+      "assembly_path": "electronics"
+    },
+    {
+      "id": "orin_adapter_board",
+      "part_number": "CUSTOM-ORIN-ADAPTER-V1.0",
+      "description": "Custom Orin adapter board v1.0",
+      "category": "pcb",
+      "quantity": 1,
+      "unit_cost": 25.0,
+      "currency": "EUR",
+      "status": "active",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "Custom PCB Manufacturer",
+          "notes": "Designed with EasyEDA"
+        }
+      ],
+      "specifications": {
+        "design_tool": "EasyEDA",
+        "version": "1.0",
+        "file_format": ".epro"
+      },
+      "files": {
+        "design_file": "./index/ProProject_Orin Adapter_2025-03-09.epro",
+        "owncloud_path": "formula/formula 24-25/DV/ORIN/adapter/ProProject_Orin Adapter_2025-03-09.epro"
+      },
+      "notes": "Custom adapter to connect Orin to kart systems",
+      "assembly": "electronics",
+      "assembly_path": "electronics"
+    },
+    {
+      "id": "dac_module",
+      "part_number": "TBD-DAC-MODULE",
+      "description": "Digital to Analog Converter module",
+      "category": "dac",
+      "quantity": 1,
+      "unit_cost": 15.0,
+      "currency": "EUR",
+      "status": "needs_specification",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "TBD",
+          "notes": "Need to identify specific DAC module"
+        }
+      ],
+      "specifications": {
+        "power_supply": "5V",
+        "communication": "I2C @ 3.3V",
+        "interface_issue": "Voltage level mismatch"
+      },
+      "required_components": [
+        {
+          "component": "Bidirectional I2C level shifter",
+          "options": [
+            "TXS0108E",
+            "BSS138"
+          ],
+          "reason": "5V DAC with 3.3V I2C communication"
+        }
+      ],
+      "notes": "Requires level shifter due to voltage mismatch between 5V power and 3.3V I2C",
+      "assembly": "electronics",
+      "assembly_path": "electronics"
+    },
+    {
+      "id": "i2c_level_shifter",
+      "part_number": "TXS0108E",
+      "description": "8-bit bidirectional voltage-level translator",
+      "category": "level_shifter",
+      "quantity": 1,
+      "unit_cost": 2.5,
+      "currency": "EUR",
+      "status": "pending",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "Texas Instruments",
+          "verified": true
+        },
+        {
+          "name": "Mouser",
+          "verified": true
+        },
+        {
+          "name": "Digi-Key",
+          "verified": true
+        }
+      ],
+      "specifications": {
+        "channels": 8,
+        "voltage_a": "1.2V to 3.6V",
+        "voltage_b": "1.65V to 5.5V",
+        "data_rate": "up to 110 Mbps"
+      },
+      "alternatives": [
+        "BSS138 (MOSFET-based)"
+      ],
+      "notes": "Solves DAC voltage level mismatch issue",
+      "assembly": "electronics",
+      "assembly_path": "electronics"
+    },
+    {
+      "id": "coupling_motor_bolts",
+      "part_number": "M6x20-HEX",
+      "description": "Coupling to motor bolts",
+      "category": "fasteners",
+      "quantity": 4,
+      "unit_cost": 0.35,
+      "currency": "EUR",
+      "status": "active",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "McMaster-Carr",
+          "verified": true
+        },
+        {
+          "name": "Fastenal",
+          "verified": true
+        }
+      ],
+      "specifications": {
+        "size": "M6 x 20mm",
+        "type": "hex head cap screw",
+        "material": "steel_zinc_plated",
+        "torque_spec": "12 Nm",
+        "thread_pitch": "1.0mm"
+      },
+      "installation": {
+        "sequence": 3,
+        "threadlocker": "blue_loctite_243",
+        "torque_pattern": "cross"
+      },
+      "maintenance": {
+        "check_frequency": "weekly",
+        "torque_check": "monthly"
+      },
+      "notes": "Secures motor to coupling - Item #1 in assembly photo",
+      "assembly": "steering_fasteners",
+      "assembly_path": "steering/fasteners"
+    },
+    {
+      "id": "main_coupling_bolt",
+      "part_number": "M8x25-HEX",
+      "description": "Main coupling bolt",
+      "category": "fasteners",
+      "quantity": 1,
+      "unit_cost": 0.45,
+      "currency": "EUR",
+      "status": "active",
+      "criticality": "critical",
+      "suppliers": [
+        {
+          "name": "McMaster-Carr",
+          "verified": true
+        },
+        {
+          "name": "Auto parts stores",
+          "notes": "Grade 8.8 bolts available locally"
+        }
+      ],
+      "specifications": {
+        "size": "M8 x 25mm",
+        "type": "hex head cap screw",
+        "material": "steel_grade_8.8",
+        "torque_spec": "20 Nm",
+        "thread_pitch": "1.25mm"
+      },
+      "installation": {
+        "sequence": 4,
+        "threadlocker": "blue_loctite_243",
+        "critical": true
+      },
+      "maintenance": {
+        "check_frequency": "bi-weekly",
+        "torque_check": "bi-weekly"
+      },
+      "notes": "Main coupling bolt through steering shaft - Item #2 in assembly photo. CRITICAL: Failure disables steering",
+      "assembly": "steering_fasteners",
+      "assembly_path": "steering/fasteners"
+    },
+    {
+      "id": "sensor_mount_screws",
+      "part_number": "M3x8-HEX",
+      "description": "Sensor mounting screws",
+      "category": "fasteners",
+      "quantity": 2,
+      "unit_cost": 0.2,
+      "currency": "EUR",
+      "status": "active",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "McMaster-Carr",
+          "verified": true
+        },
+        {
+          "name": "Electronics suppliers",
+          "notes": "Common with sensor breakout boards"
+        }
+      ],
+      "specifications": {
+        "size": "M3 x 8mm",
+        "type": "hex head cap screw",
+        "material": "steel_zinc_plated",
+        "torque_spec": "3 Nm",
+        "thread_pitch": "0.5mm"
+      },
+      "installation": {
+        "sequence": 1,
+        "threadlocker": "none",
+        "technique": "hand_tighten_plus_quarter_turn"
+      },
+      "maintenance": {
+        "check_frequency": "monthly",
+        "torque_check": "quarterly"
+      },
+      "notes": "AS5600 sensor board mount - Item #3 in assembly photo. CAUTION: Do not over-torque",
+      "assembly": "steering_fasteners",
+      "assembly_path": "steering/fasteners"
+    },
+    {
+      "id": "motor_bracket_bolts",
+      "part_number": "M6x30-HEX",
+      "description": "Motor bracket bolts",
+      "category": "fasteners",
+      "quantity": 2,
+      "unit_cost": 0.4,
+      "currency": "EUR",
+      "status": "active",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "McMaster-Carr",
+          "verified": true
+        },
+        {
+          "name": "Fastenal",
+          "verified": true
+        }
+      ],
+      "specifications": {
+        "size": "M6 x 30mm",
+        "type": "hex head cap screw",
+        "material": "steel_zinc_plated",
+        "torque_spec": "15 Nm",
+        "thread_pitch": "1.0mm"
+      },
+      "installation": {
+        "sequence": 2,
+        "threadlocker": "blue_loctite_243",
+        "alignment_critical": true
+      },
+      "maintenance": {
+        "check_frequency": "weekly",
+        "torque_check": "monthly",
+        "inspection_notes": "Check for vibration loosening"
+      },
+      "notes": "Steering motor to chassis bracket",
+      "assembly": "steering_fasteners",
+      "assembly_path": "steering/fasteners"
+    },
+    {
+      "id": "iris_219_chain",
+      "part_number": "IRIS-219-100",
+      "description": "IRIS 219 pitch gold chain",
+      "category": "transmission",
+      "quantity": 1,
+      "unit_cost": 15.0,
+      "currency": "EUR",
+      "status": "active",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "KPS Racing",
+          "url": "https://kpsracing.es/cadenas-y-cubrecadenas/2434-649-cadena-iris-219.html#/254-numero_pasos_cadena-100",
+          "verified": true
+        }
+      ],
+      "specifications": {
+        "pitch": "219",
+        "links": 100,
+        "color": "gold"
+      },
+      "assembly": "powertrain_transmission",
+      "assembly_path": "powertrain/transmission"
+    },
+    {
+      "id": "corona_219_aluminum",
+      "part_number": "CORONA-219-ALU",
+      "description": "219 pitch aluminum rear sprocket",
+      "category": "transmission",
+      "quantity": 1,
+      "unit_cost": 20.0,
+      "currency": "EUR",
+      "status": "needs_replacement",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "KPS Racing",
+          "url": "https://kpsracing.es/coronas/5957-9775-corona-aluminio-219-negra.html",
+          "verified": true
+        }
+      ],
+      "specifications": {
+        "pitch": "219",
+        "material": "aluminum",
+        "color": "black"
+      },
+      "notes": "Current sprocket damaged due to incompatible chain use",
+      "assembly": "powertrain_transmission",
+      "assembly_path": "powertrain/transmission"
+    },
+    {
+      "id": "custom_219_pinion",
+      "part_number": "CUSTOM-219-PINION",
+      "description": "Custom 219 pitch front sprocket",
+      "category": "transmission",
+      "quantity": 1,
+      "unit_cost": 5.0,
+      "currency": "EUR",
+      "status": "active",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "Laser Cutting Service",
+          "notes": "Custom design for 10mm shaft"
+        }
+      ],
+      "specifications": {
+        "pitch": "219",
+        "shaft_diameter": "10mm",
+        "material": "steel",
+        "manufacturing": "laser_cut"
+      },
+      "assembly": "powertrain_transmission",
+      "assembly_path": "powertrain/transmission"
+    },
+    {
+      "id": "motor_mount_bolts",
+      "part_number": "M8x30-HEX",
+      "description": "Motor mount bolts",
+      "category": "fasteners",
+      "quantity": 4,
+      "unit_cost": 0.5,
+      "currency": "EUR",
+      "status": "active",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "McMaster-Carr",
+          "verified": true
+        },
+        {
+          "name": "Fastenal",
+          "verified": true
+        }
+      ],
+      "specifications": {
+        "size": "M8 x 30mm",
+        "type": "hex head cap screw",
+        "material": "steel_zinc_plated",
+        "torque_spec": "25 Nm",
+        "thread_pitch": "1.25mm"
+      },
+      "installation": {
+        "threadlocker": "blue_loctite_243"
+      },
+      "maintenance": {
+        "check_frequency": "weekly",
+        "torque_check": "monthly"
+      },
+      "notes": "Secures motor to chassis mount",
+      "assembly": "powertrain_fasteners",
+      "assembly_path": "powertrain/fasteners"
+    },
+    {
+      "id": "motor_mount_nuts",
+      "part_number": "M8-NUT",
+      "description": "Motor mount nuts",
+      "category": "fasteners",
+      "quantity": 4,
+      "unit_cost": 0.15,
+      "currency": "EUR",
+      "status": "active",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "McMaster-Carr",
+          "verified": true
+        },
+        {
+          "name": "Fastenal",
+          "verified": true
+        }
+      ],
+      "specifications": {
+        "size": "M8",
+        "type": "hex nut (lock nuts recommended)",
+        "material": "steel_zinc_plated",
+        "thread_pitch": "1.25mm"
+      },
+      "installation": {
+        "type": "lock_nuts_preferred"
+      },
+      "notes": "Lock nuts for motor mount bolts",
+      "assembly": "powertrain_fasteners",
+      "assembly_path": "powertrain/fasteners"
+    },
+    {
+      "id": "front_sprocket_bolts",
+      "part_number": "M6x16-HEX",
+      "description": "Front sprocket bolts",
+      "category": "fasteners",
+      "quantity": 3,
+      "unit_cost": 0.3,
+      "currency": "EUR",
+      "status": "active",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "McMaster-Carr",
+          "verified": true
+        },
+        {
+          "name": "Fastenal",
+          "verified": true
+        }
+      ],
+      "specifications": {
+        "size": "M6 x 16mm",
+        "type": "hex head cap screw",
+        "material": "steel_zinc_plated",
+        "torque_spec": "12 Nm",
+        "thread_pitch": "1.0mm"
+      },
+      "installation": {
+        "threadlocker": "blue_loctite_243"
+      },
+      "maintenance": {
+        "check_frequency": "weekly",
+        "torque_check": "bi-weekly"
+      },
+      "notes": "Secures custom sprocket to motor shaft",
+      "assembly": "powertrain_fasteners",
+      "assembly_path": "powertrain/fasteners"
+    },
+    {
+      "id": "chain_tensioner_hardware",
+      "part_number": "M6x20-HEX",
+      "description": "Chain tensioner hardware",
+      "category": "fasteners",
+      "quantity": 2,
+      "unit_cost": 0.35,
+      "currency": "EUR",
+      "status": "active",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "McMaster-Carr",
+          "verified": true
+        },
+        {
+          "name": "Fastenal",
+          "verified": true
+        }
+      ],
+      "specifications": {
+        "size": "M6 x 20mm",
+        "type": "hex head cap screw",
+        "material": "steel_zinc_plated",
+        "torque_spec": "10 Nm",
+        "thread_pitch": "1.0mm"
+      },
+      "installation": {
+        "threadlocker": "blue_loctite_243",
+        "adjustable": true
+      },
+      "maintenance": {
+        "check_frequency": "weekly",
+        "torque_check": "monthly",
+        "adjustment_check": "bi-weekly"
+      },
+      "notes": "Adjusts chain tension - critical for proper operation",
+      "assembly": "powertrain_fasteners",
+      "assembly_path": "powertrain/fasteners"
+    },
+    {
+      "id": "throttle_pedal_mount_bolts",
+      "part_number": "M5x12-HEX",
+      "description": "Throttle pedal mount bolts",
+      "category": "fasteners",
+      "quantity": 2,
+      "unit_cost": 0.25,
+      "currency": "EUR",
+      "status": "active",
+      "criticality": "essential",
+      "suppliers": [
+        {
+          "name": "McMaster-Carr",
+          "verified": true
+        },
+        {
+          "name": "Fastenal",
+          "verified": true
+        }
+      ],
+      "specifications": {
+        "size": "M5 x 12mm",
+        "type": "hex head cap screw",
+        "material": "steel_zinc_plated",
+        "torque_spec": "6 Nm",
+        "thread_pitch": "0.8mm"
+      },
+      "installation": {
+        "threadlocker": "blue_loctite_243"
+      },
+      "maintenance": {
+        "check_frequency": "monthly",
+        "torque_check": "quarterly"
+      },
+      "notes": "Mounts throttle pedal to floor plate",
+      "assembly": "powertrain_fasteners",
+      "assembly_path": "powertrain/fasteners"
+    }
+  ],
+  "assemblies": {
+    "steering": {
+      "data": {
+        "assembly": "steering",
+        "description": "Steering system components and electronics",
+        "components": [
+          {
+            "id": "cytron_md30c",
+            "part_number": "MD30C",
+            "description": "30A H-bridge motor driver",
+            "category": "electronics",
+            "quantity": 1,
+            "unit_cost": 45.0,
+            "currency": "EUR",
+            "status": "active",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "Cytron Technologies",
+                "url": "https://www.cytron.io/p-30amp-5v-30v-dc-motor-driver",
+                "verified": true
+              },
+              {
+                "name": "OpenCircuit ES",
+                "url": "https://opencircuit.es/producto/30amp-5v-30v-dc-motor-driver",
+                "notes": "Spanish distributor",
+                "verified": true
+              }
+            ],
+            "specifications": {
+              "continuous_current": "30A",
+              "peak_current": "80A",
+              "voltage_range": "5V-30V",
+              "pwm_frequency": "20kHz",
+              "control_voltage": "3.3V/5V"
+            },
+            "documentation": {
+              "datasheet": "../../assets/datasheets/MD30C Users Manual.pdf",
+              "github": "https://github.com/CytronTechnologies/CytronMotorDriver",
+              "tutorials": [
+                "https://www.cytron.io/tutorial/controlling-md10c-with-arduino",
+                "https://www.instructables.com/Controlling-Motor-Speed/"
+              ]
+            },
+            "assembly": "steering",
+            "assembly_path": "steering"
+          },
+          {
+            "id": "steering_motor_24v",
+            "part_number": "STEERING-24V-MOTOR",
+            "description": "24V DC steering motor (operated at 12V)",
+            "category": "motor",
+            "quantity": 1,
+            "unit_cost": 80.0,
+            "currency": "EUR",
+            "status": "active",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "Generic Supplier",
+                "notes": "Need to identify specific supplier"
+              }
+            ],
+            "specifications": {
+              "rated_voltage": "24V",
+              "operating_voltage": "12V",
+              "estimated_power": "300W",
+              "shaft_diameter": "10mm",
+              "mount_spacing": "50mm"
+            },
+            "notes": "Operating at half rated voltage for reduced speed and power",
+            "assembly": "steering",
+            "assembly_path": "steering"
+          },
+          {
+            "id": "as5600_angle_sensor",
+            "part_number": "AS5600",
+            "description": "Hall effect rotary position sensor",
+            "category": "sensor",
+            "quantity": 1,
+            "unit_cost": 2.0,
+            "currency": "EUR",
+            "status": "active",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "AliExpress",
+                "notes": "Various AS5600 breakout boards",
+                "verified": false
+              },
+              {
+                "name": "Amazon",
+                "notes": "AS5600 magnetic encoder modules",
+                "verified": false
+              }
+            ],
+            "specifications": {
+              "resolution": "12-bit",
+              "interface": "I2C",
+              "voltage": "3.3V or 5V",
+              "magnetic_range": "360\u00b0"
+            },
+            "wire_colors_2025": {
+              "grey": "GND",
+              "white": "3.3V",
+              "green": "SDA",
+              "blue": "SCL"
+            },
+            "code_repository": "https://github.com/rubenayla/bluepill-angle-arduino.git",
+            "notes": "Works with diametrically magnetized magnet or normal magnet rotated 90\u00b0",
+            "assembly": "steering",
+            "assembly_path": "steering"
+          },
+          {
+            "id": "steering_coupling",
+            "part_number": "STEERING-COUPLING-10MM",
+            "description": "Motor to steering shaft coupling",
+            "category": "mechanical",
+            "quantity": 1,
+            "unit_cost": 15.0,
+            "currency": "EUR",
+            "status": "active",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "Generic Mechanical Supplier",
+                "notes": "Need specific supplier for 10mm coupling"
+              }
+            ],
+            "specifications": {
+              "inner_diameter": "10mm",
+              "shaft_connection": "Direct drive",
+              "material": "Aluminum alloy"
+            },
+            "notes": "Connects motor shaft to steering column",
+            "assembly": "steering",
+            "assembly_path": "steering"
+          }
+        ]
+      },
+      "path": "steering",
+      "file": "docs/assembly/steering/bom.yaml"
+    },
+    "sensors": {
+      "data": {
+        "assembly": "sensors",
+        "description": "Vision and sensor systems for autonomous navigation",
+        "components": [
+          {
+            "id": "stereolabs_zed2",
+            "part_number": "ZED2",
+            "description": "Stereolabs ZED2 stereo vision camera",
+            "category": "camera",
+            "quantity": 1,
+            "unit_cost": 450.0,
+            "currency": "EUR",
+            "status": "active",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "Stereolabs",
+                "url": "https://www.stereolabs.com/zed-2/",
+                "verified": true
+              },
+              {
+                "name": "Authorized Stereolabs distributors",
+                "notes": "Various electronics distributors"
+              }
+            ],
+            "specifications": {
+              "resolution": "2208x1242 @ 15fps, 1920x1080 @ 30fps",
+              "depth_range": "0.2m to 20m",
+              "field_of_view": "110\u00b0 (H) x 70\u00b0 (V) x 120\u00b0 (D)",
+              "frame_rate": "15-120 fps (depending on resolution)",
+              "interface": "USB 3.0",
+              "power_consumption": "5W",
+              "operating_temperature": "0\u00b0C to +45\u00b0C",
+              "imu": "9-axis (accelerometer, gyroscope, magnetometer)",
+              "additional_sensors": "barometer, temperature sensor",
+              "positional_tracking": "6DoF SLAM"
+            },
+            "capabilities": [
+              "Stereo vision and depth sensing",
+              "3D point cloud generation",
+              "Visual odometry",
+              "Object detection with AI models",
+              "Environmental sensing"
+            ],
+            "ros2_integration": {
+              "wrapper": "zed-ros2-wrapper",
+              "github": "https://github.com/stereolabs/zed-ros2-wrapper",
+              "supported_ros": "ROS 2 Jazzy"
+            },
+            "notes": "Primary vision sensor for autonomous navigation and cone detection",
+            "assembly": "sensors",
+            "assembly_path": "sensors"
+          },
+          {
+            "id": "yolov5_detection_model",
+            "part_number": "CUSTOM-YOLOV5-CONES",
+            "description": "Custom YOLOv5 model for cone detection",
+            "category": "software",
+            "quantity": 1,
+            "unit_cost": 0.0,
+            "currency": "EUR",
+            "status": "active",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "Custom trained model",
+                "notes": "In-house training using YOLOv5 framework"
+              }
+            ],
+            "specifications": {
+              "framework": "YOLOv5",
+              "format": "ONNX for TensorRT optimization",
+              "input_resolution": "TBD",
+              "classes": "Traffic cones (various types)",
+              "inference_engine": "TensorRT",
+              "optimization": "GPU-accelerated inference"
+            },
+            "requirements": [
+              "CUDA Toolkit 12.x",
+              "TensorRT 10",
+              "ZED SDK v5.0"
+            ],
+            "integration": {
+              "config_file": "common_stereo.yaml",
+              "detection_enabled": "od_enabled: true",
+              "model_type": "CUSTOM_YOLOLIKE_BOX_OBJECTS"
+            },
+            "notes": "Real-time cone detection integrated with ZED2 camera through ROS 2 wrapper",
+            "assembly": "sensors",
+            "assembly_path": "sensors"
+          }
+        ],
+        "system_requirements": {
+          "operating_system": "Ubuntu 24.04 LTS (recommended)",
+          "ros2_version": "ROS 2 Jazzy",
+          "cuda_version": "CUDA 12.0 to 12.9",
+          "zed_sdk": "ZED SDK v5.0",
+          "tensorrt": "TensorRT 10"
+        },
+        "installation_dependencies": {
+          "cuda_toolkit": {
+            "url": "https://developer.nvidia.com/cuda-downloads",
+            "notes": "Any version 12.0 to 12.9 compatible"
+          },
+          "ros2_jazzy": {
+            "url": "https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html",
+            "notes": "Official ROS 2 installation guide"
+          },
+          "zed_sdk": {
+            "url": "https://www.stereolabs.com/en-es/developers/release/5.0#82af3640d775",
+            "notes": "ZED SDK v5.0 for Ubuntu 24.04 with CUDA 12 and TensorRT 10"
+          },
+          "tensorrt": {
+            "package": "nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9_1.0-1_amd64.deb",
+            "url": "https://developer.nvidia.com/downloads/compute/machine-learning/tensorrt/10.10.0/local_repo/nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9_1.0-1_amd64.deb",
+            "required_packages": [
+              "libnvinfer10",
+              "libnvinfer-dev",
+              "libnvinfer-plugin-dev",
+              "python3-libnvinfer"
+            ]
+          }
+        },
+        "launch_commands": {
+          "zed2_camera": "ros2 launch zed_wrapper zed_camera.launch.py camera_model:=zed2"
+        },
+        "performance_notes": {
+          "first_run": "TensorRT optimization takes several minutes on first model load",
+          "subsequent_runs": "Optimized engine cached for fast startup",
+          "gpu_acceleration": "Real-time inference with TensorRT optimization"
+        },
+        "todo_items": [
+          "Document specific ROS topics used for cone detection",
+          "Add required packages for visualization in RViz2",
+          "Complete sensor usage documentation"
+        ]
+      },
+      "path": "sensors",
+      "file": "docs/assembly/sensors/bom.yaml"
+    },
+    "powertrain": {
+      "data": {
+        "assembly": "powertrain",
+        "description": "Main propulsion system components",
+        "components": [
+          {
+            "id": "kunray_my1020_motor",
+            "part_number": "MY1020",
+            "description": "Brushless DC motor with controller",
+            "category": "motor",
+            "quantity": 1,
+            "unit_cost": 150.0,
+            "currency": "EUR",
+            "status": "active",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "Amazon",
+                "part_number": "B0C6WXYZ",
+                "url": "https://www.amazon.es/dp/B0C6WXYZ/ref=cm_sw_em_r_mt_dp_xyz",
+                "verified": true
+              },
+              {
+                "name": "Kunray Official",
+                "url": "https://kunraymotors.com/shop/",
+                "verified": true
+              }
+            ],
+            "specifications": {
+              "voltage": "72V",
+              "power": "3000W",
+              "weight": "8kg",
+              "shaft_diameter": "10mm",
+              "shaft_type": "no keyway"
+            },
+            "notes": "Includes motor controller",
+            "assembly": "powertrain",
+            "assembly_path": "powertrain"
+          },
+          {
+            "id": "throttle_pedal_ss49e",
+            "part_number": "THROTTLE-PEDAL-HALL",
+            "description": "Throttle pedal with SS49E Hall sensor",
+            "category": "sensor",
+            "quantity": 1,
+            "unit_cost": 2.46,
+            "currency": "EUR",
+            "status": "active",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "AliExpress",
+                "url": "https://es.aliexpress.com/item/1005007243711390.html",
+                "verified": true
+              },
+              {
+                "name": "Amazon",
+                "notes": "Various electric scooter throttle pedal listings",
+                "verified": false
+              }
+            ],
+            "specifications": {
+              "sensor_type": "SS49E Hall Effect",
+              "voltage": "5V",
+              "output": "0-5V analog",
+              "connector": "3-wire"
+            },
+            "alternatives": [
+              "Generic Hall effect throttle pedals"
+            ],
+            "replacement_parts": [
+              {
+                "component_id": "ss49e_sensor",
+                "part_number": "SS49E",
+                "suppliers": [
+                  {
+                    "name": "Mouser",
+                    "url": "https://www.mouser.com/ProductDetail/Honeywell/SS49E"
+                  },
+                  {
+                    "name": "Addicore",
+                    "url": "https://www.addicore.com/products/ss49e-linear-hall-effect-sensor"
+                  }
+                ],
+                "unit_cost": 1.5,
+                "notes": "Replacement sensor for throttle pedal"
+              }
+            ],
+            "assembly": "powertrain",
+            "assembly_path": "powertrain"
+          }
+        ]
+      },
+      "path": "powertrain",
+      "file": "docs/assembly/powertrain/bom.yaml"
+    },
+    "power": {
+      "data": {
+        "assembly": "power",
+        "description": "Main power system and battery management",
+        "components": [
+          {
+            "id": "molicel_p42a_cells",
+            "part_number": "P42A",
+            "description": "Molicel P42A 21700 lithium-ion cells",
+            "category": "battery_cells",
+            "quantity": 52,
+            "unit_cost": 4.5,
+            "currency": "EUR",
+            "status": "active",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "Battery specialists",
+                "notes": "Various 21700 battery suppliers"
+              },
+              {
+                "name": "Molicel authorized distributors",
+                "verified": true
+              }
+            ],
+            "specifications": {
+              "cell_type": "21700 Li-ion",
+              "capacity": "4200 mAh (4.2 Ah)",
+              "nominal_voltage": "3.7V",
+              "max_voltage": "4.2V",
+              "min_voltage": "3.2V",
+              "max_continuous_discharge": "45A",
+              "max_continuous_charge": "8A",
+              "chemistry": "NMC (Nickel Manganese Cobalt)"
+            },
+            "configuration": {
+              "series": 13,
+              "parallel": 4,
+              "total_cells": 52,
+              "pack_nominal_voltage": "48V",
+              "pack_capacity": "16.8Ah",
+              "pack_energy": "808Wh",
+              "max_discharge_current": "180A",
+              "max_charge_current": "32A"
+            },
+            "voltage_limits": {
+              "pack_minimum": "41.6V (13 * 3.2V)",
+              "pack_maximum": "54.6V (13 * 4.2V)",
+              "bms_cutoff": "39.0V (13 * 3.0V)"
+            },
+            "notes": "Main traction battery pack in 13S4P configuration",
+            "assembly": "power",
+            "assembly_path": "power"
+          },
+          {
+            "id": "jiabaida_bms_100a",
+            "part_number": "JBD-SP22S003B",
+            "description": "Jiabaida Smart BMS 100A with Bluetooth and UART",
+            "category": "bms",
+            "quantity": 1,
+            "unit_cost": 85.0,
+            "currency": "EUR",
+            "status": "active",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "AliExpress",
+                "url": "https://es.aliexpress.com/item/1005007223779359.html",
+                "verified": true
+              },
+              {
+                "name": "Jiabaida Direct",
+                "url": "https://jiabaida-bms.com/",
+                "verified": true
+              }
+            ],
+            "specifications": {
+              "max_current": "100A",
+              "cell_support": "6S-21S (NMC)",
+              "communication": "Bluetooth, UART",
+              "balancing": "Active cell balancing",
+              "protections": "Overvoltage, undervoltage, overcurrent, temperature",
+              "operating_temperature": "-20\u00b0C to +60\u00b0C"
+            },
+            "documentation": {
+              "wiring_diagram": "https://jiabaida-bms.com/blogs/content/jiabaida-sp22s003b-smart-bms-wiring-diagram",
+              "notion_docs": "https://www.notion.so/BMS-Bater-a-Kart-JBD-16078747314380e68688c3ab787fc1f7"
+            },
+            "notes": "Smart BMS with mobile app monitoring and protection features",
+            "assembly": "power",
+            "assembly_path": "power"
+          },
+          {
+            "id": "car_battery_12v",
+            "part_number": "12V-CAR-BATTERY",
+            "description": "12V automotive battery for sensors",
+            "category": "auxiliary_battery",
+            "quantity": 1,
+            "unit_cost": 60.0,
+            "currency": "EUR",
+            "status": "active",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "Automotive parts stores",
+                "notes": "Standard car battery suppliers"
+              }
+            ],
+            "specifications": {
+              "voltage": "12V",
+              "type": "Lead-acid automotive",
+              "capacity": "TBD Ah",
+              "application": "Sensor power supply",
+              "compatibility": "Formula Student car compatible"
+            },
+            "notes": "Separate 12V supply for sensors to maintain Formula Student compatibility",
+            "assembly": "power",
+            "assembly_path": "power"
+          },
+          {
+            "id": "battery_pack_assembly",
+            "part_number": "CUSTOM-PACK-13S4P",
+            "description": "Custom 13S4P battery pack assembly",
+            "category": "mechanical",
+            "quantity": 1,
+            "unit_cost": 150.0,
+            "currency": "EUR",
+            "status": "active",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "Custom battery pack builder",
+                "notes": "Professional battery pack assembly service"
+              }
+            ],
+            "specifications": {
+              "configuration": "13S4P",
+              "total_cells": 52,
+              "interconnects": "Nickel strips",
+              "insulation": "Kapton tape, heat shrink",
+              "housing": "Custom enclosure",
+              "cooling": "Passive air cooling",
+              "safety_features": "Fusing, thermal management"
+            },
+            "included_components": [
+              "52x Molicel P42A cells",
+              "Nickel strip interconnects",
+              "Insulation materials",
+              "Protective housing",
+              "Cell level fusing"
+            ],
+            "charging_tutorial": "https://youtu.be/g1jsSbjsiTo?si=uZ7mVjXA2c-43zzz",
+            "notes": "Professional assembly recommended due to safety requirements",
+            "assembly": "power",
+            "assembly_path": "power"
+          }
+        ],
+        "pack_specifications": {
+          "energy_density": "High energy density for extended runtime",
+          "safety_rating": "Automotive grade cells with integrated BMS protection",
+          "charging_method": "CC-CV charging profile through BMS",
+          "max_power_output": "9828W at 100% charge (180A * 54.6V)",
+          "max_charging_power": "1.7kW (32A * 54.6V)",
+          "placement_rationale": "See FAQ for battery placement considerations"
+        }
+      },
+      "path": "power",
+      "file": "docs/assembly/power/bom.yaml"
+    },
+    "electronics": {
+      "data": {
+        "assembly": "electronics",
+        "description": "Main computing and control electronics",
+        "components": [
+          {
+            "id": "nvidia_jetson_agx_orin",
+            "part_number": "JETSON-AGX-ORIN-DEVKIT",
+            "description": "NVIDIA Jetson AGX Orin Development Kit",
+            "category": "computer",
+            "quantity": 1,
+            "unit_cost": 1500.0,
+            "currency": "EUR",
+            "status": "active",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "NVIDIA Developer",
+                "url": "https://developer.nvidia.com/embedded/learn/jetson-agx-orin-devkit-user-guide/",
+                "verified": true
+              },
+              {
+                "name": "Authorized NVIDIA Distributors",
+                "notes": "Various electronics distributors"
+              }
+            ],
+            "specifications": {
+              "power_consumption": "TBD",
+              "voltage_range": "9-20VDC",
+              "typical_voltage": "19V",
+              "power_connector": "Barrel Jack 5.5mm OD 2.5mm ID center positive",
+              "gpu": "2048-core NVIDIA Ampere architecture GPU",
+              "cpu": "12-core Arm Cortex-A78AE",
+              "memory": "64GB LPDDR5"
+            },
+            "documentation": {
+              "user_guide": "https://developer.nvidia.com/embedded/learn/jetson-agx-orin-devkit-user-guide/developer_kit_layout.html",
+              "datasheets": "https://developer.nvidia.com/embedded/downloads"
+            },
+            "notes": "Main autonomous driving computer",
+            "assembly": "electronics",
+            "assembly_path": "electronics"
+          },
+          {
+            "id": "esp32_wroom_32",
+            "part_number": "ESP32-WROOM-32",
+            "description": "ESP32 microcontroller module (Kart Medulla)",
+            "category": "microcontroller",
+            "quantity": 1,
+            "unit_cost": 3.5,
+            "currency": "EUR",
+            "status": "active",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "Mouser",
+                "part_number": "356-ESP32WROOM32",
+                "url": "https://www.mouser.com/ProductDetail/356-ESP32WROOM32",
+                "verified": true
+              },
+              {
+                "name": "AliExpress",
+                "url": "https://www.aliexpress.com/wholesale?SearchText=esp32+wroom+32",
+                "verified": false
+              }
+            ],
+            "specifications": {
+              "voltage": "3.3V",
+              "current": "240mA",
+              "temperature_range": "-40\u00b0C to +85\u00b0C",
+              "flash": "4MB",
+              "ram": "520KB",
+              "cpu": "Xtensa dual-core 32-bit LX6",
+              "clock_speed": "up to 240 MHz",
+              "wifi": "802.11 b/g/n",
+              "bluetooth": "v4.2 BR/EDR and BLE",
+              "gpios": 34,
+              "adcs": "18-channel, 12-bit",
+              "dacs": "2-channel, 8-bit",
+              "interfaces": "SPI, I2C, UART, CAN, I2S"
+            },
+            "pin_assignments": {
+              "gpio_2": "Onboard LED",
+              "gpio_18": "UART RX (from Orin)",
+              "gpio_19": "UART TX (to Orin)",
+              "gpio_21": "I2C SDA (AS5600)",
+              "gpio_22": "I2C SCL (AS5600)",
+              "gpio_25": "PWM (Motor Driver)",
+              "gpio_26": "Direction (Motor Driver)"
+            },
+            "alternatives": [
+              "ESP32-S3",
+              "ESP32-C3"
+            ],
+            "notes": "Kart medulla - interfaces between Orin, sensors, and actuators",
+            "assembly": "electronics",
+            "assembly_path": "electronics"
+          },
+          {
+            "id": "orin_adapter_board",
+            "part_number": "CUSTOM-ORIN-ADAPTER-V1.0",
+            "description": "Custom Orin adapter board v1.0",
+            "category": "pcb",
+            "quantity": 1,
+            "unit_cost": 25.0,
+            "currency": "EUR",
+            "status": "active",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "Custom PCB Manufacturer",
+                "notes": "Designed with EasyEDA"
+              }
+            ],
+            "specifications": {
+              "design_tool": "EasyEDA",
+              "version": "1.0",
+              "file_format": ".epro"
+            },
+            "files": {
+              "design_file": "./index/ProProject_Orin Adapter_2025-03-09.epro",
+              "owncloud_path": "formula/formula 24-25/DV/ORIN/adapter/ProProject_Orin Adapter_2025-03-09.epro"
+            },
+            "notes": "Custom adapter to connect Orin to kart systems",
+            "assembly": "electronics",
+            "assembly_path": "electronics"
+          },
+          {
+            "id": "dac_module",
+            "part_number": "TBD-DAC-MODULE",
+            "description": "Digital to Analog Converter module",
+            "category": "dac",
+            "quantity": 1,
+            "unit_cost": 15.0,
+            "currency": "EUR",
+            "status": "needs_specification",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "TBD",
+                "notes": "Need to identify specific DAC module"
+              }
+            ],
+            "specifications": {
+              "power_supply": "5V",
+              "communication": "I2C @ 3.3V",
+              "interface_issue": "Voltage level mismatch"
+            },
+            "required_components": [
+              {
+                "component": "Bidirectional I2C level shifter",
+                "options": [
+                  "TXS0108E",
+                  "BSS138"
+                ],
+                "reason": "5V DAC with 3.3V I2C communication"
+              }
+            ],
+            "notes": "Requires level shifter due to voltage mismatch between 5V power and 3.3V I2C",
+            "assembly": "electronics",
+            "assembly_path": "electronics"
+          },
+          {
+            "id": "i2c_level_shifter",
+            "part_number": "TXS0108E",
+            "description": "8-bit bidirectional voltage-level translator",
+            "category": "level_shifter",
+            "quantity": 1,
+            "unit_cost": 2.5,
+            "currency": "EUR",
+            "status": "pending",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "Texas Instruments",
+                "verified": true
+              },
+              {
+                "name": "Mouser",
+                "verified": true
+              },
+              {
+                "name": "Digi-Key",
+                "verified": true
+              }
+            ],
+            "specifications": {
+              "channels": 8,
+              "voltage_a": "1.2V to 3.6V",
+              "voltage_b": "1.65V to 5.5V",
+              "data_rate": "up to 110 Mbps"
+            },
+            "alternatives": [
+              "BSS138 (MOSFET-based)"
+            ],
+            "notes": "Solves DAC voltage level mismatch issue",
+            "assembly": "electronics",
+            "assembly_path": "electronics"
+          }
+        ]
+      },
+      "path": "electronics",
+      "file": "docs/assembly/electronics/bom.yaml"
+    },
+    "steering_fasteners": {
+      "data": {
+        "assembly": "steering_fasteners",
+        "description": "Steering assembly fasteners and hardware",
+        "parent": "steering",
+        "components": [
+          {
+            "id": "coupling_motor_bolts",
+            "part_number": "M6x20-HEX",
+            "description": "Coupling to motor bolts",
+            "category": "fasteners",
+            "quantity": 4,
+            "unit_cost": 0.35,
+            "currency": "EUR",
+            "status": "active",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "McMaster-Carr",
+                "verified": true
+              },
+              {
+                "name": "Fastenal",
+                "verified": true
+              }
+            ],
+            "specifications": {
+              "size": "M6 x 20mm",
+              "type": "hex head cap screw",
+              "material": "steel_zinc_plated",
+              "torque_spec": "12 Nm",
+              "thread_pitch": "1.0mm"
+            },
+            "installation": {
+              "sequence": 3,
+              "threadlocker": "blue_loctite_243",
+              "torque_pattern": "cross"
+            },
+            "maintenance": {
+              "check_frequency": "weekly",
+              "torque_check": "monthly"
+            },
+            "notes": "Secures motor to coupling - Item #1 in assembly photo",
+            "assembly": "steering_fasteners",
+            "assembly_path": "steering/fasteners"
+          },
+          {
+            "id": "main_coupling_bolt",
+            "part_number": "M8x25-HEX",
+            "description": "Main coupling bolt",
+            "category": "fasteners",
+            "quantity": 1,
+            "unit_cost": 0.45,
+            "currency": "EUR",
+            "status": "active",
+            "criticality": "critical",
+            "suppliers": [
+              {
+                "name": "McMaster-Carr",
+                "verified": true
+              },
+              {
+                "name": "Auto parts stores",
+                "notes": "Grade 8.8 bolts available locally"
+              }
+            ],
+            "specifications": {
+              "size": "M8 x 25mm",
+              "type": "hex head cap screw",
+              "material": "steel_grade_8.8",
+              "torque_spec": "20 Nm",
+              "thread_pitch": "1.25mm"
+            },
+            "installation": {
+              "sequence": 4,
+              "threadlocker": "blue_loctite_243",
+              "critical": true
+            },
+            "maintenance": {
+              "check_frequency": "bi-weekly",
+              "torque_check": "bi-weekly"
+            },
+            "notes": "Main coupling bolt through steering shaft - Item #2 in assembly photo. CRITICAL: Failure disables steering",
+            "assembly": "steering_fasteners",
+            "assembly_path": "steering/fasteners"
+          },
+          {
+            "id": "sensor_mount_screws",
+            "part_number": "M3x8-HEX",
+            "description": "Sensor mounting screws",
+            "category": "fasteners",
+            "quantity": 2,
+            "unit_cost": 0.2,
+            "currency": "EUR",
+            "status": "active",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "McMaster-Carr",
+                "verified": true
+              },
+              {
+                "name": "Electronics suppliers",
+                "notes": "Common with sensor breakout boards"
+              }
+            ],
+            "specifications": {
+              "size": "M3 x 8mm",
+              "type": "hex head cap screw",
+              "material": "steel_zinc_plated",
+              "torque_spec": "3 Nm",
+              "thread_pitch": "0.5mm"
+            },
+            "installation": {
+              "sequence": 1,
+              "threadlocker": "none",
+              "technique": "hand_tighten_plus_quarter_turn"
+            },
+            "maintenance": {
+              "check_frequency": "monthly",
+              "torque_check": "quarterly"
+            },
+            "notes": "AS5600 sensor board mount - Item #3 in assembly photo. CAUTION: Do not over-torque",
+            "assembly": "steering_fasteners",
+            "assembly_path": "steering/fasteners"
+          },
+          {
+            "id": "motor_bracket_bolts",
+            "part_number": "M6x30-HEX",
+            "description": "Motor bracket bolts",
+            "category": "fasteners",
+            "quantity": 2,
+            "unit_cost": 0.4,
+            "currency": "EUR",
+            "status": "active",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "McMaster-Carr",
+                "verified": true
+              },
+              {
+                "name": "Fastenal",
+                "verified": true
+              }
+            ],
+            "specifications": {
+              "size": "M6 x 30mm",
+              "type": "hex head cap screw",
+              "material": "steel_zinc_plated",
+              "torque_spec": "15 Nm",
+              "thread_pitch": "1.0mm"
+            },
+            "installation": {
+              "sequence": 2,
+              "threadlocker": "blue_loctite_243",
+              "alignment_critical": true
+            },
+            "maintenance": {
+              "check_frequency": "weekly",
+              "torque_check": "monthly",
+              "inspection_notes": "Check for vibration loosening"
+            },
+            "notes": "Steering motor to chassis bracket",
+            "assembly": "steering_fasteners",
+            "assembly_path": "steering/fasteners"
+          }
+        ],
+        "assembly_info": {
+          "total_cost": 5.5,
+          "spare_parts_recommendation": "25% extra quantity",
+          "tools_required": [
+            "Hex key set: 3mm, 6mm, 8mm",
+            "Torque wrench: 0-25 Nm range",
+            "Loctite 243 threadlocker"
+          ],
+          "installation_sequence": {
+            "1": "Install AS5600 sensor with M3x8 screws",
+            "2": "Mount motor to chassis with M6x30 bracket bolts",
+            "3": "Connect motor to shaft coupling with M6x20 bolts",
+            "4": "Install main coupling bolt M8x25 (CRITICAL)",
+            "5": "Test smooth operation and sensor readings"
+          },
+          "safety_notes": [
+            "All steering fasteners are safety-critical",
+            "Use specified torque values",
+            "Inspect regularly for looseness",
+            "Main coupling bolt failure disables steering completely"
+          ]
+        }
+      },
+      "path": "steering/fasteners",
+      "file": "docs/assembly/steering/fasteners/bom.yaml"
+    },
+    "powertrain_transmission": {
+      "data": {
+        "assembly": "powertrain_transmission",
+        "description": "Chain and sprocket transmission components",
+        "parent": "powertrain",
+        "components": [
+          {
+            "id": "iris_219_chain",
+            "part_number": "IRIS-219-100",
+            "description": "IRIS 219 pitch gold chain",
+            "category": "transmission",
+            "quantity": 1,
+            "unit_cost": 15.0,
+            "currency": "EUR",
+            "status": "active",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "KPS Racing",
+                "url": "https://kpsracing.es/cadenas-y-cubrecadenas/2434-649-cadena-iris-219.html#/254-numero_pasos_cadena-100",
+                "verified": true
+              }
+            ],
+            "specifications": {
+              "pitch": "219",
+              "links": 100,
+              "color": "gold"
+            },
+            "assembly": "powertrain_transmission",
+            "assembly_path": "powertrain/transmission"
+          },
+          {
+            "id": "corona_219_aluminum",
+            "part_number": "CORONA-219-ALU",
+            "description": "219 pitch aluminum rear sprocket",
+            "category": "transmission",
+            "quantity": 1,
+            "unit_cost": 20.0,
+            "currency": "EUR",
+            "status": "needs_replacement",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "KPS Racing",
+                "url": "https://kpsracing.es/coronas/5957-9775-corona-aluminio-219-negra.html",
+                "verified": true
+              }
+            ],
+            "specifications": {
+              "pitch": "219",
+              "material": "aluminum",
+              "color": "black"
+            },
+            "notes": "Current sprocket damaged due to incompatible chain use",
+            "assembly": "powertrain_transmission",
+            "assembly_path": "powertrain/transmission"
+          },
+          {
+            "id": "custom_219_pinion",
+            "part_number": "CUSTOM-219-PINION",
+            "description": "Custom 219 pitch front sprocket",
+            "category": "transmission",
+            "quantity": 1,
+            "unit_cost": 5.0,
+            "currency": "EUR",
+            "status": "active",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "Laser Cutting Service",
+                "notes": "Custom design for 10mm shaft"
+              }
+            ],
+            "specifications": {
+              "pitch": "219",
+              "shaft_diameter": "10mm",
+              "material": "steel",
+              "manufacturing": "laser_cut"
+            },
+            "assembly": "powertrain_transmission",
+            "assembly_path": "powertrain/transmission"
+          }
+        ]
+      },
+      "path": "powertrain/transmission",
+      "file": "docs/assembly/powertrain/transmission/bom.yaml"
+    },
+    "powertrain_fasteners": {
+      "data": {
+        "assembly": "powertrain_fasteners",
+        "description": "Powertrain assembly fasteners and hardware",
+        "parent": "powertrain",
+        "components": [
+          {
+            "id": "motor_mount_bolts",
+            "part_number": "M8x30-HEX",
+            "description": "Motor mount bolts",
+            "category": "fasteners",
+            "quantity": 4,
+            "unit_cost": 0.5,
+            "currency": "EUR",
+            "status": "active",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "McMaster-Carr",
+                "verified": true
+              },
+              {
+                "name": "Fastenal",
+                "verified": true
+              }
+            ],
+            "specifications": {
+              "size": "M8 x 30mm",
+              "type": "hex head cap screw",
+              "material": "steel_zinc_plated",
+              "torque_spec": "25 Nm",
+              "thread_pitch": "1.25mm"
+            },
+            "installation": {
+              "threadlocker": "blue_loctite_243"
+            },
+            "maintenance": {
+              "check_frequency": "weekly",
+              "torque_check": "monthly"
+            },
+            "notes": "Secures motor to chassis mount",
+            "assembly": "powertrain_fasteners",
+            "assembly_path": "powertrain/fasteners"
+          },
+          {
+            "id": "motor_mount_nuts",
+            "part_number": "M8-NUT",
+            "description": "Motor mount nuts",
+            "category": "fasteners",
+            "quantity": 4,
+            "unit_cost": 0.15,
+            "currency": "EUR",
+            "status": "active",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "McMaster-Carr",
+                "verified": true
+              },
+              {
+                "name": "Fastenal",
+                "verified": true
+              }
+            ],
+            "specifications": {
+              "size": "M8",
+              "type": "hex nut (lock nuts recommended)",
+              "material": "steel_zinc_plated",
+              "thread_pitch": "1.25mm"
+            },
+            "installation": {
+              "type": "lock_nuts_preferred"
+            },
+            "notes": "Lock nuts for motor mount bolts",
+            "assembly": "powertrain_fasteners",
+            "assembly_path": "powertrain/fasteners"
+          },
+          {
+            "id": "front_sprocket_bolts",
+            "part_number": "M6x16-HEX",
+            "description": "Front sprocket bolts",
+            "category": "fasteners",
+            "quantity": 3,
+            "unit_cost": 0.3,
+            "currency": "EUR",
+            "status": "active",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "McMaster-Carr",
+                "verified": true
+              },
+              {
+                "name": "Fastenal",
+                "verified": true
+              }
+            ],
+            "specifications": {
+              "size": "M6 x 16mm",
+              "type": "hex head cap screw",
+              "material": "steel_zinc_plated",
+              "torque_spec": "12 Nm",
+              "thread_pitch": "1.0mm"
+            },
+            "installation": {
+              "threadlocker": "blue_loctite_243"
+            },
+            "maintenance": {
+              "check_frequency": "weekly",
+              "torque_check": "bi-weekly"
+            },
+            "notes": "Secures custom sprocket to motor shaft",
+            "assembly": "powertrain_fasteners",
+            "assembly_path": "powertrain/fasteners"
+          },
+          {
+            "id": "chain_tensioner_hardware",
+            "part_number": "M6x20-HEX",
+            "description": "Chain tensioner hardware",
+            "category": "fasteners",
+            "quantity": 2,
+            "unit_cost": 0.35,
+            "currency": "EUR",
+            "status": "active",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "McMaster-Carr",
+                "verified": true
+              },
+              {
+                "name": "Fastenal",
+                "verified": true
+              }
+            ],
+            "specifications": {
+              "size": "M6 x 20mm",
+              "type": "hex head cap screw",
+              "material": "steel_zinc_plated",
+              "torque_spec": "10 Nm",
+              "thread_pitch": "1.0mm"
+            },
+            "installation": {
+              "threadlocker": "blue_loctite_243",
+              "adjustable": true
+            },
+            "maintenance": {
+              "check_frequency": "weekly",
+              "torque_check": "monthly",
+              "adjustment_check": "bi-weekly"
+            },
+            "notes": "Adjusts chain tension - critical for proper operation",
+            "assembly": "powertrain_fasteners",
+            "assembly_path": "powertrain/fasteners"
+          },
+          {
+            "id": "throttle_pedal_mount_bolts",
+            "part_number": "M5x12-HEX",
+            "description": "Throttle pedal mount bolts",
+            "category": "fasteners",
+            "quantity": 2,
+            "unit_cost": 0.25,
+            "currency": "EUR",
+            "status": "active",
+            "criticality": "essential",
+            "suppliers": [
+              {
+                "name": "McMaster-Carr",
+                "verified": true
+              },
+              {
+                "name": "Fastenal",
+                "verified": true
+              }
+            ],
+            "specifications": {
+              "size": "M5 x 12mm",
+              "type": "hex head cap screw",
+              "material": "steel_zinc_plated",
+              "torque_spec": "6 Nm",
+              "thread_pitch": "0.8mm"
+            },
+            "installation": {
+              "threadlocker": "blue_loctite_243"
+            },
+            "maintenance": {
+              "check_frequency": "monthly",
+              "torque_check": "quarterly"
+            },
+            "notes": "Mounts throttle pedal to floor plate",
+            "assembly": "powertrain_fasteners",
+            "assembly_path": "powertrain/fasteners"
+          }
+        ],
+        "assembly_info": {
+          "total_cost": 6.2,
+          "spare_parts_recommendation": "25% extra quantity",
+          "tools_required": [
+            "Hex key set: 5mm, 6mm, 8mm",
+            "Torque wrench: 0-30 Nm range",
+            "Loctite 243 threadlocker"
+          ],
+          "critical_maintenance": [
+            "Chain tensioner adjustment critical for performance",
+            "Motor mount bolts are high-stress connections",
+            "Front sprocket bolts experience high torque loads"
+          ],
+          "safety_notes": [
+            "All powertrain fasteners are safety-critical",
+            "Motor mount failure could cause dangerous loss of propulsion",
+            "Loose chain tensioner can cause chain to jump or break"
+          ]
+        }
+      },
+      "path": "powertrain/fasteners",
+      "file": "docs/assembly/powertrain/fasteners/bom.yaml"
+    }
+  },
+  "generated_at": "2025-09-14T21:24:53.199102"
+}

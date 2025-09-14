@@ -1,0 +1,30 @@
+id,part_number,description,assembly,quantity,unit_cost,currency,status,criticality
+cytron_md30c,MD30C,30A H-bridge motor driver,steering,1,45.0,EUR,active,essential
+steering_motor_24v,STEERING-24V-MOTOR,24V DC steering motor (operated at 12V),steering,1,80.0,EUR,active,essential
+as5600_angle_sensor,AS5600,Hall effect rotary position sensor,steering,1,2.0,EUR,active,essential
+steering_coupling,STEERING-COUPLING-10MM,Motor to steering shaft coupling,steering,1,15.0,EUR,active,essential
+stereolabs_zed2,ZED2,Stereolabs ZED2 stereo vision camera,sensors,1,450.0,EUR,active,essential
+yolov5_detection_model,CUSTOM-YOLOV5-CONES,Custom YOLOv5 model for cone detection,sensors,1,0.0,EUR,active,essential
+kunray_my1020_motor,MY1020,Brushless DC motor with controller,powertrain,1,150.0,EUR,active,essential
+throttle_pedal_ss49e,THROTTLE-PEDAL-HALL,Throttle pedal with SS49E Hall sensor,powertrain,1,2.46,EUR,active,essential
+molicel_p42a_cells,P42A,Molicel P42A 21700 lithium-ion cells,power,52,4.5,EUR,active,essential
+jiabaida_bms_100a,JBD-SP22S003B,Jiabaida Smart BMS 100A with Bluetooth and UART,power,1,85.0,EUR,active,essential
+car_battery_12v,12V-CAR-BATTERY,12V automotive battery for sensors,power,1,60.0,EUR,active,essential
+battery_pack_assembly,CUSTOM-PACK-13S4P,Custom 13S4P battery pack assembly,power,1,150.0,EUR,active,essential
+nvidia_jetson_agx_orin,JETSON-AGX-ORIN-DEVKIT,NVIDIA Jetson AGX Orin Development Kit,electronics,1,1500.0,EUR,active,essential
+esp32_wroom_32,ESP32-WROOM-32,ESP32 microcontroller module (Kart Medulla),electronics,1,3.5,EUR,active,essential
+orin_adapter_board,CUSTOM-ORIN-ADAPTER-V1.0,Custom Orin adapter board v1.0,electronics,1,25.0,EUR,active,essential
+dac_module,TBD-DAC-MODULE,Digital to Analog Converter module,electronics,1,15.0,EUR,needs_specification,essential
+i2c_level_shifter,TXS0108E,8-bit bidirectional voltage-level translator,electronics,1,2.5,EUR,pending,essential
+coupling_motor_bolts,M6x20-HEX,Coupling to motor bolts,steering_fasteners,4,0.35,EUR,active,essential
+main_coupling_bolt,M8x25-HEX,Main coupling bolt,steering_fasteners,1,0.45,EUR,active,critical
+sensor_mount_screws,M3x8-HEX,Sensor mounting screws,steering_fasteners,2,0.2,EUR,active,essential
+motor_bracket_bolts,M6x30-HEX,Motor bracket bolts,steering_fasteners,2,0.4,EUR,active,essential
+iris_219_chain,IRIS-219-100,IRIS 219 pitch gold chain,powertrain_transmission,1,15.0,EUR,active,essential
+corona_219_aluminum,CORONA-219-ALU,219 pitch aluminum rear sprocket,powertrain_transmission,1,20.0,EUR,needs_replacement,essential
+custom_219_pinion,CUSTOM-219-PINION,Custom 219 pitch front sprocket,powertrain_transmission,1,5.0,EUR,active,essential
+motor_mount_bolts,M8x30-HEX,Motor mount bolts,powertrain_fasteners,4,0.5,EUR,active,essential
+motor_mount_nuts,M8-NUT,Motor mount nuts,powertrain_fasteners,4,0.15,EUR,active,essential
+front_sprocket_bolts,M6x16-HEX,Front sprocket bolts,powertrain_fasteners,3,0.3,EUR,active,essential
+chain_tensioner_hardware,M6x20-HEX,Chain tensioner hardware,powertrain_fasteners,2,0.35,EUR,active,essential
+throttle_pedal_mount_bolts,M5x12-HEX,Throttle pedal mount bolts,powertrain_fasteners,2,0.25,EUR,active,essential

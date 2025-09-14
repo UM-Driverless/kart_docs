@@ -1,0 +1,111 @@
+assembly: "sensors"
+description: "Vision and sensor systems for autonomous navigation"
+components:
+  - id: "stereolabs_zed2"
+    part_number: "ZED2"
+    description: "Stereolabs ZED2 stereo vision camera"
+    category: "camera"
+    quantity: 1
+    unit_cost: 450.00
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "Stereolabs"
+        url: "https://www.stereolabs.com/zed-2/"
+        verified: true
+      - name: "Authorized Stereolabs distributors"
+        notes: "Various electronics distributors"
+    specifications:
+      resolution: "2208x1242 @ 15fps, 1920x1080 @ 30fps"
+      depth_range: "0.2m to 20m"
+      field_of_view: "110° (H) x 70° (V) x 120° (D)"
+      frame_rate: "15-120 fps (depending on resolution)"
+      interface: "USB 3.0"
+      power_consumption: "5W"
+      operating_temperature: "0°C to +45°C"
+      imu: "9-axis (accelerometer, gyroscope, magnetometer)"
+      additional_sensors: "barometer, temperature sensor"
+      positional_tracking: "6DoF SLAM"
+    capabilities:
+      - "Stereo vision and depth sensing"
+      - "3D point cloud generation"
+      - "Visual odometry"
+      - "Object detection with AI models"
+      - "Environmental sensing"
+    ros2_integration:
+      wrapper: "zed-ros2-wrapper"
+      github: "https://github.com/stereolabs/zed-ros2-wrapper"
+      supported_ros: "ROS 2 Jazzy"
+    notes: "Primary vision sensor for autonomous navigation and cone detection"
+
+  - id: "yolov5_detection_model"
+    part_number: "CUSTOM-YOLOV5-CONES"
+    description: "Custom YOLOv5 model for cone detection"
+    category: "software"
+    quantity: 1
+    unit_cost: 0.00
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "Custom trained model"
+        notes: "In-house training using YOLOv5 framework"
+    specifications:
+      framework: "YOLOv5"
+      format: "ONNX for TensorRT optimization"
+      input_resolution: "TBD"
+      classes: "Traffic cones (various types)"
+      inference_engine: "TensorRT"
+      optimization: "GPU-accelerated inference"
+    requirements:
+      - "CUDA Toolkit 12.x"
+      - "TensorRT 10"
+      - "ZED SDK v5.0"
+    integration:
+      config_file: "common_stereo.yaml"
+      detection_enabled: "od_enabled: true"
+      model_type: "CUSTOM_YOLOLIKE_BOX_OBJECTS"
+    notes: "Real-time cone detection integrated with ZED2 camera through ROS 2 wrapper"
+
+system_requirements:
+  operating_system: "Ubuntu 24.04 LTS (recommended)"
+  ros2_version: "ROS 2 Jazzy"
+  cuda_version: "CUDA 12.0 to 12.9"
+  zed_sdk: "ZED SDK v5.0"
+  tensorrt: "TensorRT 10"
+
+installation_dependencies:
+  cuda_toolkit:
+    url: "https://developer.nvidia.com/cuda-downloads"
+    notes: "Any version 12.0 to 12.9 compatible"
+
+  ros2_jazzy:
+    url: "https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html"
+    notes: "Official ROS 2 installation guide"
+
+  zed_sdk:
+    url: "https://www.stereolabs.com/en-es/developers/release/5.0#82af3640d775"
+    notes: "ZED SDK v5.0 for Ubuntu 24.04 with CUDA 12 and TensorRT 10"
+
+  tensorrt:
+    package: "nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9_1.0-1_amd64.deb"
+    url: "https://developer.nvidia.com/downloads/compute/machine-learning/tensorrt/10.10.0/local_repo/nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9_1.0-1_amd64.deb"
+    required_packages:
+      - "libnvinfer10"
+      - "libnvinfer-dev"
+      - "libnvinfer-plugin-dev"
+      - "python3-libnvinfer"
+
+launch_commands:
+  zed2_camera: "ros2 launch zed_wrapper zed_camera.launch.py camera_model:=zed2"
+
+performance_notes:
+  first_run: "TensorRT optimization takes several minutes on first model load"
+  subsequent_runs: "Optimized engine cached for fast startup"
+  gpu_acceleration: "Real-time inference with TensorRT optimization"
+
+todo_items:
+  - "Document specific ROS topics used for cone detection"
+  - "Add required packages for visualization in RViz2"
+  - "Complete sensor usage documentation"

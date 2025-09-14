@@ -1,0 +1,142 @@
+assembly: "electronics"
+description: "Main computing and control electronics"
+components:
+  - id: "nvidia_jetson_agx_orin"
+    part_number: "JETSON-AGX-ORIN-DEVKIT"
+    description: "NVIDIA Jetson AGX Orin Development Kit"
+    category: "computer"
+    quantity: 1
+    unit_cost: 1500.00
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "NVIDIA Developer"
+        url: "https://developer.nvidia.com/embedded/learn/jetson-agx-orin-devkit-user-guide/"
+        verified: true
+      - name: "Authorized NVIDIA Distributors"
+        notes: "Various electronics distributors"
+    specifications:
+      power_consumption: "TBD"
+      voltage_range: "9-20VDC"
+      typical_voltage: "19V"
+      power_connector: "Barrel Jack 5.5mm OD 2.5mm ID center positive"
+      gpu: "2048-core NVIDIA Ampere architecture GPU"
+      cpu: "12-core Arm Cortex-A78AE"
+      memory: "64GB LPDDR5"
+    documentation:
+      user_guide: "https://developer.nvidia.com/embedded/learn/jetson-agx-orin-devkit-user-guide/developer_kit_layout.html"
+      datasheets: "https://developer.nvidia.com/embedded/downloads"
+    notes: "Main autonomous driving computer"
+
+  - id: "esp32_wroom_32"
+    part_number: "ESP32-WROOM-32"
+    description: "ESP32 microcontroller module (Kart Medulla)"
+    category: "microcontroller"
+    quantity: 1
+    unit_cost: 3.50
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "Mouser"
+        part_number: "356-ESP32WROOM32"
+        url: "https://www.mouser.com/ProductDetail/356-ESP32WROOM32"
+        verified: true
+      - name: "AliExpress"
+        url: "https://www.aliexpress.com/wholesale?SearchText=esp32+wroom+32"
+        verified: false
+    specifications:
+      voltage: "3.3V"
+      current: "240mA"
+      temperature_range: "-40°C to +85°C"
+      flash: "4MB"
+      ram: "520KB"
+      cpu: "Xtensa dual-core 32-bit LX6"
+      clock_speed: "up to 240 MHz"
+      wifi: "802.11 b/g/n"
+      bluetooth: "v4.2 BR/EDR and BLE"
+      gpios: 34
+      adcs: "18-channel, 12-bit"
+      dacs: "2-channel, 8-bit"
+      interfaces: "SPI, I2C, UART, CAN, I2S"
+    pin_assignments:
+      gpio_2: "Onboard LED"
+      gpio_18: "UART RX (from Orin)"
+      gpio_19: "UART TX (to Orin)"
+      gpio_21: "I2C SDA (AS5600)"
+      gpio_22: "I2C SCL (AS5600)"
+      gpio_25: "PWM (Motor Driver)"
+      gpio_26: "Direction (Motor Driver)"
+    alternatives:
+      - "ESP32-S3"
+      - "ESP32-C3"
+    notes: "Kart medulla - interfaces between Orin, sensors, and actuators"
+
+  - id: "orin_adapter_board"
+    part_number: "CUSTOM-ORIN-ADAPTER-V1.0"
+    description: "Custom Orin adapter board v1.0"
+    category: "pcb"
+    quantity: 1
+    unit_cost: 25.00
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "Custom PCB Manufacturer"
+        notes: "Designed with EasyEDA"
+    specifications:
+      design_tool: "EasyEDA"
+      version: "1.0"
+      file_format: ".epro"
+    files:
+      design_file: "./index/ProProject_Orin Adapter_2025-03-09.epro"
+      owncloud_path: "formula/formula 24-25/DV/ORIN/adapter/ProProject_Orin Adapter_2025-03-09.epro"
+    notes: "Custom adapter to connect Orin to kart systems"
+
+  - id: "dac_module"
+    part_number: "TBD-DAC-MODULE"
+    description: "Digital to Analog Converter module"
+    category: "dac"
+    quantity: 1
+    unit_cost: 15.00
+    currency: "EUR"
+    status: "needs_specification"
+    criticality: "essential"
+    suppliers:
+      - name: "TBD"
+        notes: "Need to identify specific DAC module"
+    specifications:
+      power_supply: "5V"
+      communication: "I2C @ 3.3V"
+      interface_issue: "Voltage level mismatch"
+    required_components:
+      - component: "Bidirectional I2C level shifter"
+        options: ["TXS0108E", "BSS138"]
+        reason: "5V DAC with 3.3V I2C communication"
+    notes: "Requires level shifter due to voltage mismatch between 5V power and 3.3V I2C"
+
+  - id: "i2c_level_shifter"
+    part_number: "TXS0108E"
+    description: "8-bit bidirectional voltage-level translator"
+    category: "level_shifter"
+    quantity: 1
+    unit_cost: 2.50
+    currency: "EUR"
+    status: "pending"
+    criticality: "essential"
+    suppliers:
+      - name: "Texas Instruments"
+        verified: true
+      - name: "Mouser"
+        verified: true
+      - name: "Digi-Key"
+        verified: true
+    specifications:
+      channels: 8
+      voltage_a: "1.2V to 3.6V"
+      voltage_b: "1.65V to 5.5V"
+      data_rate: "up to 110 Mbps"
+    alternatives:
+      - "BSS138 (MOSFET-based)"
+    notes: "Solves DAC voltage level mismatch issue"

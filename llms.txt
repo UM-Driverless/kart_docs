@@ -10,57 +10,57 @@ This project equips a standard competition kart with autonomous capabilities by 
 https://um-driverless.github.io/kart_docs/bom
 This page provides a comprehensive list of all components required to build the driverless kart. ...
 
-https://um-driverless.github.io/kart_docs/assemblies/powertrain
-The powertrain assembly converts electrical energy into motion, consisting of the motor, transmis...
-
-https://um-driverless.github.io/kart_docs/assemblies/powertrain/motor
----
-
-https://um-driverless.github.io/kart_docs/assemblies/powertrain/transmission
----
-
-https://um-driverless.github.io/kart_docs/assemblies/powertrain/throttle-pedal
----
-
-https://um-driverless.github.io/kart_docs/assemblies/powertrain/fasteners
----
-
-https://um-driverless.github.io/kart_docs/assemblies/steering
-??? example "View steering mechanism with measurements"
-
-https://um-driverless.github.io/kart_docs/assemblies/steering
-??? example "View steering mechanism with measurements"
-
-https://um-driverless.github.io/kart_docs/assemblies/steering/h-bridge
-- Cytron MD30C (30 A cont, 80 A peak)
-
-https://um-driverless.github.io/kart_docs/assemblies/steering/sensor
----
-
-https://um-driverless.github.io/kart_docs/assemblies/steering/fasteners
----
-
-https://um-driverless.github.io/kart_docs/assemblies/electronics/microcontroller
----
-
-https://um-driverless.github.io/kart_docs/assemblies/electronics/computer
-Our computer is based on the NVidia Jetson AGX Orin Development Kit.
-
-https://um-driverless.github.io/kart_docs/assemblies/electronics/dac
-Model: [full name of the chip or board]
-
-https://um-driverless.github.io/kart_docs/assemblies/electronics/wiring
-TODO global diagram (Fritzing?)
-
-https://um-driverless.github.io/kart_docs/assemblies/power/battery
-The main pack uses Molicel P42A cells in a 13S4P configuration, providing a nominal voltage of ab...
-
-https://um-driverless.github.io/kart_docs/assemblies/sensors/camera
-Hay que agregar el uso de los sensores, ademas de que habria que hacer una documentacion de los t...
-
 ## Assembly & Software
 
-https://um-driverless.github.io/kart_docs/assembly
+https://um-driverless.github.io/kart_docs/assembly/powertrain
+The powertrain assembly converts electrical energy into motion, consisting of the motor, transmis...
+
+https://um-driverless.github.io/kart_docs/assembly/powertrain/motor
+We use a Brushless DC (BLDC) motor from [Kunray](https://kunraymotors.com/shop/) (model MY1020, 7...
+
+https://um-driverless.github.io/kart_docs/assembly/powertrain/transmission
+The kart currently uses a standard 219 pitch karting transmission system. This is the definitive ...
+
+https://um-driverless.github.io/kart_docs/assembly/powertrain/throttle-pedal
+The throttle pedal sensor uses a linear Hall effect sensor (typically SS49E or similar) that conv...
+
+https://um-driverless.github.io/kart_docs/assembly/powertrain/fasteners
+This page documents all fasteners (bolts, nuts, washers) used in the powertrain assembly. Each fa...
+
+https://um-driverless.github.io/kart_docs/assembly/steering
+??? example "View steering mechanism with measurements"
+
+https://um-driverless.github.io/kart_docs/assembly/steering
+??? example "View steering mechanism with measurements"
+
+https://um-driverless.github.io/kart_docs/assembly/steering/h-bridge
+- Cytron MD30C (30 A cont, 80 A peak)
+
+https://um-driverless.github.io/kart_docs/assembly/steering/sensor
+Sensor used is the cheap AS5600
+
+https://um-driverless.github.io/kart_docs/assembly/steering/fasteners
+This page documents all fasteners used in the steering assembly with precise identification using...
+
+https://um-driverless.github.io/kart_docs/assembly/electronics/microcontroller
+The ESP32 is a series of low-cost, low-power system on a chip microcontrollers with integrated Wi...
+
+https://um-driverless.github.io/kart_docs/assembly/electronics/computer
+Our computer is based on the NVidia Jetson AGX Orin Development Kit.
+
+https://um-driverless.github.io/kart_docs/assembly/electronics/dac
+Model: [full name of the chip or board]
+
+https://um-driverless.github.io/kart_docs/assembly/electronics/wiring
+TODO global diagram (Fritzing?)
+
+https://um-driverless.github.io/kart_docs/assembly/power/battery
+The main pack uses Molicel P42A cells in a 13S4P configuration, providing a nominal voltage of ab...
+
+https://um-driverless.github.io/kart_docs/assembly/sensors/camera
+Hay que agregar el uso de los sensores, ademas de que habria que hacer una documentacion de los t...
+
+https://um-driverless.github.io/kart_docs/assembly/instructions
 This section contains instructions for assembling the kart.
 
 ## Systems

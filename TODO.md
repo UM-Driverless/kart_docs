@@ -1,6 +1,5 @@
+let's add this image with the schematic of the pcb for the orin adapter board, with the other images
 
-
-where bom saved
 
 why are the llm files separate?
 

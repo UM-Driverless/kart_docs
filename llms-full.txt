@@ -43,86 +43,176 @@ This prototype is not intended to compete, so no specific racing regulations app
 
 ## Overview
 
-This page provides a comprehensive list of all components required to build the driverless kart. Each component is documented with specifications, suppliers, costs, and alternatives.
+This page provides a comprehensive list of all components required to build the driverless kart. Component data is now stored in YAML files within each assembly folder, following the project structure.
 
-!!! info "BOM Management"
-    Component details are maintained in the individual hardware documentation pages using YAML frontmatter. This page provides consolidated views and summaries.
+!!! info "New BOM Management System"
+    Components are now managed via separate YAML files in each assembly folder. The folder structure represents the BOM tree itself, eliminating synchronization issues.
 
-## Summary by Category
+## BOM Structure
 
-### Core Systems
+The BOM is organized by assembly with YAML files containing detailed component specifications:
 
-| Component | Quantity | Unit Cost | Total Cost | Status | Documentation |
-|-----------|----------|-----------|------------|--------|---------------|
-| ESP32 WROOM 32 | 1 | €3.50 | €3.50 | Active | [ESP32](../hardware/esp32/index.md) |
-| Kunray MY1020 Motor | 1 | €150.00 | €150.00 | Active | [Motor](../hardware/motor/index.md) |
-| AS5600 Angle Sensor | 1 | €2.00 | €2.00 | Active | [Steering Sensor](../hardware/steering/sensor/index.md) |
-| Throttle Pedal (w/ SS49E) | 1 | €2.46 | €2.46 | Active | [Throttle Pedal](../hardware/throttle-pedal/index.md) |
+```
+docs/assembly/
+├── powertrain/
+│   ├── bom.yaml              # Motor, throttle pedal
+│   ├── transmission/bom.yaml # Chain, sprockets
+│   └── fasteners/bom.yaml    # All powertrain fasteners
+├── steering/
+│   ├── bom.yaml              # H-bridge, motor, sensor, coupling
+│   └── fasteners/bom.yaml    # All steering fasteners
+├── electronics/bom.yaml      # Orin, ESP32, DAC, level shifter
+├── power/bom.yaml            # Battery cells, BMS, auxiliary battery
+└── sensors/bom.yaml          # ZED2 camera, YOLOv5 models
+```
 
-### Transmission System
+## Assembly Overview
 
-| Component | Quantity | Unit Cost | Total Cost | Status | Documentation |
-|-----------|----------|-----------|------------|--------|---------------|
-| IRIS 219 Chain (100 links) | 1 | €15.00 | €15.00 | Active | [Transmission](../hardware/transmission/index.md) |
-| 219 Aluminum Sprocket | 1 | €20.00 | €20.00 | Needs Replacement | [Transmission](../hardware/transmission/index.md) |
-| Custom 219 Front Sprocket | 1 | €5.00 | €5.00 | Active | [Transmission](../hardware/transmission/index.md) |
+### 🔧 Powertrain Assembly
+**Components**: Motor, transmission system, throttle control
+- **Main Components**: [Powertrain BOM](../assembly/powertrain/bom.yaml)
+- **Transmission**: [Transmission BOM](../assembly/powertrain/transmission/bom.yaml)
+- **Fasteners**: [Powertrain Fasteners BOM](../assembly/powertrain/fasteners/bom.yaml)
+- **Documentation**: [Powertrain Assembly](../assembly/powertrain/index.md)
 
-## Cost Summary
+**Key Components:**
+- Kunray MY1020 3000W motor (€150.00)
+- IRIS 219 chain and sprocket system (€40.00)
+- Hall effect throttle pedal (€2.46)
 
-| Category | Total Cost | Items |
-|----------|------------|-------|
-| Core Electronics | €157.96 | 4 |
-| Transmission | €40.00 | 3 |
-| **Project Total** | **€197.96** | **7** |
+### 🎮 Steering Assembly
+**Components**: Motor, sensor, H-bridge, coupling
+- **Main Components**: [Steering BOM](../assembly/steering/bom.yaml)
+- **Fasteners**: [Steering Fasteners BOM](../assembly/steering/fasteners/bom.yaml)
+- **Documentation**: [Steering Assembly](../assembly/steering/index.md)
 
-### Cost Breakdown Details
-- **ESP32 WROOM 32**: €3.50
-- **Kunray MY1020 Motor**: €150.00
-- **AS5600 Angle Sensor**: €2.00
-- **Throttle Pedal (SS49E)**: €2.46
-- **IRIS 219 Chain**: €15.00
-- **219 Aluminum Sprocket**: €20.00 (needs replacement)
-- **Custom 219 Front Sprocket**: €5.00
+**Key Components:**
+- Cytron MD30C H-bridge (€45.00)
+- AS5600 magnetic angle sensor (€2.00)
+- 24V DC steering motor (€80.00)
 
-!!! warning "Incomplete BOM"
-    This BOM is being migrated from existing documentation. Additional components (battery, chassis, wiring, etc.) will be added as the migration continues.
+### 💻 Electronics Assembly
+**Components**: Computing, control, communication
+- **Main Components**: [Electronics BOM](../assembly/electronics/bom.yaml)
+- **Documentation**: [Electronics Assembly](../assembly/electronics/microcontroller.md)
+
+**Key Components:**
+- NVIDIA Jetson AGX Orin (€1500.00)
+- ESP32 WROOM-32 microcontroller (€3.50)
+- Custom Orin adapter board (€25.00)
+
+### ⚡ Power Assembly
+**Components**: Main battery pack, BMS, auxiliary power
+- **Main Components**: [Power BOM](../assembly/power/bom.yaml)
+- **Documentation**: [Power Assembly](../assembly/power/battery.md)
+
+**Key Components:**
+- 52x Molicel P42A cells in 13S4P (€234.00)
+- Jiabaida Smart BMS 100A (€85.00)
+- 12V auxiliary battery (€60.00)
+
+### 📷 Sensors Assembly
+**Components**: Vision system, AI models
+- **Main Components**: [Sensors BOM](../assembly/sensors/bom.yaml)
+- **Documentation**: [Sensors Assembly](../assembly/sensors/camera.md)
+
+**Key Components:**
+- Stereolabs ZED2 stereo camera (€450.00)
+- Custom YOLOv5 cone detection model
+
+## Estimated Project Costs
+
+| Assembly | Estimated Cost | Key Items |
+|----------|----------------|-----------|
+| **Powertrain** | **€195** | Motor (€150), transmission (€40), fasteners (€5) |
+| **Steering** | **€135** | H-bridge (€45), motor (€80), sensor (€2), fasteners (€8) |
+| **Electronics** | **€1530** | Orin computer (€1500), ESP32 (€4), adapter (€25) |
+| **Power** | **€380** | Li-ion cells (€234), BMS (€85), 12V battery (€60) |
+| **Sensors** | **€450** | ZED2 camera (€450) |
+| **Total** | **€2690** | *Excludes chassis, wiring, mechanical hardware* |
+
+!!! warning "Cost Estimates"
+    Prices are approximate and subject to change. Always verify current pricing from suppliers.
 
 ## Component Status
 
-- **Active**: Currently used in the kart
-- **Needs Replacement**: Known to be damaged/worn
-- **Deprecated**: No longer used but kept for reference
-- **Optional**: Not required for basic functionality
+### ✅ Active Components
+Currently used and functional in the kart.
 
-## Supplier Recommendations
+### ⚠️ Needs Replacement
+Known to be damaged or worn:
+- 219 aluminum rear sprocket (damaged from incompatible chain use)
+
+### 🔧 Custom Components
+Require fabrication:
+- Custom 219 front sprocket (laser cut for 10mm shaft)
+- Orin adapter board (EasyEDA design available)
+- Battery pack assembly (professional assembly recommended)
+
+## Supplier Information
 
 ### Primary Suppliers
-- **Electronic Components**: Mouser, Addicore, Sunrom
+- **Electronics**: Mouser, Digi-Key, Adafruit
 - **Karting Parts**: KPS Racing
-- **General Parts**: AliExpress, Amazon
+- **Batteries**: Authorized Molicel distributors
+- **Vision Systems**: Stereolabs
+- **General Components**: AliExpress, Amazon (for non-critical parts)
 
-### Quality Notes
-- Always prefer official distributors for critical electronic components
-- AliExpress/Amazon acceptable for mechanical parts and sensors
-- Verify component specifications before ordering
+### Quality Guidelines
+- ✅ Use official distributors for critical electronic components
+- ✅ Verify specifications before ordering
+- ⚠️ AliExpress/Amazon acceptable for mechanical parts and sensors
+- ❌ Avoid counterfeit components for safety-critical systems
 
 ## Assembly Priority
 
-1. **Core Electronics** (ESP32, sensors)
-2. **Motor System** (Motor, controller)
-3. **Transmission** (Chain, sprockets)
-4. **Mechanical** (Chassis, steering)
-5. **Power Systems** (Battery, wiring)
+1. **Power System** - Battery pack, BMS, charging setup
+2. **Core Electronics** - Orin computer, ESP32 microcontroller
+3. **Sensors** - ZED2 camera, angle sensors
+4. **Propulsion** - Motor, controller, transmission
+5. **Steering** - Motor, H-bridge, coupling
+6. **Integration** - Wiring, mounting, calibration
+
+## Working with YAML BOM Files
+
+### Adding New Components
+1. Locate the appropriate assembly folder
+2. Edit the `bom.yaml` file
+3. Follow the existing structure for consistency
+4. Include all required fields: id, part_number, description, quantity, cost, suppliers
+
+### YAML File Structure
+```yaml
+assembly: "assembly_name"
+description: "Assembly description"
+components:
+  - id: "unique_component_id"
+    part_number: "MANUFACTURER-PART-NUMBER"
+    description: "Component description"
+    quantity: 1
+    unit_cost: 0.00
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "Supplier Name"
+        url: "https://supplier.com/product"
+        verified: true
+    specifications:
+      key: "value"
+    notes: "Additional information"
+```
+
+### Future Automation
+A BOM aggregation script is planned to automatically generate:
+- Complete cost summaries
+- Supplier contact lists
+- Component status reports
+- Assembly checklists
 
 ---
 
-## Adding Components to BOM
-
-To add a new component to the BOM:
-
-1. Add YAML frontmatter to the component's documentation page
-2. Use the standardized structure shown in individual hardware pages
-3. The BOM summary will be updated manually or via script
+*This BOM system reflects the complete restructure from hardware-based to assembly-based organization, with component data stored in YAML files following the project's folder structure.*
 
 ---
 
@@ -172,36 +262,6 @@ See individual component pages for detailed specifications and BOM information.
 
 ## Motor
 
----
-# BOM Entry
-bom:
-  component_id: "KUNRAY_MY1020"
-  part_number: "MY1020"
-  category: "motor"
-  quantity: 1
-  unit_cost: 150.00
-  currency: "EUR"
-  status: "active"
-  criticality: "essential"
-  suppliers:
-    - name: "Amazon"
-      part_number: "B0C6WXYZ"
-      url: "https://www.amazon.es/dp/B0C6WXYZ/ref=cm_sw_em_r_mt_dp_xyz"
-      verified: true
-    - name: "Kunray Official"
-      url: "https://kunraymotors.com/shop/"
-      verified: true
-  specifications:
-    voltage: "72V"
-    power: "3000W"
-    weight: "8kg"
-    shaft_diameter: "10mm"
-    shaft_type: "no keyway"
-  notes: "Includes motor controller"
----
-
-# Powertrain
-
 ## Motor
 
 We use a **Brushless DC (BLDC) motor** from [Kunray](https://kunraymotors.com/shop/) (model **MY1020**, 72V 3000W), along with its supplied controller.  
@@ -225,7 +285,7 @@ The motivation for selecting an electric motor over a combustion engine is discu
 - **Shaft:** 10mm diameter, no keyway (non-standard)
 - **Product link (Amazon):** <a href="https://www.amazon.es/dp/B0C6WXYZ/ref=cm_sw_em_r_mt_dp_xyz" target="_blank">Kunray 72V 3000W Motor Kit</a>
 
-> **Note:** For transmission system details (chain, sprockets), see [Transmission](../transmission/index.md)
+> **Note:** For transmission system details (chain, sprockets), see [Transmission](transmission.md)
 
 ---
 
@@ -289,63 +349,6 @@ The twist-grip throttle that comes with the motor kit also includes:
 
 ## Transmission
 
----
-# BOM Entry
-bom:
-  components:
-    - component_id: "IRIS_219_CHAIN"
-      part_number: "IRIS-219-100"
-      category: "transmission"
-      quantity: 1
-      unit_cost: 15.00
-      currency: "EUR"
-      status: "active"
-      criticality: "essential"
-      suppliers:
-        - name: "KPS Racing"
-          url: "https://kpsracing.es/cadenas-y-cubrecadenas/2434-649-cadena-iris-219.html#/254-numero_pasos_cadena-100"
-          verified: true
-      specifications:
-        pitch: "219"
-        links: 100
-        color: "gold"
-    - component_id: "CORONA_219_ALUMINUM"
-      part_number: "CORONA-219-ALU"
-      category: "transmission"
-      quantity: 1
-      unit_cost: 20.00
-      currency: "EUR"
-      status: "needs_replacement"
-      criticality: "essential"
-      suppliers:
-        - name: "KPS Racing"
-          url: "https://kpsracing.es/coronas/5957-9775-corona-aluminio-219-negra.html"
-          verified: true
-      specifications:
-        pitch: "219"
-        material: "aluminum"
-        color: "black"
-      notes: "Current sprocket damaged due to incompatible chain use"
-    - component_id: "CUSTOM_219_PINION"
-      part_number: "CUSTOM-219-PINION"
-      category: "transmission"
-      quantity: 1
-      unit_cost: 5.00
-      currency: "EUR"
-      status: "active"
-      criticality: "essential"
-      suppliers:
-        - name: "Laser Cutting Service"
-          notes: "Custom design for 10mm shaft"
-      specifications:
-        pitch: "219"
-        shaft_diameter: "10mm"
-        material: "steel"
-        manufacturing: "laser_cut"
----
-
-# Transmission System
-
 ## Current Configuration - 219 Kit
 
 The kart currently uses a **standard 219 pitch karting transmission system**. This is the definitive configuration after testing and discarding the original T8F kit that came with the motor.
@@ -355,7 +358,7 @@ The kart currently uses a **standard 219 pitch karting transmission system**. Th
 #### Chain
 
 ??? example "View gold 219 chain installed on the kart"
-    ![Gold 219 chain installed on the kart](images/gold-chain-219.jpg)
+    ![Gold 219 chain installed on the kart](transmission/images/gold-chain-219.jpg)
 
 - **Type:** IRIS 219 pitch chain
 - **Color:** Gold
@@ -473,45 +476,6 @@ With the motor mount moved slightly backward (compared to the original 3D-printe
 
 ## Throttle Pedal
 
----
-# BOM Entry
-bom:
-  component_id: "THROTTLE_PEDAL_SS49E"
-  part_number: "THROTTLE-PEDAL-HALL"
-  category: "sensor"
-  quantity: 1
-  unit_cost: 2.46
-  currency: "EUR"
-  status: "active"
-  criticality: "essential"
-  suppliers:
-    - name: "AliExpress"
-      url: "https://es.aliexpress.com/item/1005007243711390.html"
-      verified: true
-    - name: "Amazon"
-      notes: "Various electric scooter throttle pedal listings"
-      verified: false
-  specifications:
-    sensor_type: "SS49E Hall Effect"
-    voltage: "5V"
-    output: "0-5V analog"
-    connector: "3-wire"
-  alternatives:
-    - "Generic Hall effect throttle pedals"
-  replacement_parts:
-    - component_id: "SS49E_SENSOR"
-      part_number: "SS49E"
-      suppliers:
-        - name: "Mouser"
-          url: "https://www.mouser.com/ProductDetail/Honeywell/SS49E"
-        - name: "Addicore"
-          url: "https://www.addicore.com/products/ss49e-linear-hall-effect-sensor"
-      unit_cost: 1.50
-      notes: "Replacement sensor for throttle pedal"
----
-
-# Throttle Pedal Sensor
-
 ## Overview
 
 The throttle pedal sensor uses a linear Hall effect sensor (typically SS49E or similar) that converts pedal position into an electrical signal for motor speed control.
@@ -592,55 +556,6 @@ For current kart configuration, this connects to the motor controller's throttle
 
 ## Fasteners
 
----
-# BOM Entry
-bom:
-  assembly: "powertrain"
-  category: "fasteners"
-  components:
-    - item: "Motor mount bolts"
-      part_number: "M8x30-HEX"
-      specification: "M8 x 30mm hex head cap screw"
-      quantity: 4
-      unit_cost: 0.50
-      material: "Steel, zinc plated"
-      torque: "25 Nm"
-      notes: "Secures motor to chassis mount"
-    - item: "Motor mount nuts"
-      part_number: "M8-NUT"
-      specification: "M8 hex nut"
-      quantity: 4
-      unit_cost: 0.15
-      material: "Steel, zinc plated"
-      notes: "Lock nuts for motor mount bolts"
-    - item: "Front sprocket bolts"
-      part_number: "M6x16-HEX"
-      specification: "M6 x 16mm hex head cap screw"
-      quantity: 3
-      unit_cost: 0.30
-      material: "Steel, zinc plated"
-      torque: "12 Nm"
-      notes: "Secures custom sprocket to motor shaft"
-    - item: "Chain tensioner hardware"
-      part_number: "M6x20-HEX"
-      specification: "M6 x 20mm hex head cap screw"
-      quantity: 2
-      unit_cost: 0.35
-      material: "Steel, zinc plated"
-      torque: "10 Nm"
-      notes: "Adjusts chain tension"
-    - item: "Throttle pedal mount bolts"
-      part_number: "M5x12-HEX"
-      specification: "M5 x 12mm hex head cap screw"
-      quantity: 2
-      unit_cost: 0.25
-      material: "Steel, zinc plated"
-      torque: "6 Nm"
-      notes: "Mounts throttle pedal to floor plate"
----
-
-# Powertrain Fasteners
-
 ## Overview
 
 This page documents all fasteners (bolts, nuts, washers) used in the powertrain assembly. Each fastener is identified by location, size, and purpose with reference photos showing exact positions.
@@ -657,71 +572,6 @@ This page documents all fasteners (bolts, nuts, washers) used in the powertrain 
 - **Notes**: Use threadlocker on bolts. Check tension after first 10 hours of operation.
 
 ??? example "View motor mounting bolts"
-    ![Motor mount bolt locations](images/motor-mount-bolts.jpg)
-
-## Transmission Hardware
-
-### Front Sprocket (Motor Shaft)
-- **Location**: Custom sprocket to motor shaft
-- **Fasteners**: 3x M6x16 hex head cap screws
-- **Torque**: 12 Nm
-- **Notes**: Evenly spaced around sprocket. Use threadlocker.
-
-### Chain Tensioning
-- **Location**: Chain tensioner mechanism
-- **Fasteners**: 2x M6x20 hex head cap screws
-- **Torque**: 10 Nm
-- **Notes**: Allows chain tension adjustment. Check weekly.
-
-??? example "View transmission fasteners"
-    ![Transmission bolt locations](images/transmission-bolts.jpg)
-
-## Throttle Pedal Hardware
-
-### Pedal Mount
-- **Location**: Throttle pedal to floor plate
-- **Fasteners**: 2x M5x12 hex head cap screws
-- **Torque**: 6 Nm
-- **Notes**: Ensure pedal is level and secure
-
-## Assembly Instructions
-
-### Installation Order
-1. **Motor mount bolts**: Install motor to chassis first
-2. **Front sprocket**: Attach custom sprocket to motor shaft
-3. **Rear sprocket**: Mount to axle (see chassis fasteners)
-4. **Chain**: Install and tension using tensioner hardware
-5. **Throttle pedal**: Mount to accessible floor location
-
-### Torque Sequence
-- Always torque in cross pattern for multi-bolt connections
-- Use threadlocker (blue, medium strength) on all critical bolts
-- Re-check torque after first operation session
-
-## Maintenance Schedule
-
-| Component | Check Frequency | Action |
-|-----------|-----------------|---------|
-| Motor mount bolts | Weekly | Visual inspection, retorque if loose |
-| Sprocket bolts | Bi-weekly | Check for looseness, clean threads |
-| Chain tensioner | Weekly | Adjust tension, lubricate threads |
-| Throttle mount | Monthly | Check for wear, ensure secure |
-
-## Procurement
-
-### Recommended Suppliers
-- **McMaster-Carr**: High-quality metric fasteners
-- **Bossard**: Professional fastener distributor
-- **Local hardware**: Basic bolts and nuts
-
-### Standard Materials
-- **Steel, zinc plated**: Standard for most applications
-- **Stainless steel**: For exposed locations (optional upgrade)
-- **Threadlocker**: Loctite 243 (blue, medium strength)
-
-## Total Fastener Cost
-- **Estimated cost**: €8.50 for complete powertrain fastener kit
-- **Recommended**: Purchase 25% extra for spares and maintenance
 
 ---
 
@@ -813,36 +663,8 @@ Suggested H-bridges by gpt:
 
 ## Angle Sensor
 
----
-# BOM Entry
-bom:
-  component_id: "AS5600_MAGNETIC_ENCODER"
-  part_number: "AS5600"
-  category: "sensor"
-  quantity: 1
-  unit_cost: 2.00
-  currency: "EUR"
-  status: "active"
-  criticality: "essential"
-  suppliers:
-    - name: "AliExpress"
-      notes: "Various AS5600 breakout boards"
-      verified: false
-    - name: "Amazon"
-      notes: "AS5600 magnetic encoder modules"
-      verified: false
-  specifications:
-    resolution: "12-bit"
-    interface: "I2C"
-    voltage: "3.3V or 5V"
-    magnetic_range: "360°"
-  notes: "Works with diametrically magnetized magnet or normal magnet rotated 90°"
----
-
-# Steering Angle Sensor
-
 Sensor used is the cheap AS5600
-![](20250608181732.png)
+![](images/20250608181732.png)
 
 Intended for use with a diametrically magnetized magnet, but works with a normal one turned 90 degrees too.
 It may be a good idea to find bigger neodymium diametric magnets.
@@ -863,54 +685,12 @@ It may be a good idea to find bigger neodymium diametric magnets.
 
 Repo with basic code to read the steering angle sensor (Arduino HAL with VSCode Platformio, no IDE): https://github.com/rubenayla/bluepill-angle-arduino.git
 
-![](20250608181003.png)
-![](20250608181018.png)
+![](images/20250608181003.png)
+![](images/20250608181018.png)
 
 ---
 
 ## Fasteners
-
----
-# BOM Entry
-bom:
-  assembly: "steering"
-  category: "fasteners"
-  components:
-    - item: "Coupling to motor bolts"
-      part_number: "M6x20-HEX"
-      specification: "M6 x 20mm hex head cap screw"
-      quantity: 4
-      unit_cost: 0.35
-      material: "Steel, zinc plated"
-      torque: "12 Nm"
-      notes: "Secures motor to coupling - Item #1 in assembly photo"
-    - item: "Main coupling bolt"
-      part_number: "M8x25-HEX"
-      specification: "M8 x 25mm hex head cap screw"
-      quantity: 1
-      unit_cost: 0.45
-      material: "Steel, grade 8.8"
-      torque: "20 Nm"
-      notes: "Main coupling bolt through steering shaft - Item #2 in assembly photo"
-    - item: "Sensor mounting screws"
-      part_number: "M3x8-HEX"
-      specification: "M3 x 8mm hex head cap screw"
-      quantity: 2
-      unit_cost: 0.20
-      material: "Steel, zinc plated"
-      torque: "3 Nm"
-      notes: "AS5600 sensor board mount - Item #3 in assembly photo"
-    - item: "Motor bracket bolts"
-      part_number: "M6x30-HEX"
-      specification: "M6 x 30mm hex head cap screw"
-      quantity: 2
-      unit_cost: 0.40
-      material: "Steel, zinc plated"
-      torque: "15 Nm"
-      notes: "Steering motor to chassis bracket"
----
-
-# Steering Assembly Fasteners
 
 ## Overview
 
@@ -1022,43 +802,11 @@ This page documents all fasteners used in the steering assembly with precise ide
 
 ## Microcontroller
 
----
-# BOM Entry
-bom:
-  component_id: "ESP32_WROOM_32"
-  part_number: "ESP32-WROOM-32"
-  category: "microcontroller"
-  quantity: 1
-  unit_cost: 3.50
-  currency: "EUR"
-  status: "active"
-  criticality: "essential"
-  suppliers:
-    - name: "Mouser"
-      part_number: "356-ESP32WROOM32"
-      url: "https://www.mouser.com/ProductDetail/356-ESP32WROOM32"
-      verified: true
-    - name: "AliExpress"
-      url: "https://www.aliexpress.com/wholesale?SearchText=esp32+wroom+32"
-      verified: false
-  specifications:
-    voltage: "3.3V"
-    current: "240mA"
-    temperature: "-40°C to +85°C"
-    flash: "4MB"
-    ram: "520KB"
-  alternatives:
-    - "ESP32-S3"
-    - "ESP32-C3"
----
-
-# ESP32
-
 The ESP32 is a series of low-cost, low-power system on a chip microcontrollers with integrated Wi-Fi and dual-mode Bluetooth. The ESP32 series employs a Tensilica Xtensa LX6 microprocessor in both dual-core and single-core variations and includes built-in antenna switches, RF balun, power amplifier, low-noise receive amplifier, filters, and power management modules.
 
 ## Key Features
 
-[![ESP32 Pinout](index/ESP32-pinout-diagram.jpg)](https://www.teachmemicro.com/)
+[![ESP32 Pinout](microcontroller/images/esp32/index/ESP32-pinout-diagram.jpg)](https://www.teachmemicro.com/)
 
 *   **CPU:** Xtensa dual-core (or single-core) 32-bit LX6 microprocessor
 *   **Clock Speed:** Up to 240 MHz
@@ -1140,9 +888,21 @@ TODO
 
 # To connect it to the rest of the kart, we use a custom made adapter board
 ## This is the version 1.0 of the adapter board
-Designed with [easyeda](https://easyeda.com/), can be downloaded [here](./index/ProProject_Orin Adapter_2025-03-09.epro)
-![](index/20250712031143.png)
-![](index/20250712031115.png)
+Designed with [easyeda](https://easyeda.com/), can be downloaded [here](computer/images/ProProject_Orin Adapter_2025-03-09.epro)
+
+### PCB Schematic
+
+The schematic shows the component values and connections:
+- **Power Supply**: 3.3V, 5V regulated outputs
+- **CAN Interface**: SN65HVD232DR transceiver for CAN communication
+- **Connectors**: 2.54-2*20 header for Orin connection
+- **Filtering Capacitors**: C1 (47nF), C2 (100nF) for noise suppression
+- **Resistors**: R1,R2 (60Ω), R3,R_T (330Ω), R4 (30Ω)
+- **Test Points**: T1, T2 for debugging
+
+### PCB Layout
+![](computer/images/20250712031143.png)
+![](computer/images/20250712031115.png)
 
 The path in our Owncloud folder is: `formula/formula 24-25/DV/ORIN/adapter/ProProject_Orin Adapter_2025-03-09.epro`
 
@@ -1178,11 +938,11 @@ TODO global diagram (Fritzing?)
 
 ## Throttle pedal sensor
 
-For throttle pedal sensor specifications and wiring, see [Throttle Pedal Hardware Documentation](../hardware/throttle-pedal/index.md).
+For throttle pedal sensor specifications and wiring, see [Throttle Pedal Documentation](../powertrain/throttle-pedal.md).
 
 ## ESP32 wiring
 
-For detailed ESP32 wiring connections including AS5600 sensor, motor driver, and Orin communication, see [ESP32 Hardware Documentation](../hardware/esp32/index.md#wiring-connections).
+For detailed ESP32 wiring connections including AS5600 sensor, motor driver, and Orin communication, see [ESP32 Microcontroller Documentation](microcontroller.md#wiring-connections).
 
 ---
 
@@ -1215,7 +975,7 @@ For battery placement rationale see the [FAQ](../../faq.md#battery).
 - Jiabaida BMS, 100A BT UART, NMC 6S-21S
 - https://www.notion.so/BMS-Bater-a-Kart-JBD-16078747314380e68688c3ab787fc1f7?pvs=21
 - https://es.aliexpress.com/item/1005007223779359.html
-![https://jiabaida-bms.com/blogs/content/jiabaida-sp22s003b-smart-bms-wiring-diagram?spm=a2g0o.detail.1000023.4.58c53GRk3GRk3N](index/20250608185913.png)
+![https://jiabaida-bms.com/blogs/content/jiabaida-sp22s003b-smart-bms-wiring-diagram?spm=a2g0o.detail.1000023.4.58c53GRk3GRk3N](images/20250608185913.png)
 -
 
 ---
@@ -1390,7 +1150,7 @@ Once all dependencies are correctly installed and the YOLOv5 model is configured
 
 ---
 
-## Assembly Instructions
+## Instructions
 
 This section contains instructions for assembling the kart.
 
