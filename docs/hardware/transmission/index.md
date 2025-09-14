@@ -8,12 +8,8 @@ The kart currently uses a **standard 219 pitch karting transmission system**. Th
 
 #### Chain
 
-<details>
-<summary>View gold 219 chain installed on the kart</summary>
-
-![Gold 219 chain installed on the kart](images/gold-chain-219.jpg)
-
-</details>
+??? example "View gold 219 chain installed on the kart"
+    ![Gold 219 chain installed on the kart](images/gold-chain-219.jpg)
 
 - **Type:** IRIS 219 pitch chain
 - **Color:** Gold
