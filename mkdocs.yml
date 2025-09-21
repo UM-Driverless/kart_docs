@@ -9,6 +9,7 @@ nav:
   - Home: index.md
   - BOM: bom/index.md
   - Assembly:
+      - Overview: assembly/index.md
       - Powertrain:
           - Overview: assembly/powertrain/index.md
           - Motor: assembly/powertrain/motor.md
@@ -17,7 +18,6 @@ nav:
           - Fasteners: assembly/powertrain/fasteners.md
       - Steering:
           - Overview: assembly/steering/index.md
-          - Motor & Coupling: assembly/steering/index.md
           - H-bridge: assembly/steering/h-bridge.md
           - Angle Sensor: assembly/steering/sensor/index.md
           - Fasteners: assembly/steering/fasteners.md
@@ -26,12 +26,11 @@ nav:
           - Computer: assembly/electronics/computer.md
           - DAC: assembly/electronics/dac.md
           - Wiring: assembly/electronics/wiring.md
-      - Power:
-          - Battery: assembly/power/battery.md
+          - Power:
+              - Battery: assembly/electronics/power/battery.md
       - Sensors:
           - Camera: assembly/sensors/camera.md
-      - Instructions: assembly/instructions.md
-  - Pneumatics: pneumatics/index.md
+      - Emergency Braking: assembly/emergency-braking/index.md
   - Hydraulics: hydraulics/index.md
   - Software: software/index.md
   - FAQ: faq.md

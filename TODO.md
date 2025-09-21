@@ -1,8 +1,43 @@
-let's add this image with the schematic of the pcb for the orin adapter board, with the other images
+continue claude
+
+> Ok now let's move Pneumatics to be the Emergency Braking system under Assembly, and power under electronics.
+
+● I'll reorganize the navigation structure as requested.
+
+● First, let me move the pneumatics folder to assembly/emergency-braking:
+
+● Bash(mv docs/pneumatics docs/assembly/emergency-braking)
+  ⎿  (No content)
+
+● Now let me move the power folder under electronics:
+
+● Bash(mv docs/assembly/power docs/assembly/electronics/power)
+  ⎿  (No content)
+
+● Now update the mkdocs.yml to reflect these changes:
+
+● Update(mkdocs.yml)
+  ⎿  Updated mkdocs.yml with 3 additions and 3 removals                    
+       26              - Computer: assembly/electronics/computer.md
+       27              - DAC: assembly/electronics/dac.md
+       28              - Wiring: assembly/electronics/wiring.md
+       29 -        - Power:
+       30 -            - Battery: assembly/power/battery.md
+       29 +            - Power:
+       30 +                - Battery: assembly/electronics/power/battery.md
+       31          - Sensors:
+       32              - Camera: assembly/sensors/camera.md
+       33 -    - Pneumatics: pneumatics/index.md
+       33 +        - Emergency Braking: assembly/emergency-braking/index.md
+       34      - Hydraulics: hydraulics/index.md
+       35      - Software: software/index.md
+       36      - FAQ: faq.md
+  ⎿  5-hour limit reached ∙ resets 10pm
 
 
-why are the llm files separate?
+then git commit and push
 
+---
 
 - Añadir pagina para el DAC
     - A largo plazo habrá que hacer una v2 de la placa de la blue pill que tenga un header que no se atasque al enchufar pero incluya el DAC y libere algunos pines más para poder conectar cosas varias

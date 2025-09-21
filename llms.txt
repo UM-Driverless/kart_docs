@@ -12,6 +12,9 @@ This page provides a comprehensive list of all components required to build the 
 
 ## Assembly & Software
 
+https://um-driverless.github.io/kart_docs/assembly
+This section contains instructions for assembling the kart.
+
 https://um-driverless.github.io/kart_docs/assembly/powertrain
 The powertrain assembly converts electrical energy into motion, consisting of the motor, transmis...
 
@@ -26,9 +29,6 @@ The throttle pedal sensor uses a linear Hall effect sensor (typically SS49E or s
 
 https://um-driverless.github.io/kart_docs/assembly/powertrain/fasteners
 This page documents all fasteners (bolts, nuts, washers) used in the powertrain assembly. Each fa...
-
-https://um-driverless.github.io/kart_docs/assembly/steering
-??? example "View steering mechanism with measurements"
 
 https://um-driverless.github.io/kart_docs/assembly/steering
 ??? example "View steering mechanism with measurements"
@@ -54,19 +54,16 @@ Model: MCP4725 I²C DAC Breakout Module
 https://um-driverless.github.io/kart_docs/assembly/electronics/wiring
 TODO global diagram (Fritzing?)
 
-https://um-driverless.github.io/kart_docs/assembly/power/battery
+https://um-driverless.github.io/kart_docs/assembly/electronics/power/battery
 The main pack uses Molicel P42A cells in a 13S4P configuration, providing a nominal voltage of ab...
 
 https://um-driverless.github.io/kart_docs/assembly/sensors/camera
 Hay que agregar el uso de los sensores, ademas de que habria que hacer una documentacion de los t...
 
-https://um-driverless.github.io/kart_docs/assembly/instructions
-This section contains instructions for assembling the kart.
+https://um-driverless.github.io/kart_docs/assembly/emergency-braking
+We need an emergency braking system that can be activated on loss of electrical power or error fr...
 
 ## Systems
-
-https://um-driverless.github.io/kart_docs/pneumatics
-We need an emergency braking system that can be activated on loss of electrical power or error fr...
 
 https://um-driverless.github.io/kart_docs/hydraulics
 - We are using flexible brake hoses with `M10x1.0 female inverted flare` connectors

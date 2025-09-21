@@ -1,7 +1,7 @@
 
 # Steering Assembly Fasteners
 
-## Overview
+## Fasteners Overview
 
 This page documents all fasteners used in the steering assembly with precise identification using the annotated reference photo. Each bolt is numbered for easy identification during assembly or maintenance.
 
