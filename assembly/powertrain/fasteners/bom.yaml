@@ -1,0 +1,152 @@
+assembly: "powertrain_fasteners"
+description: "Powertrain assembly fasteners and hardware"
+parent: "powertrain"
+components:
+  - id: "motor_mount_bolts"
+    part_number: "M8x30-HEX"
+    description: "Motor mount bolts"
+    category: "fasteners"
+    quantity: 4
+    unit_cost: 0.50
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "McMaster-Carr"
+        verified: true
+      - name: "Fastenal"
+        verified: true
+    specifications:
+      size: "M8 x 30mm"
+      type: "hex head cap screw"
+      material: "steel_zinc_plated"
+      torque_spec: "25 Nm"
+      thread_pitch: "1.25mm"
+    installation:
+      threadlocker: "blue_loctite_243"
+    maintenance:
+      check_frequency: "weekly"
+      torque_check: "monthly"
+    notes: "Secures motor to chassis mount"
+
+  - id: "motor_mount_nuts"
+    part_number: "M8-NUT"
+    description: "Motor mount nuts"
+    category: "fasteners"
+    quantity: 4
+    unit_cost: 0.15
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "McMaster-Carr"
+        verified: true
+      - name: "Fastenal"
+        verified: true
+    specifications:
+      size: "M8"
+      type: "hex nut (lock nuts recommended)"
+      material: "steel_zinc_plated"
+      thread_pitch: "1.25mm"
+    installation:
+      type: "lock_nuts_preferred"
+    notes: "Lock nuts for motor mount bolts"
+
+  - id: "front_sprocket_bolts"
+    part_number: "M6x16-HEX"
+    description: "Front sprocket bolts"
+    category: "fasteners"
+    quantity: 3
+    unit_cost: 0.30
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "McMaster-Carr"
+        verified: true
+      - name: "Fastenal"
+        verified: true
+    specifications:
+      size: "M6 x 16mm"
+      type: "hex head cap screw"
+      material: "steel_zinc_plated"
+      torque_spec: "12 Nm"
+      thread_pitch: "1.0mm"
+    installation:
+      threadlocker: "blue_loctite_243"
+    maintenance:
+      check_frequency: "weekly"
+      torque_check: "bi-weekly"
+    notes: "Secures custom sprocket to motor shaft"
+
+  - id: "chain_tensioner_hardware"
+    part_number: "M6x20-HEX"
+    description: "Chain tensioner hardware"
+    category: "fasteners"
+    quantity: 2
+    unit_cost: 0.35
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "McMaster-Carr"
+        verified: true
+      - name: "Fastenal"
+        verified: true
+    specifications:
+      size: "M6 x 20mm"
+      type: "hex head cap screw"
+      material: "steel_zinc_plated"
+      torque_spec: "10 Nm"
+      thread_pitch: "1.0mm"
+    installation:
+      threadlocker: "blue_loctite_243"
+      adjustable: true
+    maintenance:
+      check_frequency: "weekly"
+      torque_check: "monthly"
+      adjustment_check: "bi-weekly"
+    notes: "Adjusts chain tension - critical for proper operation"
+
+  - id: "throttle_pedal_mount_bolts"
+    part_number: "M5x12-HEX"
+    description: "Throttle pedal mount bolts"
+    category: "fasteners"
+    quantity: 2
+    unit_cost: 0.25
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "McMaster-Carr"
+        verified: true
+      - name: "Fastenal"
+        verified: true
+    specifications:
+      size: "M5 x 12mm"
+      type: "hex head cap screw"
+      material: "steel_zinc_plated"
+      torque_spec: "6 Nm"
+      thread_pitch: "0.8mm"
+    installation:
+      threadlocker: "blue_loctite_243"
+    maintenance:
+      check_frequency: "monthly"
+      torque_check: "quarterly"
+    notes: "Mounts throttle pedal to floor plate"
+
+assembly_info:
+  total_cost: 6.20
+  spare_parts_recommendation: "25% extra quantity"
+  tools_required:
+    - "Hex key set: 5mm, 6mm, 8mm"
+    - "Torque wrench: 0-30 Nm range"
+    - "Loctite 243 threadlocker"
+  critical_maintenance:
+    - "Chain tensioner adjustment critical for performance"
+    - "Motor mount bolts are high-stress connections"
+    - "Front sprocket bolts experience high torque loads"
+  safety_notes:
+    - "All powertrain fasteners are safety-critical"
+    - "Motor mount failure could cause dangerous loss of propulsion"
+    - "Loose chain tensioner can cause chain to jump or break"

@@ -1,0 +1,139 @@
+assembly: "steering_fasteners"
+description: "Steering assembly fasteners and hardware"
+parent: "steering"
+components:
+  - id: "coupling_motor_bolts"
+    part_number: "M6x20-HEX"
+    description: "Coupling to motor bolts"
+    category: "fasteners"
+    quantity: 4
+    unit_cost: 0.35
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "McMaster-Carr"
+        verified: true
+      - name: "Fastenal"
+        verified: true
+    specifications:
+      size: "M6 x 20mm"
+      type: "hex head cap screw"
+      material: "steel_zinc_plated"
+      torque_spec: "12 Nm"
+      thread_pitch: "1.0mm"
+    installation:
+      sequence: 3
+      threadlocker: "blue_loctite_243"
+      torque_pattern: "cross"
+    maintenance:
+      check_frequency: "weekly"
+      torque_check: "monthly"
+    notes: "Secures motor to coupling - Item #1 in assembly photo"
+
+  - id: "main_coupling_bolt"
+    part_number: "M8x25-HEX"
+    description: "Main coupling bolt"
+    category: "fasteners"
+    quantity: 1
+    unit_cost: 0.45
+    currency: "EUR"
+    status: "active"
+    criticality: "critical"
+    suppliers:
+      - name: "McMaster-Carr"
+        verified: true
+      - name: "Auto parts stores"
+        notes: "Grade 8.8 bolts available locally"
+    specifications:
+      size: "M8 x 25mm"
+      type: "hex head cap screw"
+      material: "steel_grade_8.8"
+      torque_spec: "20 Nm"
+      thread_pitch: "1.25mm"
+    installation:
+      sequence: 4
+      threadlocker: "blue_loctite_243"
+      critical: true
+    maintenance:
+      check_frequency: "bi-weekly"
+      torque_check: "bi-weekly"
+    notes: "Main coupling bolt through steering shaft - Item #2 in assembly photo. CRITICAL: Failure disables steering"
+
+  - id: "sensor_mount_screws"
+    part_number: "M3x8-HEX"
+    description: "Sensor mounting screws"
+    category: "fasteners"
+    quantity: 2
+    unit_cost: 0.20
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "McMaster-Carr"
+        verified: true
+      - name: "Electronics suppliers"
+        notes: "Common with sensor breakout boards"
+    specifications:
+      size: "M3 x 8mm"
+      type: "hex head cap screw"
+      material: "steel_zinc_plated"
+      torque_spec: "3 Nm"
+      thread_pitch: "0.5mm"
+    installation:
+      sequence: 1
+      threadlocker: "none"
+      technique: "hand_tighten_plus_quarter_turn"
+    maintenance:
+      check_frequency: "monthly"
+      torque_check: "quarterly"
+    notes: "AS5600 sensor board mount - Item #3 in assembly photo. CAUTION: Do not over-torque"
+
+  - id: "motor_bracket_bolts"
+    part_number: "M6x30-HEX"
+    description: "Motor bracket bolts"
+    category: "fasteners"
+    quantity: 2
+    unit_cost: 0.40
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "McMaster-Carr"
+        verified: true
+      - name: "Fastenal"
+        verified: true
+    specifications:
+      size: "M6 x 30mm"
+      type: "hex head cap screw"
+      material: "steel_zinc_plated"
+      torque_spec: "15 Nm"
+      thread_pitch: "1.0mm"
+    installation:
+      sequence: 2
+      threadlocker: "blue_loctite_243"
+      alignment_critical: true
+    maintenance:
+      check_frequency: "weekly"
+      torque_check: "monthly"
+      inspection_notes: "Check for vibration loosening"
+    notes: "Steering motor to chassis bracket"
+
+assembly_info:
+  total_cost: 5.50
+  spare_parts_recommendation: "25% extra quantity"
+  tools_required:
+    - "Hex key set: 3mm, 6mm, 8mm"
+    - "Torque wrench: 0-25 Nm range"
+    - "Loctite 243 threadlocker"
+  installation_sequence:
+    1: "Install AS5600 sensor with M3x8 screws"
+    2: "Mount motor to chassis with M6x30 bracket bolts"
+    3: "Connect motor to shaft coupling with M6x20 bolts"
+    4: "Install main coupling bolt M8x25 (CRITICAL)"
+    5: "Test smooth operation and sensor readings"
+  safety_notes:
+    - "All steering fasteners are safety-critical"
+    - "Use specified torque values"
+    - "Inspect regularly for looseness"
+    - "Main coupling bolt failure disables steering completely"

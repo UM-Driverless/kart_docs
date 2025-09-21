@@ -9,18 +9,22 @@
       
       
       
+        <link rel="prev" href="../../electronics/power/battery/">
       
       
-      <link rel="icon" href="/assets/images/favicon.png">
+        <link rel="next" href="../../emergency-braking/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
     
     
       
-        <title>Driverless Kart Documentation</title>
+        <title>Camera - Driverless Kart Documentation</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.7e37652d.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7e37652d.min.css">
       
       
 
@@ -39,7 +43,7 @@
       
     
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -57,6 +61,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#zed2-camera-integration-documentation" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -69,7 +78,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="Driverless Kart Documentation" class="md-header__button md-logo" aria-label="Driverless Kart Documentation" data-md-component="logo">
+    <a href="../../.." title="Driverless Kart Documentation" class="md-header__button md-logo" aria-label="Driverless Kart Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -89,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Camera
             
           </span>
         </div>
@@ -179,7 +188,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="Driverless Kart Documentation" class="md-nav__button md-logo" aria-label="Driverless Kart Documentation" data-md-component="logo">
+    <a href="../../.." title="Driverless Kart Documentation" class="md-nav__button md-logo" aria-label="Driverless Kart Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -209,7 +218,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -231,7 +240,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/bom/" class="md-nav__link">
+      <a href="../../../bom/" class="md-nav__link">
         
   
   
@@ -250,18 +259,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -277,7 +288,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Assembly
@@ -291,7 +302,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/assembly/" class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         
   
   
@@ -352,7 +363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/assembly/powertrain/" class="md-nav__link">
+      <a href="../../powertrain/" class="md-nav__link">
         
   
   
@@ -375,7 +386,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/assembly/powertrain/motor/" class="md-nav__link">
+      <a href="../../powertrain/motor/" class="md-nav__link">
         
   
   
@@ -398,7 +409,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/assembly/powertrain/transmission/" class="md-nav__link">
+      <a href="../../powertrain/transmission/" class="md-nav__link">
         
   
   
@@ -421,7 +432,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/assembly/powertrain/throttle-pedal/" class="md-nav__link">
+      <a href="../../powertrain/throttle-pedal/" class="md-nav__link">
         
   
   
@@ -444,7 +455,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/assembly/powertrain/fasteners/" class="md-nav__link">
+      <a href="../../powertrain/fasteners/" class="md-nav__link">
         
   
   
@@ -513,7 +524,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/assembly/steering/" class="md-nav__link">
+      <a href="../../steering/" class="md-nav__link">
         
   
   
@@ -536,7 +547,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/assembly/steering/h-bridge/" class="md-nav__link">
+      <a href="../../steering/h-bridge/" class="md-nav__link">
         
   
   
@@ -559,7 +570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/assembly/steering/sensor/" class="md-nav__link">
+      <a href="../../steering/sensor/" class="md-nav__link">
         
   
   
@@ -582,7 +593,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/assembly/steering/fasteners/" class="md-nav__link">
+      <a href="../../steering/fasteners/" class="md-nav__link">
         
   
   
@@ -651,7 +662,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/assembly/electronics/microcontroller/" class="md-nav__link">
+      <a href="../../electronics/microcontroller/" class="md-nav__link">
         
   
   
@@ -674,7 +685,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/assembly/electronics/computer/" class="md-nav__link">
+      <a href="../../electronics/computer/" class="md-nav__link">
         
   
   
@@ -697,7 +708,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/assembly/electronics/dac/" class="md-nav__link">
+      <a href="../../electronics/dac/" class="md-nav__link">
         
   
   
@@ -720,7 +731,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/assembly/electronics/wiring/" class="md-nav__link">
+      <a href="../../electronics/wiring/" class="md-nav__link">
         
   
   
@@ -781,7 +792,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/assembly/electronics/power/battery/" class="md-nav__link">
+      <a href="../../electronics/power/battery/" class="md-nav__link">
         
   
   
@@ -817,18 +828,20 @@
                 
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" checked>
         
           
           <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
@@ -844,7 +857,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_5">
             <span class="md-nav__icon md-icon"></span>
             Sensors
@@ -855,10 +868,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/assembly/sensors/camera/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Camera
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -869,6 +904,119 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#official-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Official Resources
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-zed2-camera" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware: ZED2 Camera
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ros-2-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROS 2 Integration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ROS 2 Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation Requirements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#launching-the-camera" class="md-nav__link">
+    <span class="md-ellipsis">
+      Launching the Camera
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cone-detection-with-yolov5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cone Detection with YOLOv5
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cone Detection with YOLOv5">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exporting-and-using-a-custom-yolov5-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exporting and Using a Custom YOLOv5 Model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#first-time-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      First-Time Optimization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -889,7 +1037,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/assembly/emergency-braking/" class="md-nav__link">
+      <a href="../../emergency-braking/" class="md-nav__link">
         
   
   
@@ -919,7 +1067,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/hydraulics/" class="md-nav__link">
+      <a href="../../../hydraulics/" class="md-nav__link">
         
   
   
@@ -941,7 +1089,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/software/" class="md-nav__link">
+      <a href="../../../software/" class="md-nav__link">
         
   
   
@@ -963,7 +1111,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/faq/" class="md-nav__link">
+      <a href="../../../faq/" class="md-nav__link">
         
   
   
@@ -985,7 +1133,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/contact/" class="md-nav__link">
+      <a href="../../../contact/" class="md-nav__link">
         
   
   
@@ -1017,6 +1165,109 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#official-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      Official Resources
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hardware-zed2-camera" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware: ZED2 Camera
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ros-2-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROS 2 Integration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ROS 2 Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation Requirements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#launching-the-camera" class="md-nav__link">
+    <span class="md-ellipsis">
+      Launching the Camera
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cone-detection-with-yolov5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cone Detection with YOLOv5
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cone Detection with YOLOv5">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exporting-and-using-a-custom-yolov5-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exporting and Using a Custom YOLOv5 Model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#first-time-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      First-Time Optimization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1028,8 +1279,172 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+  
+  
+
+
+<!-- TODO
+Hay que agregar el uso de los sensores, ademas de que habria que hacer una documentacion de los topics que se usan de la camara.
+
+Hay que agregar tambien cuales paquetes hay que instalar para poder visualizar la deteccion de los conos en rviz2
+-->
+
+<h1 id="zed2-camera-integration-documentation">ZED2 Camera Integration Documentation</h1>
+<h2 id="overview">Overview</h2>
+<p>This document describes the integration of the <strong>ZED2 stereo camera</strong> into the kart, its usage through the <strong>ROS 2 wrapper</strong>, and the combination with <strong>YOLOv5</strong> for cone detection. </p>
+<h2 id="official-resources">Official Resources</h2>
+<ul>
+<li><strong>ZED2 Camera Overview</strong>: <a href="https://www.stereolabs.com/zed-2/">https://www.stereolabs.com/zed-2/</a></li>
+<li><strong>ZED ROS 2 Wrapper Documentation</strong>: <a href="https://docs.stereolabs.com/ros2/">https://docs.stereolabs.com/ros2/</a></li>
+</ul>
+<h2 id="hardware-zed2-camera">Hardware: ZED2 Camera</h2>
+<p>The <a href="https://www.stereolabs.com/zed-2/">ZED2</a> camera by Stereolabs is a stereo vision camera capable of providing:</p>
+<ul>
+<li>High-definition left and right stereo images</li>
+<li>Depth sensing</li>
+<li>3D point clouds</li>
+<li>Positional tracking (6DoF)</li>
+<li>Integrated IMU sensors (accelerometer, gyroscope, magnetometer)</li>
+<li>Environmental sensors (barometer, temperature sensor)</li>
+</ul>
+<h2 id="ros-2-integration">ROS 2 Integration</h2>
+<p>The ZED2 camera is integrated into the project using the <strong>official Stereolabs ZED ROS 2 Wrapper</strong>:</p>
+<ul>
+<li>GitHub: <a href="https://github.com/stereolabs/zed-ros2-wrapper">https://github.com/stereolabs/zed-ros2-wrapper</a></li>
+</ul>
+<h3 id="installation-requirements">Installation Requirements</h3>
+<p>To properly install and run the <strong>ZED ROS 2 Wrapper</strong> with the ZED2 camera, you must ensure the following dependencies and system configuration are in place.</p>
+<ul>
+<li>
+<p>Operating System</p>
+<ul>
+<li><strong>Ubuntu 24.04 LTS</strong> is the recommended version for this setup.</li>
+<li>Other Ubuntu versions may be used; however, note that dependencies such as CUDA, TensorRT, ROS2, and the ZED SDK may require different versions and additional compatibility testing.</li>
+</ul>
+</li>
+<li>
+<p>ROS 2 Jazzy</p>
+<ul>
+<li>Install <strong>ROS 2 Jazzy</strong> by following the official instructions here:<br />
+<a href="https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html">https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html</a></li>
+</ul>
+</li>
+<li>
+<p>CUDA Toolkit (12.0 to 12.9)</p>
+<ul>
+<li>Install <strong>CUDA 12.x</strong> (any version from 12.0 to 12.9 is compatible).</li>
+<li>Download from the official NVIDIA website:<br />
+<a href="https://developer.nvidia.com/cuda-downloads">https://developer.nvidia.com/cuda-downloads</a></li>
+</ul>
+</li>
+<li>
+<p>ZED SDK (v5.0)</p>
+<ul>
+<li>Download and install <strong>ZED SDK v5.0</strong> for Ubuntu 24.04 with CUDA 12 and TensorRT 10 from the official release page:<br />
+<a href="https://www.stereolabs.com/en-es/developers/release/5.0#82af3640d775">https://www.stereolabs.com/en-es/developers/release/5.0#82af3640d775</a></li>
+</ul>
+</li>
+<li>
+<p>TensorRT 10</p>
+<ul>
+<li>Download the <strong>TensorRT 10</strong> <code>.deb</code> package for Ubuntu 24.04 + CUDA 12.9 from the official NVIDIA repository:<br />
+<a href="https://developer.nvidia.com/downloads/compute/machine-learning/tensorrt/10.10.0/local_repo/nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9_1.0-1_amd64.deb">https://developer.nvidia.com/downloads/compute/machine-learning/tensorrt/10.10.0/local_repo/nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9_1.0-1_amd64.deb</a></li>
+</ul>
+<p>After downloading the <code>.deb</code> file, run the following commands to install it:</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9_1.0-1_amd64.deb
+sudo<span class="w"> </span>apt<span class="w"> </span>update
+</code></pre></div>
+<p>If you encounter <strong>GPG key errors</strong>, follow these additional steps:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>cp<span class="w"> </span>/var/nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9/*.gpg<span class="w"> </span>/usr/share/keyrings/
+
+sudo<span class="w"> </span>nano<span class="w"> </span>/etc/apt/sources.list.d/nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9.list
+</code></pre></div>
+<p>Replace the content of the file with:</p>
+<div class="highlight"><pre><span></span><code>deb<span class="w"> </span><span class="o">[</span>signed-by<span class="o">=</span>/usr/share/keyrings/nv-tensorrt-local-CD20EDBE-keyring.gpg<span class="o">]</span><span class="w"> </span>file:///var/nv-tensorrt-local-repo-ubuntu2404-10.10.0-cuda-12.9<span class="w"> </span>/
+</code></pre></div>
+<p>Then update again:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</code></pre></div>
+<p>This should resolve the key issues.</p>
+<p>Finally, install the required TensorRT runtime libraries:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libnvinfer10<span class="w"> </span>libnvinfer-dev<span class="w"> </span>libnvinfer-plugin-dev<span class="w"> </span>python3-libnvinfer
+</code></pre></div>
+<ul>
+<li>
+<p>ZED ROS 2 Wrapper</p>
+<ul>
+<li>Clone and build the <strong>zed-ros2-wrapper</strong> package in your existing ROS 2 workspace:</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/ros2_ws/src
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/stereolabs/zed-ros2-wrapper.git
+<span class="nb">cd</span><span class="w"> </span>..
+rosdep<span class="w"> </span>install<span class="w"> </span>--from-paths<span class="w"> </span>src<span class="w"> </span>--ignore-src<span class="w"> </span>-r<span class="w"> </span>-y
+colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install
+</code></pre></div>
+<p>Official repository:<br />
+<a href="https://github.com/stereolabs/zed-ros2-wrapper">https://github.com/stereolabs/zed-ros2-wrapper</a></p>
+<hr />
+<p>Once all the dependencies are installed and the wrapper is successfully built, you should be able to launch the ZED2 ROS 2 node without issues.</p>
+<h3 id="launching-the-camera">Launching the Camera</h3>
+<p>The camera is launched using a provided launch file, typically:</p>
+<div class="highlight"><pre><span></span><code>ros2<span class="w"> </span>launch<span class="w"> </span>zed_wrapper<span class="w"> </span>zed_camera.launch.py<span class="w"> </span>camera_model:<span class="o">=</span>zed2
+</code></pre></div>
+<!-- ### Published Topics of Interest
+
+CORREGIR POR TOPICS CORRECTOS
+
+| Topic Name                             | Message Type                | Description                                    |
+|----------------------------------------|-----------------------------|------------------------------------------------|
+| `/zed2/zed_node/left/image_rect_color` | `sensor_msgs/Image`         | Rectified color image from left camera         |
+| `/zed2/zed_node/depth/depth_registered`| `sensor_msgs/Image`         | Depth image aligned to the left camera         |
+| `/zed2/zed_node/imu/data`              | `sensor_msgs/Imu`           | IMU data (accelerometer + gyroscope + orientation) |
+| `/zed2/zed_node/point_cloud/cloud_registered` | `sensor_msgs/PointCloud2` | Registered 3D point cloud                      |
+| `/zed2/zed_node/odom`                  | `nav_msgs/Odometry`         | Visual odometry (pose estimation)              | -->
+
+<h2 id="cone-detection-with-yolov5">Cone Detection with YOLOv5</h2>
+<p>In this project, <strong>YOLOv5</strong> is used to perform <strong>real-time cone detection</strong> on images captured by the ZED2 camera.
+The ZED ROS 2 Wrapper supports custom object detection models through <strong>ONNX integration</strong>, allowing you to run your own trained detectors such as YOLOv5 directly on the GPU using <strong>TensorRT</strong> for real-time inference.</p>
+<h3 id="exporting-and-using-a-custom-yolov5-model">Exporting and Using a Custom YOLOv5 Model</h3>
+<p>If you have trained a YOLOv5 model (e.g., for cone detection), follow these steps to integrate it into the ZED wrapper:</p>
+<ol>
+<li><strong>Export the model to ONNX format</strong>:<br />
+   You can do this using PyTorch and the YOLOv5 export tools (e.g., <code>export.py</code> script from the <a href="https://github.com/ultralytics/yolov5">YOLOv5 repository</a>):</li>
+</ol>
+<p>This will generate a <code>.onnx</code> file.</p>
+<ol>
+<li><strong>Enable object detection in the ZED wrapper</strong> by editing the configuration file:</li>
+</ol>
+<p>Open your <code>common_stereo.yaml</code> (located in your ROS 2 workspace, inside <code>zed-ros2-wrapper/zed_wrapper/config</code>), and modify or add the following lines:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">object_detection</span><span class="p">:</span>
+<span class="w">     </span><span class="nt">od_enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"> </span>
+<span class="w">     </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;CUSTOM_YOLOLIKE_BOX_OBJECTS&#39;</span>
+<span class="w">     </span><span class="nt">custom_onnx_file</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;$path</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">model&#39;</span>
+</code></pre></div>
+<h3 id="first-time-optimization">First-Time Optimization</h3>
+<p>The first time you launch the node with your custom ONNX model, <strong>TensorRT will optimize the model for inference</strong>, which may take additional time (several seconds to minutes depending on the system).<br />
+Subsequent runs will be much faster, as the optimized engine will be cached and reused.</p>
+<hr />
+<p>Once all dependencies are correctly installed and the YOLOv5 model is configured, you should be able to run real-time object detection with the ZED2 camera using ROS 2.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -1065,10 +1480,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "/", "features": [], "search": "/assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="/assets/javascripts/bundle.92b07e13.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.92b07e13.min.js"></script>
       
     
   </body>

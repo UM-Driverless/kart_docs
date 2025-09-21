@@ -12,7 +12,7 @@
         <link rel="prev" href="..">
       
       
-        <link rel="next" href="../assemblies/powertrain/">
+        <link rel="next" href="../assembly/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -299,28 +299,73 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#summary-by-category" class="md-nav__link">
+  <a href="#how-to-add-components-to-bom" class="md-nav__link">
     <span class="md-ellipsis">
-      Summary by Category
+      How to Add Components to BOM
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Summary by Category">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bom-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      BOM Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assembly-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assembly Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Assembly Overview">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#core-systems" class="md-nav__link">
+  <a href="#powertrain-assembly" class="md-nav__link">
     <span class="md-ellipsis">
-      Core Systems
+      🔧 Powertrain Assembly
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#transmission-system" class="md-nav__link">
+  <a href="#steering-assembly" class="md-nav__link">
     <span class="md-ellipsis">
-      Transmission System
+      🎮 Steering Assembly
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#electronics-assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      💻 Electronics Assembly
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power-assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚡ Power Assembly
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensors-assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      📷 Sensors Assembly
     </span>
   </a>
   
@@ -332,26 +377,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cost-summary" class="md-nav__link">
+  <a href="#estimated-project-costs" class="md-nav__link">
     <span class="md-ellipsis">
-      Cost Summary
+      Estimated Project Costs
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Cost Summary">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#cost-breakdown-details" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cost Breakdown Details
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -362,16 +392,49 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#supplier-recommendations" class="md-nav__link">
+    <nav class="md-nav" aria-label="Component Status">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#active-components" class="md-nav__link">
     <span class="md-ellipsis">
-      Supplier Recommendations
+      ✅ Active Components
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Supplier Recommendations">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#needs-replacement" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚠️ Needs Replacement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Custom Components
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supplier-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supplier Information
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Supplier Information">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -384,9 +447,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#quality-notes" class="md-nav__link">
+  <a href="#quality-guidelines" class="md-nav__link">
     <span class="md-ellipsis">
-      Quality Notes
+      Quality Guidelines
     </span>
   </a>
   
@@ -407,11 +470,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#adding-components-to-bom" class="md-nav__link">
+  <a href="#working-with-yaml-bom-files" class="md-nav__link">
     <span class="md-ellipsis">
-      Adding Components to BOM
+      Working with YAML BOM Files
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Working with YAML BOM Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-new-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding New Components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yaml-file-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      YAML File Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#future-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future Automation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -467,46 +563,8 @@
   
   
   
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
-        
-          
-          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    Powertrain
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_1">
-            <span class="md-nav__icon md-icon"></span>
-            Powertrain
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
     <li class="md-nav__item">
-      <a href="../assemblies/powertrain/" class="md-nav__link">
+      <a href="../assembly/" class="md-nav__link">
         
   
   
@@ -517,106 +575,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../assemblies/powertrain/motor/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Motor
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../assemblies/powertrain/transmission/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Transmission
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../assemblies/powertrain/throttle-pedal/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Throttle Pedal
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../assemblies/powertrain/fasteners/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Fasteners
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
     </li>
   
 
@@ -645,7 +603,7 @@
   
   
   <span class="md-ellipsis">
-    Steering
+    Powertrain
     
   </span>
   
@@ -656,7 +614,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_2">
             <span class="md-nav__icon md-icon"></span>
-            Steering
+            Powertrain
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -667,7 +625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../assemblies/steering/" class="md-nav__link">
+      <a href="../assembly/powertrain/" class="md-nav__link">
         
   
   
@@ -690,12 +648,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../assemblies/steering/" class="md-nav__link">
+      <a href="../assembly/powertrain/motor/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Overview
+    Motor
     
   </span>
   
@@ -713,12 +671,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../assemblies/steering/h-bridge/" class="md-nav__link">
+      <a href="../assembly/powertrain/transmission/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    H-bridge
+    Transmission
     
   </span>
   
@@ -736,12 +694,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../assemblies/steering/sensor/" class="md-nav__link">
+      <a href="../assembly/powertrain/throttle-pedal/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Angle Sensor
+    Throttle Pedal
     
   </span>
   
@@ -759,7 +717,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../assemblies/steering/fasteners/" class="md-nav__link">
+      <a href="../assembly/powertrain/fasteners/" class="md-nav__link">
         
   
   
@@ -806,7 +764,7 @@
   
   
   <span class="md-ellipsis">
-    Electronics
+    Steering
     
   </span>
   
@@ -817,7 +775,7 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_3">
             <span class="md-nav__icon md-icon"></span>
-            Electronics
+            Steering
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -828,12 +786,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../assemblies/electronics/microcontroller/" class="md-nav__link">
+      <a href="../assembly/steering/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Microcontroller
+    Overview
     
   </span>
   
@@ -851,12 +809,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../assemblies/electronics/computer/" class="md-nav__link">
+      <a href="../assembly/steering/h-bridge/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Computer
+    H-bridge
     
   </span>
   
@@ -874,12 +832,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../assemblies/electronics/dac/" class="md-nav__link">
+      <a href="../assembly/steering/sensor/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    DAC
+    Angle Sensor
     
   </span>
   
@@ -897,12 +855,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../assemblies/electronics/wiring/" class="md-nav__link">
+      <a href="../assembly/steering/fasteners/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Wiring
+    Fasteners
     
   </span>
   
@@ -944,7 +902,7 @@
   
   
   <span class="md-ellipsis">
-    Power
+    Electronics
     
   </span>
   
@@ -954,6 +912,136 @@
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Electronics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assembly/electronics/microcontroller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Microcontroller
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assembly/electronics/computer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Computer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assembly/electronics/dac/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DAC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assembly/electronics/wiring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Wiring
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4_5" id="__nav_3_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Power
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4_5">
             <span class="md-nav__icon md-icon"></span>
             Power
           </label>
@@ -966,7 +1054,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../assemblies/power/battery/" class="md-nav__link">
+      <a href="../assembly/electronics/power/battery/" class="md-nav__link">
         
   
   
@@ -977,6 +1065,14 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1035,7 +1131,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../assemblies/sensors/camera/" class="md-nav__link">
+      <a href="../assembly/sensors/camera/" class="md-nav__link">
         
   
   
@@ -1059,53 +1155,32 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assembly/emergency-braking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Emergency Braking
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../assembly/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Assembly Instructions
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../pneumatics/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Pneumatics
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1234,28 +1309,73 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#summary-by-category" class="md-nav__link">
+  <a href="#how-to-add-components-to-bom" class="md-nav__link">
     <span class="md-ellipsis">
-      Summary by Category
+      How to Add Components to BOM
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Summary by Category">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bom-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      BOM Structure
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assembly-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assembly Overview
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Assembly Overview">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#core-systems" class="md-nav__link">
+  <a href="#powertrain-assembly" class="md-nav__link">
     <span class="md-ellipsis">
-      Core Systems
+      🔧 Powertrain Assembly
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#transmission-system" class="md-nav__link">
+  <a href="#steering-assembly" class="md-nav__link">
     <span class="md-ellipsis">
-      Transmission System
+      🎮 Steering Assembly
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#electronics-assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      💻 Electronics Assembly
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power-assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚡ Power Assembly
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensors-assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      📷 Sensors Assembly
     </span>
   </a>
   
@@ -1267,26 +1387,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cost-summary" class="md-nav__link">
+  <a href="#estimated-project-costs" class="md-nav__link">
     <span class="md-ellipsis">
-      Cost Summary
+      Estimated Project Costs
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Cost Summary">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#cost-breakdown-details" class="md-nav__link">
-    <span class="md-ellipsis">
-      Cost Breakdown Details
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1297,16 +1402,49 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#supplier-recommendations" class="md-nav__link">
+    <nav class="md-nav" aria-label="Component Status">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#active-components" class="md-nav__link">
     <span class="md-ellipsis">
-      Supplier Recommendations
+      ✅ Active Components
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Supplier Recommendations">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#needs-replacement" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚠️ Needs Replacement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Custom Components
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#supplier-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supplier Information
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Supplier Information">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1319,9 +1457,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#quality-notes" class="md-nav__link">
+  <a href="#quality-guidelines" class="md-nav__link">
     <span class="md-ellipsis">
-      Quality Notes
+      Quality Guidelines
     </span>
   </a>
   
@@ -1342,11 +1480,44 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#adding-components-to-bom" class="md-nav__link">
+  <a href="#working-with-yaml-bom-files" class="md-nav__link">
     <span class="md-ellipsis">
-      Adding Components to BOM
+      Working with YAML BOM Files
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Working with YAML BOM Files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-new-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adding New Components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yaml-file-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      YAML File Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#future-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Future Automation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1371,175 +1542,201 @@
 
 <h1 id="bill-of-materials-bom">Bill of Materials (BOM)</h1>
 <h2 id="overview">Overview</h2>
-<p>This page provides a comprehensive list of all components required to build the driverless kart. Each component is documented with specifications, suppliers, costs, and alternatives.</p>
+<p>This page provides a comprehensive list of all components required to build the driverless kart. Component data is now stored in YAML files within each assembly folder, following the project structure.</p>
 <div class="admonition info">
-<p class="admonition-title">BOM Management</p>
-<p>Component details are maintained in the individual hardware documentation pages using YAML frontmatter. This page provides consolidated views and summaries.</p>
+<p class="admonition-title">New BOM Management System</p>
+<p>Components are now managed via separate YAML files in each assembly folder. The folder structure represents the BOM tree itself, eliminating synchronization issues.</p>
 </div>
-<h2 id="summary-by-category">Summary by Category</h2>
-<h3 id="core-systems">Core Systems</h3>
+<h2 id="how-to-add-components-to-bom">How to Add Components to BOM</h2>
+<p>Adding a new component is simple:</p>
+<ol>
+<li><strong>Find the right folder</strong> - Navigate to the appropriate assembly folder (e.g., <code>docs/assembly/steering/</code>)</li>
+<li><strong>Edit the bom.yaml file</strong> - Open the <code>bom.yaml</code> file in that folder</li>
+<li><strong>Add your component</strong> - Copy an existing component entry and modify it with your new component's details</li>
+<li><strong>Include key information</strong>:</li>
+<li><code>id</code>: unique identifier (e.g., "motor_controller_v2")</li>
+<li><code>part_number</code>: manufacturer part number</li>
+<li><code>description</code>: what it is</li>
+<li><code>quantity</code>: how many needed</li>
+<li><code>unit_cost</code>: price per unit</li>
+<li><code>suppliers</code>: where to buy it (name, url)</li>
+</ol>
+<p>That's it! The component will automatically appear in BOM reports.</p>
+<h2 id="bom-structure">BOM Structure</h2>
+<p>The BOM is organized by assembly with YAML files containing detailed component specifications:</p>
+<div class="highlight"><pre><span></span><code>docs/assembly/
+├── powertrain/
+│   ├── bom.yaml              # Motor, throttle pedal
+│   ├── transmission/bom.yaml # Chain, sprockets
+│   └── fasteners/bom.yaml    # All powertrain fasteners
+├── steering/
+│   ├── bom.yaml              # H-bridge, motor, sensor, coupling
+│   └── fasteners/bom.yaml    # All steering fasteners
+├── electronics/bom.yaml      # Orin, ESP32, DAC, level shifter
+├── power/bom.yaml            # Battery cells, BMS, auxiliary battery
+└── sensors/bom.yaml          # ZED2 camera, YOLOv5 models
+</code></pre></div>
+<h2 id="assembly-overview">Assembly Overview</h2>
+<h3 id="powertrain-assembly">🔧 Powertrain Assembly</h3>
+<p><strong>Components</strong>: Motor, transmission system, throttle control
+- <strong>Main Components</strong>: <a href="../assembly/powertrain/bom.yaml">Powertrain BOM</a>
+- <strong>Transmission</strong>: <a href="../assembly/powertrain/transmission/bom.yaml">Transmission BOM</a>
+- <strong>Fasteners</strong>: <a href="../assembly/powertrain/fasteners/bom.yaml">Powertrain Fasteners BOM</a>
+- <strong>Documentation</strong>: <a href="../assembly/powertrain/">Powertrain Assembly</a></p>
+<p><strong>Key Components:</strong>
+- Kunray MY1020 3000W motor (€150.00)
+- IRIS 219 chain and sprocket system (€40.00)
+- Hall effect throttle pedal (€2.46)</p>
+<h3 id="steering-assembly">🎮 Steering Assembly</h3>
+<p><strong>Components</strong>: Motor, sensor, H-bridge, coupling
+- <strong>Main Components</strong>: <a href="../assembly/steering/bom.yaml">Steering BOM</a>
+- <strong>Fasteners</strong>: <a href="../assembly/steering/fasteners/bom.yaml">Steering Fasteners BOM</a>
+- <strong>Documentation</strong>: <a href="../assembly/steering/">Steering Assembly</a></p>
+<p><strong>Key Components:</strong>
+- Cytron MD30C H-bridge (€45.00)
+- AS5600 magnetic angle sensor (€2.00)
+- 24V DC steering motor (€80.00)</p>
+<h3 id="electronics-assembly">💻 Electronics Assembly</h3>
+<p><strong>Components</strong>: Computing, control, communication
+- <strong>Main Components</strong>: <a href="../assembly/electronics/bom.yaml">Electronics BOM</a>
+- <strong>Documentation</strong>: <a href="../assembly/electronics/microcontroller/">Electronics Assembly</a></p>
+<p><strong>Key Components:</strong>
+- NVIDIA Jetson AGX Orin (€1500.00)
+- ESP32 WROOM-32 microcontroller (€3.50)
+- Custom Orin adapter board (€25.00)</p>
+<h3 id="power-assembly">⚡ Power Assembly</h3>
+<p><strong>Components</strong>: Main battery pack, BMS, auxiliary power
+- <strong>Main Components</strong>: <a href="../assembly/power/bom.yaml">Power BOM</a>
+- <strong>Documentation</strong>: <a href="../assembly/power/battery.md">Power Assembly</a></p>
+<p><strong>Key Components:</strong>
+- 52x Molicel P42A cells in 13S4P (€234.00)
+- Jiabaida Smart BMS 100A (€85.00)
+- 12V auxiliary battery (€60.00)</p>
+<h3 id="sensors-assembly">📷 Sensors Assembly</h3>
+<p><strong>Components</strong>: Vision system, AI models
+- <strong>Main Components</strong>: <a href="../assembly/sensors/bom.yaml">Sensors BOM</a>
+- <strong>Documentation</strong>: <a href="../assembly/sensors/camera/">Sensors Assembly</a></p>
+<p><strong>Key Components:</strong>
+- Stereolabs ZED2 stereo camera (€450.00)
+- Custom YOLOv5 cone detection model</p>
+<h2 id="estimated-project-costs">Estimated Project Costs</h2>
 <table>
 <thead>
 <tr>
-<th>Component</th>
-<th>Quantity</th>
-<th>Unit Cost</th>
-<th>Total Cost</th>
-<th>Status</th>
-<th>Documentation</th>
+<th>Assembly</th>
+<th>Estimated Cost</th>
+<th>Key Items</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>ESP32 WROOM 32</td>
-<td>1</td>
-<td>€3.50</td>
-<td>€3.50</td>
-<td>Active</td>
-<td><a href="../hardware/esp32/">ESP32</a></td>
+<td><strong>Powertrain</strong></td>
+<td><strong>€195</strong></td>
+<td>Motor (€150), transmission (€40), fasteners (€5)</td>
 </tr>
 <tr>
-<td>Kunray MY1020 Motor</td>
-<td>1</td>
-<td>€150.00</td>
-<td>€150.00</td>
-<td>Active</td>
-<td><a href="../hardware/motor/">Motor</a></td>
+<td><strong>Steering</strong></td>
+<td><strong>€135</strong></td>
+<td>H-bridge (€45), motor (€80), sensor (€2), fasteners (€8)</td>
 </tr>
 <tr>
-<td>AS5600 Angle Sensor</td>
-<td>1</td>
-<td>€2.00</td>
-<td>€2.00</td>
-<td>Active</td>
-<td><a href="../hardware/steering/sensor/">Steering Sensor</a></td>
+<td><strong>Electronics</strong></td>
+<td><strong>€1530</strong></td>
+<td>Orin computer (€1500), ESP32 (€4), adapter (€25)</td>
 </tr>
 <tr>
-<td>Throttle Pedal (w/ SS49E)</td>
-<td>1</td>
-<td>€2.46</td>
-<td>€2.46</td>
-<td>Active</td>
-<td><a href="../hardware/throttle-pedal/">Throttle Pedal</a></td>
+<td><strong>Power</strong></td>
+<td><strong>€380</strong></td>
+<td>Li-ion cells (€234), BMS (€85), 12V battery (€60)</td>
+</tr>
+<tr>
+<td><strong>Sensors</strong></td>
+<td><strong>€450</strong></td>
+<td>ZED2 camera (€450)</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>€2690</strong></td>
+<td><em>Excludes chassis, wiring, mechanical hardware</em></td>
 </tr>
 </tbody>
 </table>
-<h3 id="transmission-system">Transmission System</h3>
-<table>
-<thead>
-<tr>
-<th>Component</th>
-<th>Quantity</th>
-<th>Unit Cost</th>
-<th>Total Cost</th>
-<th>Status</th>
-<th>Documentation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>IRIS 219 Chain (100 links)</td>
-<td>1</td>
-<td>€15.00</td>
-<td>€15.00</td>
-<td>Active</td>
-<td><a href="../hardware/transmission/">Transmission</a></td>
-</tr>
-<tr>
-<td>219 Aluminum Sprocket</td>
-<td>1</td>
-<td>€20.00</td>
-<td>€20.00</td>
-<td>Needs Replacement</td>
-<td><a href="../hardware/transmission/">Transmission</a></td>
-</tr>
-<tr>
-<td>Custom 219 Front Sprocket</td>
-<td>1</td>
-<td>€5.00</td>
-<td>€5.00</td>
-<td>Active</td>
-<td><a href="../hardware/transmission/">Transmission</a></td>
-</tr>
-</tbody>
-</table>
-<h2 id="cost-summary">Cost Summary</h2>
-<table>
-<thead>
-<tr>
-<th>Category</th>
-<th>Total Cost</th>
-<th>Items</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Core Electronics</td>
-<td>€157.96</td>
-<td>4</td>
-</tr>
-<tr>
-<td>Transmission</td>
-<td>€40.00</td>
-<td>3</td>
-</tr>
-<tr>
-<td><strong>Project Total</strong></td>
-<td><strong>€197.96</strong></td>
-<td><strong>7</strong></td>
-</tr>
-</tbody>
-</table>
-<h3 id="cost-breakdown-details">Cost Breakdown Details</h3>
-<ul>
-<li><strong>ESP32 WROOM 32</strong>: €3.50</li>
-<li><strong>Kunray MY1020 Motor</strong>: €150.00</li>
-<li><strong>AS5600 Angle Sensor</strong>: €2.00</li>
-<li><strong>Throttle Pedal (SS49E)</strong>: €2.46</li>
-<li><strong>IRIS 219 Chain</strong>: €15.00</li>
-<li><strong>219 Aluminum Sprocket</strong>: €20.00 (needs replacement)</li>
-<li><strong>Custom 219 Front Sprocket</strong>: €5.00</li>
-</ul>
 <div class="admonition warning">
-<p class="admonition-title">Incomplete BOM</p>
-<p>This BOM is being migrated from existing documentation. Additional components (battery, chassis, wiring, etc.) will be added as the migration continues.</p>
+<p class="admonition-title">Cost Estimates</p>
+<p>Prices are approximate and subject to change. Always verify current pricing from suppliers.</p>
 </div>
 <h2 id="component-status">Component Status</h2>
-<ul>
-<li><strong>Active</strong>: Currently used in the kart</li>
-<li><strong>Needs Replacement</strong>: Known to be damaged/worn</li>
-<li><strong>Deprecated</strong>: No longer used but kept for reference</li>
-<li><strong>Optional</strong>: Not required for basic functionality</li>
-</ul>
-<h2 id="supplier-recommendations">Supplier Recommendations</h2>
+<h3 id="active-components">✅ Active Components</h3>
+<p>Currently used and functional in the kart.</p>
+<h3 id="needs-replacement">⚠️ Needs Replacement</h3>
+<p>Known to be damaged or worn:
+- 219 aluminum rear sprocket (damaged from incompatible chain use)</p>
+<h3 id="custom-components">🔧 Custom Components</h3>
+<p>Require fabrication:
+- Custom 219 front sprocket (laser cut for 10mm shaft)
+- Orin adapter board (EasyEDA design available)
+- Battery pack assembly (professional assembly recommended)</p>
+<h2 id="supplier-information">Supplier Information</h2>
 <h3 id="primary-suppliers">Primary Suppliers</h3>
 <ul>
-<li><strong>Electronic Components</strong>: Mouser, Addicore, Sunrom</li>
+<li><strong>Electronics</strong>: Mouser, Digi-Key, Adafruit</li>
 <li><strong>Karting Parts</strong>: KPS Racing</li>
-<li><strong>General Parts</strong>: AliExpress, Amazon</li>
+<li><strong>Batteries</strong>: Authorized Molicel distributors</li>
+<li><strong>Vision Systems</strong>: Stereolabs</li>
+<li><strong>General Components</strong>: AliExpress, Amazon (for non-critical parts)</li>
 </ul>
-<h3 id="quality-notes">Quality Notes</h3>
+<h3 id="quality-guidelines">Quality Guidelines</h3>
 <ul>
-<li>Always prefer official distributors for critical electronic components</li>
-<li>AliExpress/Amazon acceptable for mechanical parts and sensors</li>
-<li>Verify component specifications before ordering</li>
+<li>✅ Use official distributors for critical electronic components</li>
+<li>✅ Verify specifications before ordering</li>
+<li>⚠️ AliExpress/Amazon acceptable for mechanical parts and sensors</li>
+<li>❌ Avoid counterfeit components for safety-critical systems</li>
 </ul>
 <h2 id="assembly-priority">Assembly Priority</h2>
 <ol>
-<li><strong>Core Electronics</strong> (ESP32, sensors)</li>
-<li><strong>Motor System</strong> (Motor, controller)</li>
-<li><strong>Transmission</strong> (Chain, sprockets)</li>
-<li><strong>Mechanical</strong> (Chassis, steering)</li>
-<li><strong>Power Systems</strong> (Battery, wiring)</li>
+<li><strong>Power System</strong> - Battery pack, BMS, charging setup</li>
+<li><strong>Core Electronics</strong> - Orin computer, ESP32 microcontroller</li>
+<li><strong>Sensors</strong> - ZED2 camera, angle sensors</li>
+<li><strong>Propulsion</strong> - Motor, controller, transmission</li>
+<li><strong>Steering</strong> - Motor, H-bridge, coupling</li>
+<li><strong>Integration</strong> - Wiring, mounting, calibration</li>
 </ol>
-<hr />
-<h2 id="adding-components-to-bom">Adding Components to BOM</h2>
-<p>To add a new component to the BOM:</p>
+<h2 id="working-with-yaml-bom-files">Working with YAML BOM Files</h2>
+<h3 id="adding-new-components">Adding New Components</h3>
 <ol>
-<li>Add YAML frontmatter to the component's documentation page</li>
-<li>Use the standardized structure shown in individual hardware pages</li>
-<li>The BOM summary will be updated manually or via script</li>
+<li>Locate the appropriate assembly folder</li>
+<li>Edit the <code>bom.yaml</code> file</li>
+<li>Follow the existing structure for consistency</li>
+<li>Include all required fields: id, part_number, description, quantity, cost, suppliers</li>
 </ol>
+<h3 id="yaml-file-structure">YAML File Structure</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">assembly</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;assembly_name&quot;</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Assembly</span><span class="nv"> </span><span class="s">description&quot;</span>
+<span class="nt">components</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;unique_component_id&quot;</span>
+<span class="w">    </span><span class="nt">part_number</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;MANUFACTURER-PART-NUMBER&quot;</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Component</span><span class="nv"> </span><span class="s">description&quot;</span>
+<span class="w">    </span><span class="nt">quantity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="nt">unit_cost</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.00</span>
+<span class="w">    </span><span class="nt">currency</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;EUR&quot;</span>
+<span class="w">    </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;active&quot;</span>
+<span class="w">    </span><span class="nt">criticality</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;essential&quot;</span>
+<span class="w">    </span><span class="nt">suppliers</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Supplier</span><span class="nv"> </span><span class="s">Name&quot;</span>
+<span class="w">        </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://supplier.com/product&quot;</span>
+<span class="w">        </span><span class="nt">verified</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">specifications</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;value&quot;</span>
+<span class="w">    </span><span class="nt">notes</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Additional</span><span class="nv"> </span><span class="s">information&quot;</span>
+</code></pre></div>
+<h3 id="future-automation">Future Automation</h3>
+<p>A BOM aggregation script is planned to automatically generate:
+- Complete cost summaries
+- Supplier contact lists
+- Component status reports
+- Assembly checklists</p>
+<hr />
+<p><em>This BOM system reflects the complete restructure from hardware-based to assembly-based organization, with component data stored in YAML files following the project's folder structure.</em></p>
 
 
 

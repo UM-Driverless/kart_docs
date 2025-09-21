@@ -1,0 +1,58 @@
+assembly: "powertrain_transmission"
+description: "Chain and sprocket transmission components"
+parent: "powertrain"
+components:
+  - id: "iris_219_chain"
+    part_number: "IRIS-219-100"
+    description: "IRIS 219 pitch gold chain"
+    category: "transmission"
+    quantity: 1
+    unit_cost: 15.00
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "KPS Racing"
+        url: "https://kpsracing.es/cadenas-y-cubrecadenas/2434-649-cadena-iris-219.html#/254-numero_pasos_cadena-100"
+        verified: true
+    specifications:
+      pitch: "219"
+      links: 100
+      color: "gold"
+
+  - id: "corona_219_aluminum"
+    part_number: "CORONA-219-ALU"
+    description: "219 pitch aluminum rear sprocket"
+    category: "transmission"
+    quantity: 1
+    unit_cost: 20.00
+    currency: "EUR"
+    status: "needs_replacement"
+    criticality: "essential"
+    suppliers:
+      - name: "KPS Racing"
+        url: "https://kpsracing.es/coronas/5957-9775-corona-aluminio-219-negra.html"
+        verified: true
+    specifications:
+      pitch: "219"
+      material: "aluminum"
+      color: "black"
+    notes: "Current sprocket damaged due to incompatible chain use"
+
+  - id: "custom_219_pinion"
+    part_number: "CUSTOM-219-PINION"
+    description: "Custom 219 pitch front sprocket"
+    category: "transmission"
+    quantity: 1
+    unit_cost: 5.00
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "Laser Cutting Service"
+        notes: "Custom design for 10mm shaft"
+    specifications:
+      pitch: "219"
+      shaft_diameter: "10mm"
+      material: "steel"
+      manufacturing: "laser_cut"

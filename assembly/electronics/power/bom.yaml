@@ -1,0 +1,125 @@
+assembly: "power"
+description: "Main power system and battery management"
+components:
+  - id: "molicel_p42a_cells"
+    part_number: "P42A"
+    description: "Molicel P42A 21700 lithium-ion cells"
+    category: "battery_cells"
+    quantity: 52
+    unit_cost: 4.50
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "Battery specialists"
+        notes: "Various 21700 battery suppliers"
+      - name: "Molicel authorized distributors"
+        verified: true
+    specifications:
+      cell_type: "21700 Li-ion"
+      capacity: "4200 mAh (4.2 Ah)"
+      nominal_voltage: "3.7V"
+      max_voltage: "4.2V"
+      min_voltage: "3.2V"
+      max_continuous_discharge: "45A"
+      max_continuous_charge: "8A"
+      chemistry: "NMC (Nickel Manganese Cobalt)"
+    configuration:
+      series: 13
+      parallel: 4
+      total_cells: 52
+      pack_nominal_voltage: "48V"
+      pack_capacity: "16.8Ah"
+      pack_energy: "808Wh"
+      max_discharge_current: "180A"
+      max_charge_current: "32A"
+    voltage_limits:
+      pack_minimum: "41.6V (13 * 3.2V)"
+      pack_maximum: "54.6V (13 * 4.2V)"
+      bms_cutoff: "39.0V (13 * 3.0V)"
+    notes: "Main traction battery pack in 13S4P configuration"
+
+  - id: "jiabaida_bms_100a"
+    part_number: "JBD-SP22S003B"
+    description: "Jiabaida Smart BMS 100A with Bluetooth and UART"
+    category: "bms"
+    quantity: 1
+    unit_cost: 85.00
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "AliExpress"
+        url: "https://es.aliexpress.com/item/1005007223779359.html"
+        verified: true
+      - name: "Jiabaida Direct"
+        url: "https://jiabaida-bms.com/"
+        verified: true
+    specifications:
+      max_current: "100A"
+      cell_support: "6S-21S (NMC)"
+      communication: "Bluetooth, UART"
+      balancing: "Active cell balancing"
+      protections: "Overvoltage, undervoltage, overcurrent, temperature"
+      operating_temperature: "-20°C to +60°C"
+    documentation:
+      wiring_diagram: "https://jiabaida-bms.com/blogs/content/jiabaida-sp22s003b-smart-bms-wiring-diagram"
+      notion_docs: "https://www.notion.so/BMS-Bater-a-Kart-JBD-16078747314380e68688c3ab787fc1f7"
+    notes: "Smart BMS with mobile app monitoring and protection features"
+
+  - id: "car_battery_12v"
+    part_number: "12V-CAR-BATTERY"
+    description: "12V automotive battery for sensors"
+    category: "auxiliary_battery"
+    quantity: 1
+    unit_cost: 60.00
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "Automotive parts stores"
+        notes: "Standard car battery suppliers"
+    specifications:
+      voltage: "12V"
+      type: "Lead-acid automotive"
+      capacity: "TBD Ah"
+      application: "Sensor power supply"
+      compatibility: "Formula Student car compatible"
+    notes: "Separate 12V supply for sensors to maintain Formula Student compatibility"
+
+  - id: "battery_pack_assembly"
+    part_number: "CUSTOM-PACK-13S4P"
+    description: "Custom 13S4P battery pack assembly"
+    category: "mechanical"
+    quantity: 1
+    unit_cost: 150.00
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "Custom battery pack builder"
+        notes: "Professional battery pack assembly service"
+    specifications:
+      configuration: "13S4P"
+      total_cells: 52
+      interconnects: "Nickel strips"
+      insulation: "Kapton tape, heat shrink"
+      housing: "Custom enclosure"
+      cooling: "Passive air cooling"
+      safety_features: "Fusing, thermal management"
+    included_components:
+      - "52x Molicel P42A cells"
+      - "Nickel strip interconnects"
+      - "Insulation materials"
+      - "Protective housing"
+      - "Cell level fusing"
+    charging_tutorial: "https://youtu.be/g1jsSbjsiTo?si=uZ7mVjXA2c-43zzz"
+    notes: "Professional assembly recommended due to safety requirements"
+
+pack_specifications:
+  energy_density: "High energy density for extended runtime"
+  safety_rating: "Automotive grade cells with integrated BMS protection"
+  charging_method: "CC-CV charging profile through BMS"
+  max_power_output: "9828W at 100% charge (180A * 54.6V)"
+  max_charging_power: "1.7kW (32A * 54.6V)"
+  placement_rationale: "See FAQ for battery placement considerations"

@@ -1,0 +1,99 @@
+assembly: "steering"
+description: "Steering system components and electronics"
+components:
+  - id: "cytron_md30c"
+    part_number: "MD30C"
+    description: "30A H-bridge motor driver"
+    category: "electronics"
+    quantity: 1
+    unit_cost: 45.00
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "Cytron Technologies"
+        url: "https://www.cytron.io/p-30amp-5v-30v-dc-motor-driver"
+        verified: true
+      - name: "OpenCircuit ES"
+        url: "https://opencircuit.es/producto/30amp-5v-30v-dc-motor-driver"
+        notes: "Spanish distributor"
+        verified: true
+    specifications:
+      continuous_current: "30A"
+      peak_current: "80A"
+      voltage_range: "5V-30V"
+      pwm_frequency: "20kHz"
+      control_voltage: "3.3V/5V"
+    documentation:
+      datasheet: "../../assets/datasheets/MD30C Users Manual.pdf"
+      github: "https://github.com/CytronTechnologies/CytronMotorDriver"
+      tutorials:
+        - "https://www.cytron.io/tutorial/controlling-md10c-with-arduino"
+        - "https://www.instructables.com/Controlling-Motor-Speed/"
+
+  - id: "steering_motor_24v"
+    part_number: "STEERING-24V-MOTOR"
+    description: "24V DC steering motor (operated at 12V)"
+    category: "motor"
+    quantity: 1
+    unit_cost: 80.00
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "Generic Supplier"
+        notes: "Need to identify specific supplier"
+    specifications:
+      rated_voltage: "24V"
+      operating_voltage: "12V"
+      estimated_power: "300W"
+      shaft_diameter: "10mm"
+      mount_spacing: "50mm"
+    notes: "Operating at half rated voltage for reduced speed and power"
+
+  - id: "as5600_angle_sensor"
+    part_number: "AS5600"
+    description: "Hall effect rotary position sensor"
+    category: "sensor"
+    quantity: 1
+    unit_cost: 2.00
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "AliExpress"
+        notes: "Various AS5600 breakout boards"
+        verified: false
+      - name: "Amazon"
+        notes: "AS5600 magnetic encoder modules"
+        verified: false
+    specifications:
+      resolution: "12-bit"
+      interface: "I2C"
+      voltage: "3.3V or 5V"
+      magnetic_range: "360°"
+    wire_colors_2025:
+      grey: "GND"
+      white: "3.3V"
+      green: "SDA"
+      blue: "SCL"
+    code_repository: "https://github.com/rubenayla/bluepill-angle-arduino.git"
+    notes: "Works with diametrically magnetized magnet or normal magnet rotated 90°"
+
+  - id: "steering_coupling"
+    part_number: "STEERING-COUPLING-10MM"
+    description: "Motor to steering shaft coupling"
+    category: "mechanical"
+    quantity: 1
+    unit_cost: 15.00
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "Generic Mechanical Supplier"
+        notes: "Need specific supplier for 10mm coupling"
+    specifications:
+      inner_diameter: "10mm"
+      shaft_connection: "Direct drive"
+      material: "Aluminum alloy"
+    notes: "Connects motor shaft to steering column"

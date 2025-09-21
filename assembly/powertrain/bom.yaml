@@ -1,0 +1,61 @@
+assembly: "powertrain"
+description: "Main propulsion system components"
+components:
+  - id: "kunray_my1020_motor"
+    part_number: "MY1020"
+    description: "Brushless DC motor with controller"
+    category: "motor"
+    quantity: 1
+    unit_cost: 150.00
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "Amazon"
+        part_number: "B0C6WXYZ"
+        url: "https://www.amazon.es/dp/B0C6WXYZ/ref=cm_sw_em_r_mt_dp_xyz"
+        verified: true
+      - name: "Kunray Official"
+        url: "https://kunraymotors.com/shop/"
+        verified: true
+    specifications:
+      voltage: "72V"
+      power: "3000W"
+      weight: "8kg"
+      shaft_diameter: "10mm"
+      shaft_type: "no keyway"
+    notes: "Includes motor controller"
+
+  - id: "throttle_pedal_ss49e"
+    part_number: "THROTTLE-PEDAL-HALL"
+    description: "Throttle pedal with SS49E Hall sensor"
+    category: "sensor"
+    quantity: 1
+    unit_cost: 2.46
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "AliExpress"
+        url: "https://es.aliexpress.com/item/1005007243711390.html"
+        verified: true
+      - name: "Amazon"
+        notes: "Various electric scooter throttle pedal listings"
+        verified: false
+    specifications:
+      sensor_type: "SS49E Hall Effect"
+      voltage: "5V"
+      output: "0-5V analog"
+      connector: "3-wire"
+    alternatives:
+      - "Generic Hall effect throttle pedals"
+    replacement_parts:
+      - component_id: "ss49e_sensor"
+        part_number: "SS49E"
+        suppliers:
+          - name: "Mouser"
+            url: "https://www.mouser.com/ProductDetail/Honeywell/SS49E"
+          - name: "Addicore"
+            url: "https://www.addicore.com/products/ss49e-linear-hall-effect-sensor"
+        unit_cost: 1.50
+        notes: "Replacement sensor for throttle pedal"
