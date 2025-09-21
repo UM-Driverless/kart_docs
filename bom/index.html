@@ -1572,8 +1572,9 @@
 ├── steering/
 │   ├── bom.yaml              # H-bridge, motor, sensor, coupling
 │   └── fasteners/bom.yaml    # All steering fasteners
-├── electronics/bom.yaml      # Orin, ESP32, DAC, level shifter
-├── power/bom.yaml            # Battery cells, BMS, auxiliary battery
+├── electronics/
+│   ├── bom.yaml              # Orin, ESP32, DAC, level shifter
+│   └── power/bom.yaml        # Battery cells, BMS, auxiliary battery
 └── sensors/bom.yaml          # ZED2 camera, YOLOv5 models
 </code></pre></div>
 <h2 id="assembly-overview">Assembly Overview</h2>
@@ -1606,8 +1607,8 @@
 - Custom Orin adapter board (€25.00)</p>
 <h3 id="power-assembly">⚡ Power Assembly</h3>
 <p><strong>Components</strong>: Main battery pack, BMS, auxiliary power
-- <strong>Main Components</strong>: <a href="../assembly/power/bom.yaml">Power BOM</a>
-- <strong>Documentation</strong>: <a href="../assembly/power/battery.md">Power Assembly</a></p>
+- <strong>Main Components</strong>: <a href="../assembly/electronics/power/bom.yaml">Power BOM</a>
+- <strong>Documentation</strong>: <a href="../assembly/electronics/power/battery/">Power Assembly</a></p>
 <p><strong>Key Components:</strong>
 - 52x Molicel P42A cells in 13S4P (€234.00)
 - Jiabaida Smart BMS 100A (€85.00)
