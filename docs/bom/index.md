@@ -37,8 +37,9 @@ docs/assembly/
 ├── steering/
 │   ├── bom.yaml              # H-bridge, motor, sensor, coupling
 │   └── fasteners/bom.yaml    # All steering fasteners
-├── electronics/bom.yaml      # Orin, ESP32, DAC, level shifter
-├── power/bom.yaml            # Battery cells, BMS, auxiliary battery
+├── electronics/
+│   ├── bom.yaml              # Orin, ESP32, DAC, level shifter
+│   └── power/bom.yaml        # Battery cells, BMS, auxiliary battery
 └── sensors/bom.yaml          # ZED2 camera, YOLOv5 models
 ```
 
@@ -79,8 +80,8 @@ docs/assembly/
 
 ### ⚡ Power Assembly
 **Components**: Main battery pack, BMS, auxiliary power
-- **Main Components**: [Power BOM](../assembly/power/bom.yaml)
-- **Documentation**: [Power Assembly](../assembly/power/battery.md)
+- **Main Components**: [Power BOM](../assembly/electronics/power/bom.yaml)
+- **Documentation**: [Power Assembly](../assembly/electronics/power/battery.md)
 
 **Key Components:**
 - 52x Molicel P42A cells in 13S4P (€234.00)

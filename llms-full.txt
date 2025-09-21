@@ -78,8 +78,9 @@ docs/assembly/
 ├── steering/
 │   ├── bom.yaml              # H-bridge, motor, sensor, coupling
 │   └── fasteners/bom.yaml    # All steering fasteners
-├── electronics/bom.yaml      # Orin, ESP32, DAC, level shifter
-├── power/bom.yaml            # Battery cells, BMS, auxiliary battery
+├── electronics/
+│   ├── bom.yaml              # Orin, ESP32, DAC, level shifter
+│   └── power/bom.yaml        # Battery cells, BMS, auxiliary battery
 └── sensors/bom.yaml          # ZED2 camera, YOLOv5 models
 ```
 
@@ -120,8 +121,8 @@ docs/assembly/
 
 ### ⚡ Power Assembly
 **Components**: Main battery pack, BMS, auxiliary power
-- **Main Components**: [Power BOM](../assembly/power/bom.yaml)
-- **Documentation**: [Power Assembly](../assembly/power/battery.md)
+- **Main Components**: [Power BOM](../assembly/electronics/power/bom.yaml)
+- **Documentation**: [Power Assembly](../assembly/electronics/power/battery.md)
 
 **Key Components:**
 - 52x Molicel P42A cells in 13S4P (€234.00)
@@ -1029,7 +1030,7 @@ For detailed ESP32 wiring connections including AS5600 sensor, motor driver, and
 
 The main pack uses **Molicel P42A** cells in a 13S4P configuration, providing a nominal voltage of about 48 V. A separate 12 V car battery supplies the sensors to remain compatible with the Formula Student car.
 
-For battery placement rationale see the [FAQ](../../faq.md#battery).
+For battery placement rationale see the [FAQ](../../../faq.md#battery).
 
 | Parameter | Value |
 |-----------|-------|
@@ -1246,15 +1247,15 @@ If the proportional valve does close both ways when not powered, we can get rid 
 ## Components
 - [Solenoid valve](https://www.festo.com/tw/en/a/575488/)
     > For emergency braking
-    - [Datasheet local](../assets/datasheets/575488datasheet.pdf)
+    - [Datasheet local](../../assets/datasheets/575488datasheet.pdf)
     - [Datasheet online](https://www.festo.com/tw/en/a/download-document/datasheet/575488)
     - G1/4 female thread
 - [Proportional Valve](https://www.festo.com/es/es/a/8153644/)
     > For normal controlled braking
     - TODO CONSIDER AN 8-PIN M16 PROPORTIONAL VALVE SO WE CAN USE IT AS PRESSURE SENSOR
     - [Datasheet online](https://www.festo.com/es/es/a/download-document/datasheet/8153644)
-    - [Datasheet local](../assets/datasheets/8153644datasheet.pdf)
-    - [206533 documentation](../assets/datasheets/206533_documentation.pdf)
+    - [Datasheet local](../../assets/datasheets/8153644datasheet.pdf)
+    - [206533 documentation](../../assets/datasheets/206533_documentation.pdf)
     - TODO QUESTION: Can we get the reading of pressure from this valve? There are some that allow it
 - Fittings:
     - 90º TODO what thread what size, what tube material and OD/ID.

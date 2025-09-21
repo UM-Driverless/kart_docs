@@ -4,7 +4,7 @@
 
 The main pack uses **Molicel P42A** cells in a 13S4P configuration, providing a nominal voltage of about 48 V. A separate 12 V car battery supplies the sensors to remain compatible with the Formula Student car.
 
-For battery placement rationale see the [FAQ](../../faq.md#battery).
+For battery placement rationale see the [FAQ](../../../faq.md#battery).
 
 | Parameter | Value |
 |-----------|-------|
