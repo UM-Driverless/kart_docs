@@ -13,7 +13,7 @@ This page provides a comprehensive list of all components required to build the 
 ## Assembly & Software
 
 https://um-driverless.github.io/kart_docs/assembly
-This section contains instructions for assembling the kart.
+This section contains all the information about the kart, organized as a tree of sub-assemblies. ...
 
 https://um-driverless.github.io/kart_docs/assembly/powertrain
 The powertrain assembly converts electrical energy into motion, consisting of the motor, transmis...

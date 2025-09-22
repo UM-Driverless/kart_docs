@@ -236,7 +236,10 @@ A BOM aggregation script is planned to automatically generate:
 
 ## Assembly Instructions
 
-This section contains instructions for assembling the kart.
+This section contains all the information about the kart, organized as a tree of sub-assemblies. Each sub-assembly includes detailed specifications, components, and relevant documentation.
+
+!!! note "Assembly Instructions"
+    Step-by-step assembly instructions are still a work in progress.
 
 # Stuff
 
