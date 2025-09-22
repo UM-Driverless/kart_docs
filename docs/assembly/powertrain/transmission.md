@@ -35,21 +35,51 @@ The kart currently uses a **standard 219 pitch karting transmission system**. Th
 
 ---
 
+## About chain pitch standards
+
+The karting industry primarily uses three chain pitch standards:
+
+1. **#219** - Standard karting chain (7.774mm pitch)
+2. **#35**  - Smaller chain used in some mini karts (9.525mm pitch)
+3. **#428** - Larger chain used in heavy-duty karts (12.7mm pitch)
+
+The kart currently uses the **#219** standard, which is the most common for 2-stroke racing karts. We made this choice because:
+
+- It is widely available and supported in the karting community.
+- It offers a good balance of strength, weight, and size for our kart.
+- It is compatible with the sprockets we can source or manufacture.
+- It allows for easy future upgrades or changes to the drivetrain.
+- It was the closest match to the motor's original transmission kit. Initially, we thought that maybe the difference in pitch between T8F and 219 was negligible and we might avoid design any part, but after testing we found that it was not the case.
+
+> **Note:** The original T8F kit that came with the motor is not a standard karting pitch and has been discarded in favor of the #219 system. However, as a temporary measure, part of the original T8F kit was used to get the kart moving initially, since we knew the switch to #219 would take some time due to sourcing parts and manufacturing the custom front sprocket. In this process, the rear sprocket was damaged due to the incompatible chain pitch, and it needs to be replaced.
+
+## Why did you discard the T8F kit?
+
+The T8F kit was not suitable for long-term use because is not a standard karting pitch, making it hard to find compatible parts locally. One of the requirements we established early on was to use components that could be easily sourced or replaced in case of failure, since **this kart was never intended to complex hardware development but software development**. Having a non-standard pitch would complicate maintenance and repairs, especially in a development environment where quick and cheap fixes are often needed due to failures or changes.
+
 ## Why Custom Front Sprocket?
 
-The motor we purchased (Kunray MY1020) comes with a non-standard Chinese shaft configuration:
+The motor we purchased (Kunray MY1020) comes with a non-standard shaft configuration:
 
 - **Shaft diameter:** 10mm
 - **Keyway:** None
 - **Length:** Very short
 
-Standard 219 karting sprockets cannot be easily adapted to this shaft, so we designed and laser-cut custom sprockets that:
+This is a 1:1 representation of the shaft configuration of the motor we purchased:
+![Motor shaft configuration](transmission/images/shaft.jpg)
 
-1. Maintain the correct 219 pitch for chain compatibility
-2. Fit the 10mm shaft without keyway
-3. Provide secure mounting despite the non-standard shaft
+The rear sprocket in the T8F kit could not be mounted on the kart's axle easily. There are standard sprocket mounting options for a wide range of both kart axles and rear sprockets, but since T8F is not a standard karting pitch, we could not find a compatible rear sprocket mount that would fit our kart axle right away. Design and manufacturing of a custom rear sprocket mount was considered too complex and expensive for our needs, as well as time consuming. Knowing that we would eventually switch to a standard karting pitch, we decided to discard the T8F kit entirely.
 
-The custom sprocket design was completed in early 2024 and manufactured via laser cutting service for a minimal cost.
+You can see here both the price and images of the rear sprocket mount we actually mounted: [219 Rear Sprocket Mount - 40mm Axle](https://kpsracing.es/portacoronas-y-portadiscos/3386-portacorona-40mm-tipo-219.html). Its mounting holes do not match the original T8F rear sprocket mounting holes. We would have to design a custom rear sprocket mount if we wanted to keep using the T8F kit. This is why we discarded the T8F kit entirely.
+
+However, since the motor shaft was either not standard on karting motors, or at least not compatible with standard karting sprockets, we were forced to design and manufacture a custom front sprocket that would fit the motor shaft while maintaining the 219 pitch for chain compatibility. Contrary to the rear sprocket, the front sprocket is much simpler to design and manufacture, as it only needs to fit the motor shaft securely. This was done via laser cutting service for a minimal cost. In fact, it was as easy as replicating the inner geometry of the original T8F front sprocket, which was designed to fit the motor shaft, and then adapting the outer geometry to match the #219 pitch standard. A matter of hours of CAD work and a few iterations to get the tooth count right.
+
+Here you can see a cross section of both the [simplest #219 front sprocket](https://kpsracing.es/pinones-motor/2280-425-pinon-tipo-iame-20mm.html#/92-talla-10z) we could find and the motor shaft, before deciding to design a custom sprocket:
+![Attempt to adapt standard 219 sprocket to motor shaft](transmission/images/attempt-adapt-standard-219.png)
+
+There was no way to adapt this standard sprocket to the motor shaft without extensive machining, which would have been more expensive than simply designing and manufacturing a custom sprocket.
+
+> The custom sprocket design was completed and validated (3D printed) in January 2025 and manufactured via laser cutting service for a minimal cost in May 2025. However, due to laser cutting limitations, teeth are not chamfered, which may affect chain engagement slightly. This can be improved in future iterations by using CNC machining, which can produce more precise and durable sprockets. For now, the laser-cut sprocket is sufficient for testing and development purposes if we are careful with chain tensioning and alignment.
 
 ---
 
@@ -61,13 +91,11 @@ The motor originally came with a T8F transmission kit:
 - **Rear sprocket:** Black T8F sprocket (never used)
 - **Front sprocket:** Black T8F 11-tooth sprocket
 
-This kit was never intended for permanent use because:
+This kit was never intended for permanent use because as discused before, T8F is not a standard karting pitch. However, some components were temporarily used to get the kart moving while waiting for the 219 chain and custom front sprocket to arrive.
 
-1. T8F is not a standard karting pitch
-2. Finding compatible replacement parts would be difficult
-3. The T8F rear sprocket couldn't be easily mounted on the kart's axle
+We have damaged knowingly the rear sprocket by using it with the incompatible T8F chain and front sprocket, which is why we need to replace it. Both chain and front sprocket are already replaced with the #219 equivalents.
 
-**⚠️ These components should be stored separately or discarded to avoid confusion.**
+**⚠️ These T8F components should be stored separately or discarded to avoid confusion.**
 
 ---
 
@@ -105,7 +133,7 @@ This kit was never intended for permanent use because:
 
 ## Installation Notes
 
-With the motor mount moved slightly backward (compared to the original 3D-printed mount), there is now sufficient clearance to properly install and tension the 219 chain.
+With the motor mount moved slightly backward (compared to the original 3D-printed mount), there is now sufficient clearance to properly install and tension the #219 chain.
 
 ### Correct Configuration Checklist
 
