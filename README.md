@@ -48,22 +48,33 @@ poetry run mkdocs serve
 ```
 You can then access the documentation in your web browser, usually at `http://127.0.0.1:8000`.
 
-To just build the static site:
+To test the build before pushing (recommended):
 
 ```bash
-poetry run mkdocs build
+poetry run mkdocs build --strict
 # Output: site/
 ```
 
+The `--strict` flag will catch errors like broken links, missing files, and invalid configuration - the same checks that run in CI.
+
 ---
 
-## 🚀 Deploy to GitHub Pages
+## 🚀 Deployment
+
+Deployment to GitHub Pages happens automatically via GitHub Actions when you push to the `main` branch.
+
+The workflow will:
+1. Build the documentation with `--strict` flag
+2. Deploy to GitHub Pages if the build succeeds
+3. Site will be available at: https://um-driverless.github.io/kart_docs/
+
+### Manual deployment (alternative)
+
+If needed, you can still deploy manually:
 
 ```bash
 poetry run mkdocs gh-deploy
 ```
-
-> GitHub Pages must be enabled in the repo settings (branch: `gh-pages`).
 
 ---
 
@@ -102,7 +113,5 @@ EXPORT_PDF=true poetry run mkdocs build
 
 ## 🗂 Branch structure
 
-- `main` → Markdown source
-- `gh-pages` → Auto-generated static site (read-only)
-
-Do all edits on `main`.
+- `main` → Markdown source (all edits go here)
+- `gh-pages` → Legacy deployment branch (can be deleted if using GitHub Actions)
