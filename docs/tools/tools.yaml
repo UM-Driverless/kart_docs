@@ -1,0 +1,217 @@
+tools_catalog: "Kart Workshop Tools"
+description: "Inventory of tools and equipment for kart assembly and maintenance"
+last_updated: "2025-10-01"
+
+categories:
+  - name: "Hand Tools"
+    tools:
+      - id: "torque_wrench_30nm"
+        name: "Torque Wrench (0-30 Nm)"
+        type: "torque_wrench"
+        location: "Tool Cabinet A"
+        status: "available"
+        specifications:
+          range: "0-30 Nm"
+          accuracy: "±4%"
+          drive_size: "1/4 inch"
+        calibration:
+          last_calibrated: null
+          calibration_due: null
+          frequency: "yearly"
+        notes: "Required for powertrain fasteners"
+
+      - id: "hex_key_set_metric"
+        name: "Metric Hex Key Set"
+        type: "hex_keys"
+        location: "Tool Cabinet A"
+        status: "available"
+        specifications:
+          sizes: "1.5mm - 10mm"
+          material: "Chrome vanadium steel"
+        notes: "Essential for all assemblies"
+
+      - id: "screwdriver_set"
+        name: "Precision Screwdriver Set"
+        type: "screwdrivers"
+        location: "Tool Cabinet A"
+        status: "available"
+        specifications:
+          types: "Phillips, Flathead, Torx"
+          sizes: "Various"
+        notes: "For electronics assembly"
+
+  - name: "Electronics Tools"
+    tools:
+      - id: "multimeter_digital"
+        name: "Digital Multimeter"
+        type: "measurement"
+        location: "Electronics Bench"
+        status: "available"
+        specifications:
+          voltage_range: "0-600V AC/DC"
+          current_range: "0-10A"
+          resistance_range: "0-40MΩ"
+          features: ["Continuity test", "Diode test", "Capacitance"]
+        calibration:
+          last_calibrated: null
+          calibration_due: null
+          frequency: "yearly"
+        notes: "For electrical testing and debugging"
+
+      - id: "soldering_station"
+        name: "Soldering Station"
+        type: "soldering"
+        location: "Electronics Bench"
+        status: "available"
+        specifications:
+          temperature_range: "200-480°C"
+          power: "60W"
+          features: ["Digital temperature control", "Auto-sleep"]
+        maintenance:
+          last_tip_change: null
+          next_tip_change: null
+        notes: "For custom electronics work"
+
+      - id: "wire_stripper"
+        name: "Wire Stripper/Crimper"
+        type: "wire_tools"
+        location: "Electronics Bench"
+        status: "available"
+        specifications:
+          wire_gauge: "10-24 AWG"
+          features: ["Stripper", "Crimper", "Cutter"]
+        notes: "For wiring harness assembly"
+
+  - name: "Power Tools"
+    tools:
+      - id: "drill_cordless"
+        name: "Cordless Drill"
+        type: "drill"
+        location: "Tool Cabinet B"
+        status: "available"
+        specifications:
+          voltage: "18V"
+          chuck_size: "13mm"
+          max_torque: "50 Nm"
+        battery:
+          type: "Li-ion"
+          count: 2
+          charge_status: "charged"
+        notes: "For mounting and assembly"
+
+      - id: "angle_grinder"
+        name: "Angle Grinder"
+        type: "grinder"
+        location: "Tool Cabinet B"
+        status: "available"
+        specifications:
+          disc_size: "115mm"
+          power: "750W"
+          speed: "11000 RPM"
+        safety:
+          ppe_required: ["Safety glasses", "Gloves", "Hearing protection"]
+          training_required: true
+        notes: "For metal cutting and grinding - USE WITH CAUTION"
+
+  - name: "Measuring Tools"
+    tools:
+      - id: "digital_caliper"
+        name: "Digital Caliper"
+        type: "measurement"
+        location: "Tool Cabinet A"
+        status: "available"
+        specifications:
+          range: "0-150mm"
+          accuracy: "±0.02mm"
+          resolution: "0.01mm"
+          features: ["Metric/Imperial", "LCD display"]
+        calibration:
+          last_calibrated: null
+          calibration_due: null
+          frequency: "yearly"
+        notes: "For precision measurements"
+
+      - id: "tape_measure"
+        name: "Measuring Tape (5m)"
+        type: "measurement"
+        location: "Tool Cabinet A"
+        status: "available"
+        specifications:
+          length: "5m"
+          width: "25mm"
+          features: ["Metric/Imperial", "Auto-lock"]
+        notes: "General measurements"
+
+  - name: "Specialized Equipment"
+    tools:
+      - id: "battery_charger_smart"
+        name: "Smart Battery Charger"
+        type: "charger"
+        location: "Battery Charging Station"
+        status: "available"
+        specifications:
+          voltage: "12V/24V"
+          current: "10A max"
+          features: ["Smart charging", "Float mode", "Desulfation"]
+        safety:
+          ventilation_required: true
+          monitoring_required: true
+        notes: "For 12V auxiliary battery and testing"
+
+      - id: "usb_can_adapter"
+        name: "USB-CAN Adapter"
+        type: "diagnostic"
+        location: "Electronics Bench"
+        status: "available"
+        specifications:
+          interface: "USB 2.0"
+          protocols: ["CAN 2.0A", "CAN 2.0B"]
+          baud_rate: "up to 1 Mbps"
+        software:
+          drivers: "Linux compatible"
+          tools: ["candump", "cansend", "can-utils"]
+        notes: "For CAN bus diagnostics and development"
+
+maintenance_schedule:
+  weekly:
+    - "Check torque wrench calibration sticker"
+    - "Inspect power tool batteries"
+    - "Clean soldering iron tip"
+
+  monthly:
+    - "Organize tool cabinets"
+    - "Check all tools present and accounted for"
+    - "Lubricate moving parts on hand tools"
+
+  yearly:
+    - "Calibrate torque wrenches"
+    - "Calibrate multimeter"
+    - "Calibrate digital caliper"
+    - "Replace soldering iron tips"
+    - "Service power tools"
+
+safety_notes:
+  - "Always wear appropriate PPE (safety glasses, gloves)"
+  - "Ensure workspace is well-ventilated when soldering"
+  - "Keep power tools unplugged when changing accessories"
+  - "Never bypass safety guards on power tools"
+  - "Store tools properly after use"
+  - "Report damaged or malfunctioning tools immediately"
+  - "Training required for power tools before first use"
+
+procurement_notes:
+  needed_tools:
+    - "Oscilloscope for electronics debugging"
+    - "3D printer for custom parts"
+    - "Laser cutter for metal fabrication"
+    - "Dedicated workbench with vise"
+
+  consumables_to_stock:
+    - "Solder wire (lead-free)"
+    - "Heat shrink tubing (various sizes)"
+    - "Cable ties"
+    - "Electrical tape"
+    - "Loctite threadlocker (blue and red)"
+    - "Dielectric grease"
+    - "Contact cleaner"
+    - "Isopropyl alcohol"
