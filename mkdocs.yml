@@ -8,6 +8,7 @@ markdown_extensions:
 nav:
   - Home: index.md
   - BOM: bom/index.md
+  - Tools: tools/index.md
   - Assembly:
       - Overview: assembly/index.md
       - Powertrain:
@@ -51,3 +52,4 @@ plugins:
 
 hooks:
   - generate_llm_hook.py
+  - generate_bom_hook.py
