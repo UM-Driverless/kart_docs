@@ -6,10 +6,10 @@ This file is to paste random links with no order or structure when no clear plac
     - https://www.seeedstudio.com/Seeed-XIAO-ESP32C3-p-5431.html?srsltid=AfmBOoqQL7ELWi1TzG4-n3cpRV_ZJvhqvYwIAZiPaPFKksbLwGAYxiHz
 
 
-# to note which executable environment is used by poetry
-Whole list with the active one flagged:
-`poetry env list --full-path`
+# to note which executable environment is used by uv
+Show Python executable path:
+`uv run python -c "import sys; print(sys.executable)"`
 
-or just active poetry env:
-`poetry env info --executable`
+Show virtual environment location:
+`uv venv --help` or check `.venv/` directory
 

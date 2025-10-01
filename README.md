@@ -12,15 +12,15 @@ Built with [MkDocs](https://www.mkdocs.org/) using the [Material theme](https://
 ## (Beta) Automated Installation
 Just run `install.sh` in Linux or macOS:
 
-## 🔧 Setup (using Poetry)
+## 🔧 Setup (using uv)
 
-Install Poetry:
+Install uv:
 
 ```bash
-curl -sSL https://install.python-poetry.org | python3 -
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-If you don’t have `curl`, check [Poetry’s install methods](https://python-poetry.org/docs/#installation).
+For other installation methods, see [uv documentation](https://docs.astral.sh/uv/getting-started/installation/).
 
 ---
 
@@ -29,14 +29,12 @@ Clone the repo and set up the project:
 ```bash
 git clone git@github.com:UM-Driverless/kart_docs.git
 cd kart_docs
-poetry config virtualenvs.in-project true
-poetry install
-poetry run playwright install --force chrome
+uv sync
+uv run playwright install --force chrome
 ```
 
 This:
-- Creates a project-local virtual environment (uses `pyenv` Python if available)
-- Installs MkDocs and plugins
+- Creates a virtual environment and installs dependencies
 - Downloads a headless Chrome browser for PDF export
 
 ---
@@ -44,14 +42,14 @@ This:
 ## ✅ Preview locally
 
 ```bash
-poetry run mkdocs serve
+uv run mkdocs serve
 ```
 You can then access the documentation in your web browser, usually at `http://127.0.0.1:8000`.
 
 To test the build before pushing (recommended):
 
 ```bash
-poetry run mkdocs build --strict
+uv run mkdocs build --strict
 # Output: site/
 ```
 
@@ -73,7 +71,7 @@ The workflow will:
 If needed, you can still deploy manually:
 
 ```bash
-poetry run mkdocs gh-deploy
+uv run mkdocs gh-deploy
 ```
 
 ---
@@ -94,8 +92,53 @@ These files are automatically generated during the build process and are availab
 To manually generate the LLM files:
 
 ```bash
-poetry run python generate_llm_files.py
+uv run python generate_llm_files.py
 ```
+
+---
+
+## 📊 BOM Reports & Parts Management
+
+This documentation includes advanced BOM (Bill of Materials) management features:
+
+### Automatic Features (Built into MkDocs)
+
+When you build the docs, the following happens automatically:
+
+- **Searchable parts table** - Dynamically generated from all `bom.yaml` files
+- **Cost summaries** - Total costs by assembly, status, and criticality
+- **Filterable by** - Assembly, status, category, or search text
+- **Sortable columns** - Click any column header to sort
+
+These features are enabled by the `generate_bom_hook.py` MkDocs hook.
+
+### Manual BOM Reports
+
+Generate comprehensive reports (JSON + CSV):
+
+```bash
+./generate_bom_reports.sh
+```
+
+Or manually:
+
+```bash
+uv run python scripts/aggregate_bom.py --output-dir reports/bom --format both
+```
+
+**Outputs:**
+- `reports/bom/bom_complete_report.json` - Complete data (costs, suppliers, status)
+- `reports/bom/bom_assembly_costs.csv` - Cost breakdown by assembly
+- `reports/bom/bom_all_components.csv` - All components in spreadsheet format
+
+### Adding Components
+
+1. Navigate to appropriate assembly folder: `docs/assembly/steering/`
+2. Edit `bom.yaml` file
+3. Add component using YAML format
+4. Component automatically appears in searchable table on next build
+
+See the **[BOM page](https://um-driverless.github.io/kart_docs/bom/)** for complete documentation and searchable parts table.
 
 ---
 
@@ -104,7 +147,7 @@ poetry run python generate_llm_files.py
 PDF export is disabled by default to speed up builds. To export PDFs explicitly:
 
 ```bash
-EXPORT_PDF=true poetry run mkdocs build
+EXPORT_PDF=true uv run mkdocs build
 # Outputs: site/pdf/kart-documentation.pdf
 ```
 

@@ -2,42 +2,38 @@
 
 This guide provides instructions for setting up the `kart_docs` project on a Windows machine.
 
-## 1. Install Poetry
+## 1. Install uv
 
-The recommended way to install Poetry on Windows is by using `curl` to download the installer and then executing it with Python.
+Install uv using PowerShell:
 
-```bash
-# Download the installer
-curl -sSL https://install.python-poetry.org -o install-poetry.py
-
-# Run the installer
-python install-poetry.py
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
-After installation, you may need to restart your terminal for the `poetry` command to be recognized. If you continue to have issues, you may need to add Poetry's scripts directory to your system's PATH environment variable manually. The path is typically: `C:\Users\<Your-Username>\AppData\Roaming\Python\Scripts`
+After installation, restart your terminal for the `uv` command to be recognized.
 
 ## 2. Install Project Dependencies
 
-Once Poetry is installed, you can install the project's dependencies using the following command:
+Once uv is installed, install the project's dependencies:
 
 ```bash
-poetry install
+uv sync
 ```
 
 ## 3. Install Headless Browser for PDF Export
 
-To enable PDF export functionality, you need to install a headless Chrome browser using Playwright:
+To enable PDF export functionality, install a headless Chrome browser using Playwright:
 
 ```bash
-poetry run playwright install --force chrome
+uv run playwright install --force chrome
 ```
 
 ## 4. Previewing the Documentation
 
-To preview the documentation locally, run the following command:
+To preview the documentation locally:
 
 ```bash
-poetry run mkdocs serve
+uv run mkdocs serve
 ```
 
 Then, open your web browser and navigate to `http://127.0.0.1:8000`.
