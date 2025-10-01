@@ -61,61 +61,14 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
     brew install openssl readline sqlite3 xz zlib tcl-tk
 fi
 
-# Install pyenv if not already installed
-if ! command -v pyenv &> /dev/null; then
-    print_status "Installing pyenv..."
-    curl https://pyenv.run | bash
-    
-    # Add pyenv to PATH for current session
-    export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$PYENV_ROOT/bin:$PATH"
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-    
-    # Add to shell profile
-    SHELL_PROFILE=""
-    if [[ "$SHELL" == *"zsh"* ]]; then
-        SHELL_PROFILE="$HOME/.zshrc"
-    elif [[ "$SHELL" == *"bash"* ]]; then
-        SHELL_PROFILE="$HOME/.bashrc"
-    fi
-    
-    if [[ -n "$SHELL_PROFILE" ]]; then
-        echo 'export PYENV_ROOT="$HOME/.pyenv"' >> "$SHELL_PROFILE"
-        echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> "$SHELL_PROFILE"
-        echo 'eval "$(pyenv init -)"' >> "$SHELL_PROFILE"
-        echo 'eval "$(pyenv virtualenv-init -)"' >> "$SHELL_PROFILE"
-        print_status "Added pyenv to $SHELL_PROFILE"
-    fi
-else
-    print_status "pyenv is already installed"
-    export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$PYENV_ROOT/bin:$PATH"
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
-fi
+# Install uv if not already installed
+if ! command -v uv &> /dev/null; then
+    print_status "Installing uv..."
+    curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# Install Python 3.12 if not already installed
-PYTHON_VERSION="3.12.3"
-if ! pyenv versions | grep -q "$PYTHON_VERSION"; then
-    print_status "Installing Python $PYTHON_VERSION..."
-    pyenv install "$PYTHON_VERSION"
-else
-    print_status "Python $PYTHON_VERSION is already installed"
-fi
-
-# Set local Python version
-print_status "Setting local Python version to $PYTHON_VERSION..."
-pyenv local "$PYTHON_VERSION"
-
-# Install Poetry if not already installed
-if ! command -v poetry &> /dev/null; then
-    print_status "Installing Poetry..."
-    curl -sSL https://install.python-poetry.org | python3 -
-    
-    # Add Poetry to PATH for current session
+    # Add uv to PATH for current session
     export PATH="$HOME/.local/bin:$PATH"
-    
+
     # Add to shell profile
     SHELL_PROFILE=""
     if [[ "$SHELL" == *"zsh"* ]]; then
@@ -123,41 +76,41 @@ if ! command -v poetry &> /dev/null; then
     elif [[ "$SHELL" == *"bash"* ]]; then
         SHELL_PROFILE="$HOME/.bashrc"
     fi
-    
-    if [[ -n "$SHELL_PROFILE" ]]; then
+
+    if [[ -n "$SHELL_PROFILE" ]] && ! grep -q "/.local/bin" "$SHELL_PROFILE"; then
         echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$SHELL_PROFILE"
-        print_status "Added Poetry to $SHELL_PROFILE"
+        print_status "Added uv to $SHELL_PROFILE"
     fi
 else
-    print_status "Poetry is already installed"
+    print_status "uv is already installed"
 fi
 
-# Configure Poetry to create virtual environments in project directory
-poetry config virtualenvs.in-project true
+# Ensure uv is in PATH for current session
+export PATH="$HOME/.local/bin:$PATH"
 
 # Install project dependencies
-print_status "Installing project dependencies with Poetry..."
-poetry install
+print_status "Installing project dependencies with uv..."
+uv sync
 
 # Install Playwright browsers
 print_status "Installing Playwright browsers..."
-poetry run playwright install --force chrome
+uv run playwright install --force chrome
 
 # Verify installation
 print_status "Verifying installation..."
-poetry run python --version
-poetry run mkdocs --version
+uv run python --version
+uv run mkdocs --version
 
 # Test that MkDocs can build the docs
 print_status "Testing MkDocs build..."
-poetry run mkdocs build --clean
+uv run mkdocs build --clean
 
 print_status "✅ Installation completed successfully!"
 print_status ""
 print_status "To start the documentation server, run:"
-print_status "  poetry run mkdocs serve"
+print_status "  uv run mkdocs serve"
 print_status ""
 print_status "To activate the virtual environment for development:"
-print_status "  poetry shell"
+print_status "  source .venv/bin/activate"
 print_status ""
-print_warning "Note: You may need to restart your terminal or run 'source ~/.bashrc' (or ~/.zshrc) to use pyenv and poetry commands."
+print_warning "Note: You may need to restart your terminal or run 'source ~/.bashrc' (or ~/.zshrc) to use uv commands."
