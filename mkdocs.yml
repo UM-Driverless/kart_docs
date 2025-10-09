@@ -7,6 +7,7 @@ markdown_extensions:
   - pymdownx.superfences
 nav:
   - Home: index.md
+  - About: about.md
   - BOM: bom/index.md
   - Tools: tools/index.md
   - Assembly:

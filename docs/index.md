@@ -8,7 +8,9 @@ This project equips a standard competition kart with autonomous capabilities by 
 
 In Driverless, our objective is to enable a single-seater vehicle to autonomously navigate a circuit delimited by cones.
 
-Until now, teachers and researchers lacked a practical outdoor testbed for their algorithms. This year, Henakart donated a kart chassis, which we’re converting to electric and equipping with autonomous systems. It’s simpler and safer than the Formula car, making it ideal for early development and testing.
+Until now, teachers and researchers lacked a practical outdoor testbed for their algorithms. This year, Henakart donated a kart chassis, which we're converting to electric and equipping with autonomous systems. It's simpler and safer than the Formula car, making it ideal for early development and testing.
+
+→ **[Learn more about Formula Student Driverless and our project](about.md)**
 
 ## Objectives
 
