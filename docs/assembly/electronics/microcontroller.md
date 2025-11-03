@@ -18,21 +18,40 @@ The ESP32 is a series of low-cost, low-power system on a chip microcontrollers w
 *   **DACs:** 2-channel, 8-bit
 *   **Communication Interfaces:** SPI, I2C, UART, CAN, I2S
 
-## Kart Medulla - ESP32 WROOM 32 Configuration
+## Kart Medulla - ESP32-DevKitC V4 Configuration
 
-The ESP32 serves as the "medulla" of the kart, interfacing between the Orin computer, steering angle sensor, and motor driver.
+The ESP32-DevKitC V4 (with ESP32-WROOM-32 module) serves as the "medulla" of the kart, interfacing between the Orin computer, steering angle sensor, and motor controllers.
+
+**Firmware Repository:** [UM-Driverless/kart_medulla](https://github.com/UM-Driverless/kart_medulla)
 
 ### Pin Assignments
 
-| GPIO Pin | Function | Connected To |
-|----------|----------|--------------|
-| GPIO 2   | LED      | Onboard LED |
-| GPIO 18  | UART RX  | Orin TX |
-| GPIO 19  | UART TX  | Orin RX |
-| GPIO 21  | I2C SDA  | AS5600 SDA |
-| GPIO 22  | I2C SCL  | AS5600 SCL |
-| GPIO 25  | PWM      | Motor Driver PWM |
-| GPIO 26  | DIR      | Motor Driver Direction |
+#### Motor Control Outputs
+
+| GPIO Pin | Function    | Type    | Range   | Description |
+|----------|-------------|---------|---------|-------------|
+| GPIO 26  | Throttle    | DAC2    | 0-255   | Analog throttle control |
+| GPIO 25  | Brake       | DAC1    | 0-255   | Analog brake control |
+| GPIO 27  | Steering PWM| LEDC    | 0-255   | Steering motor PWM |
+| GPIO 14  | Steering DIR| Digital | 0/1     | Steering motor direction |
+
+#### Sensor Interface (AS5600)
+
+| GPIO Pin | Function | Connected To | Description |
+|----------|----------|--------------|-------------|
+| GPIO 22  | I2C SCL  | AS5600 SCL   | Clock signal |
+| GPIO 21  | I2C SDA  | AS5600 SDA   | Data signal |
+
+!!! note "AS5600 Status"
+    The AS5600 magnetic angle sensor remains disabled in firmware until hardware is physically connected.
+
+#### Auxiliary Pins
+
+| GPIO Pin | Function     | Connected To | Description |
+|----------|--------------|--------------|-------------|
+| GPIO 2   | Status LED   | Onboard LED  | Status indicator |
+| GPIO 18  | UART TX      | Orin RX      | Serial communication to Orin |
+| GPIO 19  | UART RX      | Orin TX      | Serial communication from Orin |
 
 ## Wiring Connections
 
@@ -48,19 +67,40 @@ The ESP32 serves as the "medulla" of the kart, interfacing between the Orin comp
 !!! warning "Temporary Color Code"
     Wire colors are specific to the 2025 version and not official. Always verify connections.
 
-### ESP32 to Motor Driver
+### ESP32 to Motor Controllers
 
-| Motor Driver Pin | ESP32 Pin |
-|------------------|-----------|
-| PWM              | GPIO 25   |
-| DIR              | GPIO 26   |
-| VCC              | 5V        |
-| GND              | GND       |
+#### Throttle Control
+
+| Motor Driver Pin | ESP32 Pin | Signal Type |
+|------------------|-----------|-------------|
+| Analog Input     | GPIO 26   | DAC2 (0-255)|
+| VCC              | 5V        | Power       |
+| GND              | GND       | Ground      |
+
+#### Brake Control
+
+| Motor Driver Pin | ESP32 Pin | Signal Type |
+|------------------|-----------|-------------|
+| Analog Input     | GPIO 25   | DAC1 (0-255)|
+| VCC              | 5V        | Power       |
+| GND              | GND       | Ground      |
+
+#### Steering Control
+
+| Steering Driver Pin | ESP32 Pin | Signal Type |
+|---------------------|-----------|-------------|
+| PWM                 | GPIO 27   | LEDC (0-255)|
+| DIR                 | GPIO 14   | Digital (0/1)|
+| VCC                 | 5V        | Power       |
+| GND                 | GND       | Ground      |
 
 ### ESP32 to Orin (UART Communication)
 
-| Orin Pin | ESP32 Pin |
-|----------|-----------|
-| TX       | GPIO 18   |
-| RX       | GPIO 19   |
-| GND      | GND       |
+| Orin Pin | ESP32 Pin | Direction |
+|----------|-----------|-----------|
+| RX       | GPIO 18   | ESP32 → Orin |
+| TX       | GPIO 19   | Orin → ESP32 |
+| GND      | GND       | Ground |
+
+!!! info "UART Configuration"
+    Serial communication enables future integration between the Orin computer and ESP32 for command/telemetry exchange.

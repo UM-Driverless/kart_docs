@@ -4,6 +4,8 @@
 
 This is the documentation repository for the UM Driverless autonomous kart project. Built with MkDocs Material theme, deployed to GitHub Pages.
 
+**This repository is the single source of truth for kart documentation.** Previously managed in Notion, all documentation has been migrated to this MkDocs-based system.
+
 **Live site:** https://um-driverless.github.io/kart_docs/
 
 ## Tech Stack
