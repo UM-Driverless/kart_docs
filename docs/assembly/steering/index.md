@@ -22,8 +22,9 @@ We need to move the steering shaft to the target angle.
 1. Micro controller reads target position from main computer (Orin) and current position from the Hall effect sensor
     - Micro controller may be a Blue Pill, Teensy 4.0, or one with CAN transceiver builtin.
 2. Calculates PWM % value with PID. Sends PWM 3.3V to H-bridge
-3. H-bridge (MD30C) receives PWM and powers the DC motor
-    - ChatGpt said it can't work with 3.3V PWM, just 5V PWM, but the datasheet says otherwise [here](../../assets/datasheets/MD30C%20Users%20Manual.pdf)
+3. H-bridge (MD25HV) receives PWM and powers the DC motor
+    - The MD25HV accepts control voltages from 1.8V-30V, so 3.3V PWM from ESP32 works perfectly
+    - [Datasheet](https://docs.google.com/document/d/1xJHVG2dc3aEtedCHf3L9NzUy5KqpxeWjeS9Lfh9XuqA)
 
 ## H-bridge data
 See [H-bridge](h-bridge.md) for more details.
