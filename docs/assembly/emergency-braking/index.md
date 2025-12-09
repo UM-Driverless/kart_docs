@@ -43,9 +43,9 @@ The system uses a shuttle valve (OR logic) to allow either the emergency line or
 > 3. **Integration:** An OR Valve (Shuttle) isolates both lines so they don't interfere with each other.
 
 ## Schematic
-!(Add Diego's schematic image here)
+![](Diego's_diagram)
 
-## Components List (Updated 2025-10-18)
+## Components
 
 ### Actuators & Valves
 - [x] **Pneumatic Actuator** (ADN-S-50-15-I-P-A) - Reuse
