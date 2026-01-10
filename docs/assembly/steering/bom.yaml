@@ -1,35 +1,38 @@
 assembly: "steering"
 description: "Steering system components and electronics"
 components:
-  - id: "cytron_md30c"
-    part_number: "MD30C"
-    description: "30A H-bridge motor driver"
+  - id: "cytron_md25hv"
+    part_number: "MD25HV"
+    description: "25A high voltage H-bridge motor driver (7V-58V)"
     category: "electronics"
     quantity: 1
-    unit_cost: 45.00
+    unit_cost: 55.00
     currency: "EUR"
     status: "active"
     criticality: "essential"
     suppliers:
       - name: "Cytron Technologies"
-        url: "https://www.cytron.io/p-30amp-5v-30v-dc-motor-driver"
-        verified: true
-      - name: "OpenCircuit ES"
-        url: "https://opencircuit.es/producto/30amp-5v-30v-dc-motor-driver"
-        notes: "Spanish distributor"
+        url: "https://www.cytron.io/p-25amp-7v-58v-high-voltage-dc-motor-driver"
         verified: true
     specifications:
-      continuous_current: "30A"
-      peak_current: "80A"
-      voltage_range: "5V-30V"
-      pwm_frequency: "20kHz"
-      control_voltage: "3.3V/5V"
+      continuous_current: "25A"
+      peak_current: "60A"
+      voltage_range: "7V-58V"
+      pwm_frequency: "40kHz input, 16kHz output"
+      control_voltage: "1.8V-30V"
+      aux_output: "5V @ 250mA"
+      features:
+        - "Discrete NMOS H-Bridge design"
+        - "Dual input modes: PWM/DIR or Potentiometer/Switch"
+        - "Overcurrent protection with active current limiting"
+        - "Temperature protection and undervoltage shutdown"
     documentation:
-      datasheet: "../../assets/datasheets/MD30C Users Manual.pdf"
+      datasheet: "https://docs.google.com/document/d/1xJHVG2dc3aEtedCHf3L9NzUy5KqpxeWjeS9Lfh9XuqA"
       github: "https://github.com/CytronTechnologies/CytronMotorDriver"
       tutorials:
         - "https://www.cytron.io/tutorial/controlling-md10c-with-arduino"
         - "https://www.instructables.com/Controlling-Motor-Speed/"
+    notes: "Rated for 13S battery (41.6V-54.6V) operation, replaces MD30C which was limited to 30V"
 
   - id: "steering_motor_24v"
     part_number: "STEERING-24V-MOTOR"
