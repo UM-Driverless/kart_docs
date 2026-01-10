@@ -18,6 +18,10 @@ The ESP32 is a series of low-cost, low-power system on a chip microcontrollers w
 *   **DACs:** 2-channel, 8-bit
 *   **Communication Interfaces:** SPI, I2C, UART, CAN, I2S
 
+### ESP32-DevKitC Dimensions
+
+![ESP32 DevKitC dimensions](microcontroller/images/esp32/index/ESP32-DevKitC-Dimensions.png)
+
 ## Kart Medulla - ESP32-DevKitC V4 Configuration
 
 The ESP32-DevKitC V4 (with ESP32-WROOM-32 module) serves as the "medulla" of the kart, interfacing between the Orin computer, steering angle sensor, and motor controllers.
