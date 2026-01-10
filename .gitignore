@@ -3,6 +3,7 @@ site/
 __pycache__/
 .venv/
 .vscode/
+.DS_Store
 
 # Auto-generated LLM files (regenerated on each build)
 llms.txt
