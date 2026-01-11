@@ -6,7 +6,7 @@ The Kart Medulla is the ESP32-based control hub that interfaces between the Orin
 
 ## ESP32 Overview
 
-[![ESP32 Pinout](images/ESP32-pinout-diagram.jpg)](https://www.teachmemicro.com/)
+[![ESP32 Pinout](images/ESP32-DOIT-DEV-KIT-v1-pinout-mischianti.png)](https://www.teachmemicro.com/)
 
 *   **CPU:** Xtensa dual-core (or single-core) 32-bit LX6 microprocessor
 *   **Clock Speed:** Up to 240 MHz
