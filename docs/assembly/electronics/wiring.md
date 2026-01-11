@@ -7,4 +7,4 @@ For throttle pedal sensor specifications and wiring, see [Throttle Pedal Documen
 
 ## ESP32 wiring
 
-For detailed ESP32 wiring connections including AS5600 sensor, motor driver, and Orin communication, see [ESP32 Microcontroller Documentation](microcontroller.md#wiring-connections).
+For detailed ESP32 wiring connections including AS5600 sensor, motor driver, and Orin communication, see [Kart Medulla Documentation](kart-medulla/index.md#wiring-connections).

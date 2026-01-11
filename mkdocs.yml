@@ -24,9 +24,8 @@ nav:
           - Angle Sensor: assembly/steering/sensor/index.md
           - Fasteners: assembly/steering/fasteners.md
       - Electronics:
-          - Microcontroller: assembly/electronics/microcontroller.md
+          - Kart Medulla (ESP32): assembly/electronics/kart-medulla/index.md
           - Computer: assembly/electronics/computer.md
-          - DAC: assembly/electronics/dac.md
           - Wiring: assembly/electronics/wiring.md
           - Power:
               - Battery: assembly/electronics/power/battery.md

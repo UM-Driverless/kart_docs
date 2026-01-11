@@ -94,49 +94,37 @@ components:
       owncloud_path: "formula/formula 24-25/DV/ORIN/adapter/ProProject_Orin Adapter_2025-03-09.epro"
     notes: "Custom adapter to connect Orin to kart systems"
 
-  - id: "dac_module"
-    part_number: "TBD-DAC-MODULE"
-    description: "Digital to Analog Converter module"
-    category: "dac"
+  - id: "kart_medulla_shutdown_mosfet"
+    part_number: "TBD-MOSFET"
+    description: "Shutdown MOSFET (low-side or high-side)"
+    category: "mosfet"
     quantity: 1
-    unit_cost: 15.00
-    currency: "EUR"
-    status: "needs_specification"
-    criticality: "essential"
-    suppliers:
-      - name: "TBD"
-        notes: "Need to identify specific DAC module"
-    specifications:
-      power_supply: "5V"
-      communication: "I2C @ 3.3V"
-      interface_issue: "Voltage level mismatch"
-    required_components:
-      - component: "Bidirectional I2C level shifter"
-        options: ["TXS0108E", "BSS138"]
-        reason: "5V DAC with 3.3V I2C communication"
-    notes: "Requires level shifter due to voltage mismatch between 5V power and 3.3V I2C"
-
-  - id: "i2c_level_shifter"
-    part_number: "TXS0108E"
-    description: "8-bit bidirectional voltage-level translator"
-    category: "level_shifter"
-    quantity: 1
-    unit_cost: 2.50
+    unit_cost: 0.00
     currency: "EUR"
     status: "pending"
     criticality: "essential"
     suppliers:
-      - name: "Texas Instruments"
-        verified: true
-      - name: "Mouser"
-        verified: true
-      - name: "Digi-Key"
-        verified: true
+      - name: "Workshop stock"
+        notes: "Select N-channel low-side or P-channel high-side during layout"
     specifications:
-      channels: 8
-      voltage_a: "1.2V to 3.6V"
-      voltage_b: "1.65V to 5.5V"
-      data_rate: "up to 110 Mbps"
-    alternatives:
-      - "BSS138 (MOSFET-based)"
-    notes: "Solves DAC voltage level mismatch issue"
+      topology: "low-side or high-side"
+      gate_drive: "3.3V logic"
+    notes: "Shutdown control MOSFET for the Kart Medulla interface PCB"
+
+  - id: "kart_medulla_dual_op_amp"
+    part_number: "TBD-DUAL-OPAMP"
+    description: "Dual op-amp for ESP32 DAC scaling"
+    category: "op_amp"
+    quantity: 1
+    unit_cost: 0.00
+    currency: "EUR"
+    status: "pending"
+    criticality: "essential"
+    suppliers:
+      - name: "Workshop stock"
+        notes: "Use existing dual op-amp if available"
+    specifications:
+      gain_a: "x1.5 (to 5V throttle)"
+      gain_b: "x3 (to ~9.99V pressure)"
+      supply: "5V"
+    notes: "Uses ESP32 DAC outputs with op-amp gain stages"

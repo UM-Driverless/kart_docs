@@ -71,7 +71,7 @@ docs/assembly/
 ### 💻 Electronics Assembly
 **Components**: Computing, control, communication
 - **Main Components**: [Electronics BOM](../assembly/electronics/bom.yaml)
-- **Documentation**: [Electronics Assembly](../assembly/electronics/microcontroller.md)
+- **Documentation**: [Kart Medulla (ESP32)](../assembly/electronics/kart-medulla/index.md)
 
 **Key Components:**
 - NVIDIA Jetson AGX Orin (€1500.00)
