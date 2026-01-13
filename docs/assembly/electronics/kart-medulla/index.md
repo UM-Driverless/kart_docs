@@ -1,12 +1,12 @@
 # Kart Medulla (ESP32)
 
-The Kart Medulla is the ESP32-based control hub that interfaces between the Orin computer, sensors, and actuators. It currently uses an ESP32-DevKitC V4 module and is moving to a dedicated interface PCB that consolidates level shifting, analog conditioning, and IO breakout.
+The Kart Medulla is the ESP32-based control hub that interfaces between the Orin computer, sensors, and actuators. The standard board is the ESP32-DevKitC V4 (38-pin, USB-C) with an ESP32-WROOM-32D module; the older 30-pin board is legacy-only. The system is moving to a dedicated interface PCB that consolidates level shifting, analog conditioning, and IO breakout.
 
 **Firmware repository:** [UM-Driverless/kart_medulla](https://github.com/UM-Driverless/kart_medulla)
 
 ## ESP32 Overview
 
-[![ESP32 Pinout](images/ESP32-DOIT-DEV-KIT-v1-pinout-mischianti.png)](https://www.teachmemicro.com/)
+[![ESP32-DevKitC V4 Pinout](images/esp32-devkitc-v4-pinout.png)](https://docs.espressif.com/projects/esp-idf/en/v5.1/esp32/hw-reference/esp32/get-started-devkitc.html)
 
 *   **CPU:** Xtensa dual-core (or single-core) 32-bit LX6 microprocessor
 *   **Clock Speed:** Up to 240 MHz
@@ -19,13 +19,17 @@ The Kart Medulla is the ESP32-based control hub that interfaces between the Orin
 *   **DACs:** 2-channel, 8-bit
 *   **Communication Interfaces:** SPI, I2C, UART, CAN, I2S
 
+## ESP32 Standardization Decision
+
+The project previously used a 30-pin ESP32 development board with a non-standard pinout that is not DevKitC-compatible. To ensure long-term repeatability, predictable wiring, and easy replacement across builds, the project now standardizes on the ESP32-DevKitC V4 (38-pin, USB-C) using the ESP32-WROOM-32D module with an integrated PCB antenna. DevKitC V4 is Espressif's reference design with a stable pinout, reliable auto-reset/boot circuitry, and wide toolchain support. The ESP32 core is identical across boards; the change is driven by hardware consistency and robustness, not performance. The 30-pin board remains deprecated and should not be used for new builds.
+
 ### ESP32-DevKitC Dimensions
 
 ![ESP32 DevKitC dimensions](images/ESP32-DevKitC-Dimensions.png)
 
 ## Current ESP32-DevKitC V4 Configuration
 
-The ESP32-DevKitC V4 (with ESP32-WROOM-32 module) serves as the medulla of the kart, interfacing between the Orin computer, steering angle sensor, and motor controllers.
+The ESP32-DevKitC V4 (with ESP32-WROOM-32D module) serves as the medulla of the kart, interfacing between the Orin computer, steering angle sensor, and motor controllers.
 
 ### Pin Assignments
 
