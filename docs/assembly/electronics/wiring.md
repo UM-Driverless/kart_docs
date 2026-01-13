@@ -1,6 +1,10 @@
 # Wiring
 TODO global diagram (Fritzing?)
 
+## Net naming
+
+For signal naming across PCBs, see [Net Name Nomenclature](net-naming.md).
+
 ## Throttle pedal sensor
 
 For throttle pedal sensor specifications and wiring, see [Throttle Pedal Documentation](../powertrain/throttle-pedal.md).
