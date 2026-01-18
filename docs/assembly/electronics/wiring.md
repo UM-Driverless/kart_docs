@@ -1,6 +1,9 @@
 # Wiring
 TODO global diagram (Fritzing?)
 
+## Power entry diagram
+![](images/power-entry.png)
+
 ## Net naming
 
 For signal naming across PCBs, see [Net Name Nomenclature](net-naming.md).

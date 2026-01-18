@@ -47,6 +47,8 @@ The system uses a shuttle valve (OR logic) to allow either the emergency line or
 
 ## Components
 
+**Thread standard:** Default to **G1/4** across the EBS pneumatic system. Only keep **G1/8** when a component forces it (e.g., the actuator), and use adapters as needed.
+
 ### Actuators & Valves
 - [x] **Pneumatic Actuator** (ADN-S-50-15-I-P-A) - Reuse
     > **CRITICAL:** This cylinder uses **G1/8** ports, not  G1/4.
@@ -93,4 +95,3 @@ The system uses a shuttle valve (OR logic) to allow either the emergency line or
         > Allows a floating layout. Compatible with all components regardless of their thread size.
     - **Option B (Rigid):** 3x [Threaded T-Fitting (TCN)](https://www.festo.com/gb/en/search/?text=TCN)
         > Mounts directly onto the valves. Requires ordering a mix of TCN-1/8 and TCN-1/4 to match each specific valve.
-
