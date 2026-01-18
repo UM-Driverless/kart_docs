@@ -2,7 +2,7 @@
 TODO global diagram (Fritzing?)
 
 ## Power entry diagram
-![](images/power-entry.png)
+![](wiring/images/power-entry.png)
 
 ## Net naming
 

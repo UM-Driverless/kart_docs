@@ -47,21 +47,23 @@ The system uses a shuttle valve (OR logic) to allow either the emergency line or
 
 ## Components
 
-**Thread standard:** Default to **G1/4** across the EBS pneumatic system. Only keep **G1/8** when a component forces it (e.g., the actuator), and use adapters as needed.
+**Thread standard:** Default to **G1/4** across the EBS pneumatic system. Only keep **G1/8** when a component forces it (e.g., the actuator), and use a short G1/4 -> G1/8 adapter as needed.
 
 ### Actuators & Valves
-- [x] **Pneumatic Actuator** (ADN-S-50-15-I-P-A) - Reuse
-    > **CRITICAL:** This cylinder uses **G1/8** ports, not  G1/4.
-    - [Datasheet](https://www.festo.com/gb/en/a/5138190/)
+- [x] **Pneumatic Actuator** (ADN-S-50-45-I-P-A) - Reuse
+    > **CRITICAL:** This cylinder uses **G1/8** ports, not G1/4.
+    - [Datasheet](https://www.festo.com/gb/en/a/8084714/)
 - [x] **EBS Electrovalve V1** (Reuse)
     - Normally Open / 3-way valve.
+    - Festo VUVS-LT25-M32U-MD-G14-F8 (8035174).
     - **Action:** Needs a silencer on port 3.
 - [ ] **ASB Electrovalve V2** (New)
-    - [Festo VUVG-L14](https://www.festo.com/es/es/a/8035167/)
+    - Festo VUVS-LT25-M32C-MD-G14-F8 (8035167).
     - **Action:** Needs a silencer on port 3.
-- [ ] **Proportional Valve** (VPPM-6L-L-1-G18-0L10H-A4P)
+- [ ] **Proportional Valve** (VPPM-8L-L-1-G14-0L10H-V1P-S1C1, 571293)
     > Controls the service brake pressure (ASB).
-    - [Datasheet](https://www.festo.com/es/es/a/download-document/datasheet/8153644)
+    - 0-10V setpoint, 0-10 bar regulation, G1/4 ports.
+    - [Festo search](https://www.festo.com/gb/en/search/?text=VPPM-8L-L-1-G14-0L10H-V1P-S1C1)
     - **Action:** Requires specific M12 cable (see cables below).
 - [ ] **Shuttle Valve (OR)** (OS-1/4-B)
     > Merges EBS and ASB lines.
@@ -74,24 +76,22 @@ The system uses a shuttle valve (OR logic) to allow either the emergency line or
     - [Product Page](https://www.festo.com/cat/en-gb_gb/products_SDE5)
     - **Note:** Does not require a threaded adapter. Connects directly to tubing.
 - [ ] **Cable for Proportional Valve**
-    - **Ref:** `NEBU-M12G8...` (M12, 8-pin, shielded).
+    - **Ref:** `NEBU-M12W8-K-2-N-LE8` (M12, 8-pin, shielded).
     - Necessary to control the VPPM.
 - [ ] **Cable for Sensor**
-    - **Ref:** `NEBU-M8G3...` (M8, 3-pin).
+    - **Ref:** `NEBU-M8G3-K-2.5-LE3` (M8, 3-pin).
     - For the SDE5 sensor.
 
 ### Fittings & Accessories
-- [ ] **Tubing:** [Polyurethane Tubing 6mm OD (PUN-H-6x1)](https://www.festo.com/gb/en/search/?text=PUN-H-6x1)
-- [ ] **G1/8 Fittings:** 4x [QS-G1/8-6 (Male G1/8 -> 6mm push-in)](https://www.festo.com/gb/en/search/?text=QS-G1%2F8-6)
-    > Required for: Actuator (ADN-S-50) and New Electrovalve (V2).
-- [ ] **G1/4 Fittings:** 7x [QS-G1/4-6 (Male G1/4 -> 6mm push-in)](https://www.festo.com/gb/en/search/?text=QS-G1%2F4-6)
-    > Required for: Shuttle Valve (3x), Proportional Valve (2x), and Reuse Electrovalve V1 (2x).
+- [ ] **Tubing:** 6 mm OD / 4 mm ID (Festo 197384).
+    - [Festo search](https://www.festo.com/gb/en/search/?text=197384)
+- **FS rules:** Push-in (QS/QST) fittings are not accepted. Use threaded compression or barbed + clamp fittings.
+- [ ] **Compression fittings (6 mm tube):**
+    - TCN-1/8-PK-6 (tees, G1/8).
+    - TCN-1/4-PK-6 (tees, G1/4).
+    - CRCN-1/8-PK-6, HCRCN-1/8-PK-6 (straight/elbow, actuator + V2).
+    - CRCN-1/4-PK-6, HCRCN-1/4-PK-6 (straight/elbow, rest of valves).
+- [ ] **Adapter:** Short G1/4 -> G1/8 (actuator ports only).
 - [ ] **Silencers:**
     - 1x [U-1/8](https://www.festo.com/gb/en/search/?text=U-1%2F8) (For New Valve V2).
     - 1x [U-1/4](https://www.festo.com/gb/en/search/?text=U-1%2F4) (For Reuse Valve V1).
-
-- [ ] **Distribution Tees (Choose Option A or B):**
-    - **Option A (Recommended - Flexible):** 3x [Plastic T-Connector 6mm (T-PK-4)](https://www.festo.com/gb/en/search/?text=T-PK-4)
-        > Allows a floating layout. Compatible with all components regardless of their thread size.
-    - **Option B (Rigid):** 3x [Threaded T-Fitting (TCN)](https://www.festo.com/gb/en/search/?text=TCN)
-        > Mounts directly onto the valves. Requires ordering a mix of TCN-1/8 and TCN-1/4 to match each specific valve.
