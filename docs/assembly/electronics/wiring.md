@@ -1,5 +1,5 @@
 # Wiring
-TODO global diagram (Fritzing?)
+TODO global diagram.
 
 ## Power entry diagram
 ![](wiring/images/power-entry.png)
