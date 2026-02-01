@@ -114,12 +114,7 @@ The ESP32-DevKitC V4 (with ESP32-WROOM-32D module) serves as the medulla of the 
 
 ## Kart Medulla Interface PCB (In Progress)
 
-![Kart Medulla interface schematic (draft)](images/kart-medulla-interface-schematic.png)
-
 The interface PCB (a.k.a. `esp32_expander` in the repo) hosts the electrical conditioning and connectors so the ESP32 module can be swapped while keeping wiring consistent.
-
-!!! warning "Draft Pinout"
-    Pin mappings below are transcribed from the schematic screenshot and still in flux. Blank entries indicate missing or unclear labels.
 
 ### Draft Hardware Decisions
 
@@ -147,37 +142,48 @@ The main connector is a set of green push-in headers labeled CN1..CN4 in the sch
 
 ### ESP32 Header Pinout (Software Names)
 
-Mapping between the ESP32-DevKitC header pins and the signal names used in software. The GPIO labels are taken from the schematic; missing items remain blank.
+Mapping between the ESP32 38-pin numbering and the DevKitC V4 Type-C headers (H1/H2). ESP32 pins 1-19 correspond to H2 pins 1-19, and ESP32 pins 20-38 correspond to H1 pins 1-19. Pin numbers match the header labels in the diagram.
 
-| ESP32 Header | Pin | GPIO | Signal | Notes |
-|-------------|-----|------|--------|-------|
-| U2 | 1 |  | ENABLE | |
-| U2 | 2 | GPIO36 | HALL2_3.3V | |
-| U2 | 3 | GPIO39 | HALL1_3.3V | |
-| U2 | 4 | GPIO34 | HALL3_3.3V | |
-| U2 | 5 | GPIO35 |  | |
-| U2 | 6 | GPIO32 | STEER_CMD_PWM_3.3V | |
-| U2 | 7 | GPIO33 | STEER_CMD_DIR_3.3V | |
-| U2 | 8 | GPIO25 | BRAKE_0V5 | |
-| U2 | 9 | GPIO26 | THROTTLE_0V5 | |
-| U2 | 10 | GPIO27 |  | |
-| U2 | 11 | GPIO14 | PRESSURE3_0V3.3 | |
-| U2 | 12 | GPIO12 | PRESSURE2_0V3.3 | |
-| U2 | 13 | GPIO13 | PRESSURE1_0V3.3 | |
-| U2 | 14 |  | GND | |
-| U2 | 15 |  | 5V | |
-| U3 | 1 |  | 3.3V | |
-| U3 | 2 |  | GND | |
-| U3 | 3 | GPIO15 |  | |
-| U3 | 4 | GPIO2 |  | |
-| U3 | 5 | GPIO4 |  | |
-| U3 | 6 | GPIO16 |  | |
-| U3 | 7 | GPIO17 |  | |
-| U3 | 8 | GPIO5 |  | |
-| U3 | 9 | GPIO18 |  | |
-| U3 | 10 | GPIO19 |  | |
-| U3 | 11 | GPIO21 | STEER_SDA | |
-| U3 | 12 | GPIO2 |  | |
-| U3 | 13 | GPIO1 |  | |
-| U3 | 14 | GPIO22 | STEER_SCL | |
-| U3 | 15 | GPIO23 |  | |
+![ESP32 DevKitC V4 Type-C header pinout](images/esp32-devkitc-v4-typec-header-pinout.png)
+![Kart Medulla main connector (green push-in)](images/kart-medulla-main-connector.png)
+
+| ESP32 Pin | H1 Pin | H2 Pin | Signal |
+|-----------|--------|--------|--------|
+| 1 | - | 1 | 3V3 |
+| 2 | - | 2 | EN |
+| 3 | - | 3 | PRESSURE_1_0_3V3 |
+| 4 | - | 4 | PRESSURE_2_0_3V3 |
+| 5 | - | 5 | PRESSURE_3_0_3V3 |
+| 6 | - | 6 | PEDAL_ACC_3V3 |
+| 7 | - | 7 | PEDAL_BRAKE_3V3 |
+| 8 | - | 8 | MOTOR_HALL_2_3V3 |
+| 9 | - | 9 | CMD_ACC_0_3V3 |
+| 10 | - | 10 | CMD_BRAKE_0_3V3 |
+| 11 | - | 11 | HYDRAULIC_1_0_3V3 |
+| 12 | - | 12 | HYDRAULIC_2_0_3V3 |
+| 13 | - | 13 | NC (STRAP pin - flash/boot config risk) |
+| 14 | - | 14 | GND |
+| 15 | - | 15 | SDC_NOT_EMERGENCY_3V3 |
+| 16 | - | 16 | RESERVED (FLASH/SDIO) |
+| 17 | - | 17 | RESERVED (FLASH/SDIO) |
+| 18 | - | 18 | RESERVED (FLASH/SDIO) |
+| 19 | - | 19 | 5V |
+| 20 | 1 | - | RESERVED (FLASH/SDIO) |
+| 21 | 2 | - | RESERVED (FLASH/SDIO) |
+| 22 | 3 | - | RESERVED (FLASH/SDIO) |
+| 23 | 4 | - | NC (STRAP pin - boot config risk) |
+| 24 | 5 | - | NC (STRAP pin - boot config risk) |
+| 25 | 6 | - | NC (STRAP pin - BOOT mode pin) |
+| 26 | 7 | - | NC (STRAP pin - boot config risk) |
+| 27 | 8 | - | MOTOR_HALL_3_3V3 |
+| 28 | 9 | - | MOTOR_HALL_1_3V3 |
+| 29 | 10 | - | NC (STRAP pin - boot config risk) |
+| 30 | 11 | - | CMD_STEER_PWM_3V3 |
+| 31 | 12 | - | CMD_STEER_DIR_3V3 |
+| 32 | 13 | - | GND |
+| 33 | 14 | - | STEER_SDA_I2C |
+| 34 | 15 | - | RESERVED (USB UART0 RX) |
+| 35 | 16 | - | RESERVED (USB UART0 TX) |
+| 36 | 17 | - | STEER_SCL_I2C |
+| 37 | 18 | - | SPARE_3V3 |
+| 38 | 19 | - | GND |
