@@ -6,44 +6,51 @@ We have validated a simplified design that removes the redundant ASB isolation v
 
 ![](simplified-design.png)
 
-### How it works
+### Detailed Logic & Component Behavior
 
-1.  **Normal Driving (ASB Control):**
-    *   **EBS Valve:** Unpowered (Closed to tank, Vents line). *Note: Standard EBS valves are usually Normally Open for fail-safe, but in this specific diagram configuration, check if EBS valve is being used to supply or vent.*
-    *   **VPPM (ASB Control):** Powered. It regulates pressure (0-10 bar) from the tank to the Shuttle Valve.
-    *   **Shuttle Valve:** Passes the VPPM pressure to the cylinder to retract the brake (if using a fail-safe spring cylinder) or apply it (if using active braking). *Wait, the context implies fail-safe spring braking where pressure = release.*
+This design relies on **Fail-Safe Pneumatic Logic**:
+*   **0 bar (Vented) = BRAKES APPLIED** (Spring extends cylinder).
+*   **>4 bar (Pressurized) = BRAKES RELEASED** (Cylinder retracts).
 
-    > **Correction on Logic based on standard FS rules:**
-    > *   **Fail-Safe Brake:** Spring extends (Brakes ON). Pressure retracts (Brakes OFF).
-    > *   **EBS State:** 0 bar in system -> Spring extends -> Emergency Brake.
-    > *   **Driving State:** High pressure (>4 bar) -> Cylinder retracts -> Brakes Released.
+#### 1. Proportional Valve (ASB) - [Festo VPPM](https://www.festo.com/net/SupportPortal/Files/43063/VPPM_en.pdf)
+The VPPM is a 3-way proportional pressure regulator. Its internal behavior ensures safety without an external shut-off valve.
 
-    **Revised Logic for this Diagram:**
-    *   **EBS Valve:** Must be energized to allow pressure (Normal driving) or de-energized to vent?
-    *   **Shuttle Valve (OR):** Selects the higher pressure source.
+*   **Powered (Normal):** Regulates Output (Port 2) based on setpoint.
+*   **Unpowered (0V/0mA):**
+    *   **Port 1 (Supply):** **CLOSED**. The valve mechanically blocks the air supply. It does **not** drain the tank.
+    *   **Port 2 (Output):** **EXHAUSTING**. The valve mechanically connects Port 2 to Port 3 (Exhaust).
+    *   **Proof:** See datasheet functional diagram (3-way regulator). The reset position (spring) closes supply and opens exhaust to 0 bar.
 
-    **Why the "ASB Valve" was removed:**
-    The original design had a valve before the VPPM to cut its air. This is unnecessary because:
-    1.  **Port 1 (Supply) Seals:** When the VPPM loses power, it closes the supply port. It does not drain the air tank.
-    2.  **Port 2 (Output) Vents:** When unpowered, the VPPM connects Output to Exhaust. It effectively becomes a 0-bar source.
-    3.  **Safety:** As long as the Shutdown Circuit cuts power to **both** the EBS Valve and the VPPM, the VPPM will not feed false pressure into the system.
+#### 2. EBS Valve - Solenoid
+Must be a **Normally Closed (NC)** 3/2-way valve (or wired to act as one).
+*   **Powered (Driving):** Opens Supply (1) -> Output (2). Brakes release.
+*   **Unpowered (Emergency):** Spring return closes Supply (1) and **Vents Output (2) -> Exhaust (3)**. Brakes apply.
 
-### States
+#### 3. Shuttle Valve (OR)
+Isolates the two lines. It automatically selects the higher pressure source.
+*   **Function:** Prevents the unpowered (venting) VPPM from draining the EBS line during normal driving, and vice-versa.
 
-| State | Power | EBS Valve | VPPM (ASB) | Shuttle Output | Result |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Emergency (EBS)** | **OFF** | Vents to Atm | Vents to Atm | 0 bar | Spring extends (**BRAKE**) |
-| **Driving** | **ON** | Supplied (10 bar) | Controlled | 10 bar | Cylinder Retracts (Release) |
-| **Active Braking** | **ON** | Closed/Venting? | Modulated | Modulated | Controlled Braking |
+### System States
 
-> **Critical Component: Shuttle Valve (OR)**
-> The Shuttle Valve is mandatory. You cannot simply T-connect the lines. If you did, the unpowered VPPM (which vents to atmosphere) would act as a massive leak for the EBS line, preventing the system from ever building pressure to release the brakes. The Shuttle Valve isolates the venting VPPM from the pressurized EBS line (or vice versa).
+| State | EBS Valve (Signal) | VPPM (Signal) | Resulting Pressure | Brake Status |
+| :--- | :--- | :--- | :--- | :--- |
+| **EMERGENCY (Fail-Safe)** | **OFF (0V)**<br>Vents to Atm | **OFF (0V)**<br>Vents to Atm | **0 bar** | **LOCKED** (Spring Extended) |
+| **Driving (Full Release)** | **ON (24V)**<br>Supplies 10 bar | **Controlled**<br>(e.g. 5V / 5 bar) | **10 bar** (from EBS Valve) | **RELEASED** (Cylinder Retracted) |
+| **Autonomous Braking** | **OFF (0V)**<br>Vents to Atm | **Controlled**<br>(e.g. 8 bar) | **8 bar** (from VPPM) | **MODULATED** (Partial Release) |
 
-## Components
+> **Note on "Autonomous Braking" State:** To control the brakes autonomously, we must cut power to the EBS Valve (letting it vent) so the Shuttle Valve takes pressure from the VPPM instead. If the EBS valve stays open (10 bar), the Shuttle Valve will ignore the VPPM (lower pressure) and keep brakes fully released.
+
+### Components
 - [Solenoid valve](https://www.festo.com/tw/en/a/575488/) (Emergency)
+    - **Type:** 3/2-way, Normally Closed (NC).
+    - **Datasheet:** [VUVS Series](https://www.festo.com/net/SupportPortal/Files/477027/VUVS_en.pdf)
 - [Proportional Valve](https://www.festo.com/es/es/a/8153644/) (ASB Control)
+    - **Model:** VPPM-8L-L-1...
+    - **Datasheet:** [VPPM Manual](https://www.festo.com/net/SupportPortal/Files/43063/VPPM_en.pdf)
 - [Shuttle Valve](https://www.festo.com/es/es/a/6682/) (OR Logic)
+    - **Function:** Logic element OR.
 - Pressure sensor
+
 
 ---
 
