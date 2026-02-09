@@ -33,7 +33,9 @@ nav:
               - Battery: assembly/electronics/power/battery.md
       - Sensors:
           - Camera: assembly/sensors/camera.md
-      - Emergency Braking: assembly/emergency-braking/index.md
+      - Emergency Braking:
+          - Pneumatics: assembly/emergency-braking/index.md
+          - BOM: assembly/emergency-braking/bom.md
   - Hydraulics: hydraulics/index.md
   - Software: software/index.md
   - FAQ: faq.md
