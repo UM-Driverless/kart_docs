@@ -23,6 +23,7 @@ The VPPM is a 3-way proportional pressure regulator. Its internal behavior ensur
 
 #### 2. EBS Valve - Solenoid
 Must be a **Normally Closed (NC)** 3/2-way valve (or wired to act as one).
+
 *   **Powered (Driving):** Opens Supply (1) -> Output (2). Brakes release.
 *   **Unpowered (Emergency):** Spring return closes Supply (1) and **Vents Output (2) -> Exhaust (3)**. Brakes apply.
 
