@@ -47,7 +47,8 @@ Isolates the two lines. It automatically selects the higher pressure source.
     - **Datasheet:** [VUVS Series](https://www.festo.com/net/SupportPortal/Files/477027/VUVS_en.pdf)
 - [Proportional Valve](https://www.festo.com/es/es/a/8153644/) (ASB Control)
     - **Model:** VPPM-8L-L-1...
-    - **Datasheet:** [VPPM Manual](https://www.festo.com/net/SupportPortal/Files/43063/VPPM_en.pdf)
+    - **Datasheet:** [VPPM Manual (Local)](../../assets/datasheets/VPPM_en.pdf#page=1)
+    - **Note:** See Page 1 for the circuit symbol confirming the fail-safe state (1 closed, 2->3 venting).
 - [Shuttle Valve](https://www.festo.com/es/es/a/6682/) (OR Logic)
     - **Function:** Logic element OR.
 - Pressure sensor
