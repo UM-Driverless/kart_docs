@@ -2,7 +2,15 @@
 
 All pneumatic ports standardized to **G1/4** unless noted. Tubing is **6 mm OD / 4 mm ID** throughout. FS 2026 rules: push-in fittings are allowed for ASB/EBS, but we prefer compression (union nut) fittings. Exception: the SDE5 sensor has an integrated QS-6 push-in port.
 
-The BOM follows the pneumatic path from tank output to actuator.
+The BOM follows the pneumatic path from compressor/tank to actuator.
+
+## Compressor & Tank
+
+12V portable compressor with integrated 6 L tank. Fills the system and maintains pressure.
+
+| Status | Part No. | Description | Link |
+|---|---|---|---|
+| Buy | — | VEVOR air compressor, 12V, 90-120 psi (6.2-8.3 bar), 6 L tank | [VEVOR](https://www.vevor.es/bocina-aire-comprimido-c_11496/vevor-compresor-de-aire-para-kit-de-bocina-90-120-psi-bomba-de-aire-con-tanque-de-6-l-para-inflar-neumaticos-colchones-de-aire-compatible-con-todos-los-vehiculos-de-12-v-trenes-barcos-coches-taller-p_010247980894) |
 
 ## Tubing
 
