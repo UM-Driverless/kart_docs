@@ -44,3 +44,8 @@ We have validated a simplified design that removes the redundant ASB isolation v
 - [Proportional Valve](https://www.festo.com/es/es/a/8153644/) (ASB Control)
 - [Shuttle Valve](https://www.festo.com/es/es/a/6682/) (OR Logic)
 - Pressure sensor
+
+---
+
+## Historical Archive
+The [Original "Conservative" Design](diego-design.md) (Diego's Design) included an additional solenoid valve for ASB isolation. This was deemed redundant after verifying the VPPM's power-loss behavior.
