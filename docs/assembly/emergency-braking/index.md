@@ -4,7 +4,7 @@ We need an emergency braking system that can be activated on loss of electrical 
 ## Final Simplified Design
 We have validated a simplified design that removes the redundant ASB isolation valve, relying on the intrinsic behavior of the Proportional Valve (VPPM) and the Shuttle Valve (OR logic).
 
-![](simplified-design.jpg)
+![](simplified-design.png)
 
 ### How it works
 
