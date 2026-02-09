@@ -19,7 +19,7 @@ The VPPM is a 3-way proportional pressure regulator. Its internal behavior ensur
 *   **Unpowered (0V/0mA):**
     *   **Port 1 (Supply):** **CLOSED**. The valve mechanically blocks the air supply. It does **not** drain the tank.
     *   **Port 2 (Output):** **EXHAUSTING**. The valve mechanically connects Port 2 to Port 3 (Exhaust).
-    *   **Proof:** See datasheet functional diagram (3-way regulator). The reset position (spring) closes supply and opens exhaust to 0 bar.
+    *   **Proof:** See datasheet functional diagram (3-way regulator). The reset position (spring) closes supply and opens exhaust to 0 bar. [View Circuit Symbol](../../assets/datasheets/VPPM_en.pdf#page=1)
 
 #### 2. EBS Valve - Solenoid
 Must be a **Normally Closed (NC)** 3/2-way valve (or wired to act as one).
