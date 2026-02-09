@@ -12,6 +12,7 @@ nav:
   - Tools: tools/index.md
   - Assembly:
       - Overview: assembly/index.md
+      - Chassis: assembly/chassis/index.md
       - Powertrain:
           - Overview: assembly/powertrain/index.md
           - Motor: assembly/powertrain/motor.md
