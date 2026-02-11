@@ -35,8 +35,8 @@ nav:
           - Camera: assembly/sensors/camera.md
       - Emergency Braking:
           - Pneumatics: assembly/emergency-braking/index.md
+          - Hydraulics: hydraulics/index.md
           - BOM: assembly/emergency-braking/bom.md
-  - Hydraulics: hydraulics/index.md
   - Software: software/index.md
   - FAQ: faq.md
   - Contact: contact.md
