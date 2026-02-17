@@ -9,8 +9,6 @@ VPPM and EBS in parallel, directly to the actuator. No ASB isolation valve, no O
 
 <object data="images/ebs-simplified.svg" type="image/svg+xml" style="width:100%;max-width:720px;"></object>
 
-Source: [`images/ebs-simplified.drawio`](images/ebs-simplified.drawio)
-
 > **Tip:** Click any component in the diagram to open its Festo product page. Yellow dots are CK compression fittings; blue lines are tubing.
 
 ## Full Design (ASB + OR valve)
@@ -18,8 +16,6 @@ Source: [`images/ebs-simplified.drawio`](images/ebs-simplified.drawio)
 Adds an **ASB isolation valve** ([8035167](https://www.festo.com/es/es/a/8035167/)) in series before the VPPM and an **OR/shuttle valve** ([6682](https://www.festo.com/es/es/a/6682/)) to merge the EBS and VPPM outputs. This provides additional isolation: if the VPPM were to develop a seal leak over time, the ASB valve cuts its supply on power loss, and the OR valve prevents backflow from the EBS line through the VPPM exhaust.
 
 <object data="images/ebs-full.svg" type="image/svg+xml" style="width:100%;max-width:760px;"></object>
-
-Source: [`images/ebs-full.drawio`](images/ebs-full.drawio)
 
 ### Component References (Links)
 

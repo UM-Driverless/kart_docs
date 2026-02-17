@@ -40,17 +40,8 @@ jobs:
 
       - name: Export draw.io diagrams (PNG + SVG)
         run: |
-          # Back up hand-crafted SVGs that have interactive features (clickable links,
-          # CK fittings, silencers) which drawio-export cannot reproduce.
-          cp docs/assembly/emergency-braking/images/ebs-simplified.svg /tmp/ebs-simplified.svg
-          cp docs/assembly/emergency-braking/images/ebs-full.svg /tmp/ebs-full.svg
-
           docker run --rm -v "$GITHUB_WORKSPACE":/data -w /data rlespinasse/drawio-export -f png -o . --remove-page-suffix docs
           docker run --rm -v "$GITHUB_WORKSPACE":/data -w /data rlespinasse/drawio-export -f svg -o . --remove-page-suffix --embed-svg-images docs
-
-          # Restore hand-crafted SVGs overwritten by drawio-export
-          cp /tmp/ebs-simplified.svg docs/assembly/emergency-braking/images/ebs-simplified.svg
-          cp /tmp/ebs-full.svg docs/assembly/emergency-braking/images/ebs-full.svg
 
       - name: Validate exported SVGs have no local file URLs
         run: |
