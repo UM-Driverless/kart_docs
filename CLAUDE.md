@@ -1,5 +1,7 @@
 # Claude Memory - Kart Documentation
 
+> Before making changes, read `AGENTS.md` for workflow rules and `.agents/error_log.md` for past mistakes.
+
 ## Project Overview
 
 This is the documentation repository for the UM Driverless autonomous kart project. Built with MkDocs Material theme, deployed to GitHub Pages.
