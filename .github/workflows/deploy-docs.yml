@@ -38,6 +38,20 @@ jobs:
       - name: Install dependencies
         run: uv sync
 
+      - name: Export draw.io diagrams (PNG + SVG)
+        run: |
+          docker run --rm -v "$GITHUB_WORKSPACE":/data -w /data rlespinasse/drawio-export -f png -o . --remove-page-suffix docs
+          docker run --rm -v "$GITHUB_WORKSPACE":/data -w /data rlespinasse/drawio-export -f svg -o . --remove-page-suffix --embed-svg-images docs
+
+      - name: Validate exported SVGs have no local file URLs
+        run: |
+          # If draw.io-export can't resolve image paths, it may emit file:///... URLs in SVGs.
+          # Those will be broken on GitHub Pages, so fail the build early.
+          if grep -R --line-number "file:///" docs --include='*.svg'; then
+            echo "::error::Found file:/// URLs in exported SVG(s). Fix the .drawio image references (prefer embedded data: URLs)."
+            exit 1
+          fi
+
       - name: Build MkDocs site
         run: |
           uv run mkdocs build --strict --verbose

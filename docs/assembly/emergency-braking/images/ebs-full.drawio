@@ -1,0 +1,70 @@
+<mxfile host="app.diagrams.net" modified="2026-02-17" agent="kart_docs" version="24.0" type="device">
+  <diagram id="ebs-full" name="EBS Full Design (ASB + OR)">
+    <mxGraphModel dx="1400" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <!-- Title -->
+        <mxCell id="title" value="&lt;b&gt;EBS Pneumatic Circuit — Full Design (ASB + OR valve)&lt;/b&gt;&lt;br&gt;ASB valve isolates VPPM supply. OR valve merges outputs. Maximum redundancy." style="text;html=1;align=center;verticalAlign=top;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="10" width="700" height="40" as="geometry"/>
+        </mxCell>
+        <!-- Compressor + Tank -->
+        <mxCell id="compressor" value="&lt;b&gt;Compressor + Tank&lt;/b&gt;&lt;br&gt;VEVOR 12V&lt;br&gt;6L, 90-120 psi" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="30" y="100" width="120" height="60" as="geometry"/>
+        </mxCell>
+        <!-- PS1 -->
+        <mxCell id="ps1" value="&lt;b&gt;Pressure Sensor&lt;/b&gt;&lt;br&gt;SDE5 (tank side)&lt;br&gt;&lt;font color=&quot;red&quot;&gt;567465&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6f4ea;strokeColor=#188038;" vertex="1" parent="1">
+          <mxGeometry x="200" y="100" width="110" height="60" as="geometry"/>
+        </mxCell>
+        <!-- Ball Valve -->
+        <mxCell id="ballvalve" value="&lt;b&gt;Ball Valve&lt;/b&gt;&lt;br&gt;(manual isolation)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="360" y="100" width="100" height="60" as="geometry"/>
+        </mxCell>
+        <!-- Regulator -->
+        <mxCell id="regulator" value="&lt;b&gt;Regulator&lt;/b&gt;&lt;br&gt;MS4-LR-1/4-D7&lt;br&gt;0.5-12 bar&lt;br&gt;&lt;font color=&quot;red&quot;&gt;527690&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="510" y="95" width="130" height="70" as="geometry"/>
+        </mxCell>
+        <!-- PS2 -->
+        <mxCell id="ps2" value="&lt;b&gt;Pressure Sensor&lt;/b&gt;&lt;br&gt;SDE5 (regulated)&lt;br&gt;&lt;font color=&quot;red&quot;&gt;567465&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6f4ea;strokeColor=#188038;" vertex="1" parent="1">
+          <mxGeometry x="690" y="100" width="110" height="60" as="geometry"/>
+        </mxCell>
+        <!-- NPFC-T split -->
+        <mxCell id="npfct-split" value="&lt;b&gt;NPFC-T&lt;/b&gt;&lt;br&gt;3×G1/4&lt;br&gt;&lt;font color=&quot;red&quot;&gt;8030236&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff9c4;strokeColor=#f9a825;" vertex="1" parent="1">
+          <mxGeometry x="850" y="100" width="70" height="60" as="geometry"/>
+        </mxCell>
+        <!-- ASB Valve -->
+        <mxCell id="asb" value="&lt;b&gt;ASB Valve (N.C.)&lt;/b&gt;&lt;br&gt;VUVS-LT25 3/2-way&lt;br&gt;Isolates VPPM supply&lt;br&gt;&lt;font color=&quot;red&quot;&gt;8035167&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f0fe;strokeColor=#1a73e8;" vertex="1" parent="1">
+          <mxGeometry x="970" y="200" width="140" height="65" as="geometry"/>
+        </mxCell>
+        <!-- VPPM -->
+        <mxCell id="vppm" value="&lt;b&gt;VPPM Proportional&lt;/b&gt;&lt;br&gt;VPPM-8L-L-1-G14&lt;br&gt;ASB 0-10 bar&lt;br&gt;&lt;font color=&quot;red&quot;&gt;571293&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f0fe;strokeColor=#1a73e8;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="200" width="140" height="65" as="geometry"/>
+        </mxCell>
+        <!-- EBS -->
+        <mxCell id="ebs" value="&lt;b&gt;EBS Solenoid (N.O.)&lt;/b&gt;&lt;br&gt;VUVS-LT25 3/2-way&lt;br&gt;Emergency Braking&lt;br&gt;&lt;font color=&quot;red&quot;&gt;8035174&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f0fe;strokeColor=#1a73e8;" vertex="1" parent="1">
+          <mxGeometry x="970" y="400" width="140" height="65" as="geometry"/>
+        </mxCell>
+        <!-- OR Valve -->
+        <mxCell id="orvalve" value="&lt;b&gt;OR Valve (Shuttle)&lt;/b&gt;&lt;br&gt;OS-1/4-B&lt;br&gt;Merges outputs&lt;br&gt;&lt;font color=&quot;red&quot;&gt;6682&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#7b1fa2;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="310" width="100" height="60" as="geometry"/>
+        </mxCell>
+        <!-- Actuator -->
+        <mxCell id="actuator" value="&lt;b&gt;Brake Actuator&lt;/b&gt;&lt;br&gt;ADN-S-50-45&lt;br&gt;Spring-return, G1/8&lt;br&gt;&lt;font color=&quot;red&quot;&gt;8084714&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce8e6;strokeColor=#c5221f;" vertex="1" parent="1">
+          <mxGeometry x="1480" y="305" width="130" height="70" as="geometry"/>
+        </mxCell>
+        <!-- Connections -->
+        <mxCell id="e1" edge="1" source="compressor" target="ps1" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" edge="1" source="ps1" target="ballvalve" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" edge="1" source="ballvalve" target="regulator" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" edge="1" source="regulator" target="ps2" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e5" edge="1" source="ps2" target="npfct-split" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6" edge="1" source="npfct-split" target="asb" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e7" edge="1" source="npfct-split" target="ebs" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e8" edge="1" source="asb" target="vppm" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e9" edge="1" source="vppm" target="orvalve" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e10" edge="1" source="ebs" target="orvalve" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e11" edge="1" source="orvalve" target="actuator" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

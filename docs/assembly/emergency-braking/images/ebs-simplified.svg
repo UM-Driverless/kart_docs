@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 1500 680" width="1500" height="680">
+  <style>
+    text { font-family: 'Segoe UI', Arial, Helvetica, sans-serif; }
+    .title { font-size: 20px; font-weight: bold; fill: #1a1a1a; }
+    .subtitle { font-size: 13px; fill: #555; }
+    .comp-box { fill: #f5f5f5; stroke: #333; stroke-width: 1.5; rx: 6; }
+    .comp-box-valve { fill: #e8f0fe; stroke: #1a73e8; stroke-width: 1.8; rx: 6; }
+    .comp-box-actuator { fill: #fce8e6; stroke: #c5221f; stroke-width: 1.8; rx: 6; }
+    .comp-box-sensor { fill: #e6f4ea; stroke: #188038; stroke-width: 1.8; rx: 6; }
+    .comp-label { font-size: 11px; font-weight: 600; fill: #222; text-anchor: middle; }
+    .comp-detail { font-size: 9px; fill: #555; text-anchor: middle; }
+    .ref-num { font-size: 10px; font-weight: bold; fill: #c5221f; text-anchor: middle; }
+    .port-label { font-size: 8px; fill: #666; text-anchor: middle; }
+    .tube { fill: none; stroke: #1a73e8; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .tube-exhaust { fill: none; stroke: #999; stroke-width: 2; stroke-dasharray: 6,3; stroke-linecap: round; }
+    .ck-fitting { fill: #fdd835; stroke: #f9a825; stroke-width: 1.5; }
+    .ck-label { font-size: 7px; fill: #795548; text-anchor: middle; font-weight: 600; }
+    .silencer { fill: #e0e0e0; stroke: #757575; stroke-width: 1.5; }
+    .silencer-label { font-size: 9px; fill: #555; text-anchor: middle; }
+    .npfc-t { fill: #fff9c4; stroke: #f9a825; stroke-width: 2; }
+    .legend-box { fill: #fafafa; stroke: #ccc; stroke-width: 1; rx: 4; }
+    a:hover .comp-box, a:hover .comp-box-valve, a:hover .comp-box-actuator, a:hover .comp-box-sensor {
+      stroke-width: 3; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+    a:hover .tube { stroke-width: 4; }
+    a:hover .ck-fitting { stroke-width: 2.5; filter: drop-shadow(0 1px 3px rgba(0,0,0,0.3)); }
+  </style>
+
+  <!-- Background -->
+  <rect width="1500" height="680" fill="#fefefe" rx="12"/>
+
+  <!-- Title -->
+  <text x="750" y="30" text-anchor="middle" class="title">EBS Pneumatic Circuit &#8212; Simplified Design</text>
+  <text x="750" y="48" text-anchor="middle" class="subtitle">VPPM + EBS in parallel &#8594; actuator. No ASB isolation valve, no OR valve.</text>
+
+  <!-- ========== SUPPLY LINE (y~130) ========== -->
+
+  <!-- Compressor + Tank -->
+  <g>
+    <rect x="30" y="100" width="120" height="60" class="comp-box"/>
+    <text x="90" y="124" class="comp-label">Compressor</text>
+    <text x="90" y="137" class="comp-detail">+ 6L Tank (VEVOR)</text>
+    <text x="90" y="150" class="comp-detail">12V, 90-120 psi</text>
+  </g>
+
+  <!-- Tube: Compressor → PS1 -->
+  <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank">
+    <line x1="150" y1="130" x2="190" y2="130" class="tube"/>
+  </a>
+  <!-- CK at compressor out -->
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank">
+    <circle cx="160" cy="130" r="5" class="ck-fitting"/>
+    <text x="160" y="145" class="ck-label">CK</text>
+  </a>
+
+  <!-- PS1 - Pressure Sensor (tank side) -->
+  <a xlink:href="https://www.festo.com/es/es/a/567465/" target="_blank">
+    <rect x="190" y="107" width="100" height="46" class="comp-box-sensor"/>
+    <text x="240" y="126" class="comp-label">Pressure Sensor</text>
+    <text x="240" y="138" class="comp-detail">(tank side) SDE5</text>
+    <text x="240" y="100" class="ref-num">567465</text>
+  </a>
+
+  <!-- Tube: PS1 → Ball Valve -->
+  <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank">
+    <line x1="290" y1="130" x2="350" y2="130" class="tube"/>
+  </a>
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank">
+    <circle cx="310" cy="130" r="5" class="ck-fitting"/>
+    <text x="310" y="145" class="ck-label">CK</text>
+  </a>
+
+  <!-- Manual Ball Valve -->
+  <g>
+    <rect x="350" y="107" width="90" height="46" class="comp-box"/>
+    <text x="395" y="126" class="comp-label">Ball Valve</text>
+    <text x="395" y="138" class="comp-detail">(manual isolation)</text>
+  </g>
+
+  <!-- Tube: Ball Valve → Regulator -->
+  <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank">
+    <line x1="440" y1="130" x2="500" y2="130" class="tube"/>
+  </a>
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank">
+    <circle cx="460" cy="130" r="5" class="ck-fitting"/>
+    <text x="460" y="145" class="ck-label">CK</text>
+  </a>
+
+  <!-- Regulator -->
+  <a xlink:href="https://www.festo.com/es/es/a/527690/" target="_blank">
+    <rect x="500" y="100" width="120" height="60" class="comp-box"/>
+    <text x="560" y="122" class="comp-label">Regulator</text>
+    <text x="560" y="135" class="comp-detail">MS4-LR-1/4-D7-AD10</text>
+    <text x="560" y="148" class="comp-detail">0.5-12 bar</text>
+    <text x="560" y="92" class="ref-num">527690</text>
+  </a>
+
+  <!-- Tube: Regulator → PS2 -->
+  <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank">
+    <line x1="620" y1="130" x2="680" y2="130" class="tube"/>
+  </a>
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank">
+    <circle cx="640" cy="130" r="5" class="ck-fitting"/>
+    <text x="640" y="145" class="ck-label">CK</text>
+  </a>
+
+  <!-- PS2 - Pressure Sensor (regulated side) -->
+  <a xlink:href="https://www.festo.com/es/es/a/567465/" target="_blank">
+    <rect x="680" y="107" width="100" height="46" class="comp-box-sensor"/>
+    <text x="730" y="126" class="comp-label">Pressure Sensor</text>
+    <text x="730" y="138" class="comp-detail">(regulated) SDE5</text>
+    <text x="730" y="100" class="ref-num">567465</text>
+  </a>
+
+  <!-- Tube: PS2 → NPFC-T split -->
+  <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank">
+    <line x1="780" y1="130" x2="840" y2="130" class="tube"/>
+  </a>
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank">
+    <circle cx="800" cy="130" r="5" class="ck-fitting"/>
+    <text x="800" y="145" class="ck-label">CK</text>
+  </a>
+
+  <!-- ========== NPFC-T SPLIT (supply splits to VPPM + EBS) ========== -->
+  <a xlink:href="https://www.festo.com/es/es/a/8030236/" target="_blank">
+    <rect x="840" y="105" width="60" height="50" class="npfc-t" rx="6"/>
+    <text x="870" y="127" class="comp-label" style="font-size:10px">NPFC-T</text>
+    <text x="870" y="140" class="comp-detail">3&#215;G1/4</text>
+    <text x="870" y="97" class="ref-num">8030236</text>
+  </a>
+  <!-- CK fittings on NPFC-T split ports -->
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank">
+    <circle cx="850" cy="155" r="4" class="ck-fitting"/>
+    <text x="838" y="166" class="ck-label">CK</text>
+  </a>
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank">
+    <circle cx="890" cy="155" r="4" class="ck-fitting"/>
+    <text x="902" y="166" class="ck-label">CK</text>
+  </a>
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank">
+    <circle cx="870" cy="105" r="4" class="ck-fitting"/>
+    <text x="870" y="98" class="ck-label">CK</text>
+  </a>
+
+  <!-- ========== UPPER PATH: VPPM (y~250) ========== -->
+
+  <!-- Tube: NPFC-T split → up → VPPM -->
+  <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank">
+    <polyline points="870,105 870,80 960,80 960,260 990,260" class="tube"/>
+  </a>
+
+  <!-- VPPM Proportional Valve -->
+  <a xlink:href="https://www.festo.com/es/es/a/571293/" target="_blank">
+    <rect x="990" y="230" width="140" height="60" class="comp-box-valve"/>
+    <text x="1060" y="250" class="comp-label">VPPM Proportional</text>
+    <text x="1060" y="263" class="comp-detail">VPPM-8L-L-1-G14</text>
+    <text x="1060" y="276" class="comp-detail">ASB &#8212; 0-10 bar</text>
+    <text x="1060" y="222" class="ref-num">571293</text>
+    <text x="998" y="243" class="port-label">1</text>
+    <text x="1122" y="243" class="port-label">2</text>
+    <text x="1060" y="298" class="port-label">3 (exhaust)</text>
+  </a>
+  <!-- CK at VPPM ports -->
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank">
+    <circle cx="990" cy="260" r="5" class="ck-fitting"/>
+  </a>
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank">
+    <circle cx="1130" cy="260" r="5" class="ck-fitting"/>
+  </a>
+
+  <!-- VPPM Exhaust → Silencer 2316 -->
+  <line x1="1060" y1="290" x2="1060" y2="330" class="tube-exhaust"/>
+  <a xlink:href="https://www.festo.com/es/es/a/2316/" target="_blank">
+    <rect x="1040" y="330" width="40" height="30" class="silencer" rx="4"/>
+    <text x="1060" y="349" class="silencer-label" style="font-size:8px">U-1/4</text>
+    <text x="1060" y="370" class="ref-num" style="font-size:9px">2316</text>
+  </a>
+
+  <!-- ========== LOWER PATH: EBS (y~430) ========== -->
+
+  <!-- Tube: NPFC-T split → down → EBS -->
+  <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank">
+    <polyline points="870,155 870,180 940,180 940,440 990,440" class="tube"/>
+  </a>
+
+  <!-- EBS Solenoid Valve (Normally Open) -->
+  <a xlink:href="https://www.festo.com/es/es/a/8035174/" target="_blank">
+    <rect x="990" y="410" width="140" height="60" class="comp-box-valve"/>
+    <text x="1060" y="430" class="comp-label">EBS Solenoid (N.O.)</text>
+    <text x="1060" y="443" class="comp-detail">VUVS-LT25 3/2-way</text>
+    <text x="1060" y="456" class="comp-detail">Emergency Braking</text>
+    <text x="1060" y="402" class="ref-num">8035174</text>
+    <text x="998" y="423" class="port-label">1</text>
+    <text x="1122" y="423" class="port-label">2</text>
+    <text x="1060" y="478" class="port-label">3 (exhaust)</text>
+  </a>
+  <!-- CK at EBS ports -->
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank">
+    <circle cx="990" cy="440" r="5" class="ck-fitting"/>
+  </a>
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank">
+    <circle cx="1130" cy="440" r="5" class="ck-fitting"/>
+  </a>
+
+  <!-- EBS Exhaust → Silencer 2316 -->
+  <line x1="1060" y1="470" x2="1060" y2="510" class="tube-exhaust"/>
+  <a xlink:href="https://www.festo.com/es/es/a/2316/" target="_blank">
+    <rect x="1040" y="510" width="40" height="30" class="silencer" rx="4"/>
+    <text x="1060" y="529" class="silencer-label" style="font-size:8px">U-1/4</text>
+    <text x="1060" y="550" class="ref-num" style="font-size:9px">2316</text>
+  </a>
+
+  <!-- ========== MERGE: NPFC-T (outputs join) ========== -->
+
+  <!-- Tube: VPPM out → NPFC-T merge -->
+  <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank">
+    <line x1="1130" y1="260" x2="1200" y2="260" class="tube"/>
+  </a>
+
+  <!-- Tube: EBS out → up → NPFC-T merge -->
+  <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank">
+    <polyline points="1130,440 1180,440 1180,350 1210,350" class="tube"/>
+  </a>
+
+  <!-- NPFC-T merge -->
+  <a xlink:href="https://www.festo.com/es/es/a/8030236/" target="_blank">
+    <rect x="1200" y="280" width="60" height="50" class="npfc-t" rx="6"/>
+    <text x="1230" y="302" class="comp-label" style="font-size:10px">NPFC-T</text>
+    <text x="1230" y="315" class="comp-detail">3&#215;G1/4</text>
+    <text x="1230" y="272" class="ref-num">8030236</text>
+  </a>
+  <!-- Lines into NPFC-T -->
+  <line x1="1200" y1="260" x2="1210" y2="305" stroke="#1a73e8" stroke-width="2"/>
+  <line x1="1210" y1="350" x2="1215" y2="320" stroke="#1a73e8" stroke-width="2"/>
+  <!-- CK fittings on NPFC-T merge ports -->
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank">
+    <circle cx="1205" cy="290" r="4" class="ck-fitting"/>
+  </a>
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank">
+    <circle cx="1210" cy="340" r="4" class="ck-fitting"/>
+  </a>
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank">
+    <circle cx="1260" cy="305" r="4" class="ck-fitting"/>
+  </a>
+
+  <!-- ========== ACTUATOR ========== -->
+
+  <!-- Tube: NPFC-T merge → LCK elbow → Actuator -->
+  <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank">
+    <line x1="1260" y1="305" x2="1310" y2="305" class="tube"/>
+  </a>
+  <!-- LCK elbow fitting -->
+  <a xlink:href="https://www.festo.com/es/es/a/4469/" target="_blank">
+    <circle cx="1310" cy="305" r="6" class="ck-fitting" style="fill:#ffcc80;stroke:#ef6c00;"/>
+    <text x="1310" y="295" class="ck-label" style="font-size:8px">LCK</text>
+    <text x="1310" y="320" class="ref-num" style="font-size:8px">4469</text>
+  </a>
+  <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank">
+    <line x1="1316" y1="305" x2="1350" y2="305" class="tube"/>
+  </a>
+
+  <!-- Actuator -->
+  <a xlink:href="https://www.festo.com/gb/en/a/8084714/" target="_blank">
+    <rect x="1350" y="268" width="120" height="75" class="comp-box-actuator"/>
+    <text x="1410" y="292" class="comp-label">Brake Actuator</text>
+    <text x="1410" y="305" class="comp-detail">ADN-S-50-45</text>
+    <text x="1410" y="318" class="comp-detail">Spring-return, G1/8</text>
+    <text x="1410" y="331" class="comp-detail">0.4-10 bar</text>
+    <text x="1410" y="260" class="ref-num">8084714</text>
+    <text x="1355" y="280" class="port-label">1 (in)</text>
+    <text x="1462" y="280" class="port-label">2 (exh)</text>
+  </a>
+
+  <!-- Actuator Exhaust → Silencer 2307 (G1/8) -->
+  <line x1="1460" y1="343" x2="1460" y2="380" class="tube-exhaust"/>
+  <a xlink:href="https://www.festo.com/es/es/a/2307/" target="_blank">
+    <rect x="1440" y="380" width="40" height="30" class="silencer" rx="4"/>
+    <text x="1460" y="399" class="silencer-label" style="font-size:8px">U-1/8</text>
+    <text x="1460" y="420" class="ref-num" style="font-size:9px">2307</text>
+  </a>
+
+  <!-- ========== LEGEND ========== -->
+  <rect x="30" y="560" width="620" height="100" class="legend-box"/>
+  <text x="45" y="580" style="font-size:12px;font-weight:bold;fill:#333;">Legend</text>
+
+  <!-- Tube -->
+  <line x1="45" y1="600" x2="80" y2="600" class="tube"/>
+  <text x="90" y="604" style="font-size:10px;fill:#444;">Pneumatic tube (PUN-H 6mm, 197384) &#8212; click to view</text>
+
+  <!-- CK fitting -->
+  <circle cx="62" cy="620" r="5" class="ck-fitting"/>
+  <text x="90" y="624" style="font-size:10px;fill:#444;">CK-1/4-PK-4 compression fitting (2029) &#8212; click to view</text>
+
+  <!-- NPFC-T -->
+  <rect x="50" y="636" width="20" height="14" class="npfc-t" rx="2"/>
+  <text x="90" y="648" style="font-size:10px;fill:#444;">NPFC-T-3G14-F threaded T-adapter (8030236) &#8212; replaces TCK-1/4</text>
+
+  <!-- Ref number -->
+  <text x="62" y="668" class="ref-num" style="font-size:10px;">123456</text>
+  <text x="105" y="668" style="font-size:10px;fill:#444;">= Festo article number (click component to open Festo page)</text>
+
+  <!-- Exhaust line -->
+  <line x1="380" y1="598" x2="420" y2="598" class="tube-exhaust"/>
+  <text x="430" y="602" style="font-size:10px;fill:#444;">Exhaust path</text>
+
+  <!-- Silencer -->
+  <rect x="392" y="612" width="16" height="12" class="silencer" rx="2"/>
+  <text x="430" y="622" style="font-size:10px;fill:#444;">Silencer (2316 G1/4 or 2307 G1/8)</text>
+
+  <text x="380" y="648" style="font-size:10px;fill:#444;font-style:italic;">All pneumatic ports G1/4 unless noted. Tubing: 6mm OD / 4mm ID.</text>
+
+</svg>

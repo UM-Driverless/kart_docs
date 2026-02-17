@@ -1,6 +1,9 @@
 # Hydraulics
 - We are using flexible brake hoses with `M10x1.0 female inverted flare` connectors
 
+## Bleeding / Purging Brake Lines
+- Reference video (purging brake lines): https://youtu.be/dXhEvykyabk?si=LNnOBOaIlJ93uHi6
+
 
 ## Brake Pressure Sensor
 Our pressure sensor is the Sensata PTE7100, code `PTE7100-33CC-2E200BN`, [datasheet here](../assets/datasheets/sensata_pte7100_hermetic_analog_pressure_sensor_da-1919220.pdf), [mouser here](https://www.mouser.es/ProductDetail/Sensata-Technologies/PTE7100-32DC-0B200BN?qs=sGAEpiMZZMv1xWCHBjbGeVR9W0yhknQ8lfjrm5f%2FKxVuiB%2F1oy1aA%3D%3D).
@@ -19,4 +22,3 @@ Our pressure sensor is the Sensata PTE7100, code `PTE7100-33CC-2E200BN`, [datash
 ### Possible alternative
 - [Bosch Motorsport PSS-260 --- PN0261545188](https://xtramotorsport.com/product/bosch-motorsport-pss-260-brake-pressure-sensor/)
     - 0.5-4.5V, 0-260 bar
-
