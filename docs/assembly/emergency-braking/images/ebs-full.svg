@@ -50,7 +50,7 @@
   <rect x="58" y="145" width="20" height="14" class="npfc-t" rx="2"/>
   <text x="100" y="157" style="font-size:11px;fill:#444;">NPFC-T-3G14-F threaded T-adapter (8030236)</text>
 
-  <text x="70" y="180" class="ref-num" style="font-size:11px;">ref: 123456</text>
+  <text x="70" y="180" class="comp-detail" style="font-size:11px;text-anchor:start;">ref: 123456</text>
   <text x="140" y="180" style="font-size:11px;fill:#444;">= Manufacturer part number (click component to open product page)</text>
 
   <line x1="420" y1="105" x2="460" y2="105" class="tube-exhaust"/>
@@ -82,7 +82,7 @@
     <rect x="305" y="165" width="150" height="50" class="comp-box-sensor"/>
     <text x="380" y="185" class="comp-label">Pressure Sensor</text>
     <text x="380" y="198" class="comp-detail">(tank side) SDE5, 0-10 bar</text>
-    <text x="450" y="176" class="ref-num" style="text-anchor:end;font-size:9px;">ref: 567465</text>
+    <text x="380" y="211" class="comp-detail">ref: 567465</text>
   </a>
 
   <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank"><line x1="380" y1="215" x2="380" y2="255" class="tube"/></a>
@@ -105,7 +105,7 @@
     <text x="380" y="360" class="comp-label">Regulator</text>
     <text x="380" y="374" class="comp-detail">MS4-LR-1/4-D7-AD10, 0.5-12 bar</text>
     <text x="380" y="387" class="comp-detail">&#9888; Never set above 10 bar</text>
-    <text x="460" y="352" class="ref-num" style="text-anchor:end;font-size:9px;">ref: 527690</text>
+    <text x="380" y="393" class="comp-detail">ref: 527690</text>
   </a>
 
   <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank"><line x1="380" y1="395" x2="380" y2="435" class="tube"/></a>
@@ -116,7 +116,7 @@
     <rect x="305" y="435" width="150" height="50" class="comp-box-sensor"/>
     <text x="380" y="455" class="comp-label">Pressure Sensor</text>
     <text x="380" y="468" class="comp-detail">(regulated) SDE5, 0-10 bar</text>
-    <text x="450" y="446" class="ref-num" style="text-anchor:end;font-size:9px;">ref: 567465</text>
+    <text x="380" y="481" class="comp-detail">ref: 567465</text>
   </a>
 
   <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank"><line x1="380" y1="485" x2="380" y2="520" class="tube"/></a>
@@ -126,7 +126,7 @@
     <rect x="345" y="520" width="70" height="45" class="npfc-t" rx="6"/>
     <text x="380" y="540" class="comp-label" style="font-size:11px">NPFC-T</text>
     <text x="380" y="553" class="comp-detail">3&#215;G1/4</text>
-    <text x="410" y="532" class="ref-num" style="text-anchor:end;font-size:8px;">ref: 8030236</text>
+    <text x="380" y="563" class="comp-detail" style="font-size:9px;">ref: 8030236</text>
   </a>
   <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="355" cy="565" r="4" class="ck-fitting"/><text x="340" y="575" class="ck-label">CK</text></a>
   <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="405" cy="565" r="4" class="ck-fitting"/><text x="420" y="575" class="ck-label">CK</text></a>
@@ -144,7 +144,7 @@
     <text x="190" y="650" class="comp-label">ASB Valve (N.C.)</text>
     <text x="190" y="664" class="comp-detail">VUVS-LT25, isolates VPPM</text>
     <text x="190" y="678" class="comp-detail">2.5-10 bar</text>
-    <text x="265" y="642" class="ref-num" style="text-anchor:end;font-size:9px;">ref: 8035167</text>
+    <text x="190" y="688" class="comp-detail">ref: 8035167</text>
   </a>
   <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="190" cy="630" r="5" class="ck-fitting"/></a>
   <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="190" cy="690" r="5" class="ck-fitting"/></a>
@@ -166,7 +166,7 @@
     <text x="190" y="760" class="comp-label">VPPM Proportional</text>
     <text x="190" y="774" class="comp-detail">VPPM-8L-L-1-G14</text>
     <text x="190" y="788" class="comp-detail">0-10 bar, inlet max 11 bar</text>
-    <text x="265" y="752" class="ref-num" style="text-anchor:end;font-size:9px;">ref: 571293</text>
+    <text x="190" y="798" class="comp-detail">ref: 571293</text>
   </a>
   <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="190" cy="740" r="5" class="ck-fitting"/></a>
   <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="190" cy="800" r="5" class="ck-fitting"/></a>
@@ -191,7 +191,7 @@
     <text x="570" y="650" class="comp-label">EBS Solenoid (N.O.)</text>
     <text x="570" y="664" class="comp-detail">VUVS-LT25 3/2-way</text>
     <text x="570" y="678" class="comp-detail">Emergency, 2.5-10 bar</text>
-    <text x="645" y="642" class="ref-num" style="text-anchor:end;font-size:9px;">ref: 8035174</text>
+    <text x="570" y="688" class="comp-detail">ref: 8035174</text>
   </a>
   <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="570" cy="630" r="5" class="ck-fitting"/></a>
   <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="570" cy="690" r="5" class="ck-fitting"/></a>
@@ -221,7 +221,7 @@
     <text x="380" y="920" class="comp-label">OR Valve</text>
     <text x="380" y="934" class="comp-detail">OS-1/4-B (shuttle)</text>
     <text x="380" y="948" class="comp-detail">Merges outputs</text>
-    <text x="425" y="912" class="ref-num" style="text-anchor:end;font-size:9px;">ref: 6682</text>
+    <text x="380" y="953" class="comp-detail">ref: 6682</text>
   </a>
   <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="350" cy="900" r="4" class="ck-fitting"/><text x="335" y="895" class="ck-label">CK</text></a>
   <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="410" cy="900" r="4" class="ck-fitting"/><text x="425" y="895" class="ck-label">CK</text></a>
@@ -241,7 +241,7 @@
     <text x="380" y="1032" class="comp-label">Brake Actuator</text>
     <text x="380" y="1046" class="comp-detail">ADN-S-50-45</text>
     <text x="380" y="1060" class="comp-detail">Spring-return, G1/8, 0.4-10 bar</text>
-    <text x="450" y="1022" class="ref-num" style="text-anchor:end;font-size:9px;">ref: 8084714</text>
+    <text x="380" y="1074" class="comp-detail">ref: 8084714</text>
   </a>
 
   <!-- Actuator Exhaust -->
