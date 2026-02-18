@@ -30,7 +30,7 @@ Terminology:
 |---|---|---|---|---|---|
 | Compressor + tank (6 L) |  | 90-120 psi (6.2-8.3 bar) | [`Compressor & Tank`](bom.md#compressor-tank) |  | [VEVOR](https://www.vevor.es/bocina-aire-comprimido-c_11496/vevor-compresor-de-aire-para-kit-de-bocina-90-120-psi-bomba-de-aire-con-tanque-de-6-l-para-inflar-neumaticos-colchones-de-aire-compatible-con-todos-los-vehiculos-de-12-v-trenes-barcos-coches-taller-p_010247980894) |
 | Pressure sensor (tank side) | ![](images/components/festo-sde5-thumb.png) | **10 bar** (measurement range) | [`Pressure Sensor 1`](bom.md#pressure-sensor-1-tank-side-before-regulator) | [`567465datasheet.pdf`](../../assets/datasheets/567465datasheet.pdf) | [Festo](https://www.festo.com/es/es/a/567465/) |
-| Manual ball valve (release/isolation) |  | — | [`Manual Valve`](bom.md#manual-valve-brake-release-isolation) |  |  |
+| Manual valve (release/isolation) |  | — | [`Manual Valve`](bom.md#manual-valve-brake-release-isolation) |  |  |
 | Pressure regulator (D7) | ![](images/components/festo-ms4-lr-thumb.png) | 0.5-12 bar output | [`Low-Pressure Regulator`](bom.md#low-pressure-regulator) | [`527690datasheet.pdf`](../../assets/datasheets/527690datasheet.pdf) | [Festo](https://www.festo.com/es/es/a/527690/) |
 | Pressure sensor (regulated side) | ![](images/components/festo-sde5-thumb.png) | **10 bar** (measurement range) | [`Pressure Sensor 2`](bom.md#pressure-sensor-2-regulated-side-before-valves) | [`567465datasheet.pdf`](../../assets/datasheets/567465datasheet.pdf) | [Festo](https://www.festo.com/es/es/a/567465/) |
 | NPFC-T threaded T-adapter |  | — | [`Compression Fittings`](bom.md#compression-fittings) |  | [Festo](https://www.festo.com/es/es/a/8030236/) |

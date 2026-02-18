@@ -23,7 +23,8 @@
     .legend-box { fill: #fafafa; stroke: #ccc; stroke-width: 1; rx: 4; }
     .note-box { fill: #fff3e0; stroke: #ff9800; stroke-width: 1; rx: 4; }
     a:hover .comp-box, a:hover .comp-box-valve, a:hover .comp-box-actuator,
-    a:hover .comp-box-sensor, a:hover .comp-box-shuttle {
+    a:hover .comp-box-sensor, a:hover .comp-box-shuttle,
+    a:hover .npfc-t, a:hover .silencer, g:hover > .comp-box {
       stroke-width: 3; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
     }
     a:hover .tube { stroke-width: 4; }
@@ -46,7 +47,7 @@
   </g>
 
   <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank"><line x1="380" y1="125" x2="380" y2="165" class="tube"/></a>
-  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="380" cy="140" r="5" class="ck-fitting"/><text x="395" y="144" class="ck-label">CK</text></a>
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="380" cy="125" r="5" class="ck-fitting"/><text x="395" y="129" class="ck-label">CK</text></a>
 
   <!-- PS1 -->
   <a xlink:href="https://www.festo.com/es/es/a/567465/" target="_blank">
@@ -57,17 +58,18 @@
   </a>
 
   <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank"><line x1="380" y1="215" x2="380" y2="255" class="tube"/></a>
-  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="380" cy="230" r="5" class="ck-fitting"/><text x="395" y="234" class="ck-label">CK</text></a>
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="380" cy="255" r="5" class="ck-fitting"/><text x="395" y="259" class="ck-label">CK</text></a>
 
-  <!-- Ball Valve -->
+  <!-- Manual Valve -->
   <g>
     <rect x="315" y="255" width="130" height="45" class="comp-box"/>
-    <text x="380" y="275" class="comp-label">Ball Valve</text>
+    <text x="380" y="275" class="comp-label">Manual Valve</text>
     <text x="380" y="288" class="comp-detail">(manual isolation)</text>
   </g>
 
-  <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank"><line x1="380" y1="300" x2="380" y2="340" class="tube"/></a>
-  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="380" cy="315" r="5" class="ck-fitting"/><text x="395" y="319" class="ck-label">CK</text></a>
+  <!-- Direct mount (integrated O-ring, no tube/fittings) -->
+  <line x1="380" y1="300" x2="380" y2="340" stroke="#999" stroke-width="1.5"/>
+  <text x="400" y="324" style="font-size:8px;fill:#777;font-style:italic;">direct (O-ring)</text>
 
   <!-- Regulator -->
   <a xlink:href="https://www.festo.com/es/es/a/527690/" target="_blank">
@@ -79,7 +81,7 @@
   </a>
 
   <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank"><line x1="380" y1="395" x2="380" y2="435" class="tube"/></a>
-  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="380" cy="410" r="5" class="ck-fitting"/><text x="395" y="414" class="ck-label">CK</text></a>
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="380" cy="395" r="5" class="ck-fitting"/><text x="395" y="399" class="ck-label">CK</text></a>
 
   <!-- PS2 -->
   <a xlink:href="https://www.festo.com/es/es/a/567465/" target="_blank">
@@ -90,7 +92,6 @@
   </a>
 
   <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank"><line x1="380" y1="485" x2="380" y2="520" class="tube"/></a>
-  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="380" cy="498" r="5" class="ck-fitting"/><text x="395" y="502" class="ck-label">CK</text></a>
 
   <!-- ===== NPFC-T SPLIT ===== -->
   <a xlink:href="https://www.festo.com/es/es/a/8030236/" target="_blank">

@@ -36,11 +36,11 @@ Datasheet (local): [`567465datasheet.pdf`](../../assets/datasheets/567465datashe
 
 ## Manual Valve (brake release / isolation)
 
-Manual ball valve for brake release during maintenance and system isolation. Reuse existing on-hand valve.
+Manual valve for brake release during maintenance and system isolation. Reuse existing on-hand valve.
 
 | Status | Part No. | Description | Notes |
 |---|---|---|---|
-| Reuse | — | Manual ball valve, G1/4 | On-hand from previous seasons |
+| Reuse | — | Manual valve, G1/4 | On-hand from previous seasons |
 
 ## Low-Pressure Regulator
 
