@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-     viewBox="0 0 760 1600" width="760" height="1600">
+     viewBox="0 0 920 1600" width="920" height="1600">
   <style>
     text { font-family: 'Segoe UI', Arial, Helvetica, sans-serif; }
     .title { font-size: 18px; font-weight: bold; fill: #1a1a1a; }
@@ -29,9 +29,11 @@
     }
     a:hover .tube { stroke-width: 4; }
     a:hover .ck-fitting { stroke-width: 2.5; filter: drop-shadow(0 1px 3px rgba(0,0,0,0.3)); }
+    .comp-thumb { fill: #fff; stroke: #e0e0e0; stroke-width: 1; }
+    a:hover .comp-thumb { stroke: #aaa; }
   </style>
 
-  <rect width="760" height="1600" fill="#fefefe" rx="10"/>
+  <rect width="920" height="1600" fill="#fefefe" rx="10"/>
 
   <!-- Title -->
   <text x="380" y="28" text-anchor="middle" class="title">EBS Pneumatic Circuit &#8212; Full Design (ASB + OR valve)</text>
@@ -84,20 +86,31 @@
     <text x="380" y="198" class="comp-detail">(tank side) SDE5, 0-10 bar</text>
     <text x="380" y="211" class="comp-detail">ref: 567465</text>
   </a>
+  <!-- PS1 image -->
+  <a xlink:href="https://www.festo.com/es/es/a/567465/" target="_blank">
+    <rect x="464" y="164" width="57" height="52" rx="4" class="comp-thumb"/>
+    <image xlink:href="components/festo-sde5-thumb.png" x="465" y="165" width="55" height="50" preserveAspectRatio="xMidYMid meet"/>
+  </a>
 
   <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank"><line x1="380" y1="215" x2="380" y2="255" class="tube"/></a>
   <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="380" cy="255" r="5" class="ck-fitting"/><text x="395" y="259" class="ck-label">CK</text></a>
 
   <!-- Manual Valve -->
-  <g>
-    <rect x="315" y="255" width="130" height="45" class="comp-box"/>
-    <text x="380" y="275" class="comp-label">Manual Valve</text>
-    <text x="380" y="288" class="comp-detail">(manual isolation)</text>
-  </g>
+  <a xlink:href="https://www.festo.com/es/es/a/541258/" target="_blank">
+    <rect x="305" y="255" width="150" height="50" class="comp-box"/>
+    <text x="380" y="274" class="comp-label">Manual Valve</text>
+    <text x="380" y="287" class="comp-detail">MS4-EM1-1/4 (isolation)</text>
+    <text x="380" y="300" class="comp-detail">ref: 541258</text>
+  </a>
+  <!-- Manual Valve image -->
+  <a xlink:href="https://www.festo.com/es/es/a/541258/" target="_blank">
+    <rect x="464" y="257" width="57" height="46" rx="4" class="comp-thumb"/>
+    <image xlink:href="components/festo-ms4-em1-thumb.png" x="465" y="258" width="55" height="44" preserveAspectRatio="xMidYMid meet"/>
+  </a>
 
   <!-- Direct mount (integrated O-ring, no tube/fittings) -->
-  <line x1="380" y1="300" x2="380" y2="340" stroke="#999" stroke-width="1.5"/>
-  <text x="400" y="324" style="font-size:8px;fill:#777;font-style:italic;">direct (O-ring)</text>
+  <line x1="380" y1="305" x2="380" y2="340" stroke="#999" stroke-width="1.5"/>
+  <text x="400" y="327" style="font-size:8px;fill:#777;font-style:italic;">direct (O-ring)</text>
 
   <!-- Regulator -->
   <a xlink:href="https://www.festo.com/es/es/a/527690/" target="_blank">
@@ -106,6 +119,11 @@
     <text x="380" y="372" class="comp-detail">MS4-LR-1/4-D7-AD10, 0.5-12 bar</text>
     <text x="380" y="388" class="comp-detail">&#9888; Never set above 10 bar</text>
     <text x="380" y="402" class="comp-detail">ref: 527690</text>
+  </a>
+  <!-- Regulator image -->
+  <a xlink:href="https://www.festo.com/es/es/a/527690/" target="_blank">
+    <rect x="474" y="345" width="57" height="62" rx="4" class="comp-thumb"/>
+    <image xlink:href="components/festo-ms4-lr-thumb.png" x="475" y="346" width="55" height="60" preserveAspectRatio="xMidYMid meet"/>
   </a>
 
   <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank"><line x1="380" y1="412" x2="380" y2="452" class="tube"/></a>
@@ -117,6 +135,11 @@
     <text x="380" y="472" class="comp-label">Pressure Sensor</text>
     <text x="380" y="485" class="comp-detail">(regulated) SDE5, 0-10 bar</text>
     <text x="380" y="498" class="comp-detail">ref: 567465</text>
+  </a>
+  <!-- PS2 image -->
+  <a xlink:href="https://www.festo.com/es/es/a/567465/" target="_blank">
+    <rect x="464" y="451" width="57" height="52" rx="4" class="comp-thumb"/>
+    <image xlink:href="components/festo-sde5-thumb.png" x="465" y="452" width="55" height="50" preserveAspectRatio="xMidYMid meet"/>
   </a>
 
   <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank"><line x1="380" y1="502" x2="380" y2="537" class="tube"/></a>
@@ -146,6 +169,11 @@
     <text x="190" y="703" class="comp-detail">2.5-10 bar</text>
     <text x="190" y="717" class="comp-detail">ref: 8035167</text>
   </a>
+  <!-- ASB image -->
+  <a xlink:href="https://www.festo.com/es/es/a/8035167/" target="_blank">
+    <rect x="274" y="668" width="47" height="47" rx="4" class="comp-thumb"/>
+    <image xlink:href="components/festo-vuvs-thumb.png" x="275" y="669" width="45" height="45" preserveAspectRatio="xMidYMid meet"/>
+  </a>
   <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="190" cy="657" r="5" class="ck-fitting"/></a>
   <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="190" cy="729" r="5" class="ck-fitting"/></a>
 
@@ -167,6 +195,11 @@
     <text x="190" y="811" class="comp-detail">VPPM-8L-L-1-G14</text>
     <text x="190" y="825" class="comp-detail">0-10 bar, inlet max 11 bar</text>
     <text x="190" y="839" class="comp-detail">ref: 571293</text>
+  </a>
+  <!-- VPPM image -->
+  <a xlink:href="https://www.festo.com/es/es/a/571293/" target="_blank">
+    <rect x="274" y="790" width="47" height="47" rx="4" class="comp-thumb"/>
+    <image xlink:href="components/festo-vppm-thumb.png" x="275" y="791" width="45" height="45" preserveAspectRatio="xMidYMid meet"/>
   </a>
   <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="190" cy="779" r="5" class="ck-fitting"/></a>
   <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="190" cy="851" r="5" class="ck-fitting"/></a>
@@ -192,6 +225,11 @@
     <text x="570" y="689" class="comp-detail">VUVS-LT25 3/2-way</text>
     <text x="570" y="703" class="comp-detail">Emergency, 2.5-10 bar</text>
     <text x="570" y="717" class="comp-detail">ref: 8035174</text>
+  </a>
+  <!-- EBS image -->
+  <a xlink:href="https://www.festo.com/es/es/a/8035174/" target="_blank">
+    <rect x="739" y="667" width="57" height="52" rx="4" class="comp-thumb"/>
+    <image xlink:href="components/festo-vuvs-thumb.png" x="740" y="668" width="55" height="50" preserveAspectRatio="xMidYMid meet"/>
   </a>
   <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="570" cy="657" r="5" class="ck-fitting"/></a>
   <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="570" cy="729" r="5" class="ck-fitting"/></a>
@@ -242,6 +280,11 @@
     <text x="380" y="1112" class="comp-detail">ADN-S-50-45</text>
     <text x="380" y="1126" class="comp-detail">Spring-return, G1/8, 0.4-10 bar</text>
     <text x="380" y="1140" class="comp-detail">ref: 8084714</text>
+  </a>
+  <!-- Actuator image -->
+  <a xlink:href="https://www.festo.com/gb/en/a/8084714/" target="_blank">
+    <rect x="464" y="1080" width="57" height="62" rx="4" class="comp-thumb"/>
+    <image xlink:href="components/festo-adn-s-thumb.png" x="465" y="1081" width="55" height="60" preserveAspectRatio="xMidYMid meet"/>
   </a>
 
   <!-- Actuator Exhaust -->

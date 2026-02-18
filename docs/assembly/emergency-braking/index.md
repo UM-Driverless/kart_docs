@@ -9,7 +9,7 @@ VPPM and EBS in parallel, directly to the actuator. No ASB isolation valve, no O
 
 Since there is no OR valve to prevent backflow, the EBS solenoid's exhaust port is blocked with a blanking plug ([B-1/4, 3569](https://www.festo.com/es/es/a/3569/)) instead of a silencer. This prevents air from escaping through the EBS exhaust when the VPPM is regulating pressure. The EBS acts as on-off emergency air addition only; the VPPM handles all pressure regulation and exhaust.
 
-<object data="images/ebs-simplified.svg" type="image/svg+xml" style="width:100%;max-width:720px;"></object>
+<object data="images/ebs-simplified.svg" type="image/svg+xml" style="width:100%;max-width:870px;"></object>
 
 > **Tip:** Click any component in the diagram to open its Festo product page. Yellow dots are CK compression fittings; blue lines are tubing.
 
@@ -17,7 +17,7 @@ Since there is no OR valve to prevent backflow, the EBS solenoid's exhaust port 
 
 Adds an **ASB isolation valve** ([8035167](https://www.festo.com/es/es/a/8035167/)) in series before the VPPM and an **OR/shuttle valve** ([6682](https://www.festo.com/es/es/a/6682/)) to merge the EBS and VPPM outputs. This provides additional isolation: if the VPPM were to develop a seal leak over time, the ASB valve cuts its supply on power loss, and the OR valve prevents backflow from the EBS line through the VPPM exhaust.
 
-<object data="images/ebs-full.svg" type="image/svg+xml" style="width:100%;max-width:760px;"></object>
+<object data="images/ebs-full.svg" type="image/svg+xml" style="width:100%;max-width:920px;"></object>
 
 ### Component References (Links)
 
