@@ -101,161 +101,161 @@
 
   <!-- Regulator -->
   <a xlink:href="https://www.festo.com/es/es/a/527690/" target="_blank">
-    <rect x="295" y="340" width="170" height="55" class="comp-box"/>
-    <text x="380" y="360" class="comp-label">Regulator</text>
-    <text x="380" y="374" class="comp-detail">MS4-LR-1/4-D7-AD10, 0.5-12 bar</text>
-    <text x="380" y="387" class="comp-detail">&#9888; Never set above 10 bar</text>
-    <text x="380" y="393" class="comp-detail">ref: 527690</text>
+    <rect x="295" y="340" width="170" height="72" class="comp-box"/>
+    <text x="380" y="358" class="comp-label">Regulator</text>
+    <text x="380" y="372" class="comp-detail">MS4-LR-1/4-D7-AD10, 0.5-12 bar</text>
+    <text x="380" y="388" class="comp-detail">&#9888; Never set above 10 bar</text>
+    <text x="380" y="402" class="comp-detail">ref: 527690</text>
   </a>
 
-  <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank"><line x1="380" y1="395" x2="380" y2="435" class="tube"/></a>
-  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="380" cy="395" r="5" class="ck-fitting"/><text x="395" y="399" class="ck-label">CK</text></a>
+  <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank"><line x1="380" y1="412" x2="380" y2="452" class="tube"/></a>
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="380" cy="412" r="5" class="ck-fitting"/><text x="395" y="416" class="ck-label">CK</text></a>
 
   <!-- PS2 -->
   <a xlink:href="https://www.festo.com/es/es/a/567465/" target="_blank">
-    <rect x="305" y="435" width="150" height="50" class="comp-box-sensor"/>
-    <text x="380" y="455" class="comp-label">Pressure Sensor</text>
-    <text x="380" y="468" class="comp-detail">(regulated) SDE5, 0-10 bar</text>
-    <text x="380" y="481" class="comp-detail">ref: 567465</text>
+    <rect x="305" y="452" width="150" height="50" class="comp-box-sensor"/>
+    <text x="380" y="472" class="comp-label">Pressure Sensor</text>
+    <text x="380" y="485" class="comp-detail">(regulated) SDE5, 0-10 bar</text>
+    <text x="380" y="498" class="comp-detail">ref: 567465</text>
   </a>
 
-  <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank"><line x1="380" y1="485" x2="380" y2="520" class="tube"/></a>
+  <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank"><line x1="380" y1="502" x2="380" y2="537" class="tube"/></a>
 
   <!-- ===== NPFC-T SPLIT ===== -->
   <a xlink:href="https://www.festo.com/es/es/a/8030236/" target="_blank">
-    <rect x="345" y="520" width="70" height="45" class="npfc-t" rx="6"/>
-    <text x="380" y="540" class="comp-label" style="font-size:11px">NPFC-T</text>
-    <text x="380" y="553" class="comp-detail">3&#215;G1/4</text>
-    <text x="380" y="563" class="comp-detail" style="font-size:9px;">ref: 8030236</text>
+    <rect x="345" y="537" width="70" height="55" class="npfc-t" rx="6"/>
+    <text x="380" y="555" class="comp-label" style="font-size:11px">NPFC-T</text>
+    <text x="380" y="568" class="comp-detail">3&#215;G1/4</text>
+    <text x="380" y="580" class="comp-detail" style="font-size:9px;">ref: 8030236</text>
   </a>
-  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="355" cy="565" r="4" class="ck-fitting"/><text x="340" y="575" class="ck-label">CK</text></a>
-  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="405" cy="565" r="4" class="ck-fitting"/><text x="420" y="575" class="ck-label">CK</text></a>
-  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="380" cy="520" r="4" class="ck-fitting"/></a>
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="355" cy="592" r="4" class="ck-fitting"/><text x="340" y="602" class="ck-label">CK</text></a>
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="405" cy="592" r="4" class="ck-fitting"/><text x="420" y="602" class="ck-label">CK</text></a>
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="380" cy="537" r="4" class="ck-fitting"/></a>
 
   <!-- ===== LEFT PATH: ASB &#8594; VPPM (x=190) ===== -->
 
   <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank">
-    <polyline points="355,565 355,595 190,595 190,630" class="tube"/>
+    <polyline points="355,592 355,622 190,622 190,657" class="tube"/>
   </a>
 
   <!-- ASB Valve -->
   <a xlink:href="https://www.festo.com/es/es/a/8035167/" target="_blank">
-    <rect x="110" y="630" width="160" height="60" class="comp-box-valve"/>
-    <text x="190" y="650" class="comp-label">ASB Valve (N.C.)</text>
-    <text x="190" y="664" class="comp-detail">VUVS-LT25, isolates VPPM</text>
-    <text x="190" y="678" class="comp-detail">2.5-10 bar</text>
-    <text x="190" y="688" class="comp-detail">ref: 8035167</text>
+    <rect x="110" y="657" width="160" height="72" class="comp-box-valve"/>
+    <text x="190" y="675" class="comp-label">ASB Valve (N.C.)</text>
+    <text x="190" y="689" class="comp-detail">VUVS-LT25, isolates VPPM</text>
+    <text x="190" y="703" class="comp-detail">2.5-10 bar</text>
+    <text x="190" y="717" class="comp-detail">ref: 8035167</text>
   </a>
-  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="190" cy="630" r="5" class="ck-fitting"/></a>
-  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="190" cy="690" r="5" class="ck-fitting"/></a>
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="190" cy="657" r="5" class="ck-fitting"/></a>
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="190" cy="729" r="5" class="ck-fitting"/></a>
 
   <!-- ASB Exhaust -->
-  <line x1="120" y1="660" x2="70" y2="660" class="tube-exhaust"/>
+  <line x1="120" y1="693" x2="70" y2="693" class="tube-exhaust"/>
   <a xlink:href="https://www.festo.com/es/es/a/2316/" target="_blank">
-    <rect x="30" y="648" width="40" height="25" class="silencer" rx="4"/>
-    <text x="50" y="664" style="font-size:9px;fill:#555;text-anchor:middle;">U-1/4</text>
-    <text x="50" y="684" class="ref-num" style="font-size:9px">2316</text>
+    <rect x="30" y="681" width="40" height="25" class="silencer" rx="4"/>
+    <text x="50" y="697" style="font-size:9px;fill:#555;text-anchor:middle;">U-1/4</text>
+    <text x="50" y="717" class="ref-num" style="font-size:9px">2316</text>
   </a>
 
   <!-- Tube: ASB out &#8594; VPPM -->
-  <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank"><line x1="190" y1="690" x2="190" y2="740" class="tube"/></a>
+  <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank"><line x1="190" y1="729" x2="190" y2="779" class="tube"/></a>
 
   <!-- VPPM -->
   <a xlink:href="https://www.festo.com/es/es/a/571293/" target="_blank">
-    <rect x="110" y="740" width="160" height="60" class="comp-box-valve"/>
-    <text x="190" y="760" class="comp-label">VPPM Proportional</text>
-    <text x="190" y="774" class="comp-detail">VPPM-8L-L-1-G14</text>
-    <text x="190" y="788" class="comp-detail">0-10 bar, inlet max 11 bar</text>
-    <text x="190" y="798" class="comp-detail">ref: 571293</text>
+    <rect x="110" y="779" width="160" height="72" class="comp-box-valve"/>
+    <text x="190" y="797" class="comp-label">VPPM Proportional</text>
+    <text x="190" y="811" class="comp-detail">VPPM-8L-L-1-G14</text>
+    <text x="190" y="825" class="comp-detail">0-10 bar, inlet max 11 bar</text>
+    <text x="190" y="839" class="comp-detail">ref: 571293</text>
   </a>
-  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="190" cy="740" r="5" class="ck-fitting"/></a>
-  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="190" cy="800" r="5" class="ck-fitting"/></a>
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="190" cy="779" r="5" class="ck-fitting"/></a>
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="190" cy="851" r="5" class="ck-fitting"/></a>
 
   <!-- VPPM Exhaust -->
-  <line x1="120" y1="770" x2="70" y2="770" class="tube-exhaust"/>
+  <line x1="120" y1="815" x2="70" y2="815" class="tube-exhaust"/>
   <a xlink:href="https://www.festo.com/es/es/a/2316/" target="_blank">
-    <rect x="30" y="758" width="40" height="25" class="silencer" rx="4"/>
-    <text x="50" y="774" style="font-size:9px;fill:#555;text-anchor:middle;">U-1/4</text>
-    <text x="50" y="794" class="ref-num" style="font-size:9px">2316</text>
+    <rect x="30" y="803" width="40" height="25" class="silencer" rx="4"/>
+    <text x="50" y="819" style="font-size:9px;fill:#555;text-anchor:middle;">U-1/4</text>
+    <text x="50" y="839" class="ref-num" style="font-size:9px">2316</text>
   </a>
 
   <!-- ===== RIGHT PATH: EBS (x=570) ===== -->
 
   <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank">
-    <polyline points="405,565 405,595 570,595 570,630" class="tube"/>
+    <polyline points="405,592 405,622 570,622 570,657" class="tube"/>
   </a>
 
   <!-- EBS Valve -->
   <a xlink:href="https://www.festo.com/es/es/a/8035174/" target="_blank">
-    <rect x="490" y="630" width="160" height="60" class="comp-box-valve"/>
-    <text x="570" y="650" class="comp-label">EBS Solenoid (N.O.)</text>
-    <text x="570" y="664" class="comp-detail">VUVS-LT25 3/2-way</text>
-    <text x="570" y="678" class="comp-detail">Emergency, 2.5-10 bar</text>
-    <text x="570" y="688" class="comp-detail">ref: 8035174</text>
+    <rect x="490" y="657" width="160" height="72" class="comp-box-valve"/>
+    <text x="570" y="675" class="comp-label">EBS Solenoid (N.O.)</text>
+    <text x="570" y="689" class="comp-detail">VUVS-LT25 3/2-way</text>
+    <text x="570" y="703" class="comp-detail">Emergency, 2.5-10 bar</text>
+    <text x="570" y="717" class="comp-detail">ref: 8035174</text>
   </a>
-  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="570" cy="630" r="5" class="ck-fitting"/></a>
-  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="570" cy="690" r="5" class="ck-fitting"/></a>
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="570" cy="657" r="5" class="ck-fitting"/></a>
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="570" cy="729" r="5" class="ck-fitting"/></a>
 
   <!-- EBS Exhaust -->
-  <line x1="640" y1="660" x2="690" y2="660" class="tube-exhaust"/>
+  <line x1="640" y1="693" x2="690" y2="693" class="tube-exhaust"/>
   <a xlink:href="https://www.festo.com/es/es/a/2316/" target="_blank">
-    <rect x="690" y="648" width="40" height="25" class="silencer" rx="4"/>
-    <text x="710" y="664" style="font-size:9px;fill:#555;text-anchor:middle;">U-1/4</text>
-    <text x="710" y="684" class="ref-num" style="font-size:9px">2316</text>
+    <rect x="690" y="681" width="40" height="25" class="silencer" rx="4"/>
+    <text x="710" y="697" style="font-size:9px;fill:#555;text-anchor:middle;">U-1/4</text>
+    <text x="710" y="717" class="ref-num" style="font-size:9px">2316</text>
   </a>
 
   <!-- ===== OR VALVE ===== -->
 
   <!-- Tube: VPPM out down to OR -->
   <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank">
-    <polyline points="190,800 190,870 350,870 350,900" class="tube"/>
+    <polyline points="190,851 190,921 350,921 350,951" class="tube"/>
   </a>
   <!-- Tube: EBS out down to OR -->
   <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank">
-    <polyline points="570,690 570,870 410,870 410,900" class="tube"/>
+    <polyline points="570,729 570,921 410,921 410,951" class="tube"/>
   </a>
 
   <!-- OR Valve -->
   <a xlink:href="https://www.festo.com/es/es/a/6682/" target="_blank">
-    <rect x="330" y="900" width="100" height="55" class="comp-box-shuttle"/>
-    <text x="380" y="920" class="comp-label">OR Valve</text>
-    <text x="380" y="934" class="comp-detail">OS-1/4-B (shuttle)</text>
-    <text x="380" y="948" class="comp-detail">Merges outputs</text>
-    <text x="380" y="953" class="comp-detail">ref: 6682</text>
+    <rect x="330" y="951" width="100" height="70" class="comp-box-shuttle"/>
+    <text x="380" y="969" class="comp-label">OR Valve</text>
+    <text x="380" y="983" class="comp-detail">OS-1/4-B (shuttle)</text>
+    <text x="380" y="997" class="comp-detail">Merges outputs</text>
+    <text x="380" y="1011" class="comp-detail">ref: 6682</text>
   </a>
-  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="350" cy="900" r="4" class="ck-fitting"/><text x="335" y="895" class="ck-label">CK</text></a>
-  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="410" cy="900" r="4" class="ck-fitting"/><text x="425" y="895" class="ck-label">CK</text></a>
-  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="380" cy="955" r="4" class="ck-fitting"/></a>
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="350" cy="951" r="4" class="ck-fitting"/><text x="335" y="946" class="ck-label">CK</text></a>
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="410" cy="951" r="4" class="ck-fitting"/><text x="425" y="946" class="ck-label">CK</text></a>
+  <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="380" cy="1021" r="4" class="ck-fitting"/></a>
 
   <!-- ===== ACTUATOR ===== -->
 
-  <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank"><line x1="380" y1="955" x2="380" y2="1000" class="tube"/></a>
+  <a xlink:href="https://www.festo.com/es/es/a/197384/" target="_blank"><line x1="380" y1="1021" x2="380" y2="1066" class="tube"/></a>
   <a xlink:href="https://www.festo.com/es/es/a/4469/" target="_blank">
-    <circle cx="380" cy="990" r="6" style="fill:#ffcc80;stroke:#ef6c00;stroke-width:1.5;"/>
-    <text x="398" y="988" class="ck-label" style="font-size:9px">LCK</text>
-    <text x="398" y="1000" class="ref-num" style="font-size:8px">4469</text>
+    <circle cx="380" cy="1056" r="6" style="fill:#ffcc80;stroke:#ef6c00;stroke-width:1.5;"/>
+    <text x="398" y="1054" class="ck-label" style="font-size:9px">LCK</text>
+    <text x="398" y="1066" class="ref-num" style="font-size:8px">4469</text>
   </a>
 
   <a xlink:href="https://www.festo.com/gb/en/a/8084714/" target="_blank">
-    <rect x="305" y="1010" width="150" height="70" class="comp-box-actuator"/>
-    <text x="380" y="1032" class="comp-label">Brake Actuator</text>
-    <text x="380" y="1046" class="comp-detail">ADN-S-50-45</text>
-    <text x="380" y="1060" class="comp-detail">Spring-return, G1/8, 0.4-10 bar</text>
-    <text x="380" y="1074" class="comp-detail">ref: 8084714</text>
+    <rect x="305" y="1076" width="150" height="70" class="comp-box-actuator"/>
+    <text x="380" y="1098" class="comp-label">Brake Actuator</text>
+    <text x="380" y="1112" class="comp-detail">ADN-S-50-45</text>
+    <text x="380" y="1126" class="comp-detail">Spring-return, G1/8, 0.4-10 bar</text>
+    <text x="380" y="1140" class="comp-detail">ref: 8084714</text>
   </a>
 
   <!-- Actuator Exhaust -->
-  <line x1="380" y1="1080" x2="380" y2="1115" class="tube-exhaust"/>
+  <line x1="380" y1="1146" x2="380" y2="1181" class="tube-exhaust"/>
   <a xlink:href="https://www.festo.com/es/es/a/2307/" target="_blank">
-    <rect x="360" y="1115" width="40" height="25" class="silencer" rx="4"/>
-    <text x="380" y="1131" style="font-size:9px;fill:#555;text-anchor:middle;">U-1/8</text>
-    <text x="380" y="1152" class="ref-num" style="font-size:9px">2307</text>
+    <rect x="360" y="1181" width="40" height="25" class="silencer" rx="4"/>
+    <text x="380" y="1197" style="font-size:9px;fill:#555;text-anchor:middle;">U-1/8</text>
+    <text x="380" y="1218" class="ref-num" style="font-size:9px">2307</text>
   </a>
 
   <!-- ===== ELECTRICAL NOTE ===== -->
-  <rect x="170" y="1180" width="420" height="50" class="note-box"/>
-  <text x="380" y="1200" style="font-size:11px;font-weight:bold;fill:#e65100;text-anchor:middle;">Electrical connections (not shown):</text>
-  <text x="380" y="1216" style="font-size:10px;fill:#555;text-anchor:middle;">ASB coil: 8030801 + MSSD-EB: 151687 | EBS coil: (reuse) + MSSD-EB: 151687</text>
+  <rect x="170" y="1246" width="420" height="50" class="note-box"/>
+  <text x="380" y="1266" style="font-size:11px;font-weight:bold;fill:#e65100;text-anchor:middle;">Electrical connections (not shown):</text>
+  <text x="380" y="1282" style="font-size:10px;fill:#555;text-anchor:middle;">ASB coil: 8030801 + MSSD-EB: 151687 | EBS coil: (reuse) + MSSD-EB: 151687</text>
 
   </g>
 </svg>
