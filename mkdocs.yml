@@ -1,6 +1,8 @@
 site_name: Driverless Kart Documentation
 theme:
   name: material
+  features:
+    - navigation.indexes
 markdown_extensions:
   - admonition
   - pymdownx.details
@@ -11,16 +13,16 @@ nav:
   - BOM: bom/index.md
   - Tools: tools/index.md
   - Assembly:
-      - Overview: assembly/index.md
+      - assembly/index.md
       - Chassis: assembly/chassis/index.md
       - Powertrain:
-          - Overview: assembly/powertrain/index.md
+          - assembly/powertrain/index.md
           - Motor: assembly/powertrain/motor.md
           - Transmission: assembly/powertrain/transmission.md
           - Throttle Pedal: assembly/powertrain/throttle-pedal.md
           - Fasteners: assembly/powertrain/fasteners.md
       - Steering:
-          - Overview: assembly/steering/index.md
+          - assembly/steering/index.md
           - H-bridge: assembly/steering/h-bridge.md
           - Angle Sensor: assembly/steering/sensor/index.md
           - Fasteners: assembly/steering/fasteners.md
@@ -34,7 +36,7 @@ nav:
       - Sensors:
           - Camera: assembly/sensors/camera.md
       - Emergency Braking:
-          - Pneumatics: assembly/emergency-braking/index.md
+          - assembly/emergency-braking/index.md
           - BOM: assembly/emergency-braking/bom.md
       - Hydraulics: hydraulics/index.md
   - Software: software/index.md

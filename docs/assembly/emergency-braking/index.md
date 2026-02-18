@@ -1,4 +1,4 @@
-# Pneumatics
+# Emergency Braking
 We need an emergency braking system that can be activated on loss of electrical power or error from the shutdown loop, and a proportional braking system that can be controlled by the main computer when the robot is running.
 
 Two circuit variants are documented here. The **simplified design** is the minimum viable circuit; the **full design** adds extra isolation for maximum redundancy. The [BOM](bom.md) covers the full design (simplified is a subset).
