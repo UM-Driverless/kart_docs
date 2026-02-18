@@ -53,7 +53,7 @@
     <rect x="285" y="165" width="150" height="50" class="comp-box-sensor"/>
     <text x="360" y="185" class="comp-label">Pressure Sensor</text>
     <text x="360" y="198" class="comp-detail">(tank side) SDE5, 0-10 bar</text>
-    <text x="445" y="180" class="ref-num">567465</text>
+    <text x="430" y="176" class="ref-num" style="text-anchor:end;font-size:9px;">567465</text>
   </a>
 
   <!-- Tube down + CK -->
@@ -78,7 +78,7 @@
     <text x="360" y="360" class="comp-label">Regulator</text>
     <text x="360" y="374" class="comp-detail">MS4-LR-1/4-D7-AD10, 0.5-12 bar</text>
     <text x="360" y="387" class="comp-detail">&#9888; Never set above 10 bar</text>
-    <text x="455" y="352" class="ref-num">527690</text>
+    <text x="440" y="352" class="ref-num" style="text-anchor:end;font-size:9px;">527690</text>
   </a>
 
   <!-- Tube down + CK -->
@@ -90,7 +90,7 @@
     <rect x="285" y="435" width="150" height="50" class="comp-box-sensor"/>
     <text x="360" y="455" class="comp-label">Pressure Sensor</text>
     <text x="360" y="468" class="comp-detail">(regulated) SDE5, 0-10 bar</text>
-    <text x="445" y="450" class="ref-num">567465</text>
+    <text x="430" y="446" class="ref-num" style="text-anchor:end;font-size:9px;">567465</text>
   </a>
 
   <!-- Tube down + CK -->
@@ -101,7 +101,7 @@
     <rect x="325" y="520" width="70" height="45" class="npfc-t" rx="6"/>
     <text x="360" y="540" class="comp-label" style="font-size:11px">NPFC-T</text>
     <text x="360" y="553" class="comp-detail">3&#215;G1/4</text>
-    <text x="405" y="533" class="ref-num" style="font-size:10px">8030236</text>
+    <text x="390" y="532" class="ref-num" style="text-anchor:end;font-size:8px;">8030236</text>
   </a>
   <!-- CK on each NPFC-T port -->
   <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="335" cy="565" r="4" class="ck-fitting"/><text x="320" y="575" class="ck-label">CK</text></a>
@@ -125,7 +125,7 @@
     <text x="200" y="650" class="comp-label">VPPM Proportional</text>
     <text x="200" y="664" class="comp-detail">VPPM-8L-L-1-G14</text>
     <text x="200" y="678" class="comp-detail">ASB, 0-10 bar, inlet max 11 bar</text>
-    <text x="200" y="623" class="ref-num">571293</text>
+    <text x="275" y="642" class="ref-num" style="text-anchor:end;font-size:9px;">571293</text>
   </a>
   <!-- CK at VPPM ports -->
   <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="200" cy="630" r="5" class="ck-fitting"/></a>
@@ -145,18 +145,17 @@
     <text x="520" y="650" class="comp-label">EBS Solenoid (N.O.)</text>
     <text x="520" y="664" class="comp-detail">VUVS-LT25 3/2-way</text>
     <text x="520" y="678" class="comp-detail">Emergency, 2.5-10 bar</text>
-    <text x="520" y="623" class="ref-num">8035174</text>
+    <text x="595" y="642" class="ref-num" style="text-anchor:end;font-size:9px;">8035174</text>
   </a>
   <!-- CK at EBS ports -->
   <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="520" cy="630" r="5" class="ck-fitting"/></a>
   <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="520" cy="695" r="5" class="ck-fitting"/></a>
 
-  <!-- EBS Exhaust (right side) -->
-  <line x1="600" y1="662" x2="650" y2="662" class="tube-exhaust"/>
-  <a xlink:href="https://www.festo.com/es/es/a/2316/" target="_blank">
-    <rect x="640" y="650" width="40" height="25" class="silencer" rx="4"/>
-    <text x="660" y="666" style="font-size:9px;fill:#555;text-anchor:middle;">U-1/4</text>
-    <text x="660" y="686" class="ref-num" style="font-size:9px">2316</text>
+  <!-- EBS Exhaust blocked (no OR valve → plug prevents air escaping during VPPM regulation) -->
+  <a xlink:href="https://www.festo.com/es/es/a/3569/" target="_blank">
+    <rect x="601" y="653" width="32" height="18" rx="3" style="fill:#b0b0b0;stroke:#666;stroke-width:1.5;"/>
+    <text x="617" y="665" style="font-size:8px;fill:#333;text-anchor:middle;font-weight:600;">B-1/4</text>
+    <text x="617" y="680" class="ref-num" style="font-size:8px">3569</text>
   </a>
 
   <!-- ===== MERGE ===== -->
@@ -175,7 +174,7 @@
     <rect x="325" y="790" width="70" height="45" class="npfc-t" rx="6"/>
     <text x="360" y="810" class="comp-label" style="font-size:11px">NPFC-T</text>
     <text x="360" y="823" class="comp-detail">3&#215;G1/4</text>
-    <text x="405" y="803" class="ref-num" style="font-size:10px">8030236</text>
+    <text x="390" y="802" class="ref-num" style="text-anchor:end;font-size:8px;">8030236</text>
   </a>
   <!-- CK on merge ports -->
   <a xlink:href="https://www.festo.com/es/es/a/2029/" target="_blank"><circle cx="335" cy="790" r="4" class="ck-fitting"/><text x="320" y="785" class="ck-label">CK</text></a>
@@ -198,7 +197,7 @@
     <text x="360" y="912" class="comp-label">Brake Actuator</text>
     <text x="360" y="926" class="comp-detail">ADN-S-50-45</text>
     <text x="360" y="940" class="comp-detail">Spring-return, G1/8, 0.4-10 bar</text>
-    <text x="445" y="905" class="ref-num">8084714</text>
+    <text x="430" y="902" class="ref-num" style="text-anchor:end;font-size:9px;">8084714</text>
   </a>
 
   <!-- Actuator Exhaust down -->
@@ -223,7 +222,7 @@
   <text x="100" y="1160" style="font-size:11px;fill:#444;">NPFC-T-3G14-F threaded T-adapter (8030236)</text>
 
   <text x="70" y="1182" class="ref-num" style="font-size:11px;">123456</text>
-  <text x="110" y="1182" style="font-size:11px;fill:#444;">= Festo article number (click to open product page)</text>
+  <text x="110" y="1182" style="font-size:11px;fill:#444;">= Festo part number (click to open product page)</text>
 
   <line x1="400" y1="1108" x2="440" y2="1108" class="tube-exhaust"/>
   <text x="450" y="1112" style="font-size:11px;fill:#444;">Exhaust path</text>

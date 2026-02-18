@@ -7,6 +7,8 @@ Two circuit variants are documented here. The **simplified design** is the minim
 
 VPPM and EBS in parallel, directly to the actuator. No ASB isolation valve, no OR valve. This works because the VPPM blocks all ports when unpowered (see [VPPM analysis](#vppm-unpowered-behavior-what-does-unregulated-mean) below).
 
+Since there is no OR valve to prevent backflow, the EBS solenoid's exhaust port is blocked with a blanking plug ([B-1/4, 3569](https://www.festo.com/es/es/a/3569/)) instead of a silencer. This prevents air from escaping through the EBS exhaust when the VPPM is regulating pressure. The EBS acts as on-off emergency air addition only; the VPPM handles all pressure regulation and exhaust.
+
 <object data="images/ebs-simplified.svg" type="image/svg+xml" style="width:100%;max-width:720px;"></object>
 
 > **Tip:** Click any component in the diagram to open its Festo product page. Yellow dots are CK compression fittings; blue lines are tubing.
