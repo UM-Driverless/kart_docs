@@ -39,7 +39,15 @@ nav:
           - assembly/emergency-braking/index.md
           - BOM: assembly/emergency-braking/bom.md
       - Hydraulics: hydraulics/index.md
-  - Software: software/index.md
+  - Software:
+      - software/index.md
+      - 2024 — Python: software/legacy.md
+      - 2025 — ROS 2:
+          - software/ros2/index.md
+          - Getting Started: software/ros2/getting-started.md
+          - Architecture: software/ros2/architecture.md
+          - Packages: software/ros2/packages.md
+          - Simulation: software/ros2/simulation.md
   - FAQ: faq.md
   - Contact: contact.md
 repo_url: https://github.com/um-driverless/kart_docs
