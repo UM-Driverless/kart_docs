@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1100 1700" width="1100" height="1700">
+  <style>
+    text { font-family: 'Segoe UI', Arial, Helvetica, sans-serif; }
+
+    /* === Title and label styles === */
+    .title       { font-size: 18px; font-weight: bold; fill: #1a1a1a; }
+    .subtitle    { font-size: 12px; fill: #555; }
+    .comp-label  { font-size: 12px; font-weight: 600; fill: #222; text-anchor: middle; }
+    .comp-detail { font-size: 10px; fill: #555; text-anchor: middle; }
+    .wire-label  { font-size: 9px; fill: #444; font-weight: 600; }
+    .pin-label   { font-size: 9px; fill: #666; text-anchor: middle; }
+
+    /* === Wire color classes === */
+    .wire-gnd      { fill: none; stroke: #333;    stroke-width: 3;   stroke-linecap: round; stroke-linejoin: round; }
+    .wire-48v      { fill: none; stroke: #7b1fa2; stroke-width: 3;   stroke-linecap: round; stroke-linejoin: round; }
+    .wire-12v      { fill: none; stroke: #d32f2f; stroke-width: 3;   stroke-linecap: round; stroke-linejoin: round; }
+    .wire-shutdown { fill: none; stroke: #e91e63; stroke-width: 3;   stroke-linecap: round; stroke-linejoin: round; }
+    .wire-phase    { fill: none; stroke: #757575; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .wire-signal   { fill: none; stroke: #bbb;    stroke-width: 2;   stroke-linecap: round; stroke-linejoin: round; }
+
+    /* === Component box styles === */
+    .comp-box            { fill: #f5f5f5; stroke: #333;    stroke-width: 1.5; }
+    .comp-box-power      { fill: #fff3e0; stroke: #e65100; stroke-width: 1.8; }
+    .comp-box-switch     { fill: #fce4ec; stroke: #e91e63; stroke-width: 1.8; }
+    .comp-box-controller { fill: #e8f0fe; stroke: #1a73e8; stroke-width: 1.8; }
+    .comp-box-motor      { fill: #fce8e6; stroke: #c5221f; stroke-width: 1.8; }
+    .comp-box-connector  { fill: #fff9c4; stroke: #f9a825; stroke-width: 2;   }
+
+    /* === Legend === */
+    .legend-box { fill: #fafafa; stroke: #ccc; stroke-width: 1; rx: 4; }
+  </style>
+
+  <!-- Background -->
+  <rect width="1100" height="1700" fill="#fefefe" rx="10"/>
+
+  <!-- ============================================================ -->
+  <!--  TITLE                                                        -->
+  <!-- ============================================================ -->
+  <text x="550" y="30" text-anchor="middle" class="title">Kart Electrical Wiring &#8212; Power &amp; Shutdown Circuit</text>
+
+  <!-- ============================================================ -->
+  <!--  LEGEND                                                       -->
+  <!-- ============================================================ -->
+  <rect x="30" y="50" width="1040" height="100" class="legend-box"/>
+  <text x="50" y="72" style="font-size:13px;font-weight:bold;fill:#333;">Legend &#8212; Wire Colors</text>
+
+  <!-- Wire color swatches -->
+  <line x1="50"  y1="90" x2="90"  y2="90" class="wire-gnd"/>
+  <text x="97"  y="94" style="font-size:11px;fill:#444;">GND</text>
+  <line x1="150" y1="90" x2="190" y2="90" class="wire-48v"/>
+  <text x="197" y="94" style="font-size:11px;fill:#444;">48 V</text>
+  <line x1="250" y1="90" x2="290" y2="90" class="wire-12v"/>
+  <text x="297" y="94" style="font-size:11px;fill:#444;">12 V</text>
+  <line x1="350" y1="90" x2="390" y2="90" class="wire-shutdown"/>
+  <text x="397" y="94" style="font-size:11px;fill:#444;">Shutdown (SDC)</text>
+  <line x1="510" y1="90" x2="550" y2="90" class="wire-phase"/>
+  <text x="557" y="94" style="font-size:11px;fill:#444;">Motor phases</text>
+  <line x1="670" y1="90" x2="710" y2="90" class="wire-signal"/>
+  <text x="717" y="94" style="font-size:11px;fill:#444;">Signal / key</text>
+
+  <!-- Component type boxes -->
+  <text x="50" y="118" style="font-size:13px;font-weight:bold;fill:#333;">Component Types</text>
+  <rect x="200" y="107" width="50" height="18" rx="6" class="comp-box-power"/>
+  <text x="260" y="120" style="font-size:10px;fill:#444;">Power supply</text>
+  <rect x="340" y="107" width="50" height="18" rx="6" class="comp-box-switch"/>
+  <text x="400" y="120" style="font-size:10px;fill:#444;">Switch (SDC)</text>
+  <rect x="480" y="107" width="50" height="18" rx="6" class="comp-box-controller"/>
+  <text x="540" y="120" style="font-size:10px;fill:#444;">Controller / PCB</text>
+  <rect x="630" y="107" width="50" height="18" rx="6" class="comp-box-motor"/>
+  <text x="690" y="120" style="font-size:10px;fill:#444;">Motor / actuator</text>
+  <rect x="780" y="107" width="50" height="18" rx="6" class="comp-box-connector"/>
+  <text x="840" y="120" style="font-size:10px;fill:#444;">Terminal / WAGO</text>
+
+  <!-- ============================================================ -->
+  <!--  SECTION 1 — POWER: Battery, Terminal Block, Motor Ctrl, Motor -->
+  <!-- ============================================================ -->
+
+  <!-- Battery -->
+  <rect x="50" y="185" width="180" height="60" rx="6" class="comp-box-power"/>
+  <text x="140" y="212" class="comp-label">Battery 13S LiPo</text>
+  <text x="140" y="226" class="comp-detail">~48 V nominal</text>
+
+  <!-- Wires: Battery → Terminal Block (48V + GND) -->
+  <polyline points="230,200 320,200" class="wire-48v"/>
+  <text x="270" y="195" class="wire-label">48 V</text>
+  <polyline points="230,228 320,228" class="wire-gnd"/>
+  <text x="270" y="244" class="wire-label">GND</text>
+
+  <!-- ===== Terminal Block (5 bolt positions) ===== -->
+  <rect x="320" y="175" width="380" height="70" rx="6" class="comp-box-connector"/>
+  <text x="510" y="195" class="comp-label">Terminal Block (5-bolt bus bar)</text>
+
+  <!-- Bolt positions: GND(340), U(400), V(460), W(520), BAT+(620) -->
+  <!-- GND bolt -->
+  <circle cx="360" cy="225" r="8" fill="#e0e0e0" stroke="#333" stroke-width="1.5"/>
+  <text x="360" y="228" class="pin-label" style="font-size:8px;font-weight:bold;">GND</text>
+  <!-- U bolt -->
+  <circle cx="430" cy="225" r="8" fill="#e0e0e0" stroke="#757575" stroke-width="1.5"/>
+  <text x="430" y="228" class="pin-label" style="font-size:8px;font-weight:bold;">U</text>
+  <!-- V bolt -->
+  <circle cx="500" cy="225" r="8" fill="#e0e0e0" stroke="#757575" stroke-width="1.5"/>
+  <text x="500" y="228" class="pin-label" style="font-size:8px;font-weight:bold;">V</text>
+  <!-- W bolt -->
+  <circle cx="570" cy="225" r="8" fill="#e0e0e0" stroke="#757575" stroke-width="1.5"/>
+  <text x="570" y="228" class="pin-label" style="font-size:8px;font-weight:bold;">W</text>
+  <!-- BAT+ bolt -->
+  <circle cx="660" cy="225" r="8" fill="#e8d0f0" stroke="#7b1fa2" stroke-width="1.5"/>
+  <text x="660" y="228" class="pin-label" style="font-size:8px;font-weight:bold;">BAT+</text>
+
+  <!-- Battery wires connect to GND and BAT+ bolts -->
+  <polyline points="320,228 352,228 352,225" class="wire-gnd"/>
+  <polyline points="320,200 660,200 660,217" class="wire-48v"/>
+
+  <!-- Motor Controller -->
+  <rect x="410" y="300" width="200" height="60" rx="6" class="comp-box-controller"/>
+  <text x="510" y="324" class="comp-label">Motor Controller</text>
+  <text x="510" y="338" class="comp-detail">AliExpress ESC</text>
+
+  <!-- Wires: Terminal Block BAT+ and GND → Motor Controller (down) -->
+  <polyline points="660,233 660,270 580,270 580,300" class="wire-48v"/>
+  <text x="625" y="266" class="wire-label">48 V</text>
+  <polyline points="360,233 360,270 440,270 440,300" class="wire-gnd"/>
+  <text x="395" y="266" class="wire-label">GND</text>
+
+  <!-- Wires: Motor Controller → Terminal Block U,V,W (phase outputs going up) -->
+  <polyline points="480,300 480,280 430,280 430,233" class="wire-phase"/>
+  <polyline points="510,300 510,280 500,280 500,233" class="wire-phase"/>
+  <polyline points="540,300 540,280 570,280 570,233" class="wire-phase"/>
+  <text x="455" y="292" class="wire-label" style="fill:#757575;">U</text>
+  <text x="498" y="292" class="wire-label" style="fill:#757575;">V</text>
+  <text x="558" y="292" class="wire-label" style="fill:#757575;">W</text>
+
+  <!-- Motor -->
+  <rect x="770" y="185" width="180" height="60" rx="6" class="comp-box-motor"/>
+  <text x="860" y="212" class="comp-label">Motor</text>
+  <text x="860" y="226" class="comp-detail">3-phase BLDC</text>
+
+  <!-- Wires: Terminal Block U,V,W → Motor (right) -->
+  <polyline points="438,225 438,215 700,215 700,200 770,200" class="wire-phase"/>
+  <polyline points="508,225 508,210 720,210 720,215 770,215" class="wire-phase"/>
+  <polyline points="578,225 578,215 740,215 740,230 770,230" class="wire-phase"/>
+  <text x="730" y="196" class="wire-label" style="fill:#757575;">U</text>
+  <text x="744" y="212" class="wire-label" style="fill:#757575;">V</text>
+  <text x="756" y="228" class="wire-label" style="fill:#757575;">W</text>
+
+  <!-- ============================================================ -->
+  <!--  SECTION 2 — BUCK REGULATOR + WAGO DISTRIBUTION               -->
+  <!-- ============================================================ -->
+
+  <!-- Wires from terminal block GND and BAT+ going down to buck regulator -->
+  <polyline points="360,233 360,260 140,260 140,440" class="wire-gnd"/>
+  <polyline points="660,233 660,260 760,260 760,390 200,390 200,440" class="wire-48v"/>
+
+  <!-- Buck Regulator -->
+  <rect x="100" y="440" width="200" height="60" rx="6" class="comp-box-power"/>
+  <text x="200" y="464" class="comp-label">Buck Regulator</text>
+  <text x="200" y="478" class="comp-detail">48 V &#8594; 12 V</text>
+
+  <!-- Labels on input wires -->
+  <text x="148" y="415" class="wire-label">GND</text>
+  <text x="207" y="415" class="wire-label">48 V in</text>
+
+  <!-- Wires: Buck regulator output → WAGO blocks -->
+  <polyline points="300,460 450,460" class="wire-12v"/>
+  <text x="370" y="455" class="wire-label">12 V out</text>
+  <polyline points="300,480 350,480 350,507 450,507" class="wire-gnd"/>
+  <text x="370" y="500" class="wire-label">GND out</text>
+
+  <!-- WAGO 12V -->
+  <rect x="450" y="445" width="120" height="35" rx="6" class="comp-box-connector"/>
+  <text x="510" y="467" class="comp-label" style="font-size:11px;">WAGO 12 V</text>
+
+  <!-- WAGO GND -->
+  <rect x="450" y="490" width="120" height="35" rx="6" class="comp-box-connector"/>
+  <text x="510" y="512" class="comp-label" style="font-size:11px;">WAGO GND</text>
+
+  <!-- ============================================================ -->
+  <!--  SECTION 3 — SHUTDOWN CIRCUIT (vertical spine at x=550)       -->
+  <!-- ============================================================ -->
+
+  <!-- Transition: 12V → SDC -->
+  <polyline points="570,462 600,462 600,560 550,560" class="wire-12v"/>
+  <polyline points="550,560 550,600" class="wire-shutdown"/>
+  <rect x="516" y="548" width="62" height="18" rx="3" fill="#fff" stroke="#e91e63" stroke-width="1"/>
+  <text x="547" y="560" style="font-size:8px;fill:#e91e63;text-anchor:middle;font-weight:600;">12 V &#8594; SDC</text>
+
+  <!-- ===== KS1 — Kill Switch 1 ===== -->
+  <rect x="460" y="600" width="180" height="55" rx="6" class="comp-box-switch"/>
+  <text x="550" y="622" class="comp-label">Kill Switch 1</text>
+  <text x="550" y="636" class="comp-detail">Mushroom &#8212; Hoop (left)</text>
+  <!-- Wires in/out -->
+  <line x1="550" y1="600" x2="550" y2="600" class="wire-shutdown"/>
+  <line x1="550" y1="655" x2="550" y2="680" class="wire-shutdown"/>
+
+  <!-- ===== KS2 — Kill Switch 2 ===== -->
+  <rect x="460" y="680" width="180" height="55" rx="6" class="comp-box-switch"/>
+  <text x="550" y="702" class="comp-label">Kill Switch 2</text>
+  <text x="550" y="716" class="comp-detail">Mushroom &#8212; Hoop (right)</text>
+  <line x1="550" y1="735" x2="550" y2="760" class="wire-shutdown"/>
+
+  <!-- ===== KS3 — Kill Switch 3 ===== -->
+  <rect x="460" y="760" width="180" height="55" rx="6" class="comp-box-switch"/>
+  <text x="550" y="782" class="comp-label">Kill Switch 3</text>
+  <text x="550" y="796" class="comp-detail">Mushroom &#8212; Dashboard</text>
+  <line x1="550" y1="815" x2="550" y2="840" class="wire-shutdown"/>
+
+  <!-- ===== Impact Switch ===== -->
+  <rect x="460" y="840" width="180" height="45" rx="6" class="comp-box-switch"/>
+  <text x="550" y="862" class="comp-label">Impact Switch</text>
+  <text x="550" y="874" class="comp-detail">Crash sensor</text>
+  <line x1="550" y1="885" x2="550" y2="910" class="wire-shutdown"/>
+
+  <!-- ===== RES — Remote Emergency System ===== -->
+  <rect x="440" y="910" width="220" height="55" rx="6" class="comp-box-switch"/>
+  <text x="550" y="932" class="comp-label">RES (Remote Emergency)</text>
+  <text x="550" y="946" class="comp-detail">Radio-controlled relay</text>
+
+  <!-- Manual bypass path around RES -->
+  <polyline points="550,910 690,910 690,965 550,965" class="wire-shutdown"
+            style="stroke-dasharray:6,3; stroke-width:2;"/>
+  <text x="710" y="942" class="wire-label" style="fill:#e91e63;font-size:8px;">Manual</text>
+  <text x="710" y="952" class="wire-label" style="fill:#e91e63;font-size:8px;">bypass</text>
+
+  <line x1="550" y1="965" x2="550" y2="1000" class="wire-shutdown"/>
+
+  <!-- ===== RELAY (coil + contacts in one box) ===== -->
+  <rect x="430" y="1000" width="280" height="130" rx="6" class="comp-box" style="stroke-width:2;"/>
+  <text x="570" y="1020" class="comp-label" style="font-size:13px;">Relay</text>
+
+  <!-- Dashed divider between coil and contacts sections -->
+  <line x1="430" y1="1070" x2="710" y2="1070" stroke="#999" stroke-width="1" stroke-dasharray="5,3"/>
+
+  <!-- Coil section (top half) -->
+  <text x="470" y="1042" style="font-size:10px;fill:#555;font-weight:600;">Coil</text>
+
+  <!-- Coil symbol (simple inductor representation) -->
+  <path d="M510,1050 Q520,1040 530,1050 Q540,1060 550,1050 Q560,1040 570,1050 Q580,1060 590,1050"
+        fill="none" stroke="#333" stroke-width="1.5"/>
+
+  <!-- Pin labels for coil -->
+  <text x="500" y="1055" class="pin-label" style="font-weight:bold;">86</text>
+  <text x="600" y="1055" class="pin-label" style="font-weight:bold;">85</text>
+
+  <!-- SDC wire enters pin 86 -->
+  <line x1="550" y1="1000" x2="550" y2="1035" class="wire-shutdown"/>
+  <polyline points="550,1035 510,1050" class="wire-shutdown"/>
+
+  <!-- Pin 85 exits right to MOSFET -->
+  <line x1="590" y1="1050" x2="710" y2="1050" class="wire-shutdown"/>
+
+  <!-- Contacts section (bottom half) -->
+  <text x="470" y="1090" style="font-size:10px;fill:#555;font-weight:600;">Contacts (N.O.)</text>
+
+  <!-- Contact pins -->
+  <text x="500" y="1110" class="pin-label" style="font-weight:bold;">30</text>
+  <circle cx="500" cy="1115" r="4" fill="#ddd" stroke="#333" stroke-width="1"/>
+  <text x="600" y="1110" class="pin-label" style="font-weight:bold;">87</text>
+  <circle cx="600" cy="1115" r="4" fill="#ddd" stroke="#333" stroke-width="1"/>
+
+  <!-- Open contact symbol (small gap line) -->
+  <line x1="504" y1="1115" x2="560" y2="1105" stroke="#333" stroke-width="1.5"/>
+  <line x1="564" y1="1115" x2="596" y2="1115" stroke="#333" stroke-width="1.5"/>
+
+  <!-- ===== kart_medulla MOSFET ===== -->
+  <rect x="730" y="1025" width="160" height="55" rx="6" class="comp-box-controller"/>
+  <text x="810" y="1047" class="comp-label">kart_medulla</text>
+  <text x="810" y="1061" class="comp-detail">N-ch MOSFET (SDC sink)</text>
+
+  <!-- Wire from relay pin 85 → MOSFET drain -->
+  <line x1="710" y1="1050" x2="730" y2="1050" class="wire-shutdown"/>
+  <text x="716" y="1042" class="wire-label" style="fill:#e91e63;">pin 85</text>
+
+  <!-- MOSFET source → GND -->
+  <line x1="810" y1="1080" x2="810" y2="1110" class="wire-gnd"/>
+  <text x="825" y="1100" class="wire-label">GND</text>
+  <!-- GND symbol -->
+  <line x1="795" y1="1110" x2="825" y2="1110" stroke="#333" stroke-width="2"/>
+  <line x1="800" y1="1116" x2="820" y2="1116" stroke="#333" stroke-width="1.5"/>
+  <line x1="805" y1="1122" x2="815" y2="1122" stroke="#333" stroke-width="1"/>
+
+  <!-- GND return wire from WAGO GND to MOSFET area (label only — shares common GND bus) -->
+  <polyline points="570,507 750,507 750,540 900,540 900,1110 825,1110" class="wire-gnd" style="stroke-dasharray:8,4;stroke-width:2;"/>
+  <text x="910" y="830" class="wire-label" transform="rotate(90,910,830)">GND bus</text>
+
+  <!-- ============================================================ -->
+  <!--  SECTION 4 — KEY SWITCH + RELAY CONTACTS → MOTOR CONTROLLER   -->
+  <!-- ============================================================ -->
+
+  <text x="550" y="1175" class="comp-label" style="font-size:13px;fill:#555;">Motor Controller Enable Circuit</text>
+
+  <!-- KEY Switch -->
+  <rect x="250" y="1200" width="160" height="50" rx="6" class="comp-box-switch"/>
+  <text x="330" y="1222" class="comp-label">KEY Switch</text>
+  <text x="330" y="1236" class="comp-detail">Ignition switch</text>
+
+  <!-- Horizontal chain: MC key out → KEY → Relay pin 30 → pin 87 → MC key in -->
+
+  <!-- Motor Controller (key out) label on the left -->
+  <text x="120" y="1222" style="font-size:10px;fill:#555;text-anchor:middle;">Motor Ctrl</text>
+  <text x="120" y="1235" style="font-size:9px;fill:#888;text-anchor:middle;">key wire A</text>
+
+  <!-- Wire: MC key A → KEY switch input -->
+  <line x1="170" y1="1225" x2="250" y2="1225" class="wire-signal"/>
+
+  <!-- Wire: KEY switch output → Relay pin 30 -->
+  <polyline points="410,1225 500,1225 500,1119" class="wire-signal"/>
+  <text x="450" y="1218" class="wire-label" style="fill:#999;">to pin 30</text>
+
+  <!-- Wire: Relay pin 87 → back to MC key B -->
+  <polyline points="600,1119 600,1280 170,1280" class="wire-signal"/>
+  <text x="450" y="1275" class="wire-label" style="fill:#999;">from pin 87</text>
+
+  <!-- Motor Controller (key in) label on the left -->
+  <text x="120" y="1277" style="font-size:10px;fill:#555;text-anchor:middle;">Motor Ctrl</text>
+  <text x="120" y="1290" style="font-size:9px;fill:#888;text-anchor:middle;">key wire B</text>
+
+  <!-- Small circles at MC endpoints -->
+  <circle cx="170" cy="1225" r="3" fill="#bbb" stroke="#888" stroke-width="1"/>
+  <circle cx="170" cy="1280" r="3" fill="#bbb" stroke="#888" stroke-width="1"/>
+
+  <!-- ============================================================ -->
+  <!--  EXPLANATORY NOTES                                            -->
+  <!-- ============================================================ -->
+  <rect x="50" y="1340" width="1000" height="130" rx="6" class="legend-box"/>
+  <text x="70" y="1365" style="font-size:12px;font-weight:bold;fill:#333;">How it works</text>
+
+  <text x="70" y="1385" style="font-size:10px;fill:#555;">1. Battery (48 V) feeds the terminal block. Motor controller draws BAT+ and GND; outputs 3 phases (U, V, W) to the motor via the same terminal block.</text>
+  <text x="70" y="1400" style="font-size:10px;fill:#555;">2. Buck regulator steps 48 V down to 12 V, distributed through WAGO connectors.</text>
+  <text x="70" y="1415" style="font-size:10px;fill:#555;">3. The 12 V rail feeds the Shutdown Circuit (SDC): a series chain of kill switches, impact switch, and RES (with manual bypass).</text>
+  <text x="70" y="1430" style="font-size:10px;fill:#555;">4. SDC current flows through the relay coil (pin 86 &#8594; 85), then to ground via kart_medulla&#8217;s N-channel MOSFET.</text>
+  <text x="70" y="1445" style="font-size:10px;fill:#555;">5. When the relay is energized, its N.O. contacts (30 &#8594; 87) close, completing the motor controller&#8217;s KEY circuit and enabling drive.</text>
+  <text x="70" y="1460" style="font-size:10px;fill:#555;">6. Any open switch in the SDC chain de-energizes the relay &#8594; contacts open &#8594; motor controller disabled.</text>
+
+  <!-- Version note -->
+  <text x="550" y="1500" text-anchor="middle" style="font-size:9px;fill:#aaa;">Kart Electrical Wiring Diagram &#8212; v1.0 &#8212; 2026-02-22</text>
+
+</svg>
