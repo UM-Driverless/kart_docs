@@ -18,7 +18,7 @@ Signal wires (CAN, I2C, analog, PWM) use **white/gray** unless a specific conven
 
 ## Global Wiring Diagram
 
-<object data="wiring/images/wiring-global.svg" type="image/svg+xml" style="width:100%;max-width:1100px;"></object>
+<object data="images/wiring-global.svg" type="image/svg+xml" style="width:100%;max-width:1100px;"></object>
 
 > **Tip:** All switches in the shutdown chain are in series — opening any one cuts power to the relay coil, which disables the motor controller.
 
