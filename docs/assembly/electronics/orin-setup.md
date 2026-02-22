@@ -45,9 +45,12 @@ The flash tool writes to all three. This is expected.
 | cuDNN | 9.x | `sudo apt install nvidia-jetpack` |
 | TensorRT | 10.x | `sudo apt install nvidia-jetpack` |
 | ROS 2 | Humble | apt (ROS 2 repos) |
-| ZED SDK | 5.2 | Installer from Stereolabs |
-| PyTorch | 2.5 | NVIDIA Jetson AI Lab wheels |
+| ZED SDK | 4.2 | Installer from Stereolabs (L4T 36.4 build, compatible with 36.5) |
+| PyTorch | 2.10 | NVIDIA Jetson AI Lab wheels |
 | Python | 3.10 (system) | Pre-installed |
+
+!!! note "Why ZED SDK 4.2 and not 5.2?"
+    ZED SDK 5.2 does not provide a build for L4T 36.5 as of February 2026. The 4.2 build for L4T 36.4 installs successfully on L4T 36.5 with a compatibility warning. Upgrade when a 5.2 build for L4T 36.5 becomes available.
 
 !!! note "Why JetPack 6.2.2 and not JetPack 7?"
     JetPack 7 does not support AGX Orin as of February 2026. Only the newer Jetson Thor family is supported. Orin support is expected in JetPack 7.2 (Q2 2026). Our full stack (ROS 2 Humble, ZED SDK, PyTorch, YOLOv5) is confirmed compatible with JetPack 6.2.2.
@@ -169,7 +172,7 @@ echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 
 ```bash
 cd /tmp
-wget -q "https://download.stereolabs.com/zedsdk/5.2/l4t36.5/jetsons" -O ZED_SDK.run
+wget -q "https://download.stereolabs.com/zedsdk/4.2/l4t36.4/jetsons" -O ZED_SDK.run
 chmod +x ZED_SDK.run
 ./ZED_SDK.run -- silent skip_tools skip_samples
 ```
@@ -189,12 +192,12 @@ pip3 install --no-cache-dir 'numpy<2' ultralytics pyyaml
 ### 5. Clone and build kart_brain
 
 ```bash
-cd /mnt/data  # or ~ if root is on NVMe
+cd ~
 git clone git@github.com:UM-Driverless/kart_brain.git
 cd kart_brain
 source /opt/ros/humble/setup.bash
 colcon build
-echo "source /mnt/data/kart_brain/install/setup.bash" >> ~/.bashrc
+echo "source ~/kart_brain/install/setup.bash" >> ~/.bashrc
 ```
 
 ### 6. AnyDesk (remote desktop)
@@ -209,7 +212,33 @@ sudo apt-get update
 sudo apt-get install -y anydesk
 ```
 
-Requires the DP-to-HDMI adapter with a dummy HDMI plug for headless operation.
+After installing AnyDesk, configure Xorg for headless operation (no physical monitor):
+
+```bash
+sudo mkdir -p /etc/X11/xorg.conf.d
+sudo tee /etc/X11/xorg.conf.d/10-virtual-display.conf > /dev/null << 'EOF'
+Section "Device"
+    Identifier "Tegra"
+    Driver "nvidia"
+    Option "AllowEmptyInitialConfiguration" "true"
+    Option "ConnectedMonitor" "DFP-0"
+EndSection
+
+Section "Screen"
+    Identifier "Default Screen"
+    Device "Tegra"
+    DefaultDepth 24
+    SubSection "Display"
+        Depth 24
+        Virtual 1920 1080
+    EndSubSection
+EndSection
+EOF
+sudo systemctl enable anydesk
+```
+
+!!! note "Why `ConnectedMonitor DFP-0`?"
+    The DP-to-HDMI adapter with a dummy HDMI plug doesn't provide proper EDID. Without this option, the NVIDIA driver sees both DFP-0 and DFP-1 as "disconnected", so Xorg has no screen and AnyDesk gets a black framebuffer. Forcing `ConnectedMonitor DFP-0` makes the driver create a framebuffer on the DisplayPort output regardless.
 
 ## Verification Checklist
 
