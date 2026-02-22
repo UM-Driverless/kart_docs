@@ -29,6 +29,7 @@ nav:
       - Electronics:
           - Kart Medulla (ESP32): assembly/electronics/kart-medulla/index.md
           - Computer: assembly/electronics/computer.md
+          - Orin Setup: assembly/electronics/orin-setup.md
           - Net Naming: assembly/electronics/net-naming.md
           - Wiring: assembly/electronics/wiring.md
           - Power:
