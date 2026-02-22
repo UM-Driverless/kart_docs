@@ -95,7 +95,7 @@ A simple midpoint-following algorithm:
 | Real-time factor | 1.0 | Prevents drift during startup |
 | Step size | 0.004 s (250 Hz) | Smooth Ackermann steering |
 | Shadows | Disabled | Performance (CPU rendering) |
-| Camera rate | 10 Hz | LLVMpipe budget |
+| Camera rate | 10 Hz | LLVMpipe budget (the Jetson Orin with GPU runs 60–100 Hz) |
 
 ## Gazebo Fortress Notes
 

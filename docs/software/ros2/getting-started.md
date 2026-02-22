@@ -1,18 +1,33 @@
 # Getting Started
 
-## Prerequisites
+The kart software runs on **Ubuntu 22.04** with **ROS 2 Humble**. There are two deployment targets:
 
-The software runs on **Ubuntu 22.04** with **ROS 2 Humble**. For development, we use a UTM virtual machine on macOS, but any Ubuntu 22.04 machine (native, WSL2, or VM) works.
+| | Simulation (development) | Real Hardware (on the kart) |
+|---|---|---|
+| **Machine** | Mac → UTM VM (Ubuntu 22.04 ARM64) | Jetson AGX Orin (Ubuntu 22.04 ARM64) |
+| **Sensor** | Gazebo Fortress simulated RGBD camera | ZED stereo camera |
+| **Perception** | Ground truth from SDF, or YOLO on simulated images | YOLO + depth projection |
+| **Actuators** | Gazebo Ackermann plugin (`/kart/cmd_vel`) | ESP32 via UART (`/actuation_cmd`) |
+| **GPU** | None (LLVMpipe software rendering) | NVIDIA GPU (CUDA for YOLO + ZED) |
 
-### Install ROS 2 Humble
+Both targets produce the same `/perception/cones_3d` topic — a controller node works identically in either mode.
 
-Follow the [official installation guide](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html). Install the desktop variant:
+---
+
+## 1. Simulation on Mac (via UTM VM)
+
+### Prerequisites
+
+Set up a UTM virtual machine running Ubuntu 22.04 ARM64 with at least 8 GB RAM and 4 CPU cores. Configure SSH access so you can reach it with `ssh utm` (or use the IP directly, typically `192.168.65.2`).
+
+On the VM, install ROS 2 Humble:
 
 ```bash
+# Follow https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html
 sudo apt install ros-humble-desktop
 ```
 
-### Install Dependencies
+Install simulation dependencies:
 
 ```bash
 sudo apt install \
@@ -20,21 +35,18 @@ sudo apt install \
   ros-humble-vision-msgs \
   ros-humble-xacro \
   ros-humble-tf2-ros \
-  ros-humble-joy \
-  ros-humble-ackermann-msgs \
   mesa-utils libegl1-mesa-dev libgles2-mesa-dev
 ```
 
-`ros-humble-ros-gz` installs Gazebo Fortress and the ROS bridge (~3–4 GB).
+`ros-humble-ros-gz` installs Gazebo Fortress and the ROS bridge (~3-4 GB).
 
-## Clone & Build
+### Clone & Build
 
 ```bash
-# Clone the repository
+ssh utm
+
 cd ~
 git clone https://github.com/UM-Driverless/KART_SW.git kart_sw
-
-# Build
 source /opt/ros/humble/setup.bash
 cd ~/kart_sw
 colcon build
@@ -47,21 +59,41 @@ source install/setup.bash
     echo 'source ~/kart_sw/install/setup.bash 2>/dev/null' >> ~/.bashrc
     echo 'export IGN_GAZEBO_RESOURCE_PATH=$(ros2 pkg prefix kart_sim 2>/dev/null)/share/kart_sim/models' >> ~/.bashrc
     ```
-    After this, you can launch the simulation with a single command from any terminal.
 
-## Run the Simulation
+### Launch the Simulation
 
 ```bash
+# Default: ground-truth perception (no YOLO, no camera needed)
 ros2 launch kart_sim simulation.launch.py
+
+# With YOLO vision pipeline (uses simulated camera images)
+ros2 launch kart_sim simulation.launch.py use_yolo:=true
 ```
 
-This starts Gazebo (headless), the topic bridge, ground-truth perception, visualization markers, and the cone-following controller. The kart will start driving around the oval track autonomously.
+Default mode launches 5 processes:
+
+1. **Gazebo server** — headless physics + OGRE2 rendering (LLVMpipe)
+2. **ros_gz_bridge** — bridges Gazebo topics to ROS 2
+3. **perfect_perception_node** — ground-truth cone detection from SDF
+4. **cone_marker_viz_3d** — RViz marker visualization
+5. **cone_follower_node** — midpoint-steering controller
+
+With `use_yolo:=true`, it replaces perfect perception with:
+
+- **camera_info_fix_node** — corrects Gazebo's wrong camera intrinsics
+- **yolo_detector** — YOLOv5 inference on simulated images
+- **cone_depth_localizer** — depth-based 2D→3D projection
 
 ### Verify it's working
 
-In a second terminal:
+In a second SSH terminal:
 
 ```bash
+ssh utm
+
+source /opt/ros/humble/setup.bash
+source ~/kart_sw/install/setup.bash
+
 # Check topics are active
 ros2 topic list
 
@@ -72,9 +104,12 @@ ros2 topic echo /perception/cones_3d --once
 ros2 topic echo /kart/cmd_vel --once
 ```
 
-### Visualize in RViz
+### Visualize
+
+**RViz** (via X11 forwarding):
 
 ```bash
+ssh -X utm
 rviz2
 ```
 
@@ -83,13 +118,61 @@ rviz2
 3. Add **TF** to see the kart's position
 4. Add **Odometry** → `/model/kart/odometry` for velocity arrows
 
-See [Simulation](simulation.md) for more visualization options (Foxglove Studio, Gazebo GUI).
+**Foxglove Studio** (from Mac — best experience):
 
-## Run on Real Hardware
+```bash
+# On the VM
+sudo apt install ros-humble-rosbridge-server
+ros2 launch rosbridge_server rosbridge_websocket_launch.xml
+
+# On Mac: open Foxglove Studio, connect to ws://192.168.65.2:9090
+```
+
+See [Simulation](simulation.md) for track layout, kart model specs, and troubleshooting.
+
+---
+
+## 2. Real Hardware on the Jetson Orin
+
+### Prerequisites
+
+The Jetson AGX Orin runs Ubuntu 22.04 via JetPack. Install ROS 2 Humble and the required packages:
+
+```bash
+sudo apt install ros-humble-desktop
+sudo apt install \
+  ros-humble-vision-msgs \
+  ros-humble-xacro \
+  ros-humble-tf2-ros \
+  ros-humble-joy \
+  ros-humble-ackermann-msgs
+```
+
+Install the ZED SDK and ROS 2 wrapper following [Stereolabs' guide](https://www.stereolabs.com/docs/ros2).
+
+!!! note "No simulation packages on the Orin"
+    You do not need `ros-humble-ros-gz` or Gazebo on the Orin. The `kart_sim` package will be built but not used.
+
+### Clone & Build
+
+```bash
+cd ~
+git clone https://github.com/UM-Driverless/KART_SW.git kart_sw
+source /opt/ros/humble/setup.bash
+cd ~/kart_sw
+colcon build
+source install/setup.bash
+```
+
+### Connect Hardware
+
+Before launching, connect:
+
+1. **ZED camera** — USB 3.0 port
+2. **ESP32 (Kart Medulla)** — USB port (appears as `/dev/ttyUSB0`)
+3. **Gamepad** — USB or Bluetooth
 
 ### Manual Driving (Teleop)
-
-Connect a gamepad and the ESP32 via USB, then:
 
 ```bash
 ros2 launch kart_bringup teleop_launch.py
@@ -99,13 +182,29 @@ Hold **R1** (deadman switch) and use **R2** for throttle, **L2** for brake, **le
 
 ### Autonomous Perception
 
-With the ZED camera connected:
+Start the ZED camera node, then launch the perception pipeline:
 
 ```bash
+# Terminal 1: ZED camera
+ros2 launch zed_wrapper zed_camera.launch.py camera_model:=zed2i
+
+# Terminal 2: Perception pipeline
 ros2 launch kart_perception perception_3d.launch.py
 ```
 
-This starts YOLO detection, depth-based 3D localization, and RViz visualization.
+This runs YOLO detection, depth-based 3D localization, and RViz visualization. The ZED provides correct camera intrinsics natively — no fix node needed (that's simulation-only).
+
+Verify detections:
+
+```bash
+ros2 topic echo /perception/cones_3d --once
+```
+
+### Full Autonomous Stack
+
+Once perception is running, start a controller node that subscribes to `/perception/cones_3d` and publishes `/actuation_cmd`. The `cone_follower_node` from kart_sim can serve as a starting point, but the real kart uses `AckermannDriveStamped` instead of `Twist`.
+
+---
 
 ## Rebuilding After Changes
 
@@ -118,7 +217,7 @@ colcon build --packages-select kart_sim && source install/setup.bash
 ```
 
 !!! warning "Always re-source after building"
-    After `colcon build`, you must run `source install/setup.bash` for the changes to take effect in your current terminal. New terminals that source it from `.bashrc` will pick it up automatically.
+    After `colcon build`, you must run `source install/setup.bash` for the changes to take effect in your current terminal. New terminals that source it from `.bashrc` pick it up automatically.
 
 ## Useful Commands
 
@@ -132,7 +231,7 @@ ros2 topic hz /perception/cones_3d
 # Echo a topic (one message)
 ros2 topic echo /kart/cmd_vel --once
 
-# Publish a manual velocity command
+# Publish a manual velocity command (simulation only)
 ros2 topic pub /kart/cmd_vel geometry_msgs/msg/Twist \
   "{linear: {x: 2.0}, angular: {z: 0.0}}" -r 10
 
