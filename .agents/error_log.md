@@ -36,6 +36,12 @@ This file tracks mistakes made during development and the prevention mechanisms 
 - Rule: Always run `uv run mkdocs build --strict` locally before pushing. Strict mode catches missing assets as broken links.
 - Added to definition of done checklist.
 
+## 2026-02-22 - SVG object tag path resolved relative to page URL, not source file
+**What happened:** Embedded an SVG using `<object data="wiring/images/wiring-global.svg">` in `docs/assembly/electronics/wiring.md`. MkDocs serves that file at `/assembly/electronics/wiring/` (as `wiring/index.html`). Markdown image syntax `![](path)` gets rewritten by MkDocs relative to the source file, but raw HTML `<object data="...">` is left untouched — the browser resolves it relative to the page URL, producing a double path: `/assembly/electronics/wiring/wiring/images/...` which 404s.
+**Prevention added:**
+- Rule: When using raw HTML tags (`<object>`, `<img>`, `<video>`, etc.) in MkDocs markdown, paths must be relative to the **page URL**, not the source `.md` file. For a file `docs/foo/bar.md` served at `/foo/bar/`, use `images/thing.svg` not `bar/images/thing.svg`. Markdown syntax `![](...)` is rewritten automatically, but HTML tags are not.
+- Added to definition of done checklist.
+
 ## 2026-02-18 - Horizontal SVGs too wide for page
 **What happened:** Circuit/flow diagrams laid out horizontally were scaled down to fit the page width, becoming unreadably small on standard screens.
 **Prevention added:**

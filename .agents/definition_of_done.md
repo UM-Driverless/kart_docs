@@ -13,6 +13,7 @@ Pre-commit checklist for kart_docs. Run through before every commit.
 - [ ] No `file:///` URLs in SVGs or Markdown
 - [ ] All referenced assets (images, PDFs) are tracked in git
 - [ ] Diagrams are legible at page width (prefer vertical layout)
+- [ ] Raw HTML tags (`<object>`, `<img>`, etc.) use paths relative to the **page URL**, not the source `.md` file (MkDocs only rewrites markdown `![](...)` syntax, not HTML tags)
 
 ### Error Prevention
 - [ ] If error occurred: documented in `.agents/error_log.md` with prevention
