@@ -147,11 +147,13 @@ ros2 launch kart_bringup teleop_launch.py
 
 ## Cone Class IDs
 
-These string identifiers must be consistent across all nodes (YOLO labels, perception, control, visualization):
+These string identifiers must be consistent across all nodes (YOLO labels, perception, control, visualization).
 
-| Class ID | Color | Track meaning |
-|---|---|---|
-| `blue_cone` | Blue | Left boundary |
-| `yellow_cone` | Yellow | Right boundary |
-| `orange_cone` | Orange | Start/finish zone |
-| `large_orange_cone` | Large orange | Start/finish gate |
+| Class ID | Color | Size (h × base ⌀) | Track meaning |
+|---|---|---|---|
+| `blue_cone` | Blue | 325 × 228 mm | Left boundary |
+| `yellow_cone` | Yellow | 325 × 228 mm | Right boundary |
+| `orange_cone` | Orange | 325 × 228 mm | Start/finish zone |
+| `large_orange_cone` | Large orange | 505 × 285 mm | Start/finish gate |
+
+Dimensions follow the [FSG Competition Handbook](https://www.formulastudent.de/fsg_overview/rules/). The 3D meshes used in simulation come from [AMZ-Racing/fssim](https://github.com/AMZ-Racing/fssim/tree/master/fssim_gazebo/models) (COLLADA `.dae` files).
