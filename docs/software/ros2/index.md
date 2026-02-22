@@ -156,4 +156,4 @@ These string identifiers must be consistent across all nodes (YOLO labels, perce
 | `orange_cone` | Orange | 325 × 228 mm | Start/finish zone |
 | `large_orange_cone` | Large orange | 505 × 285 mm | Start/finish gate |
 
-Dimensions follow the [FSG Competition Handbook](https://www.formulastudent.de/fsg_overview/rules/). The 3D meshes used in simulation come from [AMZ-Racing/fssim](https://github.com/AMZ-Racing/fssim/tree/master/fssim_gazebo/models) (COLLADA `.dae` files).
+Dimensions follow the [FSG Competition Handbook](https://www.formulastudent.de/fsg/rules/). The 3D meshes used in simulation come from [AMZ-Racing/fssim](https://github.com/AMZ-Racing/fssim/tree/master/fssim_gazebo/models) (COLLADA `.dae` files).
