@@ -24,10 +24,6 @@ Signal wires (CAN, I2C, analog, PWM) use **white/gray** unless a specific conven
 
 ## Power Distribution
 
-### Power entry (battery → 48 V → 12 V → 5 V)
-
-![Power entry diagram](wiring/images/power-entry.png)
-
 ### Voltage regulators
 
 ![Regulator wiring](wiring/images/wiring-regulators.png)
