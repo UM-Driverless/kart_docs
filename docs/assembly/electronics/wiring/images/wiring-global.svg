@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="0 0 1100 2050" width="1100" height="2050">
+     viewBox="0 0 1100 2200" width="1100" height="2200">
   <style>
     text { font-family: 'Segoe UI', Arial, Helvetica, sans-serif; }
 
@@ -36,7 +36,7 @@
   </style>
 
   <!-- Background -->
-  <rect width="1100" height="2050" fill="#fefefe" rx="10"/>
+  <rect width="1100" height="2200" fill="#fefefe" rx="10"/>
 
   <!-- ============================================================ -->
   <!--  TITLE                                                        -->
@@ -339,8 +339,27 @@
 
   <!-- ===== kart_medulla (ESP32 + Interface PCB) — central hub ===== -->
   <rect x="340" y="1390" width="270" height="280" rx="6" class="comp-box-controller"/>
-  <text x="475" y="1413" class="comp-label" style="font-size:13px;">kart_medulla</text>
+  <a href="https://um-driverless.github.io/kart_docs/assembly/electronics/kart-medulla/" target="_blank">
+    <text x="475" y="1413" class="comp-label" style="font-size:13px;fill:#1a73e8;cursor:pointer;">kart_medulla</text>
+  </a>
   <text x="475" y="1428" class="comp-detail">(ESP32 + Interface PCB)</text>
+
+  <!-- Pin labels inside medulla box -->
+  <!-- Left side inputs -->
+  <text x="348" y="1472" style="font-size:7px;fill:#888;">ADC in</text>
+  <text x="348" y="1572" style="font-size:7px;fill:#888;">ADC in</text>
+  <text x="348" y="1606" style="font-size:7px;fill:#1565c0;">GPIO 22</text>
+  <text x="348" y="1623" style="font-size:7px;fill:#2e7d32;">GPIO 21</text>
+  <text x="348" y="1647" style="font-size:7px;fill:#888;">3V3</text>
+  <text x="348" y="1668" style="font-size:7px;fill:#888;">GND</text>
+  <!-- Right side outputs -->
+  <text x="603" y="1476" style="font-size:7px;fill:#888;text-anchor:end;">GPIO 26 (DAC2)</text>
+  <text x="603" y="1538" style="font-size:7px;fill:#888;text-anchor:end;">GPIO 25 (DAC1)</text>
+  <text x="603" y="1586" style="font-size:7px;fill:#888;text-anchor:end;">GND</text>
+  <text x="603" y="1598" style="font-size:7px;fill:#888;text-anchor:end;">GPIO 27</text>
+  <text x="603" y="1622" style="font-size:7px;fill:#888;text-anchor:end;">GPIO 14</text>
+  <!-- Bottom (USB-C to Orin) -->
+  <text x="490" y="1664" style="font-size:7px;fill:#1a73e8;">UART: GPIO 18 TX / 19 RX</text>
 
   <!-- ===== Accelerator Pedal Sensor ===== -->
   <rect x="45" y="1440" width="190" height="50" rx="6" class="comp-box-sensor"/>
@@ -380,13 +399,17 @@
 
   <!-- ===== Mode Switch (SPDT) — Manual / Autonomous ===== -->
   <rect x="700" y="1430" width="220" height="80" rx="6" class="comp-box-switch"/>
+
+  <!-- Switch arm drawn first so text renders on top -->
+  <line x1="900" y1="1468" x2="722" y2="1453" stroke="#e91e63" stroke-width="2"/>
+
   <text x="810" y="1453" class="comp-label">Mode Switch (SPDT)</text>
   <text x="810" y="1467" class="comp-detail">Manual / Autonomous</text>
   <text x="810" y="1480" class="comp-detail">Dashboard panel</text>
 
   <!-- NC terminal (manual — direct pedal) -->
   <circle cx="718" cy="1450" r="3" fill="#e91e63" stroke="none"/>
-  <text x="726" y="1447" style="font-size:8px;fill:#e91e63;font-weight:600;">NC (manual)</text>
+  <text x="726" y="1437" style="font-size:8px;fill:#e91e63;font-weight:600;">NC (manual)</text>
 
   <!-- NO terminal (autonomous — ESP32 DAC) -->
   <circle cx="718" cy="1492" r="3" fill="#e91e63" stroke="none"/>
@@ -395,9 +418,6 @@
   <!-- COM terminal (output to motor controller) -->
   <circle cx="902" cy="1468" r="3" fill="#e91e63" stroke="none"/>
   <text x="880" y="1500" style="font-size:8px;fill:#e91e63;font-weight:600;text-anchor:end;">COM</text>
-
-  <!-- Switch arm (COM → NC, showing manual default position) -->
-  <line x1="900" y1="1468" x2="722" y2="1453" stroke="#e91e63" stroke-width="2"/>
 
   <!-- Wire: kart_medulla DAC → NO (autonomous throttle) -->
   <polyline points="610,1468 660,1468 660,1492 718,1492" class="wire-signal"/>
@@ -479,24 +499,65 @@
   </text>
 
   <!-- ============================================================ -->
+  <!--  SECTION 6 — COMPUTER & CAMERA                                -->
+  <!-- ============================================================ -->
+
+  <text x="475" y="1735" text-anchor="middle" style="font-size:11px;font-weight:600;fill:#555;">
+    Computer &amp; Perception
+  </text>
+
+  <!-- ===== NVIDIA Jetson AGX Orin Developer Kit ===== -->
+  <rect x="340" y="1750" width="270" height="65" rx="6" class="comp-box-controller"/>
+  <text x="475" y="1773" class="comp-label" style="font-size:11px;">NVIDIA Jetson AGX Orin</text>
+  <text x="475" y="1788" class="comp-detail">Developer Kit</text>
+
+  <!-- ===== ZED2 Camera ===== -->
+  <rect x="45" y="1755" width="190" height="55" rx="6" class="comp-box-sensor"/>
+  <text x="140" y="1778" class="comp-label">ZED2 Camera</text>
+  <text x="140" y="1792" class="comp-detail">Stereo depth (USB 3.0)</text>
+
+  <!-- Wire: ZED2 → Orin (USB-A) -->
+  <line x1="235" y1="1783" x2="340" y2="1783" class="wire-signal"/>
+  <text x="283" y="1777" class="wire-label" style="fill:#999;">USB-A</text>
+
+  <!-- Wire: Orin → kart_medulla (USB-C, going up) -->
+  <polyline points="475,1750 475,1670" stroke="#1a73e8" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <text x="483" y="1720" style="font-size:8px;fill:#1a73e8;font-weight:600;">USB-C</text>
+
+  <!-- 12V + GND power from WAGO rail → Orin barrel jack connector -->
+  <rect x="640" y="1758" width="100" height="44" rx="4" fill="#e0e0e0" stroke="#888" stroke-width="1.5"/>
+  <text x="690" y="1776" style="font-size:8px;fill:#555;text-anchor:middle;font-weight:600;">Barrel jack</text>
+  <text x="690" y="1790" style="font-size:7px;fill:#777;text-anchor:middle;">5.5/2.5 mm, center +</text>
+  <!-- 12V wire from WAGO → barrel jack -->
+  <line x1="830" y1="1773" x2="740" y2="1773" class="wire-12v"/>
+  <text x="780" y="1768" class="wire-label" style="fill:#d32f2f;">12 V</text>
+  <!-- GND wire from WAGO → barrel jack -->
+  <line x1="830" y1="1790" x2="740" y2="1790" class="wire-gnd" style="stroke-width:2;"/>
+  <text x="780" y="1800" class="wire-label">GND</text>
+  <!-- Barrel jack → Orin -->
+  <line x1="640" y1="1780" x2="610" y2="1780" stroke="#888" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- ============================================================ -->
   <!--  EXPLANATORY NOTES                                            -->
   <!-- ============================================================ -->
-  <rect x="50" y="1720" width="1000" height="210" rx="6" class="legend-box"/>
-  <text x="70" y="1745" style="font-size:12px;font-weight:bold;fill:#333;">How it works</text>
+  <rect x="50" y="1860" width="1000" height="240" rx="6" class="legend-box"/>
+  <text x="70" y="1885" style="font-size:12px;font-weight:bold;fill:#333;">How it works</text>
 
-  <text x="70" y="1765" style="font-size:10px;fill:#555;">1. Battery (48 V) feeds the terminal block. Motor controller draws BAT+ and GND; outputs 3 phases (U, V, W) to the motor via the same terminal block.</text>
-  <text x="70" y="1780" style="font-size:10px;fill:#555;">2. Buck regulator steps 48 V down to 12 V, distributed through WAGO connectors.</text>
-  <text x="70" y="1795" style="font-size:10px;fill:#555;">3. The 12 V rail feeds the Shutdown Circuit (SDC): a series chain of kill switches, impact switch, and RES (with manual bypass).</text>
-  <text x="70" y="1810" style="font-size:10px;fill:#555;">4. SDC current flows through the relay coil (pin 86 &#8594; 85), then to ground via kart_medulla&#8217;s N-channel MOSFET.</text>
-  <text x="70" y="1825" style="font-size:10px;fill:#555;">5. When the relay is energized, its N.O. contacts (30 &#8594; 87) close, completing the motor controller&#8217;s KEY circuit and enabling drive.</text>
-  <text x="70" y="1840" style="font-size:10px;fill:#555;">6. Any open switch in the SDC chain de-energizes the relay &#8594; contacts open &#8594; motor controller disabled.</text>
-  <text x="70" y="1860" style="font-size:10px;fill:#555;font-weight:600;">Signal &amp; control:</text>
-  <text x="70" y="1875" style="font-size:10px;fill:#555;">7. Pedal sensors (linear Hall, 0&#8211;5 V) always feed analog signals to kart_medulla for data logging and/or autonomous control.</text>
-  <text x="70" y="1890" style="font-size:10px;fill:#555;">8. SPDT mode switch on the dashboard selects throttle source: manual (pedal &#8594; motor ctrl directly) or autonomous (ESP32 DAC &#8594; motor ctrl).</text>
-  <text x="70" y="1905" style="font-size:10px;fill:#555;">9. Steering: ESP32 PID reads AS5600 angle sensor (I2C) and drives Cytron MD25HV H-bridge (PWM + DIR) to control the steering motor.</text>
-  <text x="70" y="1920" style="font-size:10px;fill:#555;">10. Brake pedal signal is read by kart_medulla; its DAC output (CMD_BRK) feeds the motor controller&#8217;s brake input.</text>
+  <text x="70" y="1905" style="font-size:10px;fill:#555;">1. Battery (48 V) feeds the terminal block. Motor controller draws BAT+ and GND; outputs 3 phases (U, V, W) to the motor via the same terminal block.</text>
+  <text x="70" y="1920" style="font-size:10px;fill:#555;">2. Buck regulator steps 48 V down to 12 V, distributed through WAGO connectors.</text>
+  <text x="70" y="1935" style="font-size:10px;fill:#555;">3. The 12 V rail feeds the Shutdown Circuit (SDC): a series chain of kill switches, impact switch, and RES (with manual bypass).</text>
+  <text x="70" y="1950" style="font-size:10px;fill:#555;">4. SDC current flows through the relay coil (pin 86 &#8594; 85), then to ground via kart_medulla&#8217;s N-channel MOSFET.</text>
+  <text x="70" y="1965" style="font-size:10px;fill:#555;">5. When the relay is energized, its N.O. contacts (30 &#8594; 87) close, completing the motor controller&#8217;s KEY circuit and enabling drive.</text>
+  <text x="70" y="1980" style="font-size:10px;fill:#555;">6. Any open switch in the SDC chain de-energizes the relay &#8594; contacts open &#8594; motor controller disabled.</text>
+  <text x="70" y="2000" style="font-size:10px;fill:#555;font-weight:600;">Signal &amp; control:</text>
+  <text x="70" y="2015" style="font-size:10px;fill:#555;">7. Pedal sensors (linear Hall, 0&#8211;5 V) always feed analog signals to kart_medulla for data logging and/or autonomous control.</text>
+  <text x="70" y="2030" style="font-size:10px;fill:#555;">8. SPDT mode switch on the dashboard selects throttle source: manual (pedal &#8594; motor ctrl directly) or autonomous (ESP32 DAC &#8594; motor ctrl).</text>
+  <text x="70" y="2045" style="font-size:10px;fill:#555;">9. Steering: ESP32 PID reads AS5600 angle sensor (I2C) and drives Cytron MD25HV H-bridge (PWM + DIR) to control the steering motor.</text>
+  <text x="70" y="2060" style="font-size:10px;fill:#555;">10. Brake pedal signal is read by kart_medulla; its DAC output (CMD_BRK) feeds the motor controller&#8217;s brake input.</text>
+  <text x="70" y="2080" style="font-size:10px;fill:#555;font-weight:600;">Computer &amp; perception:</text>
+  <text x="70" y="2095" style="font-size:10px;fill:#555;">11. Orin (NVIDIA Jetson AGX Orin Dev Kit) connects to kart_medulla via USB-C, to ZED2 camera via USB-A, and draws 12 V via barrel jack.</text>
 
   <!-- Version note -->
-  <text x="550" y="1965" text-anchor="middle" style="font-size:9px;fill:#aaa;">Kart Electrical Wiring Diagram &#8212; v2.0 &#8212; 2026-02-23</text>
+  <text x="550" y="2140" text-anchor="middle" style="font-size:9px;fill:#aaa;">Kart Electrical Wiring Diagram &#8212; v3.0 &#8212; 2026-02-23</text>
 
 </svg>
