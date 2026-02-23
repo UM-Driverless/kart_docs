@@ -22,12 +22,6 @@ Signal wires (CAN, I2C, analog, PWM) use **white/gray** unless a specific conven
 
 > **Tip:** All switches in the shutdown chain are in series — opening any one cuts power to the relay coil, which disables the motor controller.
 
-## Power Distribution
-
-### Voltage regulators
-
-![Regulator wiring](wiring/images/wiring-regulators.png)
-
 ## Related Pages
 
 - [Net Name Nomenclature](net-naming.md) — signal naming conventions across PCBs
