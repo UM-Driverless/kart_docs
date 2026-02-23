@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="0 0 1100 1700" width="1100" height="1700">
+     viewBox="0 0 1100 2050" width="1100" height="2050">
   <style>
     text { font-family: 'Segoe UI', Arial, Helvetica, sans-serif; }
 
@@ -19,6 +19,8 @@
     .wire-shutdown { fill: none; stroke: #e91e63; stroke-width: 3;   stroke-linecap: round; stroke-linejoin: round; }
     .wire-phase    { fill: none; stroke: #757575; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
     .wire-signal   { fill: none; stroke: #bbb;    stroke-width: 2;   stroke-linecap: round; stroke-linejoin: round; }
+    .wire-5v       { fill: none; stroke: #e65100; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .wire-3v3      { fill: none; stroke: #f9a825; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
 
     /* === Component box styles === */
     .comp-box            { fill: #f5f5f5; stroke: #333;    stroke-width: 1.5; }
@@ -27,13 +29,14 @@
     .comp-box-controller { fill: #e8f0fe; stroke: #1a73e8; stroke-width: 1.8; }
     .comp-box-motor      { fill: #fce8e6; stroke: #c5221f; stroke-width: 1.8; }
     .comp-box-connector  { fill: #fff9c4; stroke: #f9a825; stroke-width: 2;   }
+    .comp-box-sensor     { fill: #e8f5e9; stroke: #2e7d32; stroke-width: 1.8; }
 
     /* === Legend === */
     .legend-box { fill: #fafafa; stroke: #ccc; stroke-width: 1; rx: 4; }
   </style>
 
   <!-- Background -->
-  <rect width="1100" height="1700" fill="#fefefe" rx="10"/>
+  <rect width="1100" height="2050" fill="#fefefe" rx="10"/>
 
   <!-- ============================================================ -->
   <!--  TITLE                                                        -->
@@ -59,6 +62,10 @@
   <text x="557" y="94" style="font-size:11px;fill:#444;">Motor phases</text>
   <line x1="670" y1="90" x2="710" y2="90" class="wire-signal"/>
   <text x="717" y="94" style="font-size:11px;fill:#444;">Signal / key</text>
+  <line x1="810" y1="90" x2="850" y2="90" class="wire-5v"/>
+  <text x="857" y="94" style="font-size:11px;fill:#444;">5 V</text>
+  <line x1="900" y1="90" x2="940" y2="90" class="wire-3v3"/>
+  <text x="947" y="94" style="font-size:11px;fill:#444;">3.3 V</text>
 
   <!-- Component type boxes -->
   <text x="50" y="118" style="font-size:13px;font-weight:bold;fill:#333;">Component Types</text>
@@ -72,6 +79,8 @@
   <text x="690" y="120" style="font-size:10px;fill:#444;">Motor / actuator</text>
   <rect x="780" y="107" width="50" height="18" rx="6" class="comp-box-connector"/>
   <text x="840" y="120" style="font-size:10px;fill:#444;">Terminal / WAGO</text>
+  <rect x="910" y="107" width="50" height="18" rx="6" class="comp-box-sensor"/>
+  <text x="970" y="120" style="font-size:10px;fill:#444;">Sensor</text>
 
   <!-- ============================================================ -->
   <!--  SECTION 1 — POWER: Battery, Terminal Block, Motor Ctrl, Motor -->
@@ -321,19 +330,173 @@
   <circle cx="170" cy="1280" r="3" fill="#bbb" stroke="#888" stroke-width="1"/>
 
   <!-- ============================================================ -->
+  <!--  SECTION 5 — SIGNAL & CONTROL: PEDALS, MODE SWITCH, STEERING  -->
+  <!-- ============================================================ -->
+
+  <text x="550" y="1355" text-anchor="middle" class="title" style="font-size:16px;">
+    Signal &amp; Control Wiring &#8212; Pedals, Mode Switch, Steering
+  </text>
+
+  <!-- ===== kart_medulla (ESP32 + Interface PCB) — central hub ===== -->
+  <rect x="340" y="1390" width="270" height="280" rx="6" class="comp-box-controller"/>
+  <text x="475" y="1413" class="comp-label" style="font-size:13px;">kart_medulla</text>
+  <text x="475" y="1428" class="comp-detail">(ESP32 + Interface PCB)</text>
+
+  <!-- ===== Accelerator Pedal Sensor ===== -->
+  <rect x="45" y="1440" width="190" height="50" rx="6" class="comp-box-sensor"/>
+  <text x="140" y="1462" class="comp-label">Accelerator Pedal</text>
+  <text x="140" y="1476" class="comp-detail">Linear Hall (0&#8211;5 V)</text>
+
+  <!-- Acc pedal power stubs -->
+  <line x1="140" y1="1440" x2="140" y2="1424" class="wire-5v"/>
+  <text x="150" y="1432" class="wire-label" style="fill:#e65100;">5 V</text>
+  <line x1="110" y1="1490" x2="110" y2="1506" class="wire-gnd" style="stroke-width:2;"/>
+  <text x="120" y="1504" class="wire-label">GND</text>
+
+  <!-- Acc signal: pedal → junction → kart_medulla + mode switch -->
+  <polyline points="235,1465 287,1465" class="wire-signal"/>
+  <circle cx="287" cy="1465" r="3.5" fill="#999" stroke="none"/>  <!-- junction dot -->
+  <!-- Branch 1: junction → medulla -->
+  <polyline points="287,1465 340,1465" class="wire-signal"/>
+  <text x="308" y="1459" class="wire-label" style="fill:#999;">sig</text>
+  <!-- Branch 2: junction → above medulla box → down to mode switch NC -->
+  <polyline points="287,1465 287,1378 695,1378 695,1450 700,1450" class="wire-signal"/>
+  <text x="490" y="1373" class="wire-label" style="fill:#999;">pedal signal (direct &#8594; manual)</text>
+
+  <!-- ===== Brake Pedal Sensor ===== -->
+  <rect x="45" y="1540" width="190" height="50" rx="6" class="comp-box-sensor"/>
+  <text x="140" y="1562" class="comp-label">Brake Pedal</text>
+  <text x="140" y="1576" class="comp-detail">Linear Hall (0&#8211;5 V)</text>
+
+  <!-- Brake pedal power stubs -->
+  <line x1="140" y1="1540" x2="140" y2="1524" class="wire-5v"/>
+  <text x="150" y="1532" class="wire-label" style="fill:#e65100;">5 V</text>
+  <line x1="110" y1="1590" x2="110" y2="1606" class="wire-gnd" style="stroke-width:2;"/>
+  <text x="120" y="1604" class="wire-label">GND</text>
+
+  <!-- Brake signal → medulla -->
+  <polyline points="235,1565 340,1565" class="wire-signal"/>
+  <text x="283" y="1559" class="wire-label" style="fill:#999;">sig</text>
+
+  <!-- ===== Mode Switch (SPDT) — Manual / Autonomous ===== -->
+  <rect x="700" y="1430" width="220" height="80" rx="6" class="comp-box-switch"/>
+  <text x="810" y="1453" class="comp-label">Mode Switch (SPDT)</text>
+  <text x="810" y="1467" class="comp-detail">Manual / Autonomous</text>
+  <text x="810" y="1480" class="comp-detail">Dashboard panel</text>
+
+  <!-- NC terminal (manual — direct pedal) -->
+  <circle cx="718" cy="1450" r="3" fill="#e91e63" stroke="none"/>
+  <text x="726" y="1447" style="font-size:8px;fill:#e91e63;font-weight:600;">NC (manual)</text>
+
+  <!-- NO terminal (autonomous — ESP32 DAC) -->
+  <circle cx="718" cy="1492" r="3" fill="#e91e63" stroke="none"/>
+  <text x="726" y="1500" style="font-size:8px;fill:#e91e63;font-weight:600;">NO (auto)</text>
+
+  <!-- COM terminal (output to motor controller) -->
+  <circle cx="902" cy="1468" r="3" fill="#e91e63" stroke="none"/>
+  <text x="880" y="1500" style="font-size:8px;fill:#e91e63;font-weight:600;text-anchor:end;">COM</text>
+
+  <!-- Switch arm (COM → NC, showing manual default position) -->
+  <line x1="900" y1="1468" x2="722" y2="1453" stroke="#e91e63" stroke-width="2"/>
+
+  <!-- Wire: kart_medulla DAC → NO (autonomous throttle) -->
+  <polyline points="610,1468 660,1468 660,1492 718,1492" class="wire-signal"/>
+  <text x="630" y="1462" class="wire-label" style="fill:#999;">CMD_ACC (DAC)</text>
+
+  <!-- ===== Motor Controller (same unit as Section 1) ===== -->
+  <rect x="940" y="1450" width="120" height="98" rx="6" class="comp-box-controller"/>
+  <text x="1000" y="1474" class="comp-label" style="font-size:10px;">Motor Controller</text>
+  <text x="1000" y="1488" class="comp-detail">AliExpress ESC</text>
+  <text x="948" y="1516" style="font-size:8px;fill:#555;">&#9654; throttle</text>
+  <text x="948" y="1538" style="font-size:8px;fill:#555;">&#9654; brake</text>
+
+  <!-- Wire: COM → Motor Controller throttle -->
+  <polyline points="905,1468 926,1468 926,1512 940,1512" class="wire-signal"/>
+
+  <!-- Wire: kart_medulla brake DAC → Motor Controller brake -->
+  <polyline points="610,1530 926,1530 926,1534 940,1534" class="wire-signal"/>
+  <text x="710" y="1524" class="wire-label" style="fill:#999;">CMD_BRK (DAC)</text>
+
+  <!-- ===== AS5600 Steering Angle Sensor ===== -->
+  <rect x="45" y="1620" width="190" height="60" rx="6" class="comp-box-sensor"/>
+  <text x="140" y="1645" class="comp-label">AS5600 Angle Sensor</text>
+  <text x="140" y="1659" class="comp-detail">Steering position (I2C)</text>
+
+  <!-- I2C + power wires: AS5600 ↔ kart_medulla -->
+  <!-- SCL (Blue wire — documented color) -->
+  <line x1="235" y1="1633" x2="340" y2="1613" stroke="#1565c0" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <text x="282" y="1618" class="wire-label" style="fill:#1565c0;">SCL</text>
+  <!-- SDA (Green wire — documented color) -->
+  <line x1="235" y1="1643" x2="340" y2="1630" stroke="#2e7d32" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <text x="282" y="1640" class="wire-label" style="fill:#2e7d32;">SDA</text>
+  <!-- 3.3V (Yellow wire) -->
+  <line x1="235" y1="1655" x2="340" y2="1650" class="wire-3v3"/>
+  <text x="282" y="1656" class="wire-label" style="fill:#f9a825;">3.3 V</text>
+  <!-- GND -->
+  <line x1="235" y1="1667" x2="340" y2="1663" class="wire-gnd" style="stroke-width:2;"/>
+  <text x="282" y="1675" class="wire-label">GND</text>
+
+  <!-- ===== Cytron MD25HV H-Bridge ===== -->
+  <rect x="700" y="1580" width="200" height="50" rx="6" class="comp-box-controller"/>
+  <text x="800" y="1600" class="comp-label">Cytron MD25HV</text>
+  <text x="800" y="1614" class="comp-detail">Steering H-Bridge (25 A)</text>
+
+  <!-- Cytron power annotation -->
+  <text x="800" y="1576" style="font-size:8px;fill:#d32f2f;text-anchor:middle;">12 V power from rail</text>
+
+  <!-- Wires: kart_medulla → Cytron (GND, PWM, DIR) -->
+  <!-- GND (black) -->
+  <line x1="610" y1="1590" x2="700" y2="1590" class="wire-gnd" style="stroke-width:2;"/>
+  <text x="650" y="1586" class="wire-label">GND</text>
+  <!-- PWM (teal) -->
+  <line x1="610" y1="1602" x2="700" y2="1602" stroke="#00897b" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <text x="650" y="1598" class="wire-label" style="fill:#00897b;">PWM</text>
+  <!-- DIR (dark green) -->
+  <line x1="610" y1="1614" x2="700" y2="1614" stroke="#558b2f" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <text x="650" y="1626" class="wire-label" style="fill:#558b2f;">DIR</text>
+
+  <!-- ===== Steering Motor ===== -->
+  <rect x="950" y="1582" width="110" height="45" rx="6" class="comp-box-motor"/>
+  <text x="1005" y="1601" class="comp-label">Steering Motor</text>
+  <text x="1005" y="1615" class="comp-detail">DC 12 V</text>
+
+  <!-- Wires: Cytron → Steering Motor -->
+  <line x1="900" y1="1597" x2="950" y2="1597" class="wire-12v"/>
+  <text x="922" y="1593" class="wire-label" style="fill:#d32f2f;">M+</text>
+  <line x1="900" y1="1610" x2="950" y2="1610" class="wire-gnd" style="stroke-width:2;"/>
+  <text x="922" y="1622" class="wire-label">M&#8722;</text>
+
+  <!-- Mechanical coupling: Steering Motor ↔ AS5600 (via steering axle) -->
+  <polyline points="1005,1627 1005,1705 140,1705 140,1680"
+            stroke="#888" stroke-width="2" stroke-dasharray="8,4" fill="none" stroke-linecap="round"/>
+  <text x="570" y="1700" text-anchor="middle" style="font-size:9px;fill:#888;font-style:italic;">
+    mechanical coupling (steering axle)
+  </text>
+
+  <!-- PID control annotation -->
+  <text x="475" y="1690" text-anchor="middle" style="font-size:9px;fill:#1a73e8;font-style:italic;">
+    Steering PID in ESP32: reads AS5600 angle &#8594; computes error &#8594; drives Cytron PWM/DIR
+  </text>
+
+  <!-- ============================================================ -->
   <!--  EXPLANATORY NOTES                                            -->
   <!-- ============================================================ -->
-  <rect x="50" y="1340" width="1000" height="130" rx="6" class="legend-box"/>
-  <text x="70" y="1365" style="font-size:12px;font-weight:bold;fill:#333;">How it works</text>
+  <rect x="50" y="1720" width="1000" height="210" rx="6" class="legend-box"/>
+  <text x="70" y="1745" style="font-size:12px;font-weight:bold;fill:#333;">How it works</text>
 
-  <text x="70" y="1385" style="font-size:10px;fill:#555;">1. Battery (48 V) feeds the terminal block. Motor controller draws BAT+ and GND; outputs 3 phases (U, V, W) to the motor via the same terminal block.</text>
-  <text x="70" y="1400" style="font-size:10px;fill:#555;">2. Buck regulator steps 48 V down to 12 V, distributed through WAGO connectors.</text>
-  <text x="70" y="1415" style="font-size:10px;fill:#555;">3. The 12 V rail feeds the Shutdown Circuit (SDC): a series chain of kill switches, impact switch, and RES (with manual bypass).</text>
-  <text x="70" y="1430" style="font-size:10px;fill:#555;">4. SDC current flows through the relay coil (pin 86 &#8594; 85), then to ground via kart_medulla&#8217;s N-channel MOSFET.</text>
-  <text x="70" y="1445" style="font-size:10px;fill:#555;">5. When the relay is energized, its N.O. contacts (30 &#8594; 87) close, completing the motor controller&#8217;s KEY circuit and enabling drive.</text>
-  <text x="70" y="1460" style="font-size:10px;fill:#555;">6. Any open switch in the SDC chain de-energizes the relay &#8594; contacts open &#8594; motor controller disabled.</text>
+  <text x="70" y="1765" style="font-size:10px;fill:#555;">1. Battery (48 V) feeds the terminal block. Motor controller draws BAT+ and GND; outputs 3 phases (U, V, W) to the motor via the same terminal block.</text>
+  <text x="70" y="1780" style="font-size:10px;fill:#555;">2. Buck regulator steps 48 V down to 12 V, distributed through WAGO connectors.</text>
+  <text x="70" y="1795" style="font-size:10px;fill:#555;">3. The 12 V rail feeds the Shutdown Circuit (SDC): a series chain of kill switches, impact switch, and RES (with manual bypass).</text>
+  <text x="70" y="1810" style="font-size:10px;fill:#555;">4. SDC current flows through the relay coil (pin 86 &#8594; 85), then to ground via kart_medulla&#8217;s N-channel MOSFET.</text>
+  <text x="70" y="1825" style="font-size:10px;fill:#555;">5. When the relay is energized, its N.O. contacts (30 &#8594; 87) close, completing the motor controller&#8217;s KEY circuit and enabling drive.</text>
+  <text x="70" y="1840" style="font-size:10px;fill:#555;">6. Any open switch in the SDC chain de-energizes the relay &#8594; contacts open &#8594; motor controller disabled.</text>
+  <text x="70" y="1860" style="font-size:10px;fill:#555;font-weight:600;">Signal &amp; control:</text>
+  <text x="70" y="1875" style="font-size:10px;fill:#555;">7. Pedal sensors (linear Hall, 0&#8211;5 V) always feed analog signals to kart_medulla for data logging and/or autonomous control.</text>
+  <text x="70" y="1890" style="font-size:10px;fill:#555;">8. SPDT mode switch on the dashboard selects throttle source: manual (pedal &#8594; motor ctrl directly) or autonomous (ESP32 DAC &#8594; motor ctrl).</text>
+  <text x="70" y="1905" style="font-size:10px;fill:#555;">9. Steering: ESP32 PID reads AS5600 angle sensor (I2C) and drives Cytron MD25HV H-bridge (PWM + DIR) to control the steering motor.</text>
+  <text x="70" y="1920" style="font-size:10px;fill:#555;">10. Brake pedal signal is read by kart_medulla; its DAC output (CMD_BRK) feeds the motor controller&#8217;s brake input.</text>
 
   <!-- Version note -->
-  <text x="550" y="1500" text-anchor="middle" style="font-size:9px;fill:#aaa;">Kart Electrical Wiring Diagram &#8212; v1.0 &#8212; 2026-02-22</text>
+  <text x="550" y="1965" text-anchor="middle" style="font-size:9px;fill:#aaa;">Kart Electrical Wiring Diagram &#8212; v2.0 &#8212; 2026-02-23</text>
 
 </svg>
