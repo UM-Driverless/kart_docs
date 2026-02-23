@@ -40,8 +40,12 @@ jobs:
 
       - name: Export draw.io diagrams (PNG + SVG)
         run: |
-          docker run --rm -v "$GITHUB_WORKSPACE":/data -w /data rlespinasse/drawio-export -f png -o . --remove-page-suffix docs
-          docker run --rm -v "$GITHUB_WORKSPACE":/data -w /data rlespinasse/drawio-export -f svg -o . --remove-page-suffix --embed-svg-images docs
+          if find docs -name '*.drawio' | grep -q .; then
+            docker run --rm -v "$GITHUB_WORKSPACE":/data -w /data rlespinasse/drawio-export -f png -o . --remove-page-suffix docs
+            docker run --rm -v "$GITHUB_WORKSPACE":/data -w /data rlespinasse/drawio-export -f svg -o . --remove-page-suffix --embed-svg-images docs
+          else
+            echo "No .drawio files found — skipping export"
+          fi
 
       - name: Validate exported SVGs have no local file URLs
         run: |
