@@ -20,10 +20,6 @@ The Kart Medulla is the ESP32-based control hub that interfaces between the Orin
 
 The project previously used a 30-pin ESP32 development board with a non-standard pinout that is not DevKitC-compatible. To ensure long-term repeatability, predictable wiring, and easy replacement across builds, the project now standardizes on the ESP32-DevKitC V4 (38-pin, USB-C) using the ESP32-WROOM-32D module with an integrated PCB antenna. DevKitC V4 is Espressif's reference design with a stable pinout, reliable auto-reset/boot circuitry, and wide toolchain support. The 30-pin board remains deprecated and should not be used for new builds.
 
-### ESP32-DevKitC Dimensions
-
-![ESP32 DevKitC dimensions](images/ESP32-DevKitC-Dimensions.png)
-
 ## Pin Assignment Table
 
 Complete GPIO assignment for the ESP32-DevKitC V4, matching the interface PCB wiring. Header column refers to the physical pin on the DevKitC (H1 = left, H2 = right).
@@ -132,3 +128,9 @@ The main connector is a set of green push-in headers labeled CN1..CN4 in the sch
 | CN4 | 1 | 3.3V | |
 | CN4 | 2 | STEER_SDA | |
 | CN4 | 3 | STEER_SCL | |
+
+## Other
+
+### ESP32-DevKitC Dimensions
+
+![ESP32 DevKitC dimensions](images/ESP32-DevKitC-Dimensions.png)
