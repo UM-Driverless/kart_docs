@@ -22,31 +22,12 @@ The project previously used a 30-pin ESP32 development board with a non-standard
 
 ## ESP32 Pin Assignment
 
-Complete pin map for the ESP32-DevKitC V4 (38-pin, USB-C), matching the interface PCB wiring. Ordered by physical position on the board. H2 is the right header (pins 1-19), H1 is the left header (pins 1-19).
+Complete pin map for the ESP32-DevKitC V4 (38-pin, USB-C), matching the interface PCB wiring. Ordered by physical position on the board. H1 is the left header, H2 is the right header (19 pins each).
 
 ![ESP32 DevKitC V4 Type-C header pinout](images/esp32-devkitc-v4-typec-header-pinout.png)
 
 | Header | GPIO | Signal | Type | Notes |
 |--------|------|--------|------|-------|
-| H2.1 | - | 3V3 | Power | 3.3V supply |
-| H2.2 | - | EN | Reset | Active-low reset |
-| H2.3 | 36 (VP) | PRESSURE_1 | ADC1_CH0 | Pressure sensor 1 (input only) |
-| H2.4 | 39 (VN) | PRESSURE_2 | ADC1_CH3 | Pressure sensor 2 (input only) |
-| H2.5 | 34 | PRESSURE_3 | ADC1_CH6 | Pressure sensor 3 (input only) |
-| H2.6 | 35 | PEDAL_ACC | ADC1_CH7 | Accelerator pedal (input only) |
-| H2.7 | 32 | PEDAL_BRAKE | ADC1_CH4 | Brake pedal |
-| H2.8 | 33 | MOTOR_HALL_2 | Digital In | Motor hall sensor 2 |
-| H2.9 | 25 | CMD_ACC | DAC1 | Throttle analog output (0-255) |
-| H2.10 | 26 | CMD_BRAKE | DAC2 | Brake analog output (0-255) |
-| H2.11 | 27 | HYDRAULIC_1 | ADC2_CH7 | Hydraulic pressure sensor 1 |
-| H2.12 | 14 | HYDRAULIC_2 | ADC2_CH6 | Hydraulic pressure sensor 2 |
-| H2.13 | 12 | NC | - | STRAP pin (flash/boot risk) |
-| H2.14 | - | GND | Power | Ground |
-| H2.15 | 13 | SDC_NOT_EMERGENCY | Digital In | Shutdown circuit emergency status |
-| H2.16 | 9 | RESERVED | - | FLASH/SDIO |
-| H2.17 | 10 | RESERVED | - | FLASH/SDIO |
-| H2.18 | 11 | RESERVED | - | FLASH/SDIO |
-| H2.19 | - | 5V | Power | 5V supply |
 | H1.1 | 6 | RESERVED | - | FLASH/SDIO |
 | H1.2 | 7 | RESERVED | - | FLASH/SDIO |
 | H1.3 | 8 | RESERVED | - | FLASH/SDIO |
@@ -66,6 +47,25 @@ Complete pin map for the ESP32-DevKitC V4 (38-pin, USB-C), matching the interfac
 | H1.17 | 22 | I2C_SCL | I2C | AS5600 steering angle sensor clock |
 | H1.18 | 23 | SPARE | - | Available |
 | H1.19 | - | GND | Power | Ground |
+| H2.1 | - | 3V3 | Power | 3.3V supply |
+| H2.2 | - | EN | Reset | Active-low reset |
+| H2.3 | 36 (VP) | PRESSURE_1 | ADC1_CH0 | Pressure sensor 1 (input only) |
+| H2.4 | 39 (VN) | PRESSURE_2 | ADC1_CH3 | Pressure sensor 2 (input only) |
+| H2.5 | 34 | PRESSURE_3 | ADC1_CH6 | Pressure sensor 3 (input only) |
+| H2.6 | 35 | PEDAL_ACC | ADC1_CH7 | Accelerator pedal (input only) |
+| H2.7 | 32 | PEDAL_BRAKE | ADC1_CH4 | Brake pedal |
+| H2.8 | 33 | MOTOR_HALL_2 | Digital In | Motor hall sensor 2 |
+| H2.9 | 25 | CMD_ACC | DAC1 | Throttle analog output (0-255) |
+| H2.10 | 26 | CMD_BRAKE | DAC2 | Brake analog output (0-255) |
+| H2.11 | 27 | HYDRAULIC_1 | ADC2_CH7 | Hydraulic pressure sensor 1 |
+| H2.12 | 14 | HYDRAULIC_2 | ADC2_CH6 | Hydraulic pressure sensor 2 |
+| H2.13 | 12 | NC | - | STRAP pin (flash/boot risk) |
+| H2.14 | - | GND | Power | Ground |
+| H2.15 | 13 | SDC_NOT_EMERGENCY | Digital In | Shutdown circuit emergency status |
+| H2.16 | 9 | RESERVED | - | FLASH/SDIO |
+| H2.17 | 10 | RESERVED | - | FLASH/SDIO |
+| H2.18 | 11 | RESERVED | - | FLASH/SDIO |
+| H2.19 | - | 5V | Power | 5V supply |
 
 !!! warning "GPIO 17/16 Conflict"
     GPIO 17 and 16 are used for MOTOR_HALL_1 and MOTOR_HALL_3 on the interface PCB. These are also UART2 TX/RX pins. When using the PCB, UART2 debug logging is **not available**. Hall sensors are not yet connected, so UART2 is currently usable for debug output.
