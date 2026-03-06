@@ -26,26 +26,26 @@ Complete GPIO assignment for the ESP32-DevKitC V4, matching the interface PCB wi
 
 | GPIO | Header | Signal | Type | Description |
 |------|--------|--------|------|-------------|
-| 1 | H1-16 | USB_UART_TX | UART0 TX | USB serial TX (reserved, binary protocol to Orin) |
-| 3 | H1-15 | USB_UART_RX | UART0 RX | USB serial RX (reserved, binary protocol from Orin) |
-| 2 | H1-5 | STATUS_LED | Digital Out | Onboard LED (strap pin, keep LOW at boot) |
-| 18 | H1-11 | CMD_STEER_PWM | LEDC PWM | Steering motor PWM (Cytron H-bridge) |
-| 19 | H1-12 | CMD_STEER_DIR | Digital Out | Steering motor direction (Cytron H-bridge) |
-| 21 | H1-14 | I2C_SDA | I2C | AS5600 steering angle sensor data |
-| 22 | H1-17 | I2C_SCL | I2C | AS5600 steering angle sensor clock |
-| 25 | H2-9 | CMD_ACC | DAC1 (0-255) | Throttle analog output |
-| 26 | H2-10 | CMD_BRAKE | DAC2 (0-255) | Brake analog output |
-| 27 | H2-11 | HYDRAULIC_1 | ADC2_CH7 | Hydraulic pressure sensor 1 |
-| 14 | H2-12 | HYDRAULIC_2 | ADC2_CH6 | Hydraulic pressure sensor 2 |
-| 32 | H2-7 | PEDAL_BRAKE | ADC1_CH4 | Brake pedal position |
-| 33 | H2-8 | MOTOR_HALL_2 | Digital In | Motor hall sensor 2 |
-| 34 | H2-5 | PRESSURE_3 | ADC1_CH6 | Pressure sensor 3 (input only) |
-| 35 | H2-6 | PEDAL_ACC | ADC1_CH7 | Accelerator pedal position (input only) |
-| 36 | H2-3 | PRESSURE_1 | ADC1_CH0 (VP) | Pressure sensor 1 (input only) |
-| 39 | H2-4 | PRESSURE_2 | ADC1_CH3 (VN) | Pressure sensor 2 (input only) |
-| 17 | H1-9 | MOTOR_HALL_1 | Digital In | Motor hall sensor 1 |
-| 16 | H1-8 | MOTOR_HALL_3 | Digital In | Motor hall sensor 3 |
-| 13 | H2-15 | SDC_NOT_EMERGENCY | Digital In | Shutdown circuit emergency status |
+| 1 | H1.16 | USB_UART_TX | UART0 TX | USB serial TX (reserved, binary protocol to Orin) |
+| 3 | H1.15 | USB_UART_RX | UART0 RX | USB serial RX (reserved, binary protocol from Orin) |
+| 2 | H1.5 | STATUS_LED | Digital Out | Onboard LED (strap pin, keep LOW at boot) |
+| 18 | H1.11 | CMD_STEER_PWM | LEDC PWM | Steering motor PWM (Cytron H-bridge) |
+| 19 | H1.12 | CMD_STEER_DIR | Digital Out | Steering motor direction (Cytron H-bridge) |
+| 21 | H1.14 | I2C_SDA | I2C | AS5600 steering angle sensor data |
+| 22 | H1.17 | I2C_SCL | I2C | AS5600 steering angle sensor clock |
+| 25 | H2.9 | CMD_ACC | DAC1 (0-255) | Throttle analog output |
+| 26 | H2.10 | CMD_BRAKE | DAC2 (0-255) | Brake analog output |
+| 27 | H2.11 | HYDRAULIC_1 | ADC2_CH7 | Hydraulic pressure sensor 1 |
+| 14 | H2.12 | HYDRAULIC_2 | ADC2_CH6 | Hydraulic pressure sensor 2 |
+| 32 | H2.7 | PEDAL_BRAKE | ADC1_CH4 | Brake pedal position |
+| 33 | H2.8 | MOTOR_HALL_2 | Digital In | Motor hall sensor 2 |
+| 34 | H2.5 | PRESSURE_3 | ADC1_CH6 | Pressure sensor 3 (input only) |
+| 35 | H2.6 | PEDAL_ACC | ADC1_CH7 | Accelerator pedal position (input only) |
+| 36 | H2.3 | PRESSURE_1 | ADC1_CH0 (VP) | Pressure sensor 1 (input only) |
+| 39 | H2.4 | PRESSURE_2 | ADC1_CH3 (VN) | Pressure sensor 2 (input only) |
+| 17 | H1.9 | MOTOR_HALL_1 | Digital In | Motor hall sensor 1 |
+| 16 | H1.8 | MOTOR_HALL_3 | Digital In | Motor hall sensor 3 |
+| 13 | H2.15 | SDC_NOT_EMERGENCY | Digital In | Shutdown circuit emergency status |
 
 !!! warning "GPIO 17/16 Conflict"
     GPIO 17 and 16 are used for MOTOR_HALL_1 and MOTOR_HALL_3 on the interface PCB. These are also UART2 TX/RX pins. When using the PCB, UART2 debug logging is **not available**. Debug output must use USB UART0 or be disabled. In firmware, UART0 is reserved for the binary protocol to Orin, so debug logs are only available via UART2 when wiring directly (without the PCB).
