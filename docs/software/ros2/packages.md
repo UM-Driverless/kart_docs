@@ -13,7 +13,7 @@ This package contains the full perception pipeline: YOLO-based 2D detection, dep
 
 #### `yolo_detector`
 
-Runs YOLOv5 inference on RGB images to detect cones.
+Runs YOLOv11 inference on RGB images to detect cones.
 
 | | |
 |---|---|
@@ -23,7 +23,7 @@ Runs YOLOv5 inference on RGB images to detect cones.
 
 | Parameter | Default | Description |
 |---|---|---|
-| `model_path` | `models/perception/yolo/best_adri.pt` | Path to YOLOv5 weights |
+| `model_path` | `models/perception/yolo/nava_yolov11_2026_02.pt` | Path to YOLO weights |
 | `conf_threshold` | 0.25 | Minimum confidence to keep a detection |
 | `iou_threshold` | 0.45 | Non-max suppression IoU threshold |
 | `imgsz` | 640 | Input image size for inference |
@@ -185,42 +185,133 @@ The `acceleration` field is computed as `throttle - brake`, so both can be activ
 
 ---
 
-## msgs_to_micro
+## kb_coms_micro
 
 **Type:** C++ (`ament_cmake`)
-**Purpose:** Bridge between ROS 2 and the Kart Medulla (ESP32 microcontroller) over UART serial.
+**Purpose:** Bidirectional serial bridge between ROS 2 and the Kart Medulla (ESP32 microcontroller) over UART.
+
+The node is **payload-agnostic** — it forwards raw bytes between ROS 2 `Frame` messages and the UART wire protocol without interpreting the payload contents.
 
 | | |
 |---|---|
-| **Subscribes** | `/actuation_cmd` (`ackermann_msgs/AckermannDriveStamped`) |
-| **Output** | 4-byte UART packet at 115200 baud |
+| **Subscribes** | `/esp32/tx` (`kb_interfaces/Frame`) — messages to send to ESP32 |
+| **Publishes** | `/esp32/rx` (`kb_interfaces/Frame`) — messages received from ESP32 |
+| **Serial port** | `/dev/serial/by-id/usb-Silicon_Labs_CP2102_USB_to_UART_Bridge_Controller_0001-if00-port0` |
 
-### Serial Protocol
+### Wire Protocol
 
-Each message is a 4-byte packet:
+Each frame on the UART:
 
-| Byte | Value | Description |
+```
++------+-----+------+---------+------+
+| SOF  | LEN | TYPE | PAYLOAD | CRC  |
++------+-----+------+---------+------+
+  1B     1B    1B      N B      1B
+```
+
+| Field | Size | Description |
 |---|---|---|
-| 0 | `0xAA` | Start/sync byte |
-| 1 | `steering_s8` | Signed byte: `steering_angle × 127` |
-| 2 | `throttle_u8` | Unsigned byte: `acceleration × 255` (if positive) |
-| 3 | `brake_u8` | Unsigned byte: `|acceleration| × 255` (if negative) |
+| SOF | 1 byte | Start-of-frame marker: `0xAA` |
+| LEN | 1 byte | Payload length (0–251) |
+| TYPE | 1 byte | Message type (see table below) |
+| PAYLOAD | N bytes | **Protobuf-encoded** message (nanopb on ESP32, standard protobuf on Orin) |
+| CRC | 1 byte | CRC-8 (polynomial `0x07`) over LEN + TYPE + PAYLOAD |
 
-Default serial port: `/dev/ttyUSB0`, 115200 baud, 8N1.
+UART: 115200 baud, 8N1. Max frame size: 255 bytes.
+
+### Message Types
+
+All message schemas are defined in `proto/kart_msgs.proto` and auto-generated for both Python and C.
+
+**ESP32 → Orin (telemetry, 0x01–0x1F):**
+
+| Type | Name | Protobuf Message | Fields |
+|---|---|---|---|
+| `0x01` | `ESP_ACT_SPEED` | `ActSpeed` | `float speed_mps` |
+| `0x02` | `ESP_ACT_ACCELERATION` | `ActAcceleration` | `float lateral_mps2, longitudinal_mps2` |
+| `0x03` | `ESP_ACT_BRAKING` | `ActBraking` | `float effort` |
+| `0x04` | `ESP_ACT_STEERING` | `ActSteering` | `float angle_rad, uint32 raw_encoder` |
+| `0x08` | `ESP_HEARTBEAT` | `Heartbeat` | `uint32 uptime_ms` |
+| `0x0B` | `ESP_HEALTH_STATUS` | `HealthStatus` | `bool magnet_ok, i2c_ok, heap_ok; uint32 agc, heap_kb, i2c_errors` |
+
+**Orin → ESP32 (commands, 0x20–0x3F):**
+
+| Type | Name | Protobuf Message | Fields |
+|---|---|---|---|
+| `0x20` | `ORIN_TARG_THROTTLE` | `TargThrottle` | `float effort` (0.0–1.0) |
+| `0x21` | `ORIN_TARG_BRAKING` | `TargBraking` | `float effort` (0.0–1.0) |
+| `0x22` | `ORIN_TARG_STEERING` | `TargSteering` | `float angle_rad` |
+| `0x27` | `ORIN_COMPLETE` | `OrinComplete` | `float throttle, braking, steering_rad; uint32 mission, machine_state; bool shutdown` |
+| `0x28` | `ORIN_CALIBRATE_STEERING` | `CalibrateSteering` | `uint32 center_offset` |
+
+### Protobuf Schema
+
+The single source of truth is `proto/kart_msgs.proto`. Generated bindings:
+
+- **Python** (Orin): `src/kb_dashboard/kb_dashboard/generated/kart_msgs_pb2.py`
+- **C** (ESP32): `proto/generated_c/kart_msgs.pb.{c,h}` (nanopb)
+
+To regenerate after schema changes: `bash proto/generate.sh`
+
+---
+
+## kb_dashboard
+
+**Type:** Python (`ament_python`)
+**Purpose:** Web-based dashboard for real-time kart telemetry and mission control.
+
+| | |
+|---|---|
+| **Subscribes** | `/esp32/rx` (`kb_interfaces/Frame`) — ESP32 telemetry |
+| **Publishes** | `/esp32/tx` (`kb_interfaces/Frame`) — commands to ESP32 |
+| **Web UI** | `http://<orin-ip>:8080` (WebSocket + HTTP) |
+
+### Features
+
+- Live telemetry: steering angle + raw encoder, speed, acceleration, throttle/brake effort
+- Health status: magnet (AGC), I2C bus, free heap
+- Heartbeat monitoring with staleness indicator
+- Mission selection (Manual, Accel, Skidpad, Autocross, Trackdrive, Inspect)
+- Machine state control (Start, Stop, EBS)
+
+### Protocol Layer
+
+All encode/decode logic lives in `protocol.py`, which uses protobuf `SerializeToString()` / `ParseFromString()`. The dashboard decodes ESP32 telemetry frames and encodes command frames using the same `kart_msgs.proto` schema as the ESP32 firmware.
 
 ---
 
 ## kart_bringup
 
 **Type:** CMake (`ament_cmake`, launch + config only)
-**Purpose:** Orchestrate all nodes needed for real hardware operation.
+**Purpose:** Orchestrate all nodes needed for real hardware and simulation operation.
 
-### `teleop_launch.py`
+### Launch Files
 
-Launches three nodes for manual driving with a gamepad:
+**`autonomous.launch.py`** — Full autonomous pipeline (main launcher):
+
+1. **ZED camera** — stereo camera driver (zed2)
+2. **Perception** — `yolo_detector` + `cone_depth_localizer` + `cone_marker_viz_3d`
+3. **Steering HUD** — overlays cone highlights, steering arrow, and gauge on the annotated image → `/perception/hud`
+4. **Cone follower** — autonomous controller (`geometric` by default)
+5. **cmd_vel_bridge** — converts `/kart/cmd_vel` to ESP32 Frame commands
+6. **KB_Coms_micro** — serial bridge to ESP32
+7. **Dashboard** — web UI on port 8080
+8. **HUD viewer** — `rqt_image_view` GUI showing `/perception/hud`
+
+**`dashboard.launch.py`** — Minimal/safe mode (no actuation):
+
+1. **KB_Coms_micro** — serial comms only
+2. **Dashboard** — web UI on port 8080
+
+Use this for firmware testing — no commands are sent to the kart.
+
+**`teleop_launch.py`** — Manual driving with a gamepad:
 
 1. **`joy_node`** (from `joy` package) — reads gamepad at `/dev/input/js0`
 2. **`joy_to_cmd_vel`** — converts joystick axes to Ackermann commands
-3. **`comms_micro`** — sends commands to ESP32 over UART
+3. **`actuation_bridge`** — converts AckermannDriveStamped to ESP32 Frame commands
+4. **`KB_Coms_micro`** — serial bridge to ESP32
 
 Configuration is in `config/teleop_params.yaml`.
+
+**`sim.launch.py`** — Launches the Gazebo simulation (delegates to `kart_sim/simulation.launch.py`).

@@ -6,8 +6,8 @@ The autonomous system has evolved through two major versions, both targeting the
 |---|---|---|
 | **Language** | Python 3.12 | Python + C++ (ROS 2 Humble) |
 | **Framework** | Custom pipeline (`main.py`) | ROS 2 nodes, launch files, topics |
-| **Perception** | YOLOv5 + ZED SDK | YOLOv5 + ZED ROS wrapper |
-| **Communication** | Direct CAN bus (Kvaser) | ROS 2 topics + micro-ROS (ESP32) |
+| **Perception** | YOLOv5 + ZED SDK | YOLOv11 + ZED ROS wrapper |
+| **Communication** | Direct CAN bus (Kvaser) | ROS 2 topics + UART/protobuf (ESP32) |
 | **Simulation** | FSDS (AirSim/Unreal Engine) | Gazebo Fortress (headless) |
 | **Compute** | NVIDIA Jetson Xavier NX / Orin | NVIDIA Jetson + UTM VM for dev |
 | **Repository** | [UM-Driverless/driverless](https://github.com/UM-Driverless/driverless) | [UM-Driverless/KART_SW](https://github.com/UM-Driverless/KART_SW) |

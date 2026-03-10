@@ -81,7 +81,7 @@ Default mode launches 5 processes:
 With `use_yolo:=true`, it replaces perfect perception with:
 
 - **camera_info_fix_node** — corrects Gazebo's wrong camera intrinsics
-- **yolo_detector** — YOLOv5 inference on simulated images
+- **yolo_detector** — YOLOv11 inference on simulated images
 - **cone_depth_localizer** — depth-based 2D→3D projection
 
 ### Verify it's working
