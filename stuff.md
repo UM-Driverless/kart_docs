@@ -13,3 +13,19 @@ Show Python executable path:
 Show virtual environment location:
 `uv venv --help` or check `.venv/` directory
 
+
+# Cheap phones for kart HMI dashboard (second-hand, USB-C)
+Use any phone as a wireless touchscreen dashboard for the Orin — just a browser in kiosk mode pointing at a web UI served by the Orin over WiFi. No Nextion needed.
+
+Good second-hand options (Wallapop, ~30-60€):
+- **Xiaomi Redmi Note 10/11** — big 6.5" screen, USB-C, everywhere on Wallapop
+- **Xiaomi Poco X3 NFC/Pro** — big screen, USB-C, dirt cheap used
+- **Samsung Galaxy A13/A14** — USB-C, 6.6" screen, common
+- **Samsung Galaxy S10e** — compact, IP68, AMOLED (great outdoors), USB-C
+- **Google Pixel 4a** — clean Android, OLED, USB-C, easy kiosk mode
+
+For now: just use our own phones. Buy a dedicated one later if the dashboard works well.
+
+Kiosk app: [FreeKiosk](https://github.com/RushB-fr/freekiosk) (free, open-source, locks phone to one browser tab)
+Dashboard: [ROSboard](https://github.com/dheera/rosboard) (`pip install rosboard`) for instant ROS2 topic visualization + custom FastAPI for mission control buttons.
+

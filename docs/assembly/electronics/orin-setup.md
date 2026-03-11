@@ -240,6 +240,23 @@ sudo systemctl enable anydesk
 !!! note "Why `ConnectedMonitor DFP-0`?"
     The DP-to-HDMI adapter with a dummy HDMI plug doesn't provide proper EDID. Without this option, the NVIDIA driver sees both DFP-0 and DFP-1 as "disconnected", so Xorg has no screen and AnyDesk gets a black framebuffer. Forcing `ConnectedMonitor DFP-0` makes the driver create a framebuffer on the DisplayPort output regardless.
 
+### 7. Disable WiFi Power Saving
+
+WiFi power management causes intermittent SSH dropouts — the kernel puts the adapter to sleep under load. Disable it permanently:
+
+```bash
+# Disable now
+sudo iw dev wlP1p1s0 set power_save off
+
+# Persist across reboots (runs on every WiFi connect)
+echo '#!/bin/bash
+iw dev wlP1p1s0 set power_save off' | sudo tee /etc/NetworkManager/dispatcher.d/99-wifi-powersave-off
+sudo chmod +x /etc/NetworkManager/dispatcher.d/99-wifi-powersave-off
+```
+
+!!! note "Interface name"
+    The WiFi interface is `wlP1p1s0` on the AGX Orin (not `wlan0`). Verify with `ip link show`.
+
 ## Verification Checklist
 
 - [ ] NVMe is root: `df -h /` shows `/dev/nvme0n1p1`
@@ -251,6 +268,7 @@ sudo systemctl enable anydesk
 - [ ] kart_brain built: `ros2 pkg list | grep kart`
 - [ ] SSH access: `ssh orin` from Mac
 - [ ] AnyDesk: working with dummy HDMI plug
+- [ ] WiFi power save off: `iw dev wlP1p1s0 get power_save` → `Power save: off`
 
 ## Network Access
 
