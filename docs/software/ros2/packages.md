@@ -165,12 +165,12 @@ An oval Formula Student track with 44 cones. See [Simulation](simulation.md) for
 ## joy_to_cmd_vel
 
 **Type:** C++ (`ament_cmake`)
-**Purpose:** Convert gamepad (joystick) input to Ackermann steering commands for manual driving.
+**Purpose:** Convert gamepad (joystick) input to Twist velocity commands for manual driving.
 
 | | |
 |---|---|
 | **Subscribes** | `/joy` (`sensor_msgs/Joy`) |
-| **Publishes** | `/actuation_cmd` (`ackermann_msgs/AckermannDriveStamped`) |
+| **Publishes** | `/kart/cmd_vel` (`geometry_msgs/Twist`) |
 
 ### Gamepad Mapping
 
@@ -181,7 +181,7 @@ An oval Formula Student track with 44 cones. See [Simulation](simulation.md) for
 | Left stick horizontal (axis 0) | Steering | Inverted: positive = right |
 | R1 (button 5) | Enable | Must be held — releases to zero output (deadman switch) |
 
-The `acceleration` field is computed as `throttle - brake`, so both can be active simultaneously.
+`linear.x` is computed as `throttle - brake` (range [-1, 1]). `angular.z` carries the steering angle in radians.
 
 ---
 
@@ -308,8 +308,8 @@ Use this for firmware testing — no commands are sent to the kart.
 **`teleop_launch.py`** — Manual driving with a gamepad:
 
 1. **`joy_node`** (from `joy` package) — reads gamepad at `/dev/input/js0`
-2. **`joy_to_cmd_vel`** — converts joystick axes to Ackermann commands
-3. **`actuation_bridge`** — converts AckermannDriveStamped to ESP32 Frame commands
+2. **`joy_to_cmd_vel`** — converts joystick axes to Twist on `/kart/cmd_vel`
+3. **`cmd_vel_bridge`** — converts Twist to protobuf ESP32 Frame commands
 4. **`KB_Coms_micro`** — serial bridge to ESP32
 
 Configuration is in `config/teleop_params.yaml`.

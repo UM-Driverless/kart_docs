@@ -77,13 +77,13 @@ The system has two modes that share the same perception interface (`/perception/
 ### Real Hardware Mode (Teleop)
 
 ```
-┌──────────┐          ┌──────────────────┐         ┌───────────────────┐
-│ Gamepad  │──/joy──►│ joy_to_cmd_vel    │──cmd──►│ actuation_bridge   │
-└──────────┘          └──────────────────┘         └─────────┬─────────┘
-                                                             │
-                                                      /esp32/tx (Frame)
-                                                             │
-                                                             ▼
+┌──────────┐          ┌──────────────────┐              ┌─────────────────┐
+│ Gamepad  │──/joy──►│ joy_to_cmd_vel    │─/kart/cmd_vel─►│ cmd_vel_bridge  │
+└──────────┘          └──────────────────┘              └────────┬────────┘
+                                                                │
+                                                         /orin/* (Frame)
+                                                                │
+                                                                ▼
                                                ┌───────────────────────┐    UART     ┌────────────┐
                                                │ KB_Coms_micro         │───────────►│ ESP32      │
                                                │ (serial bridge)       │  115200    │ (Medulla)  │
@@ -118,8 +118,7 @@ The system has two modes that share the same perception interface (`/perception/
 | Topic | Message Type | Publisher | Subscriber |
 |---|---|---|---|
 | `/joy` | `sensor_msgs/Joy` | `joy_node` | `joy_to_cmd_vel` |
-| `/actuation_cmd` | `ackermann_msgs/AckermannDriveStamped` | `joy_to_cmd_vel` | `actuation_bridge` |
-| `/kart/cmd_vel` | `geometry_msgs/Twist` | `cone_follower` | `cmd_vel_bridge`, `steering_hud` |
+| `/kart/cmd_vel` | `geometry_msgs/Twist` | `cone_follower`, `joy_to_cmd_vel` | `cmd_vel_bridge`, `steering_hud` |
 | `/esp32/tx` | `kb_interfaces/Frame` | `cmd_vel_bridge` / `kb_dashboard` | `KB_Coms_micro` |
 | `/esp32/rx` | `kb_interfaces/Frame` | `KB_Coms_micro` | `kb_dashboard` |
 | `/perception/hud` | `sensor_msgs/Image` | `steering_hud` | `rqt_image_view` |

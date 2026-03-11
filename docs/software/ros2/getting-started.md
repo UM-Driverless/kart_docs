@@ -7,7 +7,7 @@ The kart software runs on **Ubuntu 22.04** with **ROS 2 Humble**. There are two 
 | **Machine** | Mac → UTM VM (Ubuntu 22.04 ARM64) | Jetson AGX Orin (Ubuntu 22.04 ARM64) |
 | **Sensor** | Gazebo Fortress simulated RGBD camera | ZED stereo camera |
 | **Perception** | Ground truth from SDF, or YOLO on simulated images | YOLO + depth projection |
-| **Actuators** | Gazebo Ackermann plugin (`/kart/cmd_vel`) | ESP32 via UART (`/actuation_cmd`) |
+| **Actuators** | Gazebo Ackermann plugin (`/kart/cmd_vel`) | ESP32 via UART (`/kart/cmd_vel` → `cmd_vel_bridge` → protobuf) |
 | **GPU** | None (LLVMpipe software rendering) | NVIDIA GPU (CUDA for YOLO + ZED) |
 
 Both targets produce the same `/perception/cones_3d` topic — a controller node works identically in either mode.
@@ -144,8 +144,7 @@ sudo apt install \
   ros-humble-vision-msgs \
   ros-humble-xacro \
   ros-humble-tf2-ros \
-  ros-humble-joy \
-  ros-humble-ackermann-msgs
+  ros-humble-joy
 ```
 
 Install the ZED SDK and ROS 2 wrapper following [Stereolabs' guide](https://www.stereolabs.com/docs/ros2).
@@ -202,7 +201,7 @@ ros2 topic echo /perception/cones_3d --once
 
 ### Full Autonomous Stack
 
-Once perception is running, start a controller node that subscribes to `/perception/cones_3d` and publishes `/actuation_cmd`. The `cone_follower_node` from kart_sim can serve as a starting point, but the real kart uses `AckermannDriveStamped` instead of `Twist`.
+Once perception is running, start a controller node that subscribes to `/perception/cones_3d` and publishes `Twist` on `/kart/cmd_vel`. The `cone_follower_node` from kart_sim does exactly this — it works identically in simulation and on real hardware.
 
 ---
 
