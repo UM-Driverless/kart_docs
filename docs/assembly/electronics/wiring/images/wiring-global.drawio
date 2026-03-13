@@ -1,0 +1,847 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.5 Chrome/138.0.7204.251 Electron/37.6.1 Safari/537.36" version="28.2.5">
+  <diagram name="Kart Electrical Wiring" id="kart-wiring-full">
+    <mxGraphModel dx="1678" dy="1142" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="2400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title1" value="Kart Electrical Wiring — Power &amp; Shutdown Circuit" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontStyle=1;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="120" y="18" width="640" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-box" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="20" y="52" width="720" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-title" value="Legend — Wire Colors" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=10;align=left;" parent="1" vertex="1">
+          <mxGeometry x="26" y="55" width="140" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="lw1" value="" style="endArrow=none;html=1;strokeColor=#333333;strokeWidth=3;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="26" y="75" as="sourcePoint" />
+            <mxPoint x="56" y="75" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lw1l" value="GND" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="58" y="68" width="32" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="lw2" value="" style="endArrow=none;html=1;strokeColor=#7b1fa2;strokeWidth=3;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="97" y="75" as="sourcePoint" />
+            <mxPoint x="127" y="75" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lw2l" value="48 V" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="130" y="68" width="32" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="lw3" value="" style="endArrow=none;html=1;strokeColor=#d32f2f;strokeWidth=3;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="168" y="75" as="sourcePoint" />
+            <mxPoint x="198" y="75" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lw3l" value="12 V" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="201" y="68" width="32" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="lw4" value="" style="endArrow=none;html=1;strokeColor=#e91e63;strokeWidth=2;dashed=1;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="240" y="75" as="sourcePoint" />
+            <mxPoint x="270" y="75" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lw4l" value="Shutdown (SDC)" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="273" y="68" width="90" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="lw5" value="" style="endArrow=none;html=1;strokeColor=#212121;strokeWidth=2;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="75" as="sourcePoint" />
+            <mxPoint x="400" y="75" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lw5l" value="Motor phases" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="403" y="68" width="75" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="lw6" value="" style="endArrow=none;html=1;strokeColor=#9e9e9e;strokeWidth=1.5;dashed=1;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="485" y="75" as="sourcePoint" />
+            <mxPoint x="515" y="75" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lw6l" value="Signal / key" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="518" y="68" width="60" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="lw7" value="" style="endArrow=none;html=1;strokeColor=#e65100;strokeWidth=2;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="585" y="75" as="sourcePoint" />
+            <mxPoint x="615" y="75" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lw7l" value="5 V" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="618" y="68" width="24" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="lw8" value="" style="endArrow=none;html=1;strokeColor=#f9a825;strokeWidth=2;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="648" y="75" as="sourcePoint" />
+            <mxPoint x="678" y="75" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lw8l" value="3.3 V" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="681" y="68" width="32" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-ct" value="Component Types" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=9;align=left;" parent="1" vertex="1">
+          <mxGeometry x="26" y="91" width="110" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="lct1" value="Power supply" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=8;" parent="1" vertex="1">
+          <mxGeometry x="140" y="89" width="80" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="lct2" value="Switch (SDC)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=8;" parent="1" vertex="1">
+          <mxGeometry x="228" y="89" width="80" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="lct3" value="Controller / PCB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=8;" parent="1" vertex="1">
+          <mxGeometry x="316" y="89" width="88" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="lct4" value="Motor / actuator" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=8;" parent="1" vertex="1">
+          <mxGeometry x="412" y="89" width="88" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="lct5" value="Terminal / WAGO" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=8;" parent="1" vertex="1">
+          <mxGeometry x="508" y="89" width="88" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="lct6" value="Sensor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=8;" parent="1" vertex="1">
+          <mxGeometry x="604" y="89" width="60" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="battery" value="&lt;b&gt;Battery 13S LiPo&lt;/b&gt;&lt;br/&gt;~48 V nominal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="28" y="145" width="135" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="term-block" value="Terminal Block (5-bolt bus bar)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="190" y="136" width="360" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="bolt1" value="GND" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=7;" parent="1" vertex="1">
+          <mxGeometry x="196" y="162" width="24" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="bolt2" value="U" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=7;" parent="1" vertex="1">
+          <mxGeometry x="248" y="162" width="24" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="bolt3" value="V" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=7;" parent="1" vertex="1">
+          <mxGeometry x="310" y="162" width="24" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="bolt4" value="W" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=7;" parent="1" vertex="1">
+          <mxGeometry x="362" y="162" width="24" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="bolt5" value="BAT-" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=7;" parent="1" vertex="1">
+          <mxGeometry x="416" y="162" width="24" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="motor" value="&lt;b&gt;Motor&lt;/b&gt;&lt;br/&gt;3-phase BLDC" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="570" y="136" width="130" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="mc" value="&lt;b&gt;Motor Controller&lt;/b&gt;&lt;br/&gt;AliExpress ESC" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="248" y="228" width="165" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="e-bat-tb" value="48 V" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#7b1fa2;strokeWidth=2.5;fontColor=#7b1fa2;fontStyle=1;fontSize=9;exitX=1;exitY=0.35;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="battery" target="term-block" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-bat-gnd" value="" style="endArrow=none;html=1;strokeColor=#333333;strokeWidth=2;exitX=0.15;exitY=1;exitDx=0;exitDy=0;" parent="1" source="battery" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="45" y="212" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl-bat-gnd" value="GND" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="50" y="200" width="35" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-tbu" value="U" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="553" y="136" width="14" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-tbv" value="V" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="553" y="152" width="14" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-tbw" value="W" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="553" y="168" width="14" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="e-tb-mot-u" value="" style="endArrow=open;html=1;strokeColor=#212121;strokeWidth=2;endFill=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="553" y="143" as="sourcePoint" />
+            <mxPoint x="570" y="143" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-tb-mot-v" value="" style="endArrow=open;html=1;strokeColor=#212121;strokeWidth=2;endFill=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="553" y="158" as="sourcePoint" />
+            <mxPoint x="570" y="158" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-tb-mot-w" value="" style="endArrow=open;html=1;strokeColor=#212121;strokeWidth=2;endFill=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="553" y="174" as="sourcePoint" />
+            <mxPoint x="570" y="174" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl-mc-u" value="U" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="272" y="211" width="14" height="17" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-mc-v" value="V" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="330" y="211" width="14" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-mc-w" value="W" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="385" y="211" width="14" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="e-mc-u" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#212121;strokeWidth=2;exitX=0.119;exitY=0.019;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="mc" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="268" y="225" as="sourcePoint" />
+            <mxPoint x="263" y="181" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-mc-v" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#212121;strokeWidth=2;exitX=0.481;exitY=0.053;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="mc" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="330" y="228" as="sourcePoint" />
+            <mxPoint x="322" y="184" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-mc-w" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#212121;strokeWidth=2;exitX=0.811;exitY=-0.005;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="mc" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="394" y="228" as="sourcePoint" />
+            <mxPoint x="374" y="184" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-tb-mc-bat" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#7b1fa2;strokeWidth=2.5;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="bolt5" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="380" y="188" as="sourcePoint" />
+            <mxPoint x="410" y="228" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl-mc-gnd" value="GND" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="211" y="211" width="35" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-mc-48v" value="48 V" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#7b1fa2;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="428" y="188" width="35" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="buck" value="&lt;b&gt;Buck Regulator&lt;/b&gt;&lt;br/&gt;48 V → 12 V → 12 V" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="28" y="298" width="145" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-48vin" value="48 V in" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#7b1fa2;" parent="1" vertex="1">
+          <mxGeometry x="138" y="284" width="48" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="e-bat-buck" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#7b1fa2;strokeWidth=2.5;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="battery" target="buck" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-buck-gnd" value="GND" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="28" y="284" width="35" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="wago12" value="WAGO 12 V" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="280" y="296" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="wagognd" value="WAGO GND" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="280" y="338" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="e-buck-w12" value="12 V out" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#d32f2f;strokeWidth=2;fontColor=#d32f2f;fontStyle=1;fontSize=9;" parent="1" source="buck" target="wago12" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-buck-wgnd" value="GND out" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#333333;strokeWidth=2;fontColor=#333333;fontStyle=1;fontSize=9;" parent="1" source="buck" target="wagognd" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-sdc" value="12 V    SDC" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#e91e63;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="292" y="372" width="80" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="ks1" value="&lt;b&gt;Kill Switch 1&lt;/b&gt;&lt;br/&gt;Mushroom — Hoop (left)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="272" y="395" width="185" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="ks2" value="&lt;b&gt;Kill Switch 2&lt;/b&gt;&lt;br/&gt;Mushroom — Hoop (right)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="272" y="450" width="185" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="ks3" value="&lt;b&gt;Kill Switch 3&lt;/b&gt;&lt;br/&gt;Mushroom — Dashboard" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="272" y="505" width="185" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="isw" value="&lt;b&gt;Impact Switch&lt;/b&gt;&lt;br/&gt;Crash sensor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="272" y="560" width="185" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="res" value="&lt;b&gt;RES (Remote Emergency)&lt;/b&gt;&lt;br/&gt;Radio-controlled relay" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="272" y="615" width="185" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="manual-bypass" value="Manual&lt;br/&gt;bypass" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=8;dashed=1;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="468" y="622" width="58" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="e-res-mbp" value="" style="endArrow=none;html=1;strokeColor=#b85450;strokeWidth=1;dashed=1;" parent="1" source="res" target="manual-bypass" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-w12-ks1" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#e91e63;strokeWidth=2;dashed=1;" parent="1" source="wago12" target="ks1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-ks1-ks2" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#e91e63;strokeWidth=2;dashed=1;" parent="1" source="ks1" target="ks2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-ks2-ks3" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#e91e63;strokeWidth=2;dashed=1;" parent="1" source="ks2" target="ks3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-ks3-isw" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#e91e63;strokeWidth=2;dashed=1;" parent="1" source="ks3" target="isw" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-isw-res" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#e91e63;strokeWidth=2;dashed=1;" parent="1" source="isw" target="res" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="relay" value="Relay" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="272" y="675" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-div" value="" style="endArrow=none;html=1;strokeColor=#6c8ebf;strokeWidth=1;dashed=1;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="272" y="718" as="sourcePoint" />
+            <mxPoint x="512" y="718" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl-coil" value="Coil" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="277" y="678" width="30" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-contacts" value="Contacts (N.O.)" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="277" y="720" width="100" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="coil-sym" value="" style="shape=mxgraph.electrical.resistors.resistor_1;html=1;strokeColor=#e91e63;strokeWidth=2;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="315" y="693" width="55" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="con-sym-l" value="" style="endArrow=none;html=1;strokeColor=#333333;strokeWidth=2;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="305" y="750" as="sourcePoint" />
+            <mxPoint x="328" y="750" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="con-sym-r" value="" style="endArrow=none;html=1;strokeColor=#333333;strokeWidth=2;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="750" as="sourcePoint" />
+            <mxPoint x="395" y="750" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="con-sym-arm" value="" style="endArrow=none;html=1;strokeColor=#333333;strokeWidth=2;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="328" y="750" as="sourcePoint" />
+            <mxPoint x="370" y="738" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-res-relay" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#e91e63;strokeWidth=2;dashed=1;" parent="1" source="res" target="relay" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mosfet" value="&lt;b&gt;kart_medulla&lt;/b&gt;&lt;br/&gt;N-ch MOSFET (SDC sink)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="528" y="678" width="155" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-p85" value="pin 85" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;" parent="1" vertex="1">
+          <mxGeometry x="463" y="680" width="35" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-p86" value="pin 86" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;" parent="1" vertex="1">
+          <mxGeometry x="463" y="697" width="35" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-gnd-mos" value="GND" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;" parent="1" vertex="1">
+          <mxGeometry x="565" y="720" width="30" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="e-relay-mos" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#e91e63;strokeWidth=1.5;" parent="1" source="relay" target="mosfet" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gnd-bus-top" value="" style="endArrow=none;html=1;strokeColor=#333333;strokeWidth=1.5;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="wagognd" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="630" y="352" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gnd-bus-vert" value="" style="endArrow=none;html=1;strokeColor=#333333;strokeWidth=1.5;dashed=1;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="630" y="352" as="sourcePoint" />
+            <mxPoint x="630" y="735" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl-gnd-bus" value="GND bus" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;rotation=-90;" parent="1" vertex="1">
+          <mxGeometry x="618" y="540" width="50" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="gnd-bus-bot" value="" style="endArrow=none;html=1;strokeColor=#333333;strokeWidth=1.5;dashed=1;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="630" y="735" as="sourcePoint" />
+            <mxPoint x="590" y="735" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl-mc-en-title" value="Motor Controller Enable Circuit" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="80" y="796" width="240" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="key-sw" value="&lt;b&gt;KEY Switch&lt;/b&gt;&lt;br/&gt;Ignition switch" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="126" y="822" width="132" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-mc-ka" value="Motor Ctrl&lt;br/&gt;key wire A" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;align=left;" parent="1" vertex="1">
+          <mxGeometry x="28" y="822" width="68" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-mc-kb" value="Motor Ctrl&lt;br/&gt;key wire B" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;align=left;" parent="1" vertex="1">
+          <mxGeometry x="28" y="855" width="68" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-to-p30" value="to pin 30" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;" parent="1" vertex="1">
+          <mxGeometry x="265" y="824" width="58" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-from-p87" value="from pin 87" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;" parent="1" vertex="1">
+          <mxGeometry x="265" y="858" width="68" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="e-mca-key" value="" style="endArrow=open;html=1;strokeColor=#9e9e9e;strokeWidth=1.5;endFill=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="96" y="832" as="sourcePoint" />
+            <mxPoint x="126" y="832" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-key-p30" value="" style="endArrow=open;html=1;strokeColor=#9e9e9e;strokeWidth=1.5;endFill=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="258" y="832" as="sourcePoint" />
+            <mxPoint x="265" y="832" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-p87-mcb" value="" style="endArrow=open;html=1;strokeColor=#9e9e9e;strokeWidth=1.5;endFill=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="96" y="865" as="sourcePoint" />
+            <mxPoint x="265" y="865" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-relay-key" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#9e9e9e;strokeWidth=1.5;dashed=1;" parent="1" source="relay" target="key-sw" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="365" y="790" />
+              <mxPoint x="192" y="790" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="title2" value="Signal &amp; Control Wiring — Pedals, Mode Switch, Steering" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontStyle=1;fontSize=15;" parent="1" vertex="1">
+          <mxGeometry x="65" y="917" width="900" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-ped-note" value="pedal signal (direct → manual)" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;fontStyle=2;" parent="1" vertex="1">
+          <mxGeometry x="446" y="946" width="400" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="e-ped-dash-line" value="" style="endArrow=none;html=1;strokeColor=#9e9e9e;strokeWidth=1;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="281" y="964" as="sourcePoint" />
+            <mxPoint x="738" y="963" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="km" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="330" y="970" width="390" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="km-title" value="&lt;font color=&quot;#0050ef&quot;&gt;&lt;b&gt;kart_medulla&lt;/b&gt;&lt;/font&gt;&lt;br/&gt;(ESP32 + Interface PCB)" style="text;html=1;strokeColor=none;fillColor=none;fontSize=11;align=center;" parent="1" vertex="1">
+          <mxGeometry x="360" y="983" width="330" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="kml-adc1" value="ADC in" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;align=left;" parent="1" vertex="1">
+          <mxGeometry x="335" y="1062" width="50" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="kml-adc2" value="ADC in" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;align=left;" parent="1" vertex="1">
+          <mxGeometry x="335" y="1123" width="50" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="kml-g22" value="GPIO 22" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;align=left;" parent="1" vertex="1">
+          <mxGeometry x="335" y="1165" width="55" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="kml-g21" value="GPIO 21" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;align=left;" parent="1" vertex="1">
+          <mxGeometry x="335" y="1183" width="55" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="kml-3v3" value="3V3" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;align=left;" parent="1" vertex="1">
+          <mxGeometry x="335" y="1200" width="35" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="kml-gnd" value="GND" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;align=left;" parent="1" vertex="1">
+          <mxGeometry x="335" y="1217" width="35" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="kmr-g26" value="GPIO 26 (DAC2)" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;align=right;" parent="1" vertex="1">
+          <mxGeometry x="605" y="1030" width="112" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="kmr-g25" value="GPIO 25 (DAC1)" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;align=right;" parent="1" vertex="1">
+          <mxGeometry x="605" y="1080" width="112" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="kmr-gnd" value="GND" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;align=right;" parent="1" vertex="1">
+          <mxGeometry x="685" y="1140" width="32" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="kmr-g27" value="GPIO 27" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;align=right;" parent="1" vertex="1">
+          <mxGeometry x="655" y="1156" width="62" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="kmr-g14" value="GPIO 14" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;align=right;" parent="1" vertex="1">
+          <mxGeometry x="655" y="1195" width="62" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="kmr-uart" value="UART: GPIO 18 TX / 19 RX" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;align=right;" parent="1" vertex="1">
+          <mxGeometry x="575" y="1255" width="142" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="acc-ped" value="&lt;b&gt;Accelerator Pedal&lt;/b&gt;&lt;br/&gt;Linear Hall (0–5 V)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="28" y="1042" width="150" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-5v-ap" value="&lt;font style=&quot;color: rgb(204, 0, 0);&quot;&gt;5 V&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#e65100;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="83" y="1024" width="25" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="e-ap-km" value="sig" style="endArrow=open;html=1;strokeColor=#9e9e9e;strokeWidth=1.5;endFill=0;fontColor=#555;fontSize=8;" parent="1" edge="1">
+          <mxGeometry x="0.5921" y="14" relative="1" as="geometry">
+            <mxPoint x="178" y="1062" as="sourcePoint" />
+            <mxPoint x="330" y="1062" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl-gnd-ap" value="GND" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;" parent="1" vertex="1">
+          <mxGeometry x="32" y="1091" width="30" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="e-gnd-ap" value="" style="endArrow=none;html=1;strokeColor=#333333;strokeWidth=1.5;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="55" y="1088" as="sourcePoint" />
+            <mxPoint x="55" y="1105" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="brk-ped" value="&lt;b&gt;Brake Pedal&lt;/b&gt;&lt;br/&gt;Linear Hall (0–5 V)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="28" y="1135" width="150" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-5v-bp" value="&lt;font style=&quot;color: rgb(204, 0, 0);&quot;&gt;5 V&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#e65100;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="80" y="1116" width="25" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="e-bp-km" value="sig" style="endArrow=open;html=1;strokeColor=#9e9e9e;strokeWidth=1.5;endFill=0;fontColor=#555;fontSize=8;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="178" y="1155" as="sourcePoint" />
+            <mxPoint x="330" y="1123" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl-gnd-bp" value="GND" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;" parent="1" vertex="1">
+          <mxGeometry x="32" y="1184" width="30" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="e-gnd-bp" value="" style="endArrow=none;html=1;strokeColor=#333333;strokeWidth=1.5;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="55" y="1181" as="sourcePoint" />
+            <mxPoint x="55" y="1198" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="as5600" value="&lt;b&gt;AS5600 Angle Sensor&lt;/b&gt;&lt;br/&gt;Steering position (I2C)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="28" y="1228" width="158" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="e-scl" value="SCL" style="endArrow=open;html=1;strokeColor=#1565c0;strokeWidth=2;endFill=0;fontColor=#1565c0;fontStyle=1;fontSize=8;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="186" y="1237" as="sourcePoint" />
+            <mxPoint x="330" y="1165" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-sda" value="SDA" style="endArrow=open;html=1;strokeColor=#388e3c;strokeWidth=2;endFill=0;fontColor=#388e3c;fontStyle=1;fontSize=8;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="186" y="1247" as="sourcePoint" />
+            <mxPoint x="330" y="1183" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-3v3-as" value="3.3 V" style="endArrow=open;html=1;strokeColor=#e65100;strokeWidth=2;endFill=0;fontColor=#e65100;fontStyle=1;fontSize=8;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="186" y="1257" as="sourcePoint" />
+            <mxPoint x="330" y="1200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-gnd-as-wire" value="" style="endArrow=open;html=1;strokeColor=#333333;strokeWidth=2;endFill=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="186" y="1265" as="sourcePoint" />
+            <mxPoint x="330" y="1217" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl-gnd-as" value="GND" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;" parent="1" vertex="1">
+          <mxGeometry x="55" y="1278" width="30" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-pid-note" value="Steering PID in ESP32: reads AS5600 angle → computes error → drives Cytron PWM/DIR&lt;div&gt;&lt;br/&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;fontStyle=2;fontColor=#0050ef;align=left;" parent="1" vertex="1">
+          <mxGeometry x="552.5" y="1320" width="326" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="mode-sw" value="&lt;b&gt;Mode Switch (SPDT)&lt;/b&gt;&lt;br/&gt;Manual / Autonomous&lt;br/&gt;Dashboard panel" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="756" y="990" width="175" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-nc-m" value="NC (manual)" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;" parent="1" vertex="1">
+          <mxGeometry x="759" y="976" width="75" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-no-a" value="NO (auto)" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;" parent="1" vertex="1">
+          <mxGeometry x="764" y="1038" width="65" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-com-ms" value="COM" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;" parent="1" vertex="1">
+          <mxGeometry x="903" y="1030" width="35" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="dot-nc" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b85450;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="757" y="994" width="9" height="9" as="geometry" />
+        </mxCell>
+        <mxCell id="dot-no" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b85450;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="757" y="1043" width="9" height="9" as="geometry" />
+        </mxCell>
+        <mxCell id="e-nc-com" value="" style="endArrow=none;html=1;strokeColor=#b85450;strokeWidth=1.5;exitX=0.835;exitY=0.568;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="dot-nc" target="mode-sw" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="766" y="998" as="sourcePoint" />
+            <mxPoint x="930" y="1020" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl-cmd-acc" value="CMD_ACC (DAC)" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;" parent="1" vertex="1">
+          <mxGeometry x="719" y="1016" width="67" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="e-km-cmdacc" value="" style="endArrow=open;html=1;strokeColor=#9e9e9e;strokeWidth=1.5;endFill=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="724" y="1047.4" as="sourcePoint" />
+            <mxPoint x="760" y="1047.4" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-g26-cmdacc" value="" style="endArrow=none;html=1;strokeColor=#9e9e9e;strokeWidth=1.5;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="720" y="1037" as="sourcePoint" />
+            <mxPoint x="720" y="1037" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl-cmd-brk" value="CMD_BRK (DAC)" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;" parent="1" vertex="1">
+          <mxGeometry x="856" y="1071" width="110" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="e-km-cmdbrk" value="" style="endArrow=open;html=1;strokeColor=#9e9e9e;strokeWidth=1.5;endFill=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="964" y="1042.81" as="sourcePoint" />
+            <mxPoint x="980" y="1042.81" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-km-dac-line" value="" style="endArrow=none;html=1;strokeColor=#9e9e9e;strokeWidth=1.5;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="724" y="1048" as="sourcePoint" />
+            <mxPoint x="724" y="1039" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mc2" value="&lt;b&gt;Motor Controller&lt;/b&gt;&lt;br/&gt;AliExpress ESC" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="980" y="990" width="150" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-mc2-thr" value="▶ throttle" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;" parent="1" vertex="1">
+          <mxGeometry x="988" y="1007" width="60" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-mc2-brk" value="▶ brake" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;" parent="1" vertex="1">
+          <mxGeometry x="988" y="1030" width="55" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="e-ms-mc2" value="" style="endArrow=open;html=1;strokeColor=#9e9e9e;strokeWidth=1.5;endFill=0;" parent="1" source="mode-sw" target="mc2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cytron" value="&lt;b&gt;Cytron MD25HV&lt;/b&gt;&lt;br/&gt;Steering H-Bridge (25 A)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="756" y="1130" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-12v-cyt" value="12 V power from rail" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;fontColor=#d32f2f;" parent="1" vertex="1">
+          <mxGeometry x="771" y="1113" width="130" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-gnd-cyt" value="GND" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="724" y="1138" width="30" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="e-gnd-cyt" value="" style="endArrow=open;html=1;strokeColor=#333333;strokeWidth=2;endFill=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="720" y="1143" as="sourcePoint" />
+            <mxPoint x="756" y="1143" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl-pwm" value="PWM" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;fontColor=#e65100;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="724" y="1155" width="36" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="e-km-cyt-pwm" value="" style="endArrow=open;html=1;strokeColor=#e65100;strokeWidth=2;endFill=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="720" y="1160" as="sourcePoint" />
+            <mxPoint x="756" y="1160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl-dir" value="DIR" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;fontColor=#388e3c;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="724" y="1172" width="30" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="e-km-cyt-dir" value="" style="endArrow=open;html=1;strokeColor=#388e3c;strokeWidth=2;endFill=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="720" y="1177" as="sourcePoint" />
+            <mxPoint x="756" y="1177" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-km-right-bus" value="" style="endArrow=none;html=1;strokeColor=#333333;strokeWidth=1;dashed=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="720" y="1143" as="sourcePoint" />
+            <mxPoint x="720" y="1177" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="steer-mot" value="&lt;b&gt;Steering Motor&lt;/b&gt;&lt;br/&gt;DC 12 V" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="1000" y="1130" width="130" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-Mp" value="M+" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="976" y="1130" width="22" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-Mm" value="M−" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="976" y="1167" width="22" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="e-cyt-sm-mp" value="" style="endArrow=open;html=1;strokeColor=#d32f2f;strokeWidth=2;endFill=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="966" y="1148" as="sourcePoint" />
+            <mxPoint x="1000" y="1148" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-cyt-sm-mm" value="" style="endArrow=open;html=1;strokeColor=#333333;strokeWidth=2;endFill=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="966" y="1168" as="sourcePoint" />
+            <mxPoint x="1000" y="1168" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl-comp" value="Computer &amp; Perception" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="455" y="1348" width="210" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="zed2" value="&lt;b&gt;ZED2 Camera&lt;/b&gt;&lt;br/&gt;Stereo depth (USB 3.0)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="28" y="1378" width="165" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="orin" value="&lt;b&gt;NVIDIA Jetson AGX Orin&lt;/b&gt;&lt;br/&gt;Developer Kit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="390" y="1373" width="230" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="barrel" value="Barrel jack&lt;br/&gt;5.5/2.5 mm, center +" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=9;fontColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="648" y="1380" width="135" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="e-zed-orin" value="USB-A" style="endArrow=open;html=1;strokeColor=#9e9e9e;strokeWidth=2;endFill=0;fontColor=#9e9e9e;fontStyle=1;fontSize=9;" parent="1" source="zed2" target="orin" edge="1">
+          <mxGeometry x="-0.0051" y="9" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-orin-barrel" value="" style="endArrow=open;html=1;strokeColor=#9e9e9e;strokeWidth=1.5;endFill=0;" parent="1" source="orin" target="barrel" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-orin-km" value="USB-C" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#0050ef;strokeWidth=2;fontColor=#0050ef;fontStyle=1;fontSize=9;entryX=0.45;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="orin" target="km" edge="1">
+          <mxGeometry x="-0.2111" y="-19" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lbl-b-12v" value="12 V" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;fontColor=#d32f2f;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="791" y="1370" width="32" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl-b-gnd" value="GND" style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;" parent="1" vertex="1">
+          <mxGeometry x="791" y="1402" width="32" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="e-b-12v" value="" style="endArrow=none;html=1;strokeColor=#d32f2f;strokeWidth=3;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="783" y="1390" as="sourcePoint" />
+            <mxPoint x="860" y="1390" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-b-gnd" value="" style="endArrow=none;html=1;strokeColor=#333333;strokeWidth=3;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="783" y="1408" as="sourcePoint" />
+            <mxPoint x="860" y="1408" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="how-box" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="28" y="1448" width="1200" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="how-title" value="How it works" style="text;html=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="34" y="1452" width="90" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="how-lines" value="1. Battery (48 V) feeds the terminal block. Motor controller draws BAT+ and GND; outputs 3 phases (U, V, W) to the motor via the same terminal block.&lt;br&gt;2. Buck regulator steps 48 V down to 12 V, distributed through WAGO connectors.&lt;br&gt;3. The 12 V rail feeds the Shutdown Circuit (SDC): a series chain of kill switches, impact switch, and RES (with manual bypass).&lt;br&gt;4. SDC current flows through the relay coil (pin 86 → 85), then to ground via kart_medulla&#39;s N-channel MOSFET.&lt;br&gt;5. When the relay is energized, its N.O. contacts (30 → 87) close, completing the motor controller&#39;s KEY circuit and enabling drive.&lt;br&gt;6. Any open switch in the SDC chain de-energizes the relay → contacts open → motor controller disabled.&lt;br&gt;&lt;br&gt;&lt;b&gt;Signal &amp;amp; control:&lt;br&gt;&lt;/b&gt;7. Pedal sensors (linear Hall, 0–5 V) always feed analog signals to kart_medulla for data logging and/or autonomous control.&lt;br&gt;8. SPDT mode switch on the dashboard selects throttle source: manual (pedal → motor ctrl directly) or autonomous (ESP32 DAC → motor ctrl).&lt;br&gt;9. Steering: ESP32 PID reads AS5600 angle sensor (I2C) and drives Cytron MD25HV H-bridge (PWM + DIR) to control the steering motor.&lt;br&gt;10. Brake pedal signal is read by kart_medulla; its DAC output (CMD_BRK) feeds the motor controller&#39;s brake input.&lt;br&gt;&lt;b&gt;&lt;br&gt;Computer &amp;amp; perception:&lt;/b&gt;&lt;br&gt;11. Orin (NVIDIA Jetson AGX Orin Developer Kit) connects to kart_medulla via USB-C, to ZED2 camera via USB-A, and draws 12 V via barrel jack." style="text;html=1;strokeColor=none;fillColor=none;fontSize=9;align=left;verticalAlign=top;spacingLeft=4;" parent="1" vertex="1">
+          <mxGeometry x="34" y="1468" width="1184" height="192" as="geometry" />
+        </mxCell>
+        <mxCell id="rcY4bXqo7o1lp1rsMeks-3" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#212121;strokeWidth=2;entryX=0.657;entryY=1.096;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="bolt1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="255" y="228" as="sourcePoint" />
+            <mxPoint x="250" y="184" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="255" y="213" />
+              <mxPoint x="212" y="213" />
+              <mxPoint x="212" y="196" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rcY4bXqo7o1lp1rsMeks-5" value="" style="endArrow=none;html=1;rounded=0;strokeColor=#9E9E9E;" parent="1" source="dot-ap" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="280" y="1062" as="sourcePoint" />
+            <mxPoint x="281" y="964" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rcY4bXqo7o1lp1rsMeks-9" value="" style="endArrow=none;html=1;rounded=0;strokeColor=#9E9E9E;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="738" y="1018" as="sourcePoint" />
+            <mxPoint x="738" y="963" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rcY4bXqo7o1lp1rsMeks-14" value="" style="endArrow=none;html=1;rounded=0;entryX=0.006;entryY=0.391;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=#9E9E9E;" parent="1" target="mode-sw" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="738" y="1017" as="sourcePoint" />
+            <mxPoint x="987" y="941" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rcY4bXqo7o1lp1rsMeks-16" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#9E9E9E;dashed=1;" parent="1" target="as5600" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="107" y="1309" as="sourcePoint" />
+            <mxPoint x="123" y="1287" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rcY4bXqo7o1lp1rsMeks-17" value="" style="endArrow=none;html=1;rounded=0;strokeColor=#9E9E9E;dashed=1;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="107" y="1309" as="sourcePoint" />
+            <mxPoint x="1062" y="1312" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rcY4bXqo7o1lp1rsMeks-18" value="" style="endArrow=none;html=1;rounded=0;entryX=0.468;entryY=1.007;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=#9E9E9E;dashed=1;" parent="1" target="steer-mot" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1062" y="1312" as="sourcePoint" />
+            <mxPoint x="1119" y="1254" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rcY4bXqo7o1lp1rsMeks-19" value="&lt;div&gt;&lt;font style=&quot;color: rgb(158, 158, 158);&quot;&gt;mechanical coupling (steering axle)&lt;/font&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;fontStyle=2;fontColor=#0050ef;align=left;" parent="1" vertex="1">
+          <mxGeometry x="747.5" y="1290" width="326" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="rcY4bXqo7o1lp1rsMeks-21" value="" style="endArrow=none;html=1;rounded=0;strokeColor=#9E9E9E;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="964" y="1090" as="sourcePoint" />
+            <mxPoint x="964" y="1043" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rcY4bXqo7o1lp1rsMeks-22" value="" style="endArrow=none;html=1;rounded=0;exitX=1.001;exitY=0.367;exitDx=0;exitDy=0;exitPerimeter=0;strokeColor=#9E9E9E;" parent="1" source="km" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="918" y="1110" as="sourcePoint" />
+            <mxPoint x="964" y="1090" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rcY4bXqo7o1lp1rsMeks-23" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.209;exitDx=0;exitDy=0;exitPerimeter=0;strokeColor=#9E9E9E;" parent="1" source="km" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="737" y="1064" as="sourcePoint" />
+            <mxPoint x="725" y="1039" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rcY4bXqo7o1lp1rsMeks-28" value="" style="endArrow=none;html=1;rounded=0;strokeColor=#9E9E9E;" parent="1" target="dot-ap" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="280" y="1062" as="sourcePoint" />
+            <mxPoint x="281" y="964" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dot-ap" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#9e9e9e;strokeColor=#9e9e9e;" parent="1" vertex="1">
+          <mxGeometry x="275" y="1058" width="8" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="rcY4bXqo7o1lp1rsMeks-29" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" source="brk-ped" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="208" y="1147" as="sourcePoint" />
+            <mxPoint x="103" y="1124" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rcY4bXqo7o1lp1rsMeks-30" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="102.9" y="1042" as="sourcePoint" />
+            <mxPoint x="102.9" y="1031" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="new-wagognd-esp32" value="GND" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#333333;strokeWidth=2;fontColor=#333333;fontStyle=1;fontSize=8;entryX=-0.001;entryY=0.792;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="km" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="24" y="448" />
+              <mxPoint x="24" y="1320" />
+              <mxPoint x="275" y="1320" />
+              <mxPoint x="275" y="1231" />
+            </Array>
+            <mxPoint x="235" y="353" as="sourcePoint" />
+            <mxPoint x="275" y="1325.1" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="new-wagognd-esp32-lbl" value="WAGO GND" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;fontColor=#333333;fontStyle=1;align=center;rotation=-90;" parent="1" vertex="1">
+          <mxGeometry x="120" y="820" width="80" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="new-cyt-en-wire" value="EN (auto only)" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#7b1fa2;strokeWidth=2;fontColor=#7b1fa2;fontStyle=1;fontSize=8;entryX=0.606;entryY=0.749;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.486;exitY=-0.006;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="cytron" edge="1">
+          <mxGeometry x="-0.0042" y="-9" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="858" y="1098" />
+              <mxPoint x="858" y="1088" />
+              <mxPoint x="760" y="1088" />
+              <mxPoint x="760" y="1067" />
+              <mxPoint x="760" y="1067" />
+            </Array>
+            <mxPoint x="858" y="1129" as="sourcePoint" />
+            <mxPoint x="760.444" y="1052.001" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="new-cyt-dot-no" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#7b1fa2;strokeColor=#7b1fa2;" parent="1" vertex="1">
+          <mxGeometry x="757" y="1047" width="9" height="9" as="geometry" />
+        </mxCell>
+        <mxCell id="new-cyt-auto-lbl" value="⚠ Cytron enabled only in AUTO mode (switch NO)" style="text;html=1;strokeColor=#7b1fa2;fillColor=#f3e5f5;fontSize=8;fontStyle=1;align=center;rounded=1;" parent="1" vertex="1">
+          <mxGeometry x="759" y="1242" width="214" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="Pvb9XJpsaGKTmiG5xp9e-1" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.335;entryY=1.005;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="cytron">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="826" y="1216" as="sourcePoint" />
+            <mxPoint x="829" y="1190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Pvb9XJpsaGKTmiG5xp9e-2" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.335;entryY=1.005;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=light-dark(#7b3d84, #ededed);" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="883" y="1216" as="sourcePoint" />
+            <mxPoint x="883" y="1190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Pvb9XJpsaGKTmiG5xp9e-3" value="&lt;font style=&quot;color: light-dark(rgb(123, 61, 132), rgb(237, 237, 237));&quot;&gt;48V (Battery)&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="887" y="1200" width="22" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="Pvb9XJpsaGKTmiG5xp9e-5" value="GND" style="text;html=1;strokeColor=none;fillColor=none;fontSize=8;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="797" y="1200" width="30" height="14" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -23,7 +23,7 @@ This file tracks mistakes made during development and the prevention mechanisms 
 ## 2026-02-18 - drawio-export CI step overwrote hand-crafted SVGs
 **What happened:** The CI `drawio-export` step auto-exported `.drawio` files to SVG, replacing interactive hand-crafted SVG versions with flat auto-generated ones.
 **Prevention added:**
-- Removed `.drawio` source files from the repo. If `.drawio` files are reintroduced, either exclude them from auto-export or backup/restore hand-crafted SVGs around the export step.
+- Removed `.drawio` source files from the repo initially. Later reintroduced `.drawio` as the source of truth for wiring diagrams, replacing hand-crafted SVGs. The CI auto-exports `.drawio` → SVG/PNG, so hand-crafted SVGs must not coexist with a `.drawio` file of the same base name.
 
 ## 2026-02-18 - Wrong component specs from datasheet (configurable product)
 **What happened:** D6 pressure regulator was stated as 0.5-10 bar range, but the specific subtype actually maxes out at 7 bar. Festo datasheets for configurable products show combined specs across all subtypes, not the specific ordered variant.
