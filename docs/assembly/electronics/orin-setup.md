@@ -240,7 +240,28 @@ python3 -c "import torch; print(torch.__version__, torch.cuda.is_available())"
 !!! warning "numpy must be < 2"
     OpenCV on the Jetson was compiled against numpy 1.x. Installing numpy 2 will break `cv2`.
 
-### 6. Clone repositories
+### 6. Export YOLO TensorRT engine
+
+The YOLO model ships as a `.pt` (PyTorch) file. For real-time inference on the Orin, export it to a TensorRT `.engine` file (takes ~3-4 minutes, only needed once per model):
+
+```bash
+cd ~/kart_brain
+python3 -c "from ultralytics import YOLO; m = YOLO('models/perception/yolo/ruben_yolov11n_2026_03.pt'); m.export(format='engine', imgsz=320, half=True)"
+```
+
+Rename the output to include the hardware and TensorRT version:
+
+```bash
+mv models/perception/yolo/ruben_yolov11n_2026_03_320.engine \
+   models/perception/yolo/ruben_yolov11n_2026_03_320_orin_trt10.engine
+```
+
+!!! warning "Always export with `half=True`"
+    FP16 inference is ~2x faster than FP32 on the Orin's Ampere GPU. Never export without `half=True`.
+
+This `.engine` file is committed to the repo. Re-export when the model changes or after a CUDA/TensorRT upgrade.
+
+### 7. Clone repositories
 
 ```bash
 cd ~
@@ -248,7 +269,7 @@ git clone https://github.com/UM-Driverless/kart_brain.git
 git clone https://github.com/UM-Driverless/kart_medulla.git
 ```
 
-### 7. Build kart_brain
+### 8. Build kart_brain
 
 First install all ROS 2 dependencies automatically:
 
@@ -267,7 +288,7 @@ echo "source ~/kart_brain/install/setup.bash" >> ~/.bashrc
 
 See the [kart_brain repo](https://github.com/UM-Driverless/kart_brain) for package details and usage.
 
-### 8. AnyDesk (remote desktop)
+### 9. AnyDesk (remote desktop)
 
 ```bash
 curl -fsSL https://keys.anydesk.com/repos/DEB-GPG-KEY \
@@ -325,7 +346,7 @@ DISPLAY=:0 xrandr --output DP-0 --mode 1600x900
 !!! note "Why `ConnectedMonitor DFP-0`?"
     The DP-to-HDMI adapter with a dummy HDMI plug doesn't provide proper EDID. Without this option, the NVIDIA driver sees both DFP-0 and DFP-1 as "disconnected", so Xorg has no screen and AnyDesk gets a black framebuffer. Forcing `ConnectedMonitor DFP-0` makes the driver create a framebuffer on the DisplayPort output regardless. The dummy plug caps resolution at 1600x900.
 
-### 9. Disable WiFi Power Saving
+### 10. Disable WiFi Power Saving
 
 WiFi power management causes intermittent SSH dropouts — the kernel puts the adapter to sleep under load. Disable it permanently:
 
@@ -342,7 +363,7 @@ sudo chmod +x /etc/NetworkManager/dispatcher.d/99-wifi-powersave-off
 !!! note "Interface name"
     The WiFi interface is `wlP1p1s0` on the AGX Orin (not `wlan0`). Verify with `ip link show`.
 
-### 10. Cloudflare Tunnel (remote SSH from anywhere)
+### 11. Cloudflare Tunnel (remote SSH from anywhere)
 
 This lets anyone on the team SSH into the Orin from outside the university network — no open ports, no VPN.
 
@@ -391,14 +412,22 @@ sudo systemctl enable --now cloudflared
     - Ubuntu/Debian: `wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb && sudo dpkg -i cloudflared-linux-amd64.deb`
     - Windows: `winget install Cloudflare.cloudflared`
 
-2. Add to `~/.ssh/config`:
+2. Create the sockets directory and add to `~/.ssh/config`:
+    ```bash
+    mkdir -p ~/.ssh/sockets
+    ```
     ```
     Host orin-remote
         HostName orin.rubenayla.xyz
         User orin
         IdentityFile ~/.ssh/id_ed25519
         ProxyCommand cloudflared access ssh --hostname %h
+        ControlMaster auto
+        ControlPath ~/.ssh/sockets/%r@%h-%p
+        ControlPersist 10m
     ```
+
+    `ControlMaster` reuses a single SSH connection for all sessions — subsequent commands connect in ~50ms instead of ~400ms.
 
 3. Send their public key (`cat ~/.ssh/id_ed25519.pub`) to be added to the Orin's `~/.ssh/authorized_keys`.
 
