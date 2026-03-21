@@ -133,12 +133,24 @@ This takes ~10-20 minutes. The output ends with `Flash is successful`.
 Complete the Ubuntu setup wizard:
 
 - Username: `orin`
-- Password: `0`
+- Password: See `.env` file (not committed — ask the team)
 - Computer name: `orin`
 
-## Post-Flash Software Installation
+## Post-Flash Setup
 
-After the first-boot wizard, install everything:
+!!! warning "Credentials required"
+    Several steps below need passwords that are **not committed to this repo**. Copy `.env.example` to `.env` and fill in the values before starting. Ask the team if you don't have them.
+
+### Connect to WiFi
+
+Connect to the university network during the first-boot wizard or from Settings:
+
+| Field | Value |
+|---|---|
+| Network | `Robots_urjc` |
+| Password | See `.env` file (not committed — ask the team) |
+
+### Software Installation
 
 ### 1. JetPack SDK (CUDA, cuDNN, TensorRT)
 
@@ -237,6 +249,18 @@ EOF
 sudo systemctl enable anydesk
 ```
 
+Set a password for unattended access (so you can connect without anyone at the screen):
+
+```bash
+echo "$ANYDESK_PASSWORD" | sudo anydesk --set-password
+```
+
+Get the AnyDesk ID (share this with the team):
+
+```bash
+anydesk --get-id
+```
+
 !!! note "Why `ConnectedMonitor DFP-0`?"
     The DP-to-HDMI adapter with a dummy HDMI plug doesn't provide proper EDID. Without this option, the NVIDIA driver sees both DFP-0 and DFP-1 as "disconnected", so Xorg has no screen and AnyDesk gets a black framebuffer. Forcing `ConnectedMonitor DFP-0` makes the driver create a framebuffer on the DisplayPort output regardless.
 
@@ -257,6 +281,73 @@ sudo chmod +x /etc/NetworkManager/dispatcher.d/99-wifi-powersave-off
 !!! note "Interface name"
     The WiFi interface is `wlP1p1s0` on the AGX Orin (not `wlan0`). Verify with `ip link show`.
 
+### 8. Cloudflare Tunnel (remote SSH from anywhere)
+
+This lets anyone on the team SSH into the Orin from outside the university network — no open ports, no VPN.
+
+#### On the Orin
+
+```bash
+# Install cloudflared (ARM64)
+wget -O /tmp/cloudflared.deb \
+  https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64.deb
+sudo dpkg -i /tmp/cloudflared.deb
+
+# Authenticate with Cloudflare (opens a browser — select the rubenayla.xyz zone)
+cloudflared tunnel login
+
+# Create the tunnel and DNS route
+cloudflared tunnel create orin
+cloudflared tunnel route dns orin orin.rubenayla.xyz
+```
+
+Then create the config file. Replace `TUNNEL_ID` with the ID printed by `tunnel create`:
+
+```bash
+sudo mkdir -p /etc/cloudflared
+sudo tee /etc/cloudflared/config.yml > /dev/null << EOF
+tunnel: TUNNEL_ID
+credentials-file: /etc/cloudflared/TUNNEL_ID.json
+
+ingress:
+  - hostname: orin.rubenayla.xyz
+    service: ssh://localhost:22
+  - service: http_status:404
+EOF
+
+# Copy credentials to the system config directory
+sudo cp ~/.cloudflared/TUNNEL_ID.json /etc/cloudflared/
+
+# Install and start as a system service
+sudo cloudflared service install
+sudo systemctl enable --now cloudflared
+```
+
+#### On each team member's machine
+
+1. Install `cloudflared`:
+    - macOS: `brew install cloudflared`
+    - Ubuntu/Debian: `wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb && sudo dpkg -i cloudflared-linux-amd64.deb`
+    - Windows: `winget install Cloudflare.cloudflared`
+
+2. Add to `~/.ssh/config`:
+    ```
+    Host orin-remote
+        HostName orin.rubenayla.xyz
+        User orin
+        IdentityFile ~/.ssh/id_ed25519
+        ProxyCommand cloudflared access ssh --hostname %h
+    ```
+
+3. Send their public key (`cat ~/.ssh/id_ed25519.pub`) to be added to the Orin's `~/.ssh/authorized_keys`.
+
+No Cloudflare account needed for team members — only the tunnel owner.
+
+!!! tip "Generate an SSH key if you don't have one"
+    ```bash
+    ssh-keygen -t ed25519
+    ```
+
 ## Verification Checklist
 
 - [ ] NVMe is root: `df -h /` shows `/dev/nvme0n1p1`
@@ -267,19 +358,20 @@ sudo chmod +x /etc/NetworkManager/dispatcher.d/99-wifi-powersave-off
 - [ ] ZED camera: `ls /dev/video*` (after plugging in)
 - [ ] kart_brain built: `ros2 pkg list | grep kart`
 - [ ] SSH access: `ssh orin` from Mac
-- [ ] AnyDesk: working with dummy HDMI plug
+- [ ] AnyDesk: working with dummy HDMI plug, unattended password set
+- [ ] Cloudflare Tunnel: `ssh orin-remote` works from outside the network
 - [ ] WiFi power save off: `iw dev wlP1p1s0 get power_save` → `Power save: off`
 
 ## Network Access
 
 | Method | Address | Notes |
 |---|---|---|
-| SSH (WiFi) | `ssh orin` (10.7.20.x, DHCP) | IP may change |
-| SSH (Ethernet) | `ssh orin_wire` (10.0.255.177) | Static, cable required |
-| AnyDesk | Via ID | Needs dummy HDMI plug |
+| SSH (local WiFi) | `ssh orin` (10.7.20.x, DHCP) | Must be on same network. IP may change |
+| SSH (remote) | `ssh orin-remote` (via Cloudflare Tunnel) | Works from anywhere. Requires `cloudflared` installed locally |
+| AnyDesk | Via ID (see `.env` for password) | Needs dummy HDMI plug for display |
 
 !!! tip "Always verify IPs"
-    The Robots_urjc network uses DHCP. Run `hostname -I` on the Orin to get the current IP. Update `~/.ssh/config` on your Mac if it changed.
+    The university network uses DHCP. Run `hostname -I` on the Orin to get the current IP. Update `~/.ssh/config` if it changed.
 
 ## Known Issues
 
