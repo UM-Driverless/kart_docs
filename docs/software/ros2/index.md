@@ -127,13 +127,13 @@ This means a controller node subscribing to `/perception/cones_3d` works identic
 # Source ROS 2
 source /opt/ros/humble/setup.bash
 
-# Build all packages
-cd ~/kart_sw
-colcon build
+# Build all packages (always use --symlink-install)
+cd ~/kart_brain
+colcon build --symlink-install
 source install/setup.bash
 
 # Build only one package (faster)
-colcon build --packages-select kart_sim
+colcon build --symlink-install --packages-select kart_sim
 
 # Run simulation
 ros2 launch kart_sim simulation.launch.py

@@ -258,10 +258,10 @@ source /opt/ros/humble/setup.bash
 rosdep install --from-paths src --ignore-src -r -y
 ```
 
-Then build:
+Then build (always use `--symlink-install` so Python/launch file edits take effect without rebuilding):
 
 ```bash
-colcon build
+colcon build --symlink-install
 echo "source ~/kart_brain/install/setup.bash" >> ~/.bashrc
 ```
 

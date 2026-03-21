@@ -185,12 +185,15 @@ Once perception is running, start a controller node that subscribes to `/percept
 ## Rebuilding After Changes
 
 ```bash
-# Rebuild everything
-cd ~/kart_sw && colcon build && source install/setup.bash
+# Rebuild everything (--symlink-install so Python/launch edits work without rebuilding)
+cd ~/kart_brain && colcon build --symlink-install && source install/setup.bash
 
 # Rebuild only the package you changed (faster)
-colcon build --packages-select kart_sim && source install/setup.bash
+colcon build --symlink-install --packages-select kart_sim && source install/setup.bash
 ```
+
+!!! tip "Why `--symlink-install`?"
+    With `--symlink-install`, Python scripts and launch files in `install/` are symlinks to `src/`. Edits take effect immediately — only C++ changes need a rebuild. **Always use this flag.**
 
 !!! warning "Always re-source after building"
     After `colcon build`, you must run `source install/setup.bash` for the changes to take effect in your current terminal. New terminals that source it from `.bashrc` pick it up automatically.
