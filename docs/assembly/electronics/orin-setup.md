@@ -226,10 +226,16 @@ chmod +x ZED_SDK.run
 ./ZED_SDK.run -- silent skip_tools skip_samples
 ```
 
-After installing, add the `orin` user to the `zed` group so builds can find the SDK:
+Install the JPEG dependency needed by the ZED ROS wrapper:
 
 ```bash
-sudo usermod -aG zed orin
+sudo apt-get install -y libturbojpeg0-dev
+```
+
+After installing, add the `orin` user to the `zed` and `dialout` groups (SDK access + serial port):
+
+```bash
+sudo usermod -aG zed,dialout orin
 ```
 
 Log out and back in (or reboot) for the group to take effect.
@@ -312,7 +318,25 @@ echo "source ~/kart_brain/install/setup.bash" >> ~/.bashrc
 
 See the [kart_brain repo](https://github.com/UM-Driverless/kart_brain) for package details and usage.
 
-### 10. AnyDesk (remote desktop)
+### 10. PlatformIO (ESP32 flashing)
+
+Install PlatformIO to flash [kart_medulla](https://github.com/UM-Driverless/kart_medulla) firmware to the ESP32 directly from the Orin:
+
+```bash
+pip3 install platformio
+```
+
+Flash the firmware (ESP32 must be connected via USB):
+
+```bash
+cd ~/kart_medulla
+pio run --target upload --environment esp32dev
+```
+
+!!! note "ESP32 bootloader mode"
+    If flashing hangs at "Connecting...", put the ESP32 in bootloader mode: hold **BOOT**, press **EN**, release **BOOT**.
+
+### 11. AnyDesk (remote desktop)
 
 ```bash
 curl -fsSL https://keys.anydesk.com/repos/DEB-GPG-KEY \
@@ -370,7 +394,7 @@ DISPLAY=:0 xrandr --output DP-0 --mode 1600x900
 !!! note "Why `ConnectedMonitor DFP-0`?"
     The DP-to-HDMI adapter with a dummy HDMI plug doesn't provide proper EDID. Without this option, the NVIDIA driver sees both DFP-0 and DFP-1 as "disconnected", so Xorg has no screen and AnyDesk gets a black framebuffer. Forcing `ConnectedMonitor DFP-0` makes the driver create a framebuffer on the DisplayPort output regardless. The dummy plug caps resolution at 1600x900.
 
-### 11. Disable WiFi Power Saving
+### 12. Disable WiFi Power Saving
 
 WiFi power management causes intermittent SSH dropouts — the kernel puts the adapter to sleep under load. Disable it permanently:
 
@@ -387,7 +411,7 @@ sudo chmod +x /etc/NetworkManager/dispatcher.d/99-wifi-powersave-off
 !!! note "Interface name"
     The WiFi interface is `wlP1p1s0` on the AGX Orin (not `wlan0`). Verify with `ip link show`.
 
-### 12. Cloudflare Tunnel (remote SSH from anywhere)
+### 13. Cloudflare Tunnel (remote SSH from anywhere)
 
 This lets anyone on the team SSH into the Orin from outside the university network — no open ports, no VPN.
 
