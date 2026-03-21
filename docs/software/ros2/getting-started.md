@@ -136,32 +136,9 @@ See [Simulation](simulation.md) for track layout, kart model specs, and troubles
 
 ### Prerequisites
 
-The Jetson AGX Orin runs Ubuntu 22.04 via JetPack. Install ROS 2 Humble and the required packages:
+Follow the **[Orin Setup Guide](../../assembly/electronics/orin-setup.md)** to flash the Orin and install all software (JetPack, CUDA, ROS 2, ZED SDK, PyTorch, kart_brain, remote access). That guide covers everything from a blank Orin to a fully configured system.
 
-```bash
-sudo apt install ros-humble-desktop
-sudo apt install \
-  ros-humble-vision-msgs \
-  ros-humble-xacro \
-  ros-humble-tf2-ros \
-  ros-humble-joy
-```
-
-Install the ZED SDK and ROS 2 wrapper following [Stereolabs' guide](https://www.stereolabs.com/docs/ros2).
-
-!!! note "No simulation packages on the Orin"
-    You do not need `ros-humble-ros-gz` or Gazebo on the Orin. The `kart_sim` package will be built but not used.
-
-### Clone & Build
-
-```bash
-cd ~
-git clone https://github.com/UM-Driverless/KART_SW.git kart_sw
-source /opt/ros/humble/setup.bash
-cd ~/kart_sw
-colcon build
-source install/setup.bash
-```
+Once setup is complete, the kart_brain workspace is already built at `~/kart_brain`.
 
 ### Connect Hardware
 

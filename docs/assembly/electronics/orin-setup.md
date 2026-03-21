@@ -46,7 +46,7 @@ The flash tool writes to all three. This is expected.
 | TensorRT | 10.x | `sudo apt install nvidia-jetpack` |
 | ROS 2 | Humble | apt (ROS 2 repos) |
 | ZED SDK | 4.2 | Installer from Stereolabs (L4T 36.4 build, compatible with 36.5) |
-| PyTorch | 2.10 | NVIDIA Jetson AI Lab wheels |
+| PyTorch | 2.5.0 (Jetson build) | NVIDIA Jetson AI Lab wheels |
 | Python | 3.10 (system) | Pre-installed |
 
 !!! note "Why ZED SDK 4.2 and not 5.2?"
@@ -152,21 +152,34 @@ Connect to the university network during the first-boot wizard or from Settings:
 
 ### Software Installation
 
-### 1. JetPack SDK (CUDA, cuDNN, TensorRT)
+### 1. Set power mode
+
+The Orin defaults to 30W. Switch to 50W for full performance (requires reboot):
 
 ```bash
-sudo apt-get update
-sudo apt-get install -y nvidia-jetpack
+sudo nvpmodel -m 3   # MODE_50W (type "yes" when prompted to reboot)
 ```
 
-This is a large install (~5-7 GB). Verify:
+After reboot, verify: `sudo nvpmodel -q` → `MODE_50W`.
+
+### 2. JetPack SDK (CUDA, cuDNN, TensorRT)
+
+JetPack comes pre-installed with the flash. Add CUDA to your PATH:
+
+```bash
+echo 'export PATH=/usr/local/cuda/bin:$PATH' >> ~/.bashrc
+echo 'export PATH=$HOME/.local/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
+```
+
+Verify:
 
 ```bash
 nvcc --version   # Should show CUDA 12.6
 dpkg -l | grep tensorrt   # Should show TensorRT 10.x
 ```
 
-### 2. ROS 2 Humble
+### 3. ROS 2 Humble
 
 ```bash
 sudo apt install -y software-properties-common curl
@@ -180,7 +193,7 @@ sudo apt-get install -y ros-humble-desktop ros-humble-vision-msgs ros-dev-tools
 echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 ```
 
-### 3. ZED SDK
+### 4. ZED SDK
 
 ```bash
 cd /tmp
@@ -189,30 +202,72 @@ chmod +x ZED_SDK.run
 ./ZED_SDK.run -- silent skip_tools skip_samples
 ```
 
-### 4. PyTorch
+After installing, add the `orin` user to the `zed` group so builds can find the SDK:
+
+```bash
+sudo usermod -aG zed orin
+```
+
+Log out and back in (or reboot) for the group to take effect.
+
+### 5. PyTorch
+
+!!! warning "Use `--index-url`, not `--extra-index-url`"
+    Using `--extra-index-url` may pull the CPU-only wheel from PyPI instead of the Jetson CUDA build. Use `--index-url` to prioritize the Jetson index.
 
 ```bash
 pip3 install --no-cache-dir \
-  --extra-index-url https://pypi.jetson-ai-lab.dev/jp6/cu126 \
+  --index-url https://pypi.jetson-ai-lab.dev/jp6/cu126 \
+  --extra-index-url https://pypi.org/simple \
   torch torchvision
 pip3 install --no-cache-dir 'numpy<2' ultralytics pyyaml
+```
+
+PyTorch on Jetson needs NVIDIA shared libraries in `LD_LIBRARY_PATH`:
+
+```bash
+echo 'export LD_LIBRARY_PATH=$HOME/.local/lib/python3.10/site-packages/nvidia/cusparselt/lib:$HOME/.local/lib/python3.10/site-packages/nvidia/nvjitlink/lib:$LD_LIBRARY_PATH' >> ~/.bashrc
+source ~/.bashrc
+```
+
+Verify:
+
+```bash
+python3 -c "import torch; print(torch.__version__, torch.cuda.is_available())"
+# Should show: 2.5.0a0+... True
 ```
 
 !!! warning "numpy must be < 2"
     OpenCV on the Jetson was compiled against numpy 1.x. Installing numpy 2 will break `cv2`.
 
-### 5. Clone and build kart_brain
+### 6. Clone repositories
 
 ```bash
 cd ~
-git clone git@github.com:UM-Driverless/kart_brain.git
-cd kart_brain
+git clone https://github.com/UM-Driverless/kart_brain.git
+git clone https://github.com/UM-Driverless/kart_medulla.git
+```
+
+### 7. Build kart_brain
+
+First install all ROS 2 dependencies automatically:
+
+```bash
+cd ~/kart_brain
 source /opt/ros/humble/setup.bash
+rosdep install --from-paths src --ignore-src -r -y
+```
+
+Then build:
+
+```bash
 colcon build
 echo "source ~/kart_brain/install/setup.bash" >> ~/.bashrc
 ```
 
-### 6. AnyDesk (remote desktop)
+See the [kart_brain repo](https://github.com/UM-Driverless/kart_brain) for package details and usage.
+
+### 8. AnyDesk (remote desktop)
 
 ```bash
 curl -fsSL https://keys.anydesk.com/repos/DEB-GPG-KEY \
@@ -261,10 +316,16 @@ Get the AnyDesk ID (share this with the team):
 anydesk --get-id
 ```
 
-!!! note "Why `ConnectedMonitor DFP-0`?"
-    The DP-to-HDMI adapter with a dummy HDMI plug doesn't provide proper EDID. Without this option, the NVIDIA driver sees both DFP-0 and DFP-1 as "disconnected", so Xorg has no screen and AnyDesk gets a black framebuffer. Forcing `ConnectedMonitor DFP-0` makes the driver create a framebuffer on the DisplayPort output regardless.
+After reboot, the display may default to 1024x768. Set 1600x900 (max supported by the dummy plug):
 
-### 7. Disable WiFi Power Saving
+```bash
+DISPLAY=:0 xrandr --output DP-0 --mode 1600x900
+```
+
+!!! note "Why `ConnectedMonitor DFP-0`?"
+    The DP-to-HDMI adapter with a dummy HDMI plug doesn't provide proper EDID. Without this option, the NVIDIA driver sees both DFP-0 and DFP-1 as "disconnected", so Xorg has no screen and AnyDesk gets a black framebuffer. Forcing `ConnectedMonitor DFP-0` makes the driver create a framebuffer on the DisplayPort output regardless. The dummy plug caps resolution at 1600x900.
+
+### 9. Disable WiFi Power Saving
 
 WiFi power management causes intermittent SSH dropouts — the kernel puts the adapter to sleep under load. Disable it permanently:
 
@@ -281,7 +342,7 @@ sudo chmod +x /etc/NetworkManager/dispatcher.d/99-wifi-powersave-off
 !!! note "Interface name"
     The WiFi interface is `wlP1p1s0` on the AGX Orin (not `wlan0`). Verify with `ip link show`.
 
-### 8. Cloudflare Tunnel (remote SSH from anywhere)
+### 10. Cloudflare Tunnel (remote SSH from anywhere)
 
 This lets anyone on the team SSH into the Orin from outside the university network — no open ports, no VPN.
 
@@ -350,6 +411,7 @@ No Cloudflare account needed for team members — only the tunnel owner.
 
 ## Verification Checklist
 
+- [ ] Power mode: `sudo nvpmodel -q` → `MODE_50W`
 - [ ] NVMe is root: `df -h /` shows `/dev/nvme0n1p1`
 - [ ] CUDA: `nvcc --version` → 12.6
 - [ ] TensorRT: `dpkg -l | grep tensorrt` → 10.x
@@ -378,7 +440,9 @@ No Cloudflare account needed for team members — only the tunnel owner.
 | Issue | Workaround |
 |---|---|
 | ZED needs re-plug after reboot | Unplug and replug USB |
-| torch needs `LD_LIBRARY_PATH` | `export LD_LIBRARY_PATH=/home/orin/.local/lib/python3.10/site-packages/nvidia/nvjitlink/lib:$LD_LIBRARY_PATH` |
+| torch `libcusparseLt.so.0` not found | Add NVIDIA pip package libs to `LD_LIBRARY_PATH` (done in step 5) |
+| PyTorch installs CPU-only wheel | Use `--index-url` (not `--extra-index-url`) for the Jetson AI Lab index (see step 5) |
 | numpy >= 2 breaks cv2 | Pin to `numpy<2` |
-| BGR/RGB swap in YOLO debug image | Fixed in `yolo_detector_node.py` — always convert RGB back to BGR before publishing as "bgr8" |
-| No HDMI port | Use DP-to-HDMI adapter |
+| ZED SDK not readable by `orin` user | Add `orin` to `zed` group: `sudo usermod -aG zed orin` (done in step 4) |
+| AnyDesk resolution too low | Run `DISPLAY=:0 xrandr --output DP-0 --mode 1600x900` after reboot |
+| No HDMI port | Use DP-to-HDMI adapter + dummy HDMI plug for headless AnyDesk |

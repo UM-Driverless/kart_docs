@@ -13,3 +13,6 @@ The autonomous system has evolved through two major versions, both targeting the
 | **Repository** | [UM-Driverless/driverless](https://github.com/UM-Driverless/driverless) | [UM-Driverless/KART_SW](https://github.com/UM-Driverless/KART_SW) |
 
 The ROS 2 version was introduced to gain modularity (independent nodes for perception, control, and hardware), standardized message types, and a richer simulation ecosystem (Gazebo). The Python version remains a good reference for understanding the core autonomous driving algorithms.
+
+!!! tip "Setting up the Jetson Orin from scratch?"
+    See the **[Orin Setup Guide](../assembly/electronics/orin-setup.md)** for the complete flashing and installation procedure — JetPack, CUDA, ROS 2, ZED SDK, PyTorch, remote access, and all configuration needed to get the kart's computer running.
