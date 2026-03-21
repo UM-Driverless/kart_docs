@@ -439,7 +439,7 @@ No Cloudflare account needed for team members — only the tunnel owner.
 
 | Issue | Workaround |
 |---|---|
-| ZED needs re-plug after reboot | Unplug and replug USB |
+| ZED "CAMERA NOT DETECTED" | Kill all stale ROS processes (`sudo killall -9 component_container_isolated`), clean shared memory (`rm -rf /dev/shm/fastrtps_*`), then relaunch. Do NOT unplug the camera. |
 | torch `libcusparseLt.so.0` not found | Add NVIDIA pip package libs to `LD_LIBRARY_PATH` (done in step 5) |
 | PyTorch installs CPU-only wheel | Use `--index-url` (not `--extra-index-url`) for the Jetson AI Lab index (see step 5) |
 | numpy >= 2 breaks cv2 | Pin to `numpy<2` |
