@@ -2,8 +2,8 @@
 
 ## Key Files (Read Before Working)
 Before making any changes, consult:
-1. **`.agents/error_log.md`** — Past errors and added preventions
-2. **`.agents/definition_of_done.md`** — Pre-commit checklist
+1. **`.agents/error-log.md`** — Past errors and added preventions
+2. **`.agents/definition-of-done.md`** — Pre-commit checklist
 
 ## Project Overview
 
@@ -111,6 +111,6 @@ GitHub Actions workflow (`.github/workflows/deploy-docs.yml`):
 Before any `git commit`, you MUST:
 1. Run `git status` to see which files will be included
 2. Run `git diff --cached` to verify changes line by line
-3. If build fails: document the error in `.agents/error_log.md`, fix it, and add prevention if recurring
+3. If build fails: document the error in `.agents/error-log.md`, fix it, and add prevention if recurring
 
 **Never commit blindly.**
