@@ -429,6 +429,7 @@ cloudflared tunnel login
 # Create the tunnel and DNS route
 cloudflared tunnel create orin
 cloudflared tunnel route dns orin orin.rubenayla.xyz
+cloudflared tunnel route dns orin kart.rubenayla.xyz
 ```
 
 Then create the config file. Replace `TUNNEL_ID` with the ID printed by `tunnel create`:
@@ -442,6 +443,8 @@ credentials-file: /etc/cloudflared/TUNNEL_ID.json
 ingress:
   - hostname: orin.rubenayla.xyz
     service: ssh://localhost:22
+  - hostname: kart.rubenayla.xyz
+    service: http://localhost:9090
   - service: http_status:404
 EOF
 
@@ -500,6 +503,7 @@ No Cloudflare account needed for team members — only the tunnel owner.
 - [ ] SSH access: `ssh orin` from Mac
 - [ ] AnyDesk: working with dummy HDMI plug, unattended password set
 - [ ] Cloudflare Tunnel: `ssh orin-remote` works from outside the network
+- [ ] Dashboard: [kart.rubenayla.xyz](https://kart.rubenayla.xyz) loads and accepts password
 - [ ] WiFi power save off: `iw dev wlP1p1s0 get power_save` → `Power save: off`
 
 ## Network Access
@@ -508,6 +512,8 @@ No Cloudflare account needed for team members — only the tunnel owner.
 |---|---|---|
 | SSH (local WiFi) | `ssh orin` (10.7.20.x, DHCP) | Must be on same network. IP may change |
 | SSH (remote) | `ssh orin-remote` (via Cloudflare Tunnel) | Works from anywhere. Requires `cloudflared` installed locally |
+| Dashboard (local) | `http://<orin-ip>:9090` | Must be on same network |
+| Dashboard (remote) | [kart.rubenayla.xyz](https://kart.rubenayla.xyz) (via Cloudflare Tunnel) | Works from any network. Password required (default: `0`) |
 | AnyDesk | Via ID (see `.env` for password) | Needs dummy HDMI plug for display |
 
 !!! tip "Always verify IPs"
