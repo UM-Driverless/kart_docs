@@ -6,7 +6,11 @@ theme:
 markdown_extensions:
   - admonition
   - pymdownx.details
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
 nav:
   - Home: index.md
   - About: about.md
@@ -42,6 +46,7 @@ nav:
       - Hydraulics: hydraulics/index.md
   - Software:
       - software/index.md
+      - State Machine: software/state_machine.md
       - 2024 — Python: software/legacy.md
       - 2025 — ROS 2:
           - software/ros2/index.md
