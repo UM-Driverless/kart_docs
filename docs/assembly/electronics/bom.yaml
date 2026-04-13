@@ -29,14 +29,46 @@ components:
       datasheets: "https://developer.nvidia.com/embedded/downloads"
     notes: "Main autonomous driving computer"
 
+  - id: "esp32_s3"
+    part_number: "ESP32-S3-WROOM-1"
+    description: "ESP32-S3 microcontroller module — target MCU for the next-revision Kart Medulla PCB"
+    category: "microcontroller"
+    quantity: 1
+    unit_cost: 5.00
+    currency: "EUR"
+    status: "planned"
+    criticality: "essential"
+    suppliers:
+      - name: "Mouser"
+        url: "https://www.mouser.com/c/?q=ESP32-S3-WROOM-1"
+        verified: false
+    specifications:
+      voltage: "3.3V"
+      temperature_range: "-40°C to +85°C"
+      flash: "8MB (module dependent)"
+      ram: "512KB SRAM"
+      cpu: "Xtensa dual-core 32-bit LX7"
+      clock_speed: "up to 240 MHz"
+      wifi: "802.11 b/g/n"
+      bluetooth: "BLE 5"
+      gpios: 45
+      adcs: "2x 12-bit, multi-channel"
+      dacs: "none (external MCP4728 used instead)"
+      usb: "native USB-OTG + USB-Serial-JTAG"
+      interfaces: "SPI, I2C, UART, CAN (TWAI), I2S"
+    alternatives:
+      - "ESP32-S2 (single-core, no BT)"
+      - "ESP32-C6 (RISC-V, Wi-Fi 6)"
+    notes: "Target MCU for the next revision of the Kart Medulla interface PCB. Pairs with an MCP4728 quad 12-bit I2C DAC for CMD_ACC."
+
   - id: "esp32_wroom_32"
     part_number: "ESP32-WROOM-32"
-    description: "ESP32 microcontroller module (Kart Medulla)"
+    description: "ESP32 microcontroller module — legacy, hand-wired in the current kart (no PCB)"
     category: "microcontroller"
     quantity: 1
     unit_cost: 3.50
     currency: "EUR"
-    status: "active"
+    status: "legacy"
     criticality: "essential"
     suppliers:
       - name: "Mouser"
@@ -68,10 +100,7 @@ components:
       gpio_22: "I2C SCL (AS5600)"
       gpio_25: "PWM (Motor Driver)"
       gpio_26: "Direction (Motor Driver)"
-    alternatives:
-      - "ESP32-S3"
-      - "ESP32-C3"
-    notes: "Kart medulla - interfaces between Orin, sensors, and actuators"
+    notes: "Currently hand-wired in the kart. To be retired when the ESP32-S3 interface PCB is deployed. See docs/assembly/electronics/kart-medulla/legacy-wiring.md."
 
   - id: "orin_adapter_board"
     part_number: "CUSTOM-ORIN-ADAPTER-V1.0"

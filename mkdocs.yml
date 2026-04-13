@@ -31,7 +31,9 @@ nav:
           - Angle Sensor: assembly/steering/sensor/index.md
           - Fasteners: assembly/steering/fasteners.md
       - Electronics:
-          - Kart Medulla (ESP32): assembly/electronics/kart-medulla/index.md
+          - Kart Medulla (ESP32-S3):
+              - assembly/electronics/kart-medulla/index.md
+              - Legacy wiring (classic ESP32): assembly/electronics/kart-medulla/legacy-wiring.md
           - Computer: assembly/electronics/computer.md
           - Orin Setup: assembly/electronics/orin-setup.md
           - Net Naming: assembly/electronics/net-naming.md

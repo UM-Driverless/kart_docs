@@ -71,11 +71,12 @@ docs/assembly/
 ### 💻 Electronics Assembly
 **Components**: Computing, control, communication
 - **Main Components**: [Electronics BOM](../assembly/electronics/bom.yaml)
-- **Documentation**: [Kart Medulla (ESP32)](../assembly/electronics/kart-medulla/index.md)
+- **Documentation**: [Kart Medulla (ESP32-S3)](../assembly/electronics/kart-medulla/index.md)
 
 **Key Components:**
 - NVIDIA Jetson AGX Orin (€1500.00)
-- ESP32 WROOM-32 microcontroller (€3.50)
+- ESP32-S3 microcontroller (next-revision target; ~€5)
+- ESP32-WROOM-32 microcontroller (€3.50, legacy — currently hand-wired in the kart)
 - Custom Orin adapter board (€25.00)
 
 ### ⚡ Power Assembly
