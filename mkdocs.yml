@@ -14,7 +14,9 @@ markdown_extensions:
 nav:
   - Home: index.md
   - About: about.md
-  - BOM: bom/index.md
+  - BOM:
+      - bom/index.md
+      - Full BOM (shareable): bom/full.md
   - Tools: tools/index.md
   - Assembly:
       - assembly/index.md
@@ -29,6 +31,7 @@ nav:
           - assembly/steering/index.md
           - H-bridge: assembly/steering/h-bridge.md
           - Angle Sensor: assembly/steering/sensor/index.md
+          - Power Budget: assembly/steering/power-budget.md
           - Fasteners: assembly/steering/fasteners.md
       - Electronics:
           - Kart Medulla (ESP32-S3):

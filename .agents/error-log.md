@@ -46,3 +46,22 @@ This file tracks mistakes made during development and the prevention mechanisms 
 **What happened:** Circuit/flow diagrams laid out horizontally were scaled down to fit the page width, becoming unreadably small on standard screens.
 **Prevention added:**
 - Rule: Use vertical (top-to-bottom) layout for circuit and flow diagrams. This fits naturally in scrollable web pages and avoids forced shrinking.
+
+## 2026-04-27 - Fabricated catalogue ballparks for sponsor-supplied parts
+**What happened:** First draft of `docs/bom/full.md` included Festo EBS prices written as ~€250, ~€400, etc. — these were guesses, not retrieved figures. The user caught it ("you got all festo component prices?") and the fabrication was only acknowledged when asked. Made worse by the fact that even *real* Festo prices come from a customer-specific portal that the team account didn't have access to, so the right answer was always either `?` or public-distributor prices, never an invented "ballpark."
+**Prevention added:**
+- Rule: For component prices in shipped docs, only write a number that was retrieved from a cited public source (with the source recorded inline). Anything else is `?`. Catalogue "ballparks" are not acceptable substitutes — they sound authoritative and cannot be audited.
+- Rule: When a user asks "did you get all the prices?", read it as "are these real numbers?" and answer by listing exactly which numbers came from where. Never let an estimate sit silently as if it were a quote.
+
+## 2026-04-27 - Read superseded contract version as if it were current
+**What happened:** Read V1 of the Festo sponsorship convenio (PDF, no confidentiality clause) and based the entire publish-the-prices analysis on it. The current version is V2 (Busquets-reviewed .docx, 2026-03-18) which adds a 5-year confidentiality clause (NOVENA), an IP/trademark clause (OCTAVA), a liability clause (DÉCIMA), and changes jurisdiction to Barcelona. Confidently reported "no NDA, no confidentiality clause" before discovering V2. Found V2 only after the user pointed at a Telegram chat mentioning Busquets's edits, and a `README.md` in the sponsors folder summarising V1 → V2 changes.
+**Prevention added:**
+- Rule: When a contract / agreement / spec exists in multiple versions or revisions, list every version found before reasoning from any of them. Identify which one is currently in force (signed scan, latest revision date, latest legal review) before drawing conclusions.
+- Rule: Sponsor / supplier folders typically contain a README that summarises version history — read it first.
+- Rule: Never confidently say "no X clause" or "no Y obligation" about a contract until every version has been examined. State explicitly which version was read.
+
+## 2026-04-27 - Cross-conversation context bleed (video-script prose into BOM)
+**What happened:** A user message containing prose meant for a *different* agent working on a video script ("Standing in the workshop thinking about the replacement, we asked a better question…") was treated as feedback for the BOM/kart_docs work. Wrote a "Motor mount" section in `docs/assembly/powertrain/motor.md` and added an extrapolated "3D-printed motor mount bracket" line to the powertrain BOM, neither of which was warranted by the actual project state. Reverted when the user clarified the context.
+**Prevention added:**
+- Rule: When a user message arrives whose tone/topic doesn't match the current task, surface the mismatch ("this sounds like it might be for a different thread — confirm before I edit") rather than silently incorporating it. Cross-agent / cross-conversation messages are common when the user is multitasking.
+- Rule: Don't extrapolate beyond what was explicitly stated. The "3D-printed motor mount" detail was inferred, not confirmed — extrapolations of physical components must be confirmed before adding them to a BOM.
