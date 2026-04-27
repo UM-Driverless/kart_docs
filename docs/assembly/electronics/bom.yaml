@@ -30,8 +30,8 @@ components:
     notes: "Main autonomous driving computer"
 
   - id: "esp32_s3"
-    part_number: "ESP32-S3-WROOM-1"
-    description: "ESP32-S3 microcontroller module — target MCU for the next-revision Kart Medulla PCB"
+    part_number: "ESP32-S3-WROOM-1-N8R2"
+    description: "ESP32-S3 microcontroller module (8 MB flash, 2 MB quad PSRAM) — target MCU for the next-revision Kart Medulla PCB"
     category: "microcontroller"
     quantity: 1
     unit_cost: 5.00
@@ -40,13 +40,17 @@ components:
     criticality: "essential"
     suppliers:
       - name: "Mouser"
-        url: "https://www.mouser.com/c/?q=ESP32-S3-WROOM-1"
+        url: "https://www.mouser.com/c/?q=ESP32-S3-WROOM-1-N8R2"
+        verified: false
+      - name: "AliExpress"
+        url: "https://www.aliexpress.com/w/wholesale-ESP32-S3-WROOM-1-N8R2.html"
         verified: false
     specifications:
       voltage: "3.3V"
       temperature_range: "-40°C to +85°C"
-      flash: "8MB (module dependent)"
-      ram: "512KB SRAM"
+      flash: "8 MB"
+      psram: "2 MB (quad SPI)"
+      ram: "512 KB SRAM"
       cpu: "Xtensa dual-core 32-bit LX7"
       clock_speed: "up to 240 MHz"
       wifi: "802.11 b/g/n"
@@ -57,9 +61,19 @@ components:
       usb: "native USB-OTG + USB-Serial-JTAG"
       interfaces: "SPI, I2C, UART, CAN (TWAI), I2S"
     alternatives:
+      - "ESP32-S3-WROOM-1-N16R2 (16 MB flash, 2 MB quad PSRAM) — valid upgrade path if firmware ever outgrows 8 MB flash. Quad PSRAM shares the QSPI flash bus, so GPIO 33–37 remain free. Zero PCB/pinout change required."
       - "ESP32-S2 (single-core, no BT)"
       - "ESP32-C6 (RISC-V, Wi-Fi 6)"
-    notes: "Target MCU for the next revision of the Kart Medulla interface PCB. Pairs with an MCP4728 quad 12-bit I2C DAC for CMD_ACC."
+    rejected:
+      - "ESP32-S3-WROOM-1-N16R8 — DO NOT BUY. The 8 MB octal PSRAM is hard-wired inside the module to GPIO 33–37; Espressif's datasheet marks those pins as 'not available' on R8 variants. This is a PHYSICAL constraint, not a firmware option — disabling PSRAM in sdkconfig does not reclaim the pins. Treating an N16R8 as an N8R2 by 'ignoring PSRAM' does not work. Any R-suffix octal variant (R8) is rejected for the Kart Medulla."
+    notes: |
+      Target MCU for the next revision of the Kart Medulla interface PCB. Pairs with an MCP4728 quad 12-bit I2C DAC for CMD_ACC.
+
+      **Octal-PSRAM rule (crystal clear):** Only quad-PSRAM WROOM-1 variants (R2, or no PSRAM) are acceptable. Octal-PSRAM variants (R8) are banned because they permanently consume GPIO 33–37 inside the module package.
+
+      **GPIO 33–37 are NOT reserved by our pinout.** We will try to leave them free where practical, but that is a courtesy, not a commitment. The pinout may and does use GPIO 33–37 when needed. Therefore the module itself must make those pins available — i.e. never R8. If a future revision ever moves to an R8 variant, the pinout must first be audited to confirm GPIO 33–37 are genuinely unused, and that audit has NOT been performed and is NOT a standard we follow.
+
+      See .agents/history.md 2026-04-23 for the full reasoning.
 
   - id: "esp32_wroom_32"
     part_number: "ESP32-WROOM-32"

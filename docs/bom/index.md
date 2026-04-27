@@ -75,7 +75,7 @@ docs/assembly/
 
 **Key Components:**
 - NVIDIA Jetson AGX Orin (€1500.00)
-- ESP32-S3 microcontroller (next-revision target; ~€5)
+- ESP32-S3-WROOM-1-N8R2 microcontroller (8 MB flash, 2 MB PSRAM; next-revision target; ~€5)
 - ESP32-WROOM-32 microcontroller (€3.50, legacy — currently hand-wired in the kart)
 - Custom Orin adapter board (€25.00)
 

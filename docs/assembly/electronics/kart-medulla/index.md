@@ -89,6 +89,17 @@ Pin map for the ESP32-S3 module on the interface PCB. H1 is the left header, H2 
 !!! note "GPIO restrictions (ESP32-S3)"
     Strap/boot pins on the S3 — notably GPIO 0, 3, 45, 46 — must be left at safe levels at reset and are marked NC in the table above. On WROOM-1 modules some of GPIO 26–32 / 33–37 may be tied to SPI flash or PSRAM depending on the module variant; confirm against the module datasheet before using those ranges.
 
+!!! danger "Module suffix: N8R2 — octal-PSRAM variants (R8) are BANNED"
+    The ordered part is **ESP32-S3-WROOM-1-N8R2** (8 MB flash, 2 MB quad PSRAM). **Do not substitute an R8 variant** (e.g. N16R8), even if the plan is to "ignore" the extra PSRAM in firmware.
+
+    On R8 modules, the 8 MB octal PSRAM is **hard-wired inside the module package** to GPIO 33–37 (SPI0/1 extension pins). Espressif's ESP32-S3-WROOM-1 datasheet marks those pins as **not available** on R8 variants. This is a physical constraint: disabling PSRAM in `sdkconfig` does NOT reclaim the pins — the PSRAM die is still electrically attached to those traces, and driving them externally risks bus contention during boot.
+
+    **Our pinout does NOT reserve GPIO 33–37.** We try to leave them free where convenient, but that is a courtesy and **not a standard we commit to**. The module itself must make those pins available — i.e., never R8. If you ever want to move to R8, the pinout must first be audited (and it has not been).
+
+    **Valid upgrade path if 8 MB flash isn't enough: N16R2** (16 MB flash, 2 MB quad PSRAM) — zero pinout change, zero GPIO cost. **Not N16R8.**
+
+    See `.agents/history.md` 2026-04-23 for full reasoning.
+
 ## Kart Medulla Interface PCB
 
 Interface PCB hosting the ESP32-S3 module, signal conditioning, and outside-world connectors. Design lineage (EasyEDA `.epro` project files) lives in the Drive folder `formula_24-25-26/dv/kart/kart-medulla/project-backups/`.
