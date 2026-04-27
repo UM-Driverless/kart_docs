@@ -67,3 +67,40 @@ Append-only log of notable decisions and events for `kart_docs`. Newest at the b
 
 **Action.** Buy ESP32-S3-WROOM-1-N8R2. `bom.yaml`, `kart-medulla/index.md`, and `docs/bom/index.md` updated accordingly.
 
+---
+
+## 2026-04-27 — Public BOM page + steering power budget; Festo prices redacted under V2 sponsorship
+
+**What was done.**
+
+- New `docs/bom/full.md`: shareable consolidated BOM with two cost columns (team cost vs market cost), `Source` column (Donated / Sponsored / Purchased / Salvage / Custom), per-section tables (chassis, powertrain, steering, electronics compute & control, electronics power, sensors, EBS, wiring & misc), totals, and a tooling section sized for a "what would a new team need" view.
+- New `docs/assembly/steering/power-budget.md`: back-of-envelope steering torque/power calc (μ·N·a → ~15–20 Nm static at the steering shaft, ≥100 rpm for 0.3 s lock-to-lock, ~50 W cont / ~200 W peak operating; ~2 kW stall headroom available with the current setup, rarely if ever hit). Includes a "current setup (kept)" section and an "interesting alternatives (not currently planned)" table covering Bosch F006-B20 generic wiper, Bosch WDD2 motorsport actuator, Doga 319H with Hall feedback, Doga 319.4860, generic 24V planetary gearmotor.
+- `mkdocs.yml`: BOM nav split into two pages (overview + full); steering nav adds Power Budget.
+
+**Festo / EBS pricing — what changed and why.**
+
+The first draft of `bom/full.md` carried catalogue ballpark prices for the Festo-supplied EBS components. After re-reading the **V2 sponsorship contract** (`marketing/sponsors/festo/convenio-festo-umotorsport-2026-v2-rev-busquets-18-03-26.docx`, Busquets review 2026-03-18), the per-line Festo prices were **stripped from the public page** and replaced with `redacted` markers. V2 added:
+
+- **NOVENA — Confidentiality.** All information accessed in the course of the agreement, 5 years post-termination, breach is "incumplimiento grave."
+- **OCTAVA — IP/trademark.** Limited, revocable license to use Festo brand under their guidelines; 7-day brand removal post-termination.
+- **DÉCIMA — Liability.** Festo disclaims liability; team indemnifies Festo against third-party claims.
+- **UNDÉCIMA — Jurisdiction:** Barcelona (was Madrid in V1).
+- **EXPONEN III** clarified the relationship as "patrocinio publicitario mediante aportaciones no dinerarias y acciones de visibilidad."
+- **SEGUNDA** new bullet: supply subject to availability; no obligation of continuous/exclusive supply.
+
+Cap on Festo's seasonal supply is **€1 500 incl. VAT per season** (Cláusula SEGUNDA-1). The team's reciprocal obligations (Cláusula TERCERA): logo on the kart, IG/LinkedIn tagging, Formula Student event invitations, sponsor listing on the team website. Term to 2026-12-31.
+
+V2 was returned by Festo on 2026-03-18 and was being sealed by Cristina (URJC marketing). Per Jorge's chat, as of late April the signed version had not been finalised, but the redaction posture is the same either way.
+
+**Price-research ledger kept in Drive.** Public-distributor price research (15 of 18 items priced from IAS Components, esd.equipment, Direct Pneumatics, Motion World; 3 still `?`) is preserved at `formula/formula_24-25-26/dv/kart/pneumatics/festo-public-distributor-prices-2026-04.md`. If Festo later confirms in writing that retail-equivalent estimates are publishable, the numbers can be moved straight back into the public BOM without re-research.
+
+**Other notable BOM facts captured.**
+
+- Orin: Silicon Highway 2023-04 invoice — net €1 821.29 + €36 shipping = **€1 857.29 transferred**, intra-EU reverse charge (0 % VAT on invoice). True project cost ~€2 247 once URJC self-accounts the 21 % reverse-charge VAT (URJC has limited input-VAT deduction as a public university). Footnote on the row explains.
+- Steering: salvaged 24 V geared DC motor from a discarded massage chair, run at 12 V, through a **15 : 1** 3D-printed planetary; AS5600 angle sensor on the shaft. Bench-measured ~2 kW stall capacity; normal operation 50–200 W. Off-the-shelf wiper motors don't replace it without an equivalent reduction stage and procurement is the limiting factor for the team.
+- Battery cells: 60× Molicel P42A bought from NKON for €230 (€3.83/cell), 52 in the 13S4P pack → €198. No 12 V auxiliary battery — 12 V rail comes from a buck regulator off the 48 V pack. Pack assembled by team; nickel strip + Kapton + 3D-printed PETG enclosure + fire-retardant foam liner.
+- Orin storage: 500 GB M.2 NVMe pulled from a personal laptop during a 2 TB upgrade. €0 to project. Big improvement on `apt`/builds/repos; no effect on autonomy runtime FPS.
+
+**Team-cost result.** ~€3 095 transferred to suppliers, ~€3 485 including the ~€390 reverse-charge VAT on the Orin. Page-level *market* total is redacted (the EBS row pulls the sum into non-disclosable territory); a non-Festo retail subtotal of ~€4 815 incl. VAT is shown as a partial reference.
+
+**Open follow-ups (not closed in this session).** Sponsors page on the public site to satisfy Cláusula TERCERA-4; pneumatic schematic on the EBS page; rechecking the BOM once V2 is signed and we have the green/red on what's publishable.
