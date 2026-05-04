@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Kart wiring — hand-crafted SVG
+  Layout: top-down kart view (top = front of kart, bottom = rear)
+  Real Festo product photos embedded via <image> tags from
+  ../../../emergency-braking/images/components/.
+  Edit this file directly; mkdocs serves the SVG as a static asset.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 2000 1500"
+     font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <defs>
+    <marker id="ar-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#444"/></marker>
+    <marker id="ar-red"  viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c62828"/></marker>
+    <marker id="ar-orn"  viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ef6c00"/></marker>
+    <marker id="ar-grn"  viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2e7d32"/></marker>
+    <marker id="ar-blu"  viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0277bd"/></marker>
+    <marker id="ar-ind"  viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#283593"/></marker>
+    <marker id="ar-purp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#6a1b9a"/></marker>
+
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1.4"/>
+      <feOffset dx="1" dy="2" result="offsetblur"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.18"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <style><![CDATA[
+      .name { font-size: 13px; font-weight: 700; fill: #111; }
+      .desc { font-size: 11px; fill: #444; }
+      .small { font-size: 10px; fill: #555; }
+      .mono { font-family: ui-monospace, 'SF Mono', Consolas, monospace; font-size: 10px; fill: #333; }
+      .zone-title { font-size: 11px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; }
+      .lbl { font-size: 11px; paint-order: stroke fill; stroke: #fff; stroke-width: 4px; stroke-linejoin: round; font-weight: 600; }
+      .lbl-sm { font-size: 10px; paint-order: stroke fill; stroke: #fff; stroke-width: 3.5px; stroke-linejoin: round; }
+      .title { font-size: 24px; font-weight: 800; fill: #111; letter-spacing: 0.3px; }
+      .subtitle { font-size: 12px; font-style: italic; fill: #555; }
+      .axis { font-size: 11px; font-weight: 700; fill: #999; letter-spacing: 1.6px; }
+    ]]></style>
+  </defs>
+
+  <!-- background -->
+  <rect width="2000" height="1500" fill="#fcfcfc"/>
+
+  <!-- title -->
+  <text class="title" x="1000" y="38" text-anchor="middle">Kart Electrical Wiring — Physical Layout</text>
+  <text class="subtitle" x="1000" y="60" text-anchor="middle">Top-down view: top = front of kart, bottom = rear. Real Festo product photos for the pneumatic brake chain.</text>
+
+  <!-- axis labels -->
+  <text x="22" y="160" class="axis" transform="rotate(-90 22 160)">FRONT</text>
+  <text x="22" y="1300" class="axis" transform="rotate(-90 22 1300)">REAR</text>
+
+  <!-- ===== LEGENDS ===== -->
+
+  <!-- wire-color legend (top-left) -->
+  <g transform="translate(40,80)" filter="url(#shadow)">
+    <rect width="240" height="170" fill="#ffffff" stroke="#999" stroke-width="1" rx="6"/>
+    <text x="14" y="22" class="name">Wire colors</text>
+    <line x1="14" y1="40" x2="48" y2="40" stroke="#222" stroke-width="3"/>
+    <text x="56" y="44" class="small">Black — GND</text>
+    <line x1="14" y1="62" x2="48" y2="62" stroke="#c62828" stroke-width="5"/>
+    <text x="56" y="66" class="small">Red — 12 V (bold = 48 V)</text>
+    <line x1="14" y1="84" x2="48" y2="84" stroke="#ef6c00" stroke-width="3"/>
+    <text x="56" y="88" class="small">Orange — 5 V</text>
+    <line x1="14" y1="106" x2="48" y2="106" stroke="#f9a825" stroke-width="3"/>
+    <text x="56" y="110" class="small">Yellow — 3.3 V</text>
+    <line x1="14" y1="128" x2="48" y2="128" stroke="#666" stroke-width="2"/>
+    <text x="56" y="132" class="small">Gray — analog / digital signal</text>
+    <line x1="14" y1="148" x2="48" y2="148" stroke="#0277bd" stroke-width="4"/>
+    <text x="56" y="152" class="small">Blue — pneumatic (compressed air)</text>
+  </g>
+
+  <!-- acronym legend (top-right) -->
+  <g transform="translate(1620,80)" filter="url(#shadow)">
+    <rect width="340" height="270" fill="#ffffff" stroke="#999" stroke-width="1" rx="6"/>
+    <text x="14" y="22" class="name">Acronyms</text>
+    <text x="14" y="44"  class="small"><tspan font-weight="700">SDC</tspan> = Shutdown Circuit (safety series chain)</text>
+    <text x="14" y="60"  class="small"><tspan font-weight="700">ESC</tspan> = Electronic Speed Controller (motor ctrl)</text>
+    <text x="14" y="76"  class="small"><tspan font-weight="700">EBS</tspan> = Emergency Braking System (Festo VUVS, NO)</text>
+    <text x="14" y="92"  class="small"><tspan font-weight="700">ASB</tspan> = Autonomous Service Brake (proportional)</text>
+    <text x="14" y="108" class="small"><tspan font-weight="700">VPPM</tspan> = Festo proportional pressure-modulator</text>
+    <text x="14" y="124" class="small"><tspan font-weight="700">VUVS</tspan> = Festo solenoid valve product family</text>
+    <text x="14" y="140" class="small"><tspan font-weight="700">ADC</tspan> = Analog-to-Digital input · <tspan font-weight="700">DAC</tspan> = D-to-A out</text>
+    <text x="14" y="156" class="small"><tspan font-weight="700">PWM</tspan> = pulse-width-modulated motor signal</text>
+    <text x="14" y="172" class="small"><tspan font-weight="700">SPDT</tspan> = single-pole double-throw (mode switch)</text>
+    <text x="14" y="188" class="small"><tspan font-weight="700">I²C</tspan> = serial bus (SDA + SCL lines)</text>
+    <text x="14" y="204" class="small"><tspan font-weight="700">RES</tspan> = Remote E-Stop (radio-controlled)</text>
+    <text x="14" y="220" class="small"><tspan font-weight="700">KEY</tspan> = ignition key switch</text>
+    <text x="14" y="236" class="small"><tspan font-weight="700">CMD_ACC</tspan>, <tspan font-weight="700">CMD_BRAKE</tspan> = throttle &amp; brake</text>
+    <text x="14" y="252" class="small">     command signals from the medulla DAC</text>
+  </g>
+
+  <!-- ===== ZONE BACKGROUNDS (faint, for visual anchoring) ===== -->
+
+  <!-- Steering &amp; dashboard (front, top) -->
+  <rect x="320" y="80" width="1280" height="200" fill="#fff8e1" stroke="#ffb300" stroke-width="1.5" stroke-dasharray="4 4" rx="10" opacity="0.45"/>
+  <text x="340" y="106" class="zone-title" fill="#ff8f00">Steering &amp; Dashboard — front of kart</text>
+
+  <!-- Cockpit (driver controls) -->
+  <rect x="500" y="300" width="780" height="150" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="1.5" stroke-dasharray="4 4" rx="10" opacity="0.4"/>
+  <text x="520" y="326" class="zone-title" fill="#6a1b9a">Cockpit — driver controls</text>
+
+  <!-- Pneumatics (mid-left, with photos) -->
+  <rect x="40" y="460" width="380" height="620" fill="#fffde7" stroke="#827717" stroke-width="1.5" stroke-dasharray="4 4" rx="10" opacity="0.55"/>
+  <text x="60" y="486" class="zone-title" fill="#827717">Pneumatic Brake System — Festo (mid-left)</text>
+
+  <!-- Brain (center) -->
+  <rect x="540" y="480" width="780" height="220" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5" stroke-dasharray="4 4" rx="10" opacity="0.45"/>
+  <text x="560" y="506" class="zone-title" fill="#0d47a1">Brain — kart_medulla &amp; helpers</text>
+
+  <!-- Safety / chassis-mounted (Impact + RES) -->
+  <rect x="560" y="730" width="600" height="130" fill="#ffebee" stroke="#b71c1c" stroke-width="1.5" stroke-dasharray="4 4" rx="10" opacity="0.45"/>
+  <text x="580" y="756" class="zone-title" fill="#b71c1c">Safety chain — chassis-mounted (part of SDC)</text>
+
+  <!-- Perception (right column) -->
+  <rect x="1340" y="80" width="260" height="620" fill="#e8eaf6" stroke="#283593" stroke-width="1.5" stroke-dasharray="4 4" rx="10" opacity="0.4"/>
+  <text x="1360" y="106" class="zone-title" fill="#283593">Perception — right column</text>
+
+  <!-- Power &amp; drive (rear) -->
+  <rect x="40" y="1170" width="1920" height="240" fill="#fff3e0" stroke="#e65100" stroke-width="1.5" stroke-dasharray="4 4" rx="10" opacity="0.5"/>
+  <text x="60" y="1196" class="zone-title" fill="#e65100">Power &amp; Drive — rear of kart</text>
+
+  <!-- ==================== POWER & DRIVE (rear band) ==================== -->
+
+  <!-- Battery 13S LiPo: 13 stacked cell pairs (long+short vertical lines) -->
+  <g transform="translate(80,1230)" filter="url(#shadow)">
+    <rect width="160" height="140" fill="#ffe082" stroke="#ff6f00" stroke-width="2" rx="6"/>
+    <!-- 13 cell pairs across the icon area -->
+    <g stroke="#ff6f00" stroke-width="2" fill="none">
+      <!-- generated cells: long bar (positive), short bar (negative), repeated -->
+      <line x1="20"  y1="22" x2="20"  y2="62"/>
+      <line x1="26"  y1="32" x2="26"  y2="52"/>
+      <line x1="32"  y1="22" x2="32"  y2="62"/>
+      <line x1="38"  y1="32" x2="38"  y2="52"/>
+      <line x1="44"  y1="22" x2="44"  y2="62"/>
+      <line x1="50"  y1="32" x2="50"  y2="52"/>
+      <line x1="56"  y1="22" x2="56"  y2="62"/>
+      <line x1="62"  y1="32" x2="62"  y2="52"/>
+      <line x1="68"  y1="22" x2="68"  y2="62"/>
+      <line x1="74"  y1="32" x2="74"  y2="52"/>
+      <line x1="80"  y1="22" x2="80"  y2="62"/>
+      <line x1="86"  y1="32" x2="86"  y2="52"/>
+      <line x1="92"  y1="22" x2="92"  y2="62"/>
+      <line x1="98"  y1="32" x2="98"  y2="52"/>
+      <line x1="104" y1="22" x2="104" y2="62"/>
+      <line x1="110" y1="32" x2="110" y2="52"/>
+      <line x1="116" y1="22" x2="116" y2="62"/>
+      <line x1="122" y1="32" x2="122" y2="52"/>
+      <line x1="128" y1="22" x2="128" y2="62"/>
+      <line x1="134" y1="32" x2="134" y2="52"/>
+      <line x1="140" y1="22" x2="140" y2="62"/>
+    </g>
+    <!-- terminal markers + vertical lines connecting end cells -->
+    <text x="14" y="80" class="small" fill="#ff6f00" font-weight="700">−</text>
+    <text x="138" y="80" class="small" fill="#ff6f00" font-weight="700">+</text>
+    <text x="80" y="100" class="name" text-anchor="middle">Battery 13S LiPo</text>
+    <text x="80" y="118" class="small" text-anchor="middle">~48 V nominal</text>
+    <text x="80" y="132" class="small" text-anchor="middle" font-style="italic">(rear-left)</text>
+  </g>
+
+  <!-- Buck regulator -->
+  <g transform="translate(260,1240)" filter="url(#shadow)">
+    <rect width="160" height="120" fill="#ffe082" stroke="#ff6f00" stroke-width="1.6" rx="6"/>
+    <text x="80" y="32" class="name" text-anchor="middle">Buck Regulator</text>
+    <text x="80" y="52" class="desc" text-anchor="middle">48 V → 12 V</text>
+    <text x="80" y="68" class="desc" text-anchor="middle">(single conversion)</text>
+    <text x="80" y="92" class="small" text-anchor="middle" font-style="italic">no kart-wide 5 V rail</text>
+    <text x="80" y="108" class="small" text-anchor="middle" font-style="italic">— Jetson regulates 5 V</text>
+  </g>
+
+  <!-- KEY ignition switch (drawn as a toggle: one terminal, hinged arm, second terminal) -->
+  <g transform="translate(440,1240)" filter="url(#shadow)">
+    <rect width="120" height="120" fill="#ffcdd2" stroke="#b71c1c" stroke-width="1.6" rx="6"/>
+    <!-- toggle schematic: two dots and a hinged line going up -->
+    <g stroke="#b71c1c" stroke-width="2" fill="none">
+      <circle cx="40" cy="50" r="3" fill="#b71c1c"/>
+      <circle cx="80" cy="50" r="3" fill="#b71c1c"/>
+      <line x1="40" y1="50" x2="76" y2="32"/>
+    </g>
+    <text x="60" y="80" class="name" text-anchor="middle">KEY</text>
+    <text x="60" y="96" class="small" text-anchor="middle">ignition switch</text>
+    <text x="60" y="112" class="small" text-anchor="middle" fill="#b71c1c" font-style="italic">part of SDC</text>
+  </g>
+
+  <!-- ESC (motor controller) -->
+  <g transform="translate(1100,1240)" filter="url(#shadow)">
+    <rect width="220" height="120" fill="#c8e6c9" stroke="#1b5e20" stroke-width="1.6" rx="6"/>
+    <text x="110" y="34" class="name" text-anchor="middle">Motor Controller (ESC)</text>
+    <text x="110" y="56" class="desc" text-anchor="middle">Electronic Speed Controller</text>
+    <text x="110" y="74" class="desc" text-anchor="middle">AliExpress · 48 V BLDC</text>
+    <text x="110" y="98" class="small" text-anchor="middle" font-style="italic">key-wire gated by SDC relay</text>
+    <text x="110" y="112" class="small" text-anchor="middle" font-style="italic">CMD_ACC analog input</text>
+  </g>
+
+  <!-- BLDC motor (rotor circle with M, three terminals U V W) -->
+  <g transform="translate(1380,1220)" filter="url(#shadow)">
+    <rect width="200" height="160" fill="#c8e6c9" stroke="#1b5e20" stroke-width="2" rx="6"/>
+    <!-- rotor circle -->
+    <circle cx="60" cy="70" r="36" fill="#fff" stroke="#1b5e20" stroke-width="2"/>
+    <text x="60" y="78" class="name" text-anchor="middle" font-size="22" font-weight="700">M</text>
+    <!-- three phase terminals -->
+    <g stroke="#1b5e20" stroke-width="2" fill="none">
+      <line x1="60" y1="34" x2="60" y2="14"/>
+      <line x1="92" y1="92" x2="106" y2="100"/>
+      <line x1="28" y1="92" x2="14" y2="100"/>
+    </g>
+    <text x="60" y="10" class="small" text-anchor="middle" fill="#1b5e20" font-weight="700">U</text>
+    <text x="14" y="112" class="small" text-anchor="middle" fill="#1b5e20" font-weight="700">V</text>
+    <text x="106" y="112" class="small" text-anchor="middle" fill="#1b5e20" font-weight="700">W</text>
+    <text x="150" y="60" class="name" text-anchor="middle">Motor</text>
+    <text x="150" y="78" class="desc" text-anchor="middle">3-phase BLDC</text>
+    <text x="150" y="94" class="desc" text-anchor="middle">(traction)</text>
+    <text x="150" y="116" class="small" text-anchor="middle" font-style="italic">rear-right</text>
+  </g>
+
+  <!-- ==================== HOOP KILL SWITCHES (rear sides) ==================== -->
+
+  <!-- Kill 1 (mushroom button: red dome on stem) -->
+  <g transform="translate(80,910)" filter="url(#shadow)">
+    <rect width="200" height="80" fill="#ffcdd2" stroke="#b71c1c" stroke-width="1.6" rx="6"/>
+    <!-- mushroom: dome + stem -->
+    <g>
+      <ellipse cx="32" cy="30" rx="16" ry="10" fill="#d32f2f" stroke="#7f0000" stroke-width="1.5"/>
+      <rect x="26" y="36" width="12" height="14" fill="#444" stroke="#000" stroke-width="0.6"/>
+    </g>
+    <text x="56" y="30" class="name">Kill 1</text>
+    <text x="56" y="46" class="small">Hoop, left mushroom</text>
+    <text x="56" y="62" class="small" fill="#b71c1c" font-style="italic">part of SDC</text>
+  </g>
+
+  <!-- Kill 2 (mushroom, hoop right) -->
+  <g transform="translate(1700,910)" filter="url(#shadow)">
+    <rect width="200" height="80" fill="#ffcdd2" stroke="#b71c1c" stroke-width="1.6" rx="6"/>
+    <g>
+      <ellipse cx="32" cy="30" rx="16" ry="10" fill="#d32f2f" stroke="#7f0000" stroke-width="1.5"/>
+      <rect x="26" y="36" width="12" height="14" fill="#444" stroke="#000" stroke-width="0.6"/>
+    </g>
+    <text x="56" y="30" class="name">Kill 2</text>
+    <text x="56" y="46" class="small">Hoop, right mushroom</text>
+    <text x="56" y="62" class="small" fill="#b71c1c" font-style="italic">part of SDC</text>
+  </g>
+
+  <!-- ==================== STEERING & DASHBOARD (front, top band) ==================== -->
+
+  <!-- Kill 3 (dashboard mushroom) -->
+  <g transform="translate(360,135)" filter="url(#shadow)">
+    <rect width="180" height="120" fill="#ffcdd2" stroke="#b71c1c" stroke-width="1.6" rx="6"/>
+    <g>
+      <ellipse cx="90" cy="44" rx="22" ry="14" fill="#d32f2f" stroke="#7f0000" stroke-width="1.5"/>
+      <rect x="80" y="54" width="20" height="20" fill="#444" stroke="#000" stroke-width="0.6"/>
+    </g>
+    <text x="90" y="92" class="name" text-anchor="middle">Kill 3</text>
+    <text x="90" y="106" class="small" text-anchor="middle">Dashboard mushroom</text>
+    <text x="90" y="118" class="small" text-anchor="middle" fill="#b71c1c" font-style="italic">part of SDC</text>
+  </g>
+
+  <!-- AS5600 (steering angle sensor, on shaft) -->
+  <g transform="translate(560,150)" filter="url(#shadow)">
+    <rect width="180" height="100" fill="#e1f5fe" stroke="#0277bd" stroke-width="1.6" rx="6"/>
+    <!-- magnetic-sensor schematic: small chip + dotted shaft below -->
+    <rect x="60" y="14" width="60" height="26" fill="#fff" stroke="#0277bd" stroke-width="1.4" rx="2"/>
+    <text x="90" y="32" class="small" text-anchor="middle" font-weight="700">AS5600</text>
+    <line x1="56" y1="46" x2="124" y2="46" stroke="#0277bd" stroke-width="1.6" stroke-dasharray="3 3"/>
+    <text x="90" y="68" class="name" text-anchor="middle">Steering angle</text>
+    <text x="90" y="82" class="small" text-anchor="middle">I²C (SDA + SCL)</text>
+    <text x="90" y="96" class="small" text-anchor="middle" font-style="italic">on steering shaft</text>
+  </g>
+
+  <!-- Cytron MD25HV (H-bridge driver, no good photo, labeled box) -->
+  <g transform="translate(760,150)" filter="url(#shadow)">
+    <rect width="200" height="100" fill="#ffe0b2" stroke="#ef6c00" stroke-width="1.6" rx="6"/>
+    <!-- chip body schematic -->
+    <rect x="14" y="14" width="172" height="40" fill="#fff" stroke="#ef6c00" stroke-width="1.4" rx="2"/>
+    <text x="100" y="38" class="small" text-anchor="middle" font-weight="700">MD25HV</text>
+    <text x="100" y="68" class="name" text-anchor="middle">Cytron H-bridge</text>
+    <text x="100" y="84" class="desc" text-anchor="middle">25 A · 12 V</text>
+    <text x="100" y="96" class="small" text-anchor="middle" font-style="italic">drives steering motor</text>
+  </g>
+
+  <!-- Steering motor (smaller motor symbol) -->
+  <g transform="translate(980,140)" filter="url(#shadow)">
+    <rect width="160" height="120" fill="#ffe0b2" stroke="#ef6c00" stroke-width="1.6" rx="6"/>
+    <circle cx="50" cy="50" r="26" fill="#fff" stroke="#ef6c00" stroke-width="2"/>
+    <text x="50" y="58" class="name" text-anchor="middle" font-size="18" font-weight="700">M</text>
+    <g stroke="#ef6c00" stroke-width="2"><line x1="78" y1="50" x2="92" y2="50"/></g>
+    <text x="116" y="42" class="name" text-anchor="middle">Steering</text>
+    <text x="116" y="58" class="name" text-anchor="middle">Motor</text>
+    <text x="116" y="78" class="small" text-anchor="middle">DC 12 V</text>
+  </g>
+
+  <!-- ==================== COCKPIT band ==================== -->
+
+  <!-- Accelerator pedal -->
+  <g transform="translate(480,360)" filter="url(#shadow)">
+    <rect width="220" height="76" fill="#e1f5fe" stroke="#0277bd" stroke-width="1.6" rx="6"/>
+    <text x="110" y="26" class="name" text-anchor="middle">Accelerator pedal</text>
+    <text x="110" y="44" class="desc" text-anchor="middle">Linear Hall (0–5 V)</text>
+    <text x="110" y="62" class="mono" text-anchor="middle">PEDAL_ACC__0_5V</text>
+  </g>
+
+  <!-- Brake pedal -->
+  <g transform="translate(720,360)" filter="url(#shadow)">
+    <rect width="220" height="76" fill="#e1f5fe" stroke="#0277bd" stroke-width="1.6" rx="6"/>
+    <text x="110" y="26" class="name" text-anchor="middle">Brake pedal</text>
+    <text x="110" y="44" class="desc" text-anchor="middle">Linear Hall (0–5 V)</text>
+    <text x="110" y="62" class="mono" text-anchor="middle">PEDAL_BRAKE__0_5V</text>
+  </g>
+
+  <!-- Mode switch SPDT (manual / auto) -->
+  <g transform="translate(960,365)" filter="url(#shadow)">
+    <rect width="180" height="66" fill="#f3e5f5" stroke="#6a1b9a" stroke-width="1.6" rx="6"/>
+    <!-- SPDT schematic: one input dot, two output dots, hinged arm -->
+    <g stroke="#6a1b9a" stroke-width="1.6" fill="none">
+      <circle cx="22" cy="30" r="2.4" fill="#6a1b9a"/>
+      <circle cx="56" cy="20" r="2.4" fill="#6a1b9a"/>
+      <circle cx="56" cy="42" r="2.4" fill="#6a1b9a"/>
+      <line x1="22" y1="30" x2="54" y2="20"/>
+    </g>
+    <text x="115" y="28" class="name" text-anchor="middle">Mode Switch</text>
+    <text x="115" y="44" class="desc" text-anchor="middle">SPDT · Manual / Auto</text>
+    <text x="115" y="58" class="small" text-anchor="middle" font-style="italic">throttle source</text>
+  </g>
+
+  <!-- ==================== BRAIN ==================== -->
+
+  <!-- ×2 op-amp (triangle stencil) -->
+  <g transform="translate(600,560)" filter="url(#shadow)">
+    <rect width="120" height="60" fill="#e1f5fe" stroke="#0277bd" stroke-width="1.6" rx="6"/>
+    <polygon points="14,12 14,48 50,30" fill="#fff" stroke="#0277bd" stroke-width="1.6"/>
+    <text x="32" y="34" class="small" text-anchor="middle" font-weight="700">×2</text>
+    <text x="84" y="22" class="name" text-anchor="middle">Op-amp</text>
+    <text x="84" y="38" class="small" text-anchor="middle">0–5 V</text>
+    <text x="84" y="52" class="small" text-anchor="middle">→ 0–10 V</text>
+  </g>
+
+  <!-- kart_medulla (CENTER) -->
+  <g transform="translate(740,520)" filter="url(#shadow)">
+    <rect width="240" height="140" fill="#bbdefb" stroke="#0d47a1" stroke-width="2.5" rx="8"/>
+    <text x="120" y="32" class="name" font-size="15" text-anchor="middle">kart_medulla</text>
+    <line x1="20" y1="42" x2="220" y2="42" stroke="#0d47a1" stroke-width="0.8" opacity="0.4"/>
+    <text x="120" y="60" class="desc" text-anchor="middle">ESP32-S3 + interface PCB</text>
+    <text x="120" y="78" class="desc" text-anchor="middle">MCP4922 DAC · MOSFETs</text>
+    <text x="120" y="96" class="desc" text-anchor="middle">level shifters · CAN</text>
+    <text x="120" y="118" class="small" text-anchor="middle" font-style="italic">5 V from Jetson USB-C</text>
+    <text x="120" y="132" class="small" text-anchor="middle" font-style="italic">central brain — see kart-medulla/</text>
+  </g>
+
+  <!-- SDC Relay (with coil + NO contacts schematic) -->
+  <g transform="translate(1020,560)" filter="url(#shadow)">
+    <rect width="220" height="120" fill="#ffcdd2" stroke="#b71c1c" stroke-width="1.6" rx="6"/>
+    <text x="110" y="24" class="name" text-anchor="middle">SDC Relay</text>
+    <!-- coil zigzag -->
+    <path d="M 18 50 q 5 -10 10 0 q 5 10 10 0 q 5 -10 10 0 q 5 10 10 0 q 5 -10 10 0" fill="none" stroke="#b71c1c" stroke-width="1.8"/>
+    <text x="55" y="78" class="small" text-anchor="middle">12 V coil</text>
+    <!-- NO contact symbol -->
+    <line x1="125" y1="50" x2="148" y2="50" stroke="#b71c1c" stroke-width="2"/>
+    <line x1="158" y1="42" x2="180" y2="56" stroke="#b71c1c" stroke-width="2"/>
+    <circle cx="148" cy="50" r="2" fill="#b71c1c"/>
+    <circle cx="180" cy="56" r="2" fill="#b71c1c"/>
+    <text x="155" y="78" class="small" text-anchor="middle">NO contacts</text>
+    <text x="110" y="100" class="desc" text-anchor="middle">contacts gate ESC key-wire</text>
+    <text x="110" y="114" class="small" text-anchor="middle" font-style="italic">drops on SDC open → motor cut</text>
+  </g>
+
+  <!-- Sensor bundle annotation (subset of medulla I/O) -->
+  <g transform="translate(1020,690)" filter="url(#shadow)">
+    <rect width="220" height="68" fill="#f1f8e9" stroke="#558b2f" stroke-width="1.4" stroke-dasharray="3 2" rx="6"/>
+    <text x="110" y="22" class="name" text-anchor="middle">Sensor bundle (to medulla)</text>
+    <text x="14" y="40" class="small">3× pressure (24 V → ADC)</text>
+    <text x="14" y="54" class="small">3× motor Hall (5 V → ADC)</text>
+    <text x="14" y="64" class="small">2× hydraulic ADC · CAN_TX/RX</text>
+  </g>
+
+  <!-- ==================== SAFETY chassis (Impact, RES) ==================== -->
+
+  <!-- Impact switch -->
+  <g transform="translate(620,770)" filter="url(#shadow)">
+    <rect width="200" height="80" fill="#ffcdd2" stroke="#b71c1c" stroke-width="1.6" rx="6"/>
+    <!-- inertia ball + contacts -->
+    <g stroke="#b71c1c" stroke-width="2" fill="none">
+      <line x1="20" y1="42" x2="50" y2="42"/>
+      <line x1="60" y1="42" x2="90" y2="42"/>
+      <circle cx="55" cy="32" r="6" fill="#b71c1c"/>
+    </g>
+    <text x="140" y="32" class="name" text-anchor="middle">Impact switch</text>
+    <text x="140" y="50" class="desc" text-anchor="middle">crash sensor (inertia)</text>
+    <text x="140" y="68" class="small" text-anchor="middle" fill="#b71c1c" font-style="italic">part of SDC</text>
+  </g>
+
+  <!-- RES (Remote Emergency Stop) -->
+  <g transform="translate(840,770)" filter="url(#shadow)">
+    <rect width="220" height="80" fill="#ffcdd2" stroke="#b71c1c" stroke-width="1.6" rx="6"/>
+    <!-- antenna icon -->
+    <g stroke="#b71c1c" stroke-width="2" fill="none">
+      <line x1="30" y1="20" x2="30" y2="48"/>
+      <path d="M 22 26 q 8 -8 16 0" stroke-width="1.5"/>
+      <path d="M 18 22 q 12 -12 24 0" stroke-width="1.5"/>
+    </g>
+    <text x="140" y="30" class="name" text-anchor="middle">Remote E-Stop (RES)</text>
+    <text x="140" y="48" class="desc" text-anchor="middle">radio-controlled relay</text>
+    <text x="140" y="66" class="small" text-anchor="middle" fill="#b71c1c" font-style="italic">part of SDC</text>
+  </g>
+
+  <!-- ==================== PERCEPTION (right column) ==================== -->
+
+  <!-- ZED2 stereo camera -->
+  <g transform="translate(1380,140)" filter="url(#shadow)">
+    <rect width="200" height="100" fill="#e8eaf6" stroke="#283593" stroke-width="1.6" rx="6"/>
+    <!-- two lenses -->
+    <g>
+      <circle cx="34" cy="40" r="14" fill="#222" stroke="#283593" stroke-width="2"/>
+      <circle cx="34" cy="40" r="6" fill="#0d47a1"/>
+      <circle cx="76" cy="40" r="14" fill="#222" stroke="#283593" stroke-width="2"/>
+      <circle cx="76" cy="40" r="6" fill="#0d47a1"/>
+    </g>
+    <text x="55" y="82" class="name" text-anchor="middle">ZED2</text>
+    <text x="155" y="40" class="name" text-anchor="middle">Stereo camera</text>
+    <text x="155" y="58" class="desc" text-anchor="middle">USB 3.0</text>
+  </g>
+
+  <!-- Jetson AGX Orin -->
+  <g transform="translate(1380,540)" filter="url(#shadow)">
+    <rect width="220" height="140" fill="#e8eaf6" stroke="#283593" stroke-width="1.6" rx="6"/>
+    <!-- heatsink lines -->
+    <g stroke="#283593" stroke-width="1.4">
+      <line x1="14" y1="14" x2="206" y2="14"/>
+      <line x1="14" y1="20" x2="206" y2="20"/>
+      <line x1="14" y1="26" x2="206" y2="26"/>
+      <line x1="14" y1="32" x2="206" y2="32"/>
+    </g>
+    <text x="110" y="58" class="name" text-anchor="middle">Jetson AGX Orin</text>
+    <text x="110" y="76" class="desc" text-anchor="middle">Developer Kit</text>
+    <text x="110" y="94" class="desc" text-anchor="middle">12 V barrel jack</text>
+    <text x="110" y="114" class="small" text-anchor="middle" font-style="italic">USB-C to medulla (5 V + data)</text>
+    <text x="110" y="128" class="small" text-anchor="middle" font-style="italic">USB-A to ZED2</text>
+  </g>
+
+  <!-- ==================== EDGES ==================== -->
+
+  <!-- Power: Battery → Buck (48 V) -->
+  <line x1="240" y1="1300" x2="260" y2="1300" stroke="#c62828" stroke-width="6" marker-end="url(#ar-red)"/>
+  <text x="250" y="1290" class="lbl" fill="#c62828" text-anchor="middle">48 V</text>
+
+  <!-- Battery → ESC (48 V high current along bottom) -->
+  <polyline points="160,1370 160,1410 1110,1410 1110,1360" stroke="#c62828" stroke-width="7" fill="none" marker-end="url(#ar-red)"/>
+  <text x="640" y="1404" class="lbl" fill="#c62828" text-anchor="middle">48 V high-current to ESC</text>
+
+  <!-- 12 V rail exits Buck → up the right-column gutter (x=1290) → branches to Cytron, Jetson, SDC relay -->
+  <polyline points="380,1240 380,1140 1290,1140 1290,540" stroke="#c62828" stroke-width="3.5" fill="none"/>
+  <text x="700" y="1132" class="lbl" fill="#c62828">12 V rail</text>
+
+  <!-- 12 V branch: rail @ (1290,540) → Jetson barrel jack -->
+  <line x1="1290" y1="540" x2="1380" y2="540" stroke="#c62828" stroke-width="2.5" marker-end="url(#ar-red)"/>
+  <text x="1330" y="532" class="lbl-sm" fill="#c62828" text-anchor="middle">12 V → Jetson</text>
+
+  <!-- 12 V branch: rail @ (1290,1140) → SDC relay coil -->
+  <line x1="1290" y1="630" x2="1240" y2="630" stroke="#c62828" stroke-width="2.5" marker-end="url(#ar-red)"/>
+  <text x="1265" y="622" class="lbl-sm" fill="#c62828" text-anchor="middle">12 V → relay coil</text>
+
+  <!-- 12 V branch: rail → Cytron (top route, via right column up to top channel) -->
+  <polyline points="1290,540 1290,275 860,275 860,250" stroke="#c62828" stroke-width="2.5" fill="none" marker-end="url(#ar-red)"/>
+  <text x="1090" y="268" class="lbl-sm" fill="#c62828" text-anchor="middle">12 V → Cytron</text>
+
+  <!-- 12 V → KEY (short stub from rail down to KEY) -->
+  <polyline points="380,1240 380,1180 500,1180 500,1240" stroke="#c62828" stroke-width="2" fill="none"/>
+  <text x="395" y="1172" class="lbl-sm" fill="#c62828">12 V → KEY (SDC source)</text>
+
+  <!-- ESC → Motor (3-phase) -->
+  <line x1="1320" y1="1300" x2="1380" y2="1300" stroke="#2e7d32" stroke-width="5" marker-end="url(#ar-grn)"/>
+  <text x="1350" y="1292" class="lbl" fill="#2e7d32" text-anchor="middle">U V W</text>
+
+  <!-- Jetson USB-C → medulla (5 V power + data, orange thick) -->
+  <polyline points="1380,610 1340,610 1340,570 980,570" stroke="#ef6c00" stroke-width="3.5" fill="none" marker-end="url(#ar-orn)"/>
+  <text x="1170" y="562" class="lbl-sm" fill="#ef6c00" text-anchor="middle">5 V (USB-C to ESP32) + data</text>
+
+  <!-- ZED2 → Jetson (USB 3.0) -->
+  <polyline points="1480,240 1480,540" stroke="#283593" stroke-width="2.5" fill="none" marker-end="url(#ar-ind)"/>
+  <text x="1488" y="400" class="lbl-sm" fill="#283593">USB 3.0</text>
+
+  <!-- AS5600 → medulla (I²C) -->
+  <polyline points="650,250 650,470 760,470 760,520" stroke="#666" stroke-width="2" fill="none" marker-end="url(#ar-gray)"/>
+  <text x="658" y="464" class="lbl-sm" fill="#444">I²C SDA/SCL</text>
+
+  <!-- medulla → Cytron (PWM + DIR) -->
+  <polyline points="820,520 820,470 860,470 860,250" stroke="#666" stroke-width="2" fill="none" marker-end="url(#ar-gray)"/>
+  <text x="868" y="464" class="lbl-sm" fill="#444">PWM + DIR</text>
+
+  <!-- Cytron → Steering motor (M+ / M−) -->
+  <line x1="960" y1="200" x2="980" y2="200" stroke="#ef6c00" stroke-width="3" marker-end="url(#ar-orn)"/>
+  <text x="970" y="192" class="lbl-sm" fill="#ef6c00" text-anchor="middle">M± 12 V</text>
+
+  <!-- Acc pedal → medulla (ADC) -->
+  <polyline points="600,436 600,490 800,490 800,520" stroke="#666" stroke-width="2" fill="none" marker-end="url(#ar-gray)"/>
+  <text x="608" y="484" class="lbl-sm" fill="#444">PEDAL_ACC__0_5V</text>
+
+  <!-- Brake pedal → medulla (ADC) -->
+  <polyline points="830,436 830,520" stroke="#666" stroke-width="2" fill="none" marker-end="url(#ar-gray)"/>
+  <text x="838" y="490" class="lbl-sm" fill="#444">PEDAL_BRAKE__0_5V</text>
+
+  <!-- Acc pedal → Mode switch (manual bypass NC). Routed up + across cockpit gutter (y=350) + down -->
+  <polyline points="700,360 700,348 1050,348 1050,365" stroke="#888" stroke-width="1.8" stroke-dasharray="5 3" fill="none" marker-end="url(#ar-gray)"/>
+  <text x="830" y="342" class="lbl-sm" fill="#666" text-anchor="middle">manual bypass (NC contact)</text>
+
+  <!-- medulla → Mode switch (CMD_ACC). Up via x=1010 channel into mode switch bottom -->
+  <polyline points="970,520 970,460 1010,460 1010,431" stroke="#666" stroke-width="2" fill="none" marker-end="url(#ar-gray)"/>
+  <text x="978" y="454" class="lbl-sm" fill="#444">CMD_ACC (DAC1)</text>
+
+  <!-- Mode switch → ESC (gated CMD_ACC) -->
+  <polyline points="1050,431 1050,1180 1180,1180 1180,1240" stroke="#666" stroke-width="2" fill="none" marker-end="url(#ar-gray)"/>
+
+  <!-- medulla → op-amp (CMD_BRAKE 0–5V) -->
+  <polyline points="740,580 720,580 720,590" stroke="#666" stroke-width="2" fill="none" marker-end="url(#ar-gray)"/>
+  <text x="678" y="572" class="lbl-sm" fill="#444" text-anchor="end">CMD_BRAKE 0–5 V (DAC2)</text>
+
+  <!-- op-amp → VPPM (CMD_BRAKE 0–10V, into pneumatic zone) -->
+  <polyline points="600,590 460,590 460,560 240,560" stroke="#666" stroke-width="2" fill="none" marker-end="url(#ar-gray)"/>
+  <text x="350" y="554" class="lbl-sm" fill="#444">CMD_BRAKE 0–10 V → VPPM</text>
+
+  <!-- Pneumatic: VPPM → brake actuator -->
+  <polyline points="220,640 240,640 240,750" stroke="#0277bd" stroke-width="4" fill="none" marker-end="url(#ar-blu)"/>
+  <text x="248" y="700" class="lbl-sm" fill="#0277bd">air (regulated)</text>
+
+  <!-- Pneumatic: EBS → brake actuator -->
+  <polyline points="220,770 240,770" stroke="#0277bd" stroke-width="4" fill="none" marker-end="url(#ar-blu)"/>
+  <text x="230" y="762" class="lbl-sm" fill="#0277bd" text-anchor="middle">air (parallel)</text>
+
+  <!-- SDC chain: KEY → Kill1 -->
+  <polyline points="500,1240 500,1100 170,1100 170,990" stroke="#b71c1c" stroke-width="2.4" stroke-dasharray="6 4" fill="none" marker-end="url(#ar-red)"/>
+  <text x="190" y="1092" class="lbl-sm" fill="#b71c1c">SDC chain</text>
+
+  <!-- SDC chain: Kill1 → Impact -->
+  <polyline points="170,910 170,810 620,810" stroke="#b71c1c" stroke-width="2.4" stroke-dasharray="6 4" fill="none" marker-end="url(#ar-red)"/>
+
+  <!-- SDC chain: Impact → RES -->
+  <line x1="820" y1="810" x2="840" y2="810" stroke="#b71c1c" stroke-width="2.4" stroke-dasharray="6 4" marker-end="url(#ar-red)"/>
+
+  <!-- SDC chain: RES → Kill 2 -->
+  <polyline points="1060,810 1790,810 1790,910" stroke="#b71c1c" stroke-width="2.4" stroke-dasharray="6 4" fill="none" marker-end="url(#ar-red)"/>
+
+  <!-- SDC chain: Kill 2 → Kill 3 (long route over the top to dashboard) -->
+  <polyline points="1700,940 1320,940 1320,260 540,260 540,200 540,135 540,135" stroke="#b71c1c" stroke-width="2.4" stroke-dasharray="6 4" fill="none"/>
+
+  <!-- Kill 3 → SDC relay coil. Routed left of cockpit zone (x=460) down to relay top -->
+  <polyline points="450,255 450,540 1130,540 1130,560" stroke="#b71c1c" stroke-width="2.4" stroke-dasharray="6 4" fill="none" marker-end="url(#ar-red)"/>
+  <text x="458" y="534" class="lbl-sm" fill="#b71c1c">SDC bus → relay coil</text>
+
+  <!-- 24 V coil supply: from SDC relay → EBS coil and ASB coil. Routed via x=480 channel (between pneumatics and brain), then down -->
+  <polyline points="1020,640 480,640 480,770 220,770" stroke="#b71c1c" stroke-width="2.4" stroke-dasharray="6 4" fill="none" marker-end="url(#ar-red)"/>
+  <text x="488" y="700" class="lbl-sm" fill="#b71c1c">24 V coil rail (gated by SDC) → EBS</text>
+
+  <polyline points="480,770 480,950 220,950" stroke="#b71c1c" stroke-width="2.4" stroke-dasharray="6 4" fill="none" marker-end="url(#ar-red)"/>
+  <text x="248" y="942" class="lbl-sm" fill="#b71c1c">→ ASB coil</text>
+
+  <!-- Relay NO contacts → ESC key-wire -->
+  <polyline points="1180,680 1180,1240" stroke="#b71c1c" stroke-width="2" fill="none" marker-end="url(#ar-red)"/>
+  <text x="1188" y="950" class="lbl-sm" fill="#b71c1c">key-wire (NO)</text>
+
+  <!-- Sensor bundle → medulla -->
+  <polyline points="1020,724 990,724 990,660" stroke="#558b2f" stroke-width="2.4" fill="none" marker-end="url(#ar-grn)"/>
+
+  <!-- ==================== PNEUMATIC ZONE — real Festo product photos ==================== -->
+
+  <!-- VPPM (proportional valve) -->
+  <g transform="translate(60,510)" filter="url(#shadow)">
+    <rect width="160" height="160" fill="#fff9c4" stroke="#827717" stroke-width="1.6" rx="6"/>
+    <image href="../../../emergency-braking/images/components/festo-vppm-thumb.png"
+           x="20" y="14" width="120" height="100" preserveAspectRatio="xMidYMid meet"/>
+    <text x="80" y="128" class="name" text-anchor="middle">VPPM</text>
+    <text x="80" y="143" class="small" text-anchor="middle">Proportional valve</text>
+    <text x="80" y="156" class="small" text-anchor="middle">0–10 V analog control</text>
+  </g>
+
+  <!-- EBS solenoid (Festo VUVS, normally-open) -->
+  <g transform="translate(60,690)" filter="url(#shadow)">
+    <rect width="160" height="160" fill="#fff9c4" stroke="#827717" stroke-width="1.6" rx="6"/>
+    <image href="../../../emergency-braking/images/components/festo-vuvs-thumb.png"
+           x="20" y="14" width="120" height="100" preserveAspectRatio="xMidYMid meet"/>
+    <text x="80" y="128" class="name" text-anchor="middle">EBS solenoid</text>
+    <text x="80" y="143" class="small" text-anchor="middle">VUVS · 24 V · NORMALLY-OPEN</text>
+    <text x="80" y="156" class="small" text-anchor="middle">opens on power loss → brake</text>
+  </g>
+
+  <!-- ASB-isolation solenoid (Festo VUVS, normally-closed, full design only) -->
+  <g transform="translate(60,870)" filter="url(#shadow)">
+    <rect width="160" height="160" fill="#fff9c4" stroke="#827717" stroke-width="1.4" stroke-dasharray="3 2" rx="6"/>
+    <image href="../../../emergency-braking/images/components/festo-vuvs-thumb.png"
+           x="20" y="14" width="120" height="100" preserveAspectRatio="xMidYMid meet"/>
+    <text x="80" y="128" class="name" text-anchor="middle">ASB cut-off</text>
+    <text x="80" y="143" class="small" text-anchor="middle">VUVS · 24 V · NORMALLY-CLOSED</text>
+    <text x="80" y="156" class="small" text-anchor="middle">full design only</text>
+  </g>
+
+  <!-- Brake actuator (Festo ADN cylinder) -->
+  <g transform="translate(240,690)" filter="url(#shadow)">
+    <rect width="160" height="160" fill="#fff9c4" stroke="#827717" stroke-width="1.6" rx="6"/>
+    <image href="../../../emergency-braking/images/components/festo-adn-s-thumb.png"
+           x="20" y="14" width="120" height="100" preserveAspectRatio="xMidYMid meet"/>
+    <text x="80" y="128" class="name" text-anchor="middle">Brake actuator</text>
+    <text x="80" y="143" class="small" text-anchor="middle">Festo ADN-S</text>
+    <text x="80" y="156" class="small" text-anchor="middle">50 mm bore cylinder</text>
+  </g>
+
+  <!-- bottom notes panel -->
+  <g transform="translate(40,1430)">
+    <rect width="1920" height="60" fill="#fafafa" stroke="#999" rx="6"/>
+    <text x="14" y="22" class="small"><tspan font-weight="700">How to read:</tspan> top-down kart view, top = front, bottom = rear. Components shown at their physical kart locations. Pneumatic photos are the actual Festo products in use. The SDC loop's series chain (KEY → kill 1/2/3 → impact → remote E-stop) is drawn as red dashed wires; opening any link breaks the chain, dropping the SDC relay coil (motor cut) AND the 24 V valve-coil supply (EBS opens → emergency brake).</text>
+    <text x="14" y="42" class="small"><tspan font-weight="700">Power architecture:</tspan> Battery 48 V → Buck → 12 V (single conversion). 12 V feeds Cytron, Jetson barrel jack, SDC. The Jetson regulates its own 5 V internally and provides it on its USB-C output, which powers the medulla's ESP32. There is no kart-wide 5 V buck.</text>
+  </g>
+</svg>
