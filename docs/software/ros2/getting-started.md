@@ -136,9 +136,9 @@ See [Simulation](simulation.md) for track layout, kart model specs, and troubles
 
 ### Prerequisites
 
-Follow the **[Orin Setup Guide](../../assembly/electronics/orin-setup.md)** to flash the Orin and install all software (JetPack, CUDA, ROS 2, ZED SDK, PyTorch, kart_brain, remote access). That guide covers everything from a blank Orin to a fully configured system.
+Follow the **[Orin Setup Guide](../../assembly/electronics/orin-setup.md)** to flash the Orin and install all software (JetPack, CUDA, ROS 2, ZED SDK, PyTorch, kart-brain, remote access). That guide covers everything from a blank Orin to a fully configured system.
 
-Once setup is complete, the kart_brain workspace is already built at `~/kart_brain`.
+Once setup is complete, the kart-brain workspace is already built at `~/kart-brain`.
 
 ### Connect Hardware
 
@@ -186,7 +186,7 @@ Once perception is running, start a controller node that subscribes to `/percept
 
 ```bash
 # Rebuild everything (--symlink-install so Python/launch edits work without rebuilding)
-cd ~/kart_brain && colcon build --symlink-install && source install/setup.bash
+cd ~/kart-brain && colcon build --symlink-install && source install/setup.bash
 
 # Rebuild only the package you changed (faster)
 colcon build --symlink-install --packages-select kart_sim && source install/setup.bash

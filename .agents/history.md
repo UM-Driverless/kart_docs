@@ -38,7 +38,7 @@ Append-only log of notable decisions and events for `kart_docs`. Newest at the b
 
 **Follow-ups.**
 
-- Firmware (`kart_medulla` repo) needs to gain a working `esp32-s3-devkitc-1` PlatformIO/IDF configuration. `sdkconfig.esp32-s3-devkitc-1` is already present; pinout in firmware will need updating to match the S3 assignments once they're finalized during PCB layout.
+- Firmware (`kart-medulla` repo) needs to gain a working `esp32-s3-devkitc-1` PlatformIO/IDF configuration. `sdkconfig.esp32-s3-devkitc-1` is already present; pinout in firmware will need updating to match the S3 assignments once they're finalized during PCB layout.
 - Delete `legacy-wiring.md` once the S3 PCB is manufactured, flashed, and deployed in the kart.
 
 ---
@@ -104,3 +104,93 @@ V2 was returned by Festo on 2026-03-18 and was being sealed by Cristina (URJC ma
 **Team-cost result.** ~€3 095 transferred to suppliers, ~€3 485 including the ~€390 reverse-charge VAT on the Orin. Page-level *market* total is redacted (the EBS row pulls the sum into non-disclosable territory); a non-Festo retail subtotal of ~€4 815 incl. VAT is shown as a partial reference.
 
 **Open follow-ups (not closed in this session).** Sponsors page on the public site to satisfy Cláusula TERCERA-4; pneumatic schematic on the EBS page; rechecking the BOM once V2 is signed and we have the green/red on what's publishable.
+
+---
+
+## 2026-05-04 — drawio vs hand-crafted SVG for the wiring diagram
+
+After thrashing through five attempts at `wiring-global` (drawio auto-routed,
+hand SVG, drawio + manual waypoints, D2/ELK, drawio + electrical stencils),
+the team's preference was clear: real component photos and pixel-precise
+layout matter more than tool ergonomics. The fifth iteration on `wip/wiring-svg-rich`
+went with hand-crafted SVG and produced a usable result on the first pass.
+Notes from that experience for the next person:
+
+**drawio strengths.** CI export is wired up (`rlespinasse/drawio-export`).
+GUI editing exists for someone who prefers drag-drop. Built-in electrical
+stencil library has shapes for battery, motor, switches, op-amp, relay
+(actual stencil names live in `mxgraph.electrical.miscellaneous.*`,
+`mxgraph.electrical.electro-mechanical.*`, etc. — extract them with
+`strings /Applications/draw.io.app/Contents/Resources/app.asar | grep mxgraph.electrical`
+because the names are not all guessable; the wrong path renders as a fallback
+rectangle silently).
+
+**drawio weaknesses (encountered, not theoretical).**
+- Auto-routing produces spaghetti the moment edges have non-trivial geometry.
+- `verticalLabelPosition=bottom` on a stencil makes the label overflow the
+  cell's geometry box, so neighbors that were at the original spacing now
+  collide with the label of the cell above them. The fix is either to
+  re-space everything (cascading shifts because the relay block has
+  internal sub-elements) or to use horizontal label position (which then
+  fights with the cell width). Both routes burned an iteration.
+- Photo embeds via `shape=image;image=<path>` work in CI but the path
+  resolution is fiddly — relative paths to images outside the diagram's
+  directory frequently render as broken-image placeholders in the CLI
+  export. Data URIs work but blow up the file size.
+- Edges connect by source/target cell IDs, so when you reposition a
+  component the edges follow — but their waypoints don't, so the
+  routing degrades silently.
+
+**hand-crafted SVG strengths (encountered).**
+- Pixel-precise placement: `<rect x= y= width= height=>` and `<polyline
+  points="...">` go where you tell them. No layout engine to fight.
+- `<image href="../../../emergency-braking/images/components/festo-*.png">`
+  resolves correctly in any browser-based renderer (Chrome headless,
+  the deployed mkdocs site, the `<object>` tag in the markdown).
+  ImageMagick can't resolve those, but you don't need ImageMagick if you
+  render with Chrome headless.
+- Component icons drawn as inline `<path>` / `<circle>` / `<rect>` are
+  free — the 13-cell battery stack, the BLDC motor rotor with U/V/W
+  terminals, the SDC relay coil + NO contacts, the kill mushrooms, etc.
+  Took maybe 30 minutes of careful coordinate math, no library lookup.
+- White-halo edge labels (`paint-order: stroke fill; stroke: white;
+  stroke-width: 4px`) just work, no fighting drawio's label background.
+
+**hand-crafted SVG weaknesses.**
+- No GUI for non-coders. The team can edit but only via text.
+- Moving one component does NOT auto-reroute its edges; you have to
+  update the polyline points manually. For 30+ edges this is real work.
+- Verifying overlaps requires render-and-look (Chrome headless screenshot
+  + Read tool); there's no equivalent of drawio's "click and drag, watch
+  it snap to a clean route".
+
+**Rendering pipeline gotcha.** ImageMagick's SVG renderer (and `qlmanage`)
+do NOT load `<image>` tags via relative file paths. Render previews with:
+```
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --headless \
+  --disable-gpu --screenshot=/tmp/r.png --window-size=2400,1800 \
+  --hide-scrollbars --force-device-scale-factor=2 \
+  "file://$PWD/docs/assembly/electronics/wiring/images/wiring-global.svg"
+```
+The deployed mkdocs site uses real browser SVG rendering, so what you see
+in Chrome locally matches what the team will see on `um-driverless.github.io`.
+
+**Branches left for comparison (none merged to main).**
+- `wip/wiring-d2-rewrite` — D2 + ELK auto-layout. Cleanest edges of any
+  attempt, but every component is a generic colored rectangle.
+- `wip/wiring-drawio-rich` — drawio with electrical stencils for battery,
+  motor, kill switches, KEY, impact, op-amp. Acronym legend added,
+  Buck/brake-bullet text corrected. Has the label-overflow / overlap
+  problems that pushed us off drawio.
+- `wip/wiring-svg-rich` — the hand-crafted SVG. Real Festo photos,
+  schematic-style component icons, pixel-precise layout. Current
+  best candidate but not yet team-reviewed.
+
+**Bottom line.** For a documentation-grade wiring diagram with hardware-
+recognizable shapes that the team isn't going to drag around in a GUI
+every week, hand-crafted SVG produced a better result faster than the
+drawio iterations did. drawio remains the right call for diagrams the
+team WILL drag around (because the GUI saves time over coordinate math),
+but those diagrams should accept the visual constraint of "labeled
+rectangles with auto-routed edges" rather than fighting for stencils
+and embedded photos.

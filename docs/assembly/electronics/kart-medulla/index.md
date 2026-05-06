@@ -5,7 +5,7 @@ The Kart Medulla is the MCU-based control hub between the Orin computer and the 
 !!! info "Currently hand-wired in the kart: classic ESP32"
     The kart is currently running a hand-wired classic-ESP32 (no PCB). That setup is documented on the [Legacy wiring](legacy-wiring.md) page and will be removed once the ESP32-S3 board is deployed.
 
-**Firmware repository:** [UM-Driverless/kart_medulla](https://github.com/UM-Driverless/kart_medulla)
+**Firmware repository:** [UM-Driverless/kart-medulla](https://github.com/UM-Driverless/kart-medulla)
 
 ## Why ESP32-S3
 

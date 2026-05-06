@@ -128,7 +128,7 @@ This means a controller node subscribing to `/perception/cones_3d` works identic
 source /opt/ros/humble/setup.bash
 
 # Build all packages (always use --symlink-install)
-cd ~/kart_brain
+cd ~/kart-brain
 colcon build --symlink-install
 source install/setup.bash
 

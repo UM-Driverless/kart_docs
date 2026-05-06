@@ -85,7 +85,7 @@
     <text x="14" y="172" class="small"><tspan font-weight="700">SPDT</tspan> = single-pole double-throw (mode switch)</text>
     <text x="14" y="188" class="small"><tspan font-weight="700">I²C</tspan> = serial bus (SDA + SCL lines)</text>
     <text x="14" y="204" class="small"><tspan font-weight="700">RES</tspan> = Remote E-Stop (radio-controlled)</text>
-    <text x="14" y="220" class="small"><tspan font-weight="700">KEY</tspan> = ignition key switch</text>
+    <text x="14" y="220" class="small"><tspan font-weight="700">ESC key</tspan> = 2-wire enable on ESC (from kit)</text>
     <text x="14" y="236" class="small"><tspan font-weight="700">CMD_ACC</tspan>, <tspan font-weight="700">CMD_BRAKE</tspan> = throttle &amp; brake</text>
     <text x="14" y="252" class="small">     command signals from the medulla DAC</text>
   </g>
@@ -106,7 +106,7 @@
 
   <!-- Brain (center) -->
   <rect x="540" y="480" width="780" height="220" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5" stroke-dasharray="4 4" rx="10" opacity="0.45"/>
-  <text x="560" y="506" class="zone-title" fill="#0d47a1">Brain — kart_medulla &amp; helpers</text>
+  <text x="560" y="506" class="zone-title" fill="#0d47a1">Brain — kart-medulla &amp; helpers</text>
 
   <!-- Safety / chassis-mounted (Impact + RES) -->
   <rect x="560" y="730" width="600" height="130" fill="#ffebee" stroke="#b71c1c" stroke-width="1.5" stroke-dasharray="4 4" rx="10" opacity="0.45"/>
@@ -168,19 +168,9 @@
     <text x="80" y="108" class="small" text-anchor="middle" font-style="italic">— Jetson regulates 5 V</text>
   </g>
 
-  <!-- KEY ignition switch (drawn as a toggle: one terminal, hinged arm, second terminal) -->
-  <g transform="translate(440,1240)" filter="url(#shadow)">
-    <rect width="120" height="120" fill="#ffcdd2" stroke="#b71c1c" stroke-width="1.6" rx="6"/>
-    <!-- toggle schematic: two dots and a hinged line going up -->
-    <g stroke="#b71c1c" stroke-width="2" fill="none">
-      <circle cx="40" cy="50" r="3" fill="#b71c1c"/>
-      <circle cx="80" cy="50" r="3" fill="#b71c1c"/>
-      <line x1="40" y1="50" x2="76" y2="32"/>
-    </g>
-    <text x="60" y="80" class="name" text-anchor="middle">KEY</text>
-    <text x="60" y="96" class="small" text-anchor="middle">ignition switch</text>
-    <text x="60" y="112" class="small" text-anchor="middle" fill="#b71c1c" font-style="italic">part of SDC</text>
-  </g>
+  <!-- (No panel ignition key on this kart. The only "key" is the ESC's own
+       2-wire enable input, shown as a short pigtail on the ESC block below;
+       the SDC relay's NO contacts close that 2-wire loop to enable the ESC.) -->
 
   <!-- ESC (motor controller) -->
   <g transform="translate(1100,1240)" filter="url(#shadow)">
@@ -188,8 +178,8 @@
     <text x="110" y="34" class="name" text-anchor="middle">Motor Controller (ESC)</text>
     <text x="110" y="56" class="desc" text-anchor="middle">Electronic Speed Controller</text>
     <text x="110" y="74" class="desc" text-anchor="middle">AliExpress · 48 V BLDC</text>
-    <text x="110" y="98" class="small" text-anchor="middle" font-style="italic">key-wire gated by SDC relay</text>
-    <text x="110" y="112" class="small" text-anchor="middle" font-style="italic">CMD_ACC analog input</text>
+    <text x="110" y="98" class="small" text-anchor="middle" font-style="italic">2-wire ESC key (kit pigtail)</text>
+    <text x="110" y="112" class="small" text-anchor="middle" font-style="italic">closed by SDC relay → ESC enabled</text>
   </g>
 
   <!-- BLDC motor (rotor circle with M, three terminals U V W) -->
@@ -333,10 +323,10 @@
     <text x="84" y="52" class="small" text-anchor="middle">→ 0–10 V</text>
   </g>
 
-  <!-- kart_medulla (CENTER) -->
+  <!-- kart-medulla (CENTER) -->
   <g transform="translate(740,520)" filter="url(#shadow)">
     <rect width="240" height="140" fill="#bbdefb" stroke="#0d47a1" stroke-width="2.5" rx="8"/>
-    <text x="120" y="32" class="name" font-size="15" text-anchor="middle">kart_medulla</text>
+    <text x="120" y="32" class="name" font-size="15" text-anchor="middle">kart-medulla</text>
     <line x1="20" y1="42" x2="220" y2="42" stroke="#0d47a1" stroke-width="0.8" opacity="0.4"/>
     <text x="120" y="60" class="desc" text-anchor="middle">ESP32-S3 + interface PCB</text>
     <text x="120" y="78" class="desc" text-anchor="middle">MCP4922 DAC · MOSFETs</text>
@@ -358,7 +348,7 @@
     <circle cx="148" cy="50" r="2" fill="#b71c1c"/>
     <circle cx="180" cy="56" r="2" fill="#b71c1c"/>
     <text x="155" y="78" class="small" text-anchor="middle">NO contacts</text>
-    <text x="110" y="100" class="desc" text-anchor="middle">contacts gate ESC key-wire</text>
+    <text x="110" y="100" class="desc" text-anchor="middle">NO contacts close ESC's 2-wire key</text>
     <text x="110" y="114" class="small" text-anchor="middle" font-style="italic">drops on SDC open → motor cut</text>
   </g>
 
@@ -461,9 +451,9 @@
   <polyline points="1290,540 1290,275 860,275 860,250" stroke="#c62828" stroke-width="2.5" fill="none" marker-end="url(#ar-red)"/>
   <text x="1090" y="268" class="lbl-sm" fill="#c62828" text-anchor="middle">12 V → Cytron</text>
 
-  <!-- 12 V → KEY (short stub from rail down to KEY) -->
-  <polyline points="380,1240 380,1180 500,1180 500,1240" stroke="#c62828" stroke-width="2" fill="none"/>
-  <text x="395" y="1172" class="lbl-sm" fill="#c62828">12 V → KEY (SDC source)</text>
+  <!-- (Removed: bogus "12 V → KEY" stub. The ESC key is a low-current 2-wire
+       signal loop on the ESC itself, not a 12 V rail. SDC source enters the
+       chain at Kill 1 — see SDC routing below.) -->
 
   <!-- ESC → Motor (3-phase) -->
   <line x1="1320" y1="1300" x2="1380" y2="1300" stroke="#2e7d32" stroke-width="5" marker-end="url(#ar-grn)"/>
@@ -524,9 +514,9 @@
   <polyline points="220,770 240,770" stroke="#0277bd" stroke-width="4" fill="none" marker-end="url(#ar-blu)"/>
   <text x="230" y="762" class="lbl-sm" fill="#0277bd" text-anchor="middle">air (parallel)</text>
 
-  <!-- SDC chain: KEY → Kill1 -->
-  <polyline points="500,1240 500,1100 170,1100 170,990" stroke="#b71c1c" stroke-width="2.4" stroke-dasharray="6 4" fill="none" marker-end="url(#ar-red)"/>
-  <text x="190" y="1092" class="lbl-sm" fill="#b71c1c">SDC chain</text>
+  <!-- SDC chain: 12 V source → Kill 1 (chain starts here; no panel ignition key) -->
+  <polyline points="380,1240 380,1100 170,1100 170,990" stroke="#b71c1c" stroke-width="2.4" stroke-dasharray="6 4" fill="none" marker-end="url(#ar-red)"/>
+  <text x="190" y="1092" class="lbl-sm" fill="#b71c1c">SDC chain (12 V source)</text>
 
   <!-- SDC chain: Kill1 → Impact -->
   <polyline points="170,910 170,810 620,810" stroke="#b71c1c" stroke-width="2.4" stroke-dasharray="6 4" fill="none" marker-end="url(#ar-red)"/>
@@ -551,9 +541,9 @@
   <polyline points="480,770 480,950 220,950" stroke="#b71c1c" stroke-width="2.4" stroke-dasharray="6 4" fill="none" marker-end="url(#ar-red)"/>
   <text x="248" y="942" class="lbl-sm" fill="#b71c1c">→ ASB coil</text>
 
-  <!-- Relay NO contacts → ESC key-wire -->
+  <!-- Relay NO contacts → ESC's 2-wire key loop (closes the kit pigtail) -->
   <polyline points="1180,680 1180,1240" stroke="#b71c1c" stroke-width="2" fill="none" marker-end="url(#ar-red)"/>
-  <text x="1188" y="950" class="lbl-sm" fill="#b71c1c">key-wire (NO)</text>
+  <text x="1188" y="950" class="lbl-sm" fill="#b71c1c">closes ESC key (2-wire loop, NO)</text>
 
   <!-- Sensor bundle → medulla -->
   <polyline points="1020,724 990,724 990,660" stroke="#558b2f" stroke-width="2.4" fill="none" marker-end="url(#ar-grn)"/>
@@ -603,7 +593,7 @@
   <!-- bottom notes panel -->
   <g transform="translate(40,1430)">
     <rect width="1920" height="60" fill="#fafafa" stroke="#999" rx="6"/>
-    <text x="14" y="22" class="small"><tspan font-weight="700">How to read:</tspan> top-down kart view, top = front, bottom = rear. Components shown at their physical kart locations. Pneumatic photos are the actual Festo products in use. The SDC loop's series chain (KEY → kill 1/2/3 → impact → remote E-stop) is drawn as red dashed wires; opening any link breaks the chain, dropping the SDC relay coil (motor cut) AND the 24 V valve-coil supply (EBS opens → emergency brake).</text>
+    <text x="14" y="22" class="small"><tspan font-weight="700">How to read:</tspan> top-down kart view, top = front, bottom = rear. Components shown at their physical kart locations. Pneumatic photos are the actual Festo products in use. The SDC loop's series chain (12 V source → kill 1/2/3 → impact → remote E-stop → relay coil) is drawn as red dashed wires; opening any link drops the relay coil, which (a) opens the NO contacts that close the ESC's 2-wire key pigtail (motor cut) and (b) drops the 24 V valve-coil rail (EBS opens → emergency brake). There is no panel-mounted ignition key on this kart — the only "key" is the ESC's own 2-wire enable input from the kit.</text>
     <text x="14" y="42" class="small"><tspan font-weight="700">Power architecture:</tspan> Battery 48 V → Buck → 12 V (single conversion). 12 V feeds Cytron, Jetson barrel jack, SDC. The Jetson regulates its own 5 V internally and provides it on its USB-C output, which powers the medulla's ESP32. There is no kart-wide 5 V buck.</text>
   </g>
 </svg>

@@ -7,7 +7,7 @@
 
 The Kart Medulla (legacy) uses the **ESP32-DevKitC V4** (38-pin, USB-C) with an ESP32-WROOM-32D module. The 30-pin ESP32 board used earlier is deprecated and should not be used.
 
-**Firmware repository:** [UM-Driverless/kart_medulla](https://github.com/UM-Driverless/kart_medulla)
+**Firmware repository:** [UM-Driverless/kart-medulla](https://github.com/UM-Driverless/kart-medulla)
 
 ## Classic ESP32 Overview
 

@@ -275,7 +275,7 @@ python3 -c "import torch; print(torch.__version__, torch.cuda.is_available())"
 The YOLO model ships as a `.pt` (PyTorch) file. For real-time inference on the Orin, export it to a TensorRT `.engine` file (takes ~3-4 minutes, only needed once per model):
 
 ```bash
-cd ~/kart_brain
+cd ~/kart-brain
 python3 -c "from ultralytics import YOLO; m = YOLO('models/perception/yolo/ruben_yolov11n_2026_03.pt'); m.export(format='engine', imgsz=320, half=True)"
 ```
 
@@ -295,16 +295,16 @@ This `.engine` file is committed to the repo. Re-export when the model changes o
 
 ```bash
 cd ~
-git clone https://github.com/UM-Driverless/kart_brain.git
-git clone https://github.com/UM-Driverless/kart_medulla.git
+git clone https://github.com/UM-Driverless/kart-brain.git
+git clone https://github.com/UM-Driverless/kart-medulla.git
 ```
 
-### 9. Build kart_brain
+### 9. Build kart-brain
 
 First install all ROS 2 dependencies automatically:
 
 ```bash
-cd ~/kart_brain
+cd ~/kart-brain
 source /opt/ros/humble/setup.bash
 rosdep install --from-paths src --ignore-src -r -y
 ```
@@ -313,14 +313,14 @@ Then build (always use `--symlink-install` so Python/launch file edits take effe
 
 ```bash
 colcon build --symlink-install
-echo "source ~/kart_brain/install/setup.bash" >> ~/.bashrc
+echo "source ~/kart-brain/install/setup.bash" >> ~/.bashrc
 ```
 
-See the [kart_brain repo](https://github.com/UM-Driverless/kart_brain) for package details and usage.
+See the [kart-brain repo](https://github.com/UM-Driverless/kart-brain) for package details and usage.
 
 ### 10. PlatformIO (ESP32 flashing)
 
-Install PlatformIO to flash [kart_medulla](https://github.com/UM-Driverless/kart_medulla) firmware to the ESP32 directly from the Orin:
+Install PlatformIO to flash [kart-medulla](https://github.com/UM-Driverless/kart-medulla) firmware to the ESP32 directly from the Orin:
 
 ```bash
 pip3 install platformio
@@ -329,7 +329,7 @@ pip3 install platformio
 Flash the firmware (ESP32 must be connected via USB):
 
 ```bash
-cd ~/kart_medulla
+cd ~/kart-medulla
 # Legacy hand-wired classic ESP32 (currently in the kart):
 pio run --target upload --environment esp32dev
 
@@ -503,7 +503,7 @@ No Cloudflare account needed for team members — only the tunnel owner.
 - [ ] PyTorch GPU: `python3 -c "import torch; print(torch.cuda.is_available())"` → True
 - [ ] ROS 2: `ros2 --help`
 - [ ] ZED camera: `ls /dev/video*` (after plugging in)
-- [ ] kart_brain built: `ros2 pkg list | grep kart`
+- [ ] kart-brain built: `ros2 pkg list | grep kart`
 - [ ] SSH access: `ssh orin` from Mac
 - [ ] AnyDesk: working with dummy HDMI plug, unattended password set
 - [ ] Cloudflare Tunnel: `ssh orin-remote` works from outside the network

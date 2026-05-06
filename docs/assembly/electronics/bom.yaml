@@ -137,7 +137,7 @@ components:
       owncloud_path: "formula/formula 24-25/DV/ORIN/adapter/ProProject_Orin Adapter_2025-03-09.epro"
     notes: "Custom adapter to connect Orin to kart systems"
 
-  - id: "kart_medulla_shutdown_mosfet"
+  - id: "kart-medulla_shutdown_mosfet"
     part_number: "TBD-MOSFET"
     description: "Shutdown MOSFET (low-side or high-side)"
     category: "mosfet"
@@ -154,7 +154,7 @@ components:
       gate_drive: "3.3V logic"
     notes: "Shutdown control MOSFET for the Kart Medulla interface PCB"
 
-  - id: "kart_medulla_dual_op_amp"
+  - id: "kart-medulla_dual_op_amp"
     part_number: "TBD-DUAL-OPAMP"
     description: "Dual op-amp for ESP32 DAC scaling"
     category: "op_amp"
