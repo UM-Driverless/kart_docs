@@ -45,6 +45,7 @@ nav:
               - Battery: assembly/electronics/power/battery.md
       - Sensors:
           - Camera: assembly/sensors/camera.md
+          - Wheel Sensor (legacy): assembly/sensors/wheel-sensor-legacy.md
       - Emergency Braking:
           - assembly/emergency-braking/index.md
           - BOM: assembly/emergency-braking/bom.md
