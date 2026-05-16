@@ -1,6 +1,6 @@
-# Windows Installation Guide for kart_docs
+# Windows Installation Guide for kart-docs
 
-This guide provides instructions for setting up the `kart_docs` project on a Windows machine.
+This guide provides instructions for setting up the `kart-docs` project on a Windows machine.
 
 ## 1. Install uv
 

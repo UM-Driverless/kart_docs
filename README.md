@@ -1,8 +1,8 @@
-# kart_docs
+# kart-docs
 
 Documentation for the autonomous KART project.
 
-📘 Live site: <https://um-driverless.github.io/kart_docs/>  
+📘 Live site: <https://um-driverless.github.io/kart-docs/>  
 🧠 Main source: [Notion Kart Documentation](https://www.notion.so/KART-1b378747314380acb23ee354a4a4c4c7)
 
 Built with [MkDocs](https://www.mkdocs.org/) using the [Material theme](https://squidfunk.github.io/mkdocs-material/).
@@ -27,8 +27,8 @@ For other installation methods, see [uv documentation](https://docs.astral.sh/uv
 Clone the repo and set up the project:
 
 ```bash
-git clone git@github.com:UM-Driverless/kart_docs.git
-cd kart_docs
+git clone git@github.com:UM-Driverless/kart-docs.git
+cd kart-docs
 uv sync
 uv run playwright install --force chrome
 ```
@@ -64,7 +64,7 @@ Deployment to GitHub Pages happens automatically via GitHub Actions when you pus
 The workflow will:
 1. Build the documentation with `--strict` flag
 2. Deploy to GitHub Pages if the build succeeds
-3. Site will be available at: https://um-driverless.github.io/kart_docs/
+3. Site will be available at: https://um-driverless.github.io/kart-docs/
 
 ### Manual deployment (alternative)
 
@@ -84,8 +84,8 @@ This documentation includes LLM-optimized formats following the [llms.txt standa
 - **llms-full.txt**: Complete documentation content in one consumable file
 
 These files are automatically generated during the build process and are available at:
-- Live site: https://um-driverless.github.io/kart_docs/llms.txt
-- Live site: https://um-driverless.github.io/kart_docs/llms-full.txt
+- Live site: https://um-driverless.github.io/kart-docs/llms.txt
+- Live site: https://um-driverless.github.io/kart-docs/llms-full.txt
 
 ### Manual Generation
 
@@ -138,7 +138,7 @@ uv run python scripts/aggregate_bom.py --output-dir reports/bom --format both
 3. Add component using YAML format
 4. Component automatically appears in searchable table on next build
 
-See the **[BOM page](https://um-driverless.github.io/kart_docs/bom/)** for complete documentation and searchable parts table.
+See the **[BOM page](https://um-driverless.github.io/kart-docs/bom/)** for complete documentation and searchable parts table.
 
 ---
 

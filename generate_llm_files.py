@@ -39,7 +39,7 @@ def extract_nav_pages(nav_config: List) -> List[Tuple[str, str, str]]:
         List of tuples (title, file_path, url_path)
     """
     pages = []
-    base_url = "https://um-driverless.github.io/kart_docs"
+    base_url = "https://um-driverless.github.io/kart-docs"
     
     def process_nav_item(item, parent_path=""):
         if isinstance(item, dict):
@@ -238,7 +238,7 @@ def generate_llms_full_txt(pages: List[Tuple[str, str, str]]) -> str:
         content.append("")
     
     # Add footer
-    content.append("*This documentation is available at https://um-driverless.github.io/kart_docs/ and follows the llms.txt standard for LLM consumption.*")
+    content.append("*This documentation is available at https://um-driverless.github.io/kart-docs/ and follows the llms.txt standard for LLM consumption.*")
     
     return '\n'.join(content)
 

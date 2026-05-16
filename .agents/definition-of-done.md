@@ -1,6 +1,6 @@
 # Definition of Done
 
-Pre-commit checklist for kart_docs. Run through before every commit.
+Pre-commit checklist for kart-docs. Run through before every commit.
 
 ## Pre-Commit Checklist
 

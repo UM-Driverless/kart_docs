@@ -11,7 +11,7 @@ Documentation repository for the UM Driverless autonomous kart project. Built wi
 
 **This repository is the single source of truth for kart documentation.** Previously managed in Notion, all documentation has been migrated to this MkDocs-based system.
 
-**Live site:** https://um-driverless.github.io/kart_docs/
+**Live site:** https://um-driverless.github.io/kart-docs/
 
 ## Tech Stack
 
@@ -24,7 +24,7 @@ Documentation repository for the UM Driverless autonomous kart project. Built wi
 ## Project Structure
 
 ```
-kart_docs/
+kart-docs/
 ├── docs/
 │   ├── bom/
 │   │   ├── index.md          # BOM overview with dynamic parts table

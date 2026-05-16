@@ -2,7 +2,7 @@
 
 # History
 
-Append-only log of notable decisions and events for `kart_docs`. Newest at the bottom.
+Append-only log of notable decisions and events for `kart-docs`. Chronological (oldest first), append at the end.
 
 ---
 

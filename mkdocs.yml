@@ -63,7 +63,7 @@ nav:
           - Performance: software/ros2/performance.md
   - FAQ: faq.md
   - Contact: contact.md
-repo_url: https://github.com/um-driverless/kart_docs
+repo_url: https://github.com/um-driverless/kart-docs
 edit_uri: edit/main/docs/
 plugins:
   - search
