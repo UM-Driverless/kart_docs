@@ -28,5 +28,5 @@ Hand-crafted SVG. Real Festo product photos for the pneumatic brake chain (VPPM,
 
 - [Net Name Nomenclature](net-naming.md) — signal naming conventions across PCBs
 - [Throttle Pedal](../powertrain/throttle-pedal.md) — pedal sensor wiring
-- [Kart Medulla (ESP32)](kart-medulla/index.md#wiring-connections) — microcontroller wiring connections
+- [Kart Medulla (ESP32)](kart-medulla/index.md#connector-pinout-outside-world) — microcontroller wiring connections
 - [Emergency Braking](../emergency-braking/index.md) — EBS pneumatic circuit and valve coil wiring
