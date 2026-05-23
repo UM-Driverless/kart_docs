@@ -13,6 +13,18 @@ Documentation repository for the UM Driverless autonomous kart project. Built wi
 
 **Live site:** https://um-driverless.github.io/kart-docs/
 
+## Related Repository: `~/dv/` (engineering working notes)
+
+The team's raw engineering notes, decisions, datasheets, and component data live in a **separate local repo at `~/dv/`** (the "DV" / driverless working repo). This `kart-docs` repo is the *polished, published* documentation; `~/dv/` is where the messy source material and design reasoning accumulate. **Check it before researching or rewriting any subsystem** — the answer (and its history) is usually already there.
+
+Most useful entry points:
+
+- **`~/dv/kart/pneumatics/`** — EBS/ASB braking: `history.md` (dated design decisions, sizing math, rule checks), `README.md` (on-hand components + part numbers), `pneumatic_diagram.svg/.drawio`, datasheets in `resources/`.
+- **`~/dv/kart/<subsystem>/history.md`** — per-subsystem decision logs (`steering/`, `kart-medulla/`, …). These follow the "consult selectively — grep, never read in full" convention.
+- **`~/dv/history.md`** — top-level cross-cutting history.
+
+These `history.md` files are the authoritative record of *why* a design is the way it is — grep them when a doc page needs the rationale behind a choice.
+
 ## Tech Stack
 
 - **Documentation:** MkDocs with Material theme

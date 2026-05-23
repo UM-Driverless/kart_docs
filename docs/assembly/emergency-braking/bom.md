@@ -2,7 +2,7 @@
 
 All pneumatic ports standardized to **G1/4** unless noted. Tubing is **6 mm OD / 4 mm ID** throughout. FS 2026 rules: push-in fittings are allowed for ASB/EBS, but we prefer compression (union nut) fittings. Exception: the SDE5 sensor has an integrated QS-6 push-in port.
 
-This BOM covers the **full design** (ASB + OR valve). The simplified design uses the same parts minus the ASB valve, OR valve, ASB coil, and one silencer/connector.
+This BOM covers the **validated design** (parallel VPPM + EBS, merged by the OR valve, **no series ASB isolation valve** — see the [design page](index.md)). The ASB valve, its coil, and its connector are still listed below because we own them, but they are **not part of the validated circuit** (kept as spares).
 
 The BOM follows the pneumatic path from compressor/tank to actuator.
 
@@ -68,24 +68,24 @@ Datasheet (local): [`567465datasheet.pdf`](../../assets/datasheets/567465datashe
 
 ## EBS Electrovalve (emergency braking)
 
-Normally-open solenoid valve. When powered (driving): closed. When unpowered (emergency): opens and delivers full supply pressure to the actuator. In both simplified and full designs. **Max operating pressure: 10 bar** (2.5-10 bar range).
+Normally-open solenoid valve. When powered (driving): closed. When unpowered (emergency): opens and delivers full supply pressure to the actuator. **Max operating pressure: 10 bar** (2.5-10 bar range).
 
 | Status | Part No. | Description | Festo link |
 |---|---|---|---|
 | Reuse | 8035174 | VUVS-LT25-M32U-MD-G14-F8, 3/2-way, Normally Open, G1/4, 2.5-10 bar | [Festo](https://www.festo.com/es/es/a/8035174/) |
 | | 575488 | [Datasheet (local)](../../assets/datasheets/575488datasheet.pdf) | (matches VUVS-L25-M32U-MD-G14-F8) |
 
-## ASB Electrovalve (VPPM supply isolation)
+## ASB Electrovalve (VPPM supply isolation) — *not in validated circuit*
 
-Normally-closed solenoid valve in series before the VPPM. When powered (driving): open, allowing regulated pressure to reach the VPPM. When unpowered (emergency): closes, cutting supply to the VPPM to prevent any potential seal-degradation leakage. **Full design only** — not needed in simplified design. **Max operating pressure: 10 bar** (2.5-10 bar range).
+Normally-closed solenoid valve that would sit in series before the VPPM to cut its supply on power loss. **Removed from the validated design** — the VPPM blocks all ports when unpowered and the OR valve already isolates the branch, so this valve is redundant (see [Why no isolation valve in series with the proportional valve](index.md#why-no-isolation-valve-in-series-with-the-proportional-valve)). We own the part; kept as a spare. **Max operating pressure: 10 bar** (2.5-10 bar range).
 
 | Status | Part No. | Description | Festo link |
 |---|---|---|---|
-| Buy | 8035167 | VUVS-LT25-M32C-MD-G14-F8, 3/2-way, Normally Closed, G1/4, 2.5-10 bar | [Festo](https://www.festo.com/es/es/a/8035167/) |
+| Spare | 8035167 | VUVS-LT25-M32C-MD-G14-F8, 3/2-way, Normally Closed, G1/4, 2.5-10 bar | [Festo](https://www.festo.com/es/es/a/8035167/) |
 
 ## VPPM Proportional Valve (ASB)
 
-Proportionally controls brake pressure during autonomous driving. All ports blocked when unpowered (see [VPPM analysis](index.md#vppm-unpowered-behavior-what-does-unregulated-mean)). **Max inlet pressure: 11 bar** (port 1). Output regulation range: 0-10 bar.
+Proportionally controls brake pressure during autonomous driving. All ports blocked when unpowered (see [VPPM analysis](index.md#vppm-unpowered-behavior-the-datasheet-evidence)). **Max inlet pressure: 11 bar** (port 1). Output regulation range: 0-10 bar.
 
 | Status | Part No. | Description | Festo link |
 |---|---|---|---|
@@ -95,7 +95,7 @@ Proportionally controls brake pressure during autonomous driving. All ports bloc
 
 ## Shuttle Valve (OR valve)
 
-Ball-type shuttle valve that merges the EBS and VPPM output lines. Whichever side has higher pressure pushes the ball to seal the other port, preventing backflow. **Full design only** — not needed in simplified design.
+Ball-type shuttle valve that merges the EBS and VPPM output lines. Whichever side has higher pressure pushes the ball to seal the other port. **Required** — it stops the active branch from losing its air through the inactive branch's open exhaust (see [Why the OR / shuttle valve is required](index.md#why-the-or-shuttle-valve-is-required)).
 
 | Status | Part No. | Description | Festo link |
 |---|---|---|---|
@@ -135,7 +135,7 @@ On exhaust ports of all valves and the actuator exhaust.
 
 | Status | Part No. | Qty | Description | Festo link |
 |---|---|---|---|---|
-| Buy | 2316 | 3 | U-1/4 silencer, G1/4 (EBS valve + VPPM exhaust + ASB valve exhaust) | [Festo](https://www.festo.com/es/es/a/2316/) |
+| Buy | 2316 | 2 | U-1/4 silencer, G1/4 (EBS valve exhaust + VPPM exhaust) | [Festo](https://www.festo.com/es/es/a/2316/) |
 | Buy | 2307 | 1 | U-1/8 silencer, G1/8 (actuator exhaust port) | [Festo](https://www.festo.com/es/es/a/2307/) |
 
 Datasheet (local): [`2316datasheet.pdf`](../../assets/datasheets/2316datasheet.pdf)
@@ -146,5 +146,8 @@ Datasheet (local): [`2316datasheet.pdf`](../../assets/datasheets/2316datasheet.p
 |---|---|---|---|---|
 | Buy | 542256 | 1 | NEBU-M12W8-K-2-N-LE8, M12 8-pin shielded cable (VPPM control) | [Festo](https://www.festo.com/es/es/a/542256/) |
 | Check | 541333 | 2 | NEBU-M8G3-K-2.5-LE3, M8 3-pin cable (pressure sensors) | [Festo](https://www.festo.com/es/es/a/541333/) |
-| Buy | 8030801 | 1 | Solenoid coil for ASB valve (VUVS-LT25) | [Festo](https://www.festo.com/es/es/a/8030801/) |
-| Buy | 151687 | 2 | MSSD-EB connector for valve coils (1× EBS + 1× ASB) | [Festo](https://www.festo.com/es/es/a/151687/) |
+| Reuse | 8030810 | 1 | EBS valve coil **VACF-B-C1-5**, 12 V DC / 3.4 W, **connector form C** (EN 175301-803) | [Festo](https://www.festo.com/es/es/a/8030810/) |
+| Buy | 151687 | 1 | MSSD-EB connector (**form C**) for the EBS coil | [Festo](https://www.festo.com/es/es/a/151687/) |
+| Spare | 8030801 | 1 | ASB valve coil **VACF-B-B2-5**, 12 V DC / 3.4 W, **connector form B** (DIN, 11 mm). Only needed if the spare ASB valve is fitted | [Festo](https://www.festo.com/es/es/a/8030801/) |
+
+> **Coil compatibility (12 V supply).** Both VUVS-LT25 coils are **electrically identical** — 12 V DC, 3.4 W (≈0.28 A), insulation class H, IP65 — so both run directly off the kart's 12 V rail and are interchangeable electrically. They are **not connector-interchangeable**, though: the EBS coil (VACF-B-C1-5, 8030810) is **form C** and mates with the MSSD-EB (151687); the spare ASB coil (VACF-B-B2-5, 8030801) is **form B** (11 mm DIN) and needs its own form-B plug — an MSSD-EB will not fit it. The validated circuit uses only the EBS coil + MSSD-EB, so this only matters if the spare ASB valve is ever wired in.

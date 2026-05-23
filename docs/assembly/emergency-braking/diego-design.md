@@ -2,15 +2,15 @@
 
 This was the initial hybrid pneumatic circuit design. It integrated both the Emergency Braking System (EBS) and the Autonomous Service Brake (ASB) with maximum redundancy.
 
-It included an explicit **ASB Electrovalve (V2)** to physically cut the air supply to the proportional valve during an emergency, ensuring isolation. Later analysis showed the VPPM Proportional Valve itself vents to atmosphere when unpowered, making this extra valve redundant (but safer in theory against a stuck-open VPPM).
+It included an explicit **ASB Electrovalve (V2)** in series before the proportional valve, to physically cut its air supply during an emergency. Later analysis — confirmed by physical testing in May 2026 — showed the VPPM **blocks all of its ports when unpowered** (it does *not* vent), so emergency air cannot escape through it. Combined with the OR valve isolating the branch, that makes the series valve redundant, and it was removed. See the [validated design](index.md) for the full reasoning.
 
 ## Schematic
 ![](Diego's_diagram)
 
 ## Design Logic
-1.  **EBS (Fail-Safe):** The cylinder is normally extended (braking) by spring/external force. Air pressure retracts it (release). The EBS Electrovalve cuts pressure and exhausts air to atmosphere to trigger emergency braking.
+1.  **EBS (Fail-Safe):** The actuator is air-to-apply — pressure extends the cylinder onto the brake, the return spring releases it when vented. The normally-open EBS electrovalve delivers full stored pressure to the actuator on power loss, so the kart brakes hard whenever the shutdown circuit opens.
 2.  **ASB (Proportional):** Controlled by the VPPM valve. It regulates pressure to modulate braking force during dynamic driving.
-3.  **Integration:** An OR Valve (Shuttle) isolates both lines so they don't interfere with each other.
+3.  **Integration:** An OR Valve (Shuttle) merges both lines so the active branch can't lose its air through the other branch's open exhaust.
 
 ## Components (Archive)
 
