@@ -102,7 +102,4 @@ Terminology:
 
 ## Historical archive
 
-Earlier iterations are kept for reference:
-
-- The [Original "Conservative" Design](diego-design.md) (Diego's design) added an **ASB isolation solenoid in series** ahead of the VPPM for maximum redundancy. The validated design removes it (see "Why no isolation valve in series with the proportional valve" above).
-- An even simpler variant dropped the OR valve and instead blanked the EBS exhaust with a plug. The validated design keeps the OR valve, which is the cleaner solution — it lets the EBS exhaust through a silencer for a fast emergency dump while still isolating the branches.
+Two earlier candidate circuits — a super-simplified version (no OR valve, no ASB valve) and a full/conservative version (ASB valve **and** OR valve) — are kept with their diagrams on the [**Design History page**](diego-design.md), along with why each was dropped in favour of the validated design (OR valve, no series ASB).

@@ -534,12 +534,9 @@
   <polyline points="450,255 450,540 1130,540 1130,560" stroke="#b71c1c" stroke-width="2.4" stroke-dasharray="6 4" fill="none" marker-end="url(#ar-red)"/>
   <text x="458" y="534" class="lbl-sm" fill="#b71c1c">SDC bus → relay coil</text>
 
-  <!-- 24 V coil supply: from SDC relay → EBS coil and ASB coil. Routed via x=480 channel (between pneumatics and brain), then down -->
+  <!-- 12 V coil supply: from SDC relay → EBS coil. Routed via x=480 channel (between pneumatics and brain), then down -->
   <polyline points="1020,640 480,640 480,770 220,770" stroke="#b71c1c" stroke-width="2.4" stroke-dasharray="6 4" fill="none" marker-end="url(#ar-red)"/>
-  <text x="488" y="700" class="lbl-sm" fill="#b71c1c">24 V coil rail (gated by SDC) → EBS</text>
-
-  <polyline points="480,770 480,950 220,950" stroke="#b71c1c" stroke-width="2.4" stroke-dasharray="6 4" fill="none" marker-end="url(#ar-red)"/>
-  <text x="248" y="942" class="lbl-sm" fill="#b71c1c">→ ASB coil</text>
+  <text x="488" y="700" class="lbl-sm" fill="#b71c1c">12 V coil rail (gated by SDC) → EBS</text>
 
   <!-- Relay NO contacts → ESC's 2-wire key loop (closes the kit pigtail) -->
   <polyline points="1180,680 1180,1240" stroke="#b71c1c" stroke-width="2" fill="none" marker-end="url(#ar-red)"/>
@@ -566,18 +563,8 @@
     <image href="../../../emergency-braking/images/components/festo-vuvs-thumb.png"
            x="20" y="14" width="120" height="100" preserveAspectRatio="xMidYMid meet"/>
     <text x="80" y="128" class="name" text-anchor="middle">EBS solenoid</text>
-    <text x="80" y="143" class="small" text-anchor="middle">VUVS · 24 V · NORMALLY-OPEN</text>
+    <text x="80" y="143" class="small" text-anchor="middle">VUVS · 12 V · NORMALLY-OPEN</text>
     <text x="80" y="156" class="small" text-anchor="middle">opens on power loss → brake</text>
-  </g>
-
-  <!-- ASB-isolation solenoid (Festo VUVS, normally-closed, full design only) -->
-  <g transform="translate(60,870)" filter="url(#shadow)">
-    <rect width="160" height="160" fill="#fff9c4" stroke="#827717" stroke-width="1.4" stroke-dasharray="3 2" rx="6"/>
-    <image href="../../../emergency-braking/images/components/festo-vuvs-thumb.png"
-           x="20" y="14" width="120" height="100" preserveAspectRatio="xMidYMid meet"/>
-    <text x="80" y="128" class="name" text-anchor="middle">ASB cut-off</text>
-    <text x="80" y="143" class="small" text-anchor="middle">VUVS · 24 V · NORMALLY-CLOSED</text>
-    <text x="80" y="156" class="small" text-anchor="middle">full design only</text>
   </g>
 
   <!-- Brake actuator (Festo ADN cylinder) -->
@@ -593,7 +580,7 @@
   <!-- bottom notes panel -->
   <g transform="translate(40,1430)">
     <rect width="1920" height="60" fill="#fafafa" stroke="#999" rx="6"/>
-    <text x="14" y="22" class="small"><tspan font-weight="700">How to read:</tspan> top-down kart view, top = front, bottom = rear. Components shown at their physical kart locations. Pneumatic photos are the actual Festo products in use. The SDC loop's series chain (12 V source → kill 1/2/3 → impact → remote E-stop → relay coil) is drawn as red dashed wires; opening any link drops the relay coil, which (a) opens the NO contacts that close the ESC's 2-wire key pigtail (motor cut) and (b) drops the 24 V valve-coil rail (EBS opens → emergency brake). There is no panel-mounted ignition key on this kart — the only "key" is the ESC's own 2-wire enable input from the kit.</text>
+    <text x="14" y="22" class="small"><tspan font-weight="700">How to read:</tspan> top-down kart view, top = front, bottom = rear. Components shown at their physical kart locations. Pneumatic photos are the actual Festo products in use. The SDC loop's series chain (12 V source → kill 1/2/3 → impact → remote E-stop → relay coil) is drawn as red dashed wires; opening any link drops the relay coil, which (a) opens the NO contacts that close the ESC's 2-wire key pigtail (motor cut) and (b) drops the 12 V valve-coil rail (EBS opens → emergency brake). There is no panel-mounted ignition key on this kart — the only "key" is the ESC's own 2-wire enable input from the kit.</text>
     <text x="14" y="42" class="small"><tspan font-weight="700">Power architecture:</tspan> Battery 48 V → Buck → 12 V (single conversion). 12 V feeds Cytron, Jetson barrel jack, SDC. The Jetson regulates its own 5 V internally and provides it on its USB-C output, which powers the medulla's ESP32. There is no kart-wide 5 V buck.</text>
   </g>
 </svg>

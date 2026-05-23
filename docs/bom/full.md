@@ -126,7 +126,7 @@ The full pneumatic EBS / ASB stack is supplied by **Festo Automation, S.A.U.**, 
 |---|---|---:|---|---:|---:|
 | 8084714 | ADN-S-50-45-I-P-A pneumatic actuator | 1 | Sponsored | 0 | redacted |
 | 8035174 | VUVS-LT25-M32U-MD-G14-F8 EBS electrovalve (NO) | 1 | Sponsored | 0 | redacted |
-| 8035167 | VUVS-LT25-M32C-MD-G14-F8 ASB electrovalve (NC) | 1 | Sponsored † | 0 | redacted |
+| 8035167 | VUVS-LT25-M32C-MD-G14-F8 ASB electrovalve (NC) — spare, not in validated circuit | 1 | Sponsored † | 0 | redacted |
 | 571293 | VPPM-8L-L-1-G14-0L10H-V1P-S1C1 proportional regulator | 1 | Sponsored † | 0 | redacted |
 | 6682 | OS-1/4-B shuttle valve / OR gate | 1 | Sponsored † | 0 | redacted |
 | 527690 | MS4-LR-1/4-D7-AD10 low-pressure regulator | 1 | Sponsored † | 0 | redacted |
@@ -139,7 +139,7 @@ The full pneumatic EBS / ASB stack is supplied by **Festo Automation, S.A.U.**, 
 | 2307 | U-1/8 silencer | 1 | Sponsored | 0 | redacted |
 | 542256 | NEBU-M12W8-K-2-N-LE8 M12 cable (VPPM control) | 1 | Sponsored † | 0 | redacted |
 | 541333 | NEBU-M8G3-K-2.5-LE3 M8 cable (sensor wiring) | 2 | Sponsored | 0 | redacted |
-| 8030801 | VACF-B-B2-5 solenoid coil (ASB valve) | 1 | Sponsored | 0 | redacted |
+| 8030801 | VACF-B-B2-5 solenoid coil (ASB valve) — spare, not in validated circuit | 1 | Sponsored | 0 | redacted |
 | 151687 | MSSD-EB valve-coil connector | 2 | Sponsored | 0 | redacted |
 | — | Sensata PTE/700-33 hydraulic pressure sensor | 1 | Sponsored | 0 | redacted |
 
