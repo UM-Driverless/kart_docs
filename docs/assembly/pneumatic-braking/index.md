@@ -1,4 +1,4 @@
-# Emergency Braking
+# Pneumatic Braking
 
 The kart needs two braking functions on one pneumatic actuator:
 

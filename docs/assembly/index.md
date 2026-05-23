@@ -17,7 +17,7 @@ This section contains all the information about the kart, organized as a tree of
 | **Throttle** | DAC → motor controller | 0–3.3V analog signal (66% max until 5V DAC available) | [Throttle Pedal](powertrain/throttle-pedal.md) |
 | **Motor** | Electric kart motor | Controlled via motor controller + throttle signal | [Motor](powertrain/motor.md) |
 | **Power** | Battery pack | Supplies 12V to Orin (via barrel jack 9–20V) + motor controller | [Battery](electronics/power/battery.md) |
-| **Emergency braking** | Pneumatic EBS | Solenoid valve, shutdown circuit in series | [EBS](emergency-braking/index.md) |
+| **Pneumatic braking** | ASB (proportional) + EBS (emergency) | VPPM + solenoid valve merged by an OR valve; EBS in shutdown circuit | [Pneumatic Braking](pneumatic-braking/index.md) |
 | **Wiring** | Custom harness | Color-coded: black=GND, red=12V, orange=5V, yellow=3.3V | [Wiring](electronics/wiring.md), [Net Naming](electronics/net-naming.md) |
 
 ## Notes

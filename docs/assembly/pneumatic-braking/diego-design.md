@@ -1,6 +1,6 @@
 # EBS — Design History (superseded)
 
-> The current, physically-validated circuit is on the [**Emergency Braking page**](index.md): VPPM and EBS in parallel, merged by an **OR / shuttle valve**, with **no isolation valve in series with the proportional valve**.
+> The current, physically-validated circuit is on the [**Pneumatic Braking page**](index.md): VPPM and EBS in parallel, merged by an **OR / shuttle valve**, with **no isolation valve in series with the proportional valve**.
 
 This page keeps the two earlier candidate circuits for reference. Both were considered before the May 2026 bench test settled the design.
 

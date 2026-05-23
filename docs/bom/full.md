@@ -115,9 +115,9 @@ The traction pack was assembled by the team from individual components rather th
 
 ---
 
-## Emergency Braking System (pneumatic, sponsored)
+## Pneumatic Braking System (sponsored)
 
-The full pneumatic EBS / ASB stack is supplied by **Festo Automation, S.A.U.**, an official sponsor of the team. Item-level part numbers, datasheets, quantities and reuse status are tracked in the [Emergency Braking BOM](../assembly/emergency-braking/bom.md). Per-line market prices are intentionally redacted on this public page (see note below).
+The full pneumatic ASB / EBS stack is supplied by **Festo Automation, S.A.U.**, an official sponsor of the team. Item-level part numbers, datasheets, quantities and reuse status are tracked in the [Pneumatic Braking BOM](../assembly/pneumatic-braking/bom.md). Per-line market prices are intentionally redacted on this public page (see note below).
 
 !!! note "Why prices are redacted in this section"
     Per-component market values for the Festo-supplied parts are not published here, as a courtesy to the sponsor relationship and consistent with the confidentiality obligations of the team's collaboration agreement with Festo. Public distributor reference prices for these parts have been collected and are kept in the team's internal Drive for project bookkeeping. The team's monetary cost for these items is **€0**; the team's contribution under the agreement is visibility (logo on the kart, social-media tagging, sponsor listing on the team site, invitations to Formula Student events) rather than a cash payment.
@@ -147,7 +147,7 @@ The full pneumatic EBS / ASB stack is supplied by **Festo Automation, S.A.U.**, 
 
 † Items marked with the dagger were requested under the current Festo sponsorship cycle and are pending delivery at time of writing — the rest of the stack is reused from earlier sponsorship cycles and is already on the kart.
 
-> The pneumatic schematic and component photos live under [Emergency Braking](../assembly/emergency-braking/index.md). The 12 V air compressor + tank is on the planned-purchase list but not yet on the kart, so it isn't counted here.
+> The pneumatic schematic and component photos live under [Pneumatic Braking](../assembly/pneumatic-braking/index.md). The 12 V air compressor + tank is on the planned-purchase list but not yet on the kart, so it isn't counted here.
 
 ---
 
@@ -175,7 +175,7 @@ The full pneumatic EBS / ASB stack is supplied by **Festo Automation, S.A.U.**, 
 | Electronics — compute & control | ~1932 | ~2315 |
 | Electronics — power | ~367 | ~403 |
 | Sensors | 450 | 450 |
-| Emergency braking (pneumatic) | 0 | redacted |
+| Pneumatic braking (ASB + EBS) | 0 | redacted |
 | Wiring & misc hardware | ~71 | ~71 |
 | **Total (transferred to suppliers)** | **~€3095** | redacted |
 | Reverse-charge VAT on the Orin (self-accounted by URJC) | +~390 | — |

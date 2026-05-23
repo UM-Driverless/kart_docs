@@ -34,6 +34,8 @@ Datasheet (local): [`567465datasheet.pdf`](../../assets/datasheets/567465datashe
 
 > **Warning:** This sensor is rated 0-10 bar. The tank side may see up to 8.3 bar (compressor max). If placed before the regulator, ensure supply pressure stays within 10 bar or the sensor may be damaged.
 
+> **Supply voltage — needs a boost from the 12 V rail (TODO).** The SDE5 requires a **15–30 V DC** supply (datasheet), but the kart runs a single 12 V rail (48 V → 12 V buck). Both SDE5 sensors therefore need a small step-up (boost) converter — planned, not yet fitted. The 0–10 V analog output is unaffected and feeds the ESP32 ADC as usual.
+
 ## Manual Valve (brake release / isolation)
 
 Manual valve for brake release during maintenance and system isolation. Reuse existing on-hand valve.

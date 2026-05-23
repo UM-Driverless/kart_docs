@@ -46,9 +46,9 @@ nav:
       - Sensors:
           - Camera: assembly/sensors/camera.md
           - Wheel Sensor (legacy): assembly/sensors/wheel-sensor-legacy.md
-      - Emergency Braking:
-          - assembly/emergency-braking/index.md
-          - BOM: assembly/emergency-braking/bom.md
+      - Pneumatic Braking:
+          - assembly/pneumatic-braking/index.md
+          - BOM: assembly/pneumatic-braking/bom.md
       - Hydraulics: hydraulics/index.md
   - Software:
       - software/index.md

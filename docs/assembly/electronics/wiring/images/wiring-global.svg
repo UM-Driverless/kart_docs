@@ -3,7 +3,7 @@
   Kart wiring — hand-crafted SVG
   Layout: top-down kart view (top = front of kart, bottom = rear)
   Real Festo product photos embedded via <image> tags from
-  ../../../emergency-braking/images/components/.
+  ../../../pneumatic-braking/images/components/.
   Edit this file directly; mkdocs serves the SVG as a static asset.
 -->
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -550,7 +550,7 @@
   <!-- VPPM (proportional valve) -->
   <g transform="translate(60,510)" filter="url(#shadow)">
     <rect width="160" height="160" fill="#fff9c4" stroke="#827717" stroke-width="1.6" rx="6"/>
-    <image href="../../../emergency-braking/images/components/festo-vppm-thumb.png"
+    <image href="../../../pneumatic-braking/images/components/festo-vppm-thumb.png"
            x="20" y="14" width="120" height="100" preserveAspectRatio="xMidYMid meet"/>
     <text x="80" y="128" class="name" text-anchor="middle">VPPM</text>
     <text x="80" y="143" class="small" text-anchor="middle">Proportional valve</text>
@@ -560,7 +560,7 @@
   <!-- EBS solenoid (Festo VUVS, normally-open) -->
   <g transform="translate(60,690)" filter="url(#shadow)">
     <rect width="160" height="160" fill="#fff9c4" stroke="#827717" stroke-width="1.6" rx="6"/>
-    <image href="../../../emergency-braking/images/components/festo-vuvs-thumb.png"
+    <image href="../../../pneumatic-braking/images/components/festo-vuvs-thumb.png"
            x="20" y="14" width="120" height="100" preserveAspectRatio="xMidYMid meet"/>
     <text x="80" y="128" class="name" text-anchor="middle">EBS solenoid</text>
     <text x="80" y="143" class="small" text-anchor="middle">VUVS · 12 V · NORMALLY-OPEN</text>
@@ -570,7 +570,7 @@
   <!-- Brake actuator (Festo ADN cylinder) -->
   <g transform="translate(240,690)" filter="url(#shadow)">
     <rect width="160" height="160" fill="#fff9c4" stroke="#827717" stroke-width="1.6" rx="6"/>
-    <image href="../../../emergency-braking/images/components/festo-adn-s-thumb.png"
+    <image href="../../../pneumatic-braking/images/components/festo-adn-s-thumb.png"
            x="20" y="14" width="120" height="100" preserveAspectRatio="xMidYMid meet"/>
     <text x="80" y="128" class="name" text-anchor="middle">Brake actuator</text>
     <text x="80" y="143" class="small" text-anchor="middle">Festo ADN-S</text>
