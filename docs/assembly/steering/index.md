@@ -14,7 +14,7 @@ The steering system uses a direct drive motor connected to the steering column. 
 ## Motor Data
 ![Motor specifications](index/20250622200050.png)
 
-24V motor, we will use it at 12V, estimated about 300W
+24 V geared DC motor (salvaged), driven from the battery through the Cytron H-bridge with PWM. At stall it pulls 47 V × 43 A ≈ 2 kW; normal steering work is only ~35 W (see sizing below).
 
 ## Main process
 We need to move the steering shaft to the target angle.
@@ -29,12 +29,19 @@ We need to move the steering shaft to the target angle.
 ## H-bridge data
 See [H-bridge](h-bridge.md) for more details.
 
-## Power Requirements Investigation
+## Sizing the actuator
 
-### Torque Requirements
-- **Reference torque**: ~40 Nm
-- **Target performance**: 1 full revolution (lock-to-lock) in 0.3 seconds
-- **Required power**: 40 Nm × (2π rad / 0.3 s) = **837 W**
+What the steering needs, all measured at the steering column (after the 11:1 reduction). Figures from experience with the built actuator.
+
+**Torque.** Turning the stopped wheels takes ~4 Nm to break the tyres loose, ~6 Nm with comfortable margin. (8 Nm was specified to Maxon in the 2025-01-07 YEP application, with spare capacity.)
+
+**Speed.** The wheels swing ~±25° (≈50° lock-to-lock). The current motor sweeps that side to side in ~0.15 s on the ground, faster with the wheels lifted — about 6 rad/s (~56 rpm).
+
+**Power** = torque × speed = 6 Nm × 6 rad/s ≈ **35 W**.
+
+Power is never the constraint here. The 13S pack (~48 V) through the Cytron driver supplies far more than 35 W; at stall the motor pulls 47 V × 43 A ≈ 2 kW, nearly all of it heat. What the 11:1 reduction buys is torque — it trades the motor's cheap speed for the ~6 Nm the column needs, so the motor isn't sitting near stall (and overheating) just to hold an angle.
+
+Off-the-shelf motors considered (none adopted) are listed under [steering motor options](motor-options.md).
 
 ### Design Constraints
 - **Available voltages**:

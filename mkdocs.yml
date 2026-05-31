@@ -31,7 +31,7 @@ nav:
           - assembly/steering/index.md
           - H-bridge: assembly/steering/h-bridge.md
           - Angle Sensor: assembly/steering/sensor/index.md
-          - Power Budget: assembly/steering/power-budget.md
+          - Motor options: assembly/steering/motor-options.md
           - Fasteners: assembly/steering/fasteners.md
       - Electronics:
           - Kart Medulla (ESP32-S3):

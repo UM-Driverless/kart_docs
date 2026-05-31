@@ -53,7 +53,7 @@ Numbers marked **`~`** are estimates pending confirmation from receipts.
 | Part | Qty | Source | Team cost (€) | Market cost (€) | Notes |
 |---|---:|---|---:|---:|---|
 | Cytron MD25HV H-bridge (25 A, 7–58 V) | 1 | Purchased | 55 | 55 | Replaces older MD30C. |
-| 24 V DC steering motor (operated at 12 V) | 1 | Salvage | 0 | ~50 | Pulled from a discarded massage chair. Drives the steering through the 15 : 1 3D-printed planetary below. Has ~2 kW stall reserve (rarely hit; normal operation is ~50–200 W). Off-the-shelf wiper motors are noted as **interesting alternatives** in the [Steering Power Budget](../assembly/steering/power-budget.md), not as replacements. |
+| 24 V DC steering motor (driven from the battery) | 1 | Salvage | 0 | ~50 | Pulled from a discarded massage chair. Drives the steering through the 11:1 3D-printed planetary below. Has ~2 kW stall reserve (rarely hit; normal steering work is ~35 W). Off-the-shelf wiper motors are noted as **interesting alternatives** in the [steering motor options](../assembly/steering/motor-options.md), not as replacements. |
 | 3D-printed planetary reducer, **15 : 1** (PLA/PETG) | 1 | Custom | ~6 | ~6 | ~150 g filament @ €25/kg + 4× 608 bearings (~€2) + M3 hardware. Print time on team printer not costed. Gives the salvage motor the torque headroom needed to cover edge cases without procurement. |
 | AS5600 magnetic angle sensor module | 1 | Purchased | 2 | 2 | I²C, 12-bit. |
 | 10 mm shaft coupling | 1 | Purchased | 15 | 15 | Aluminium. |
