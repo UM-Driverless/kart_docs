@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 680" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#444"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="580" height="680" fill="#FBFBF8"/>
+
+  <!-- title -->
+  <text x="290" y="30" text-anchor="middle" font-size="19" font-weight="700" fill="#1c1c1c">Folded compound spur-gear train</text>
+  <text x="290" y="52" text-anchor="middle" font-size="13" fill="#555">Alternative to the printed planetary — reduction ping-pongs between 2 axes</text>
+  <text x="290" y="70" text-anchor="middle" font-size="13" fill="#555">3 stages ×~2.2:1 ≈ 11:1 on two shafts   (2 stages would need a 3rd shaft)</text>
+
+  <!-- axis centerlines -->
+  <line x1="180" y1="172" x2="180" y2="470" stroke="#bbb" stroke-width="1.4" stroke-dasharray="5 5"/>
+  <line x1="305" y1="118" x2="305" y2="466" stroke="#bbb" stroke-width="1.4" stroke-dasharray="5 5"/>
+
+  <!-- ===== top: steering column + wheels (green output body) ===== -->
+  <text x="305" y="98" text-anchor="middle" font-size="11.5" font-weight="600" fill="#2FA56A">↑ steering column / wheels</text>
+  <line x1="272" y1="112" x2="338" y2="112" stroke="#2FA56A" stroke-width="7" stroke-linecap="round"/>
+  <line x1="305" y1="112" x2="305" y2="176" stroke="#2FA56A" stroke-width="6"/>
+  <line x1="305" y1="204" x2="305" y2="464" stroke="#2FA56A" stroke-width="6"/>
+  <text x="338" y="150" font-size="11" font-weight="600" fill="#888">column axis</text>
+
+  <!-- ===== bottom: motor (orange input body) ===== -->
+  <line x1="180" y1="450" x2="180" y2="478" stroke="#E8833A" stroke-width="7"/>
+  <rect x="146" y="478" width="68" height="36" rx="5" fill="#3a3f4a"/>
+  <text x="180" y="501" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">MOTOR</text>
+  <text x="180" y="536" text-anchor="middle" font-size="11" font-weight="600" fill="#888">motor axis</text>
+
+  <!-- compound hub bars (matching colour = one rigid body) -->
+  <rect x="299" y="320" width="12" height="130" rx="3" fill="#1FAE9C" opacity="0.5"/>
+  <rect x="174" y="190" width="12" height="130" rx="3" fill="#8A6FC9" opacity="0.5"/>
+
+  <!-- ===== gears (edge-on rectangles). colour = rigid body ===== -->
+  <!-- Stage 3 (TOP, output) @ y190 : P2(small,A) - G3(big,B) -->
+  <rect x="150" y="176" width="60"  height="28" rx="5" fill="#8A6FC9" stroke="#5e47a0" stroke-width="1.5"/>
+  <text x="180" y="195" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">P2</text>
+  <rect x="210" y="176" width="190" height="28" rx="5" fill="#2FA56A" stroke="#1d7048" stroke-width="1.5"/>
+  <text x="305" y="195" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">G3 (output)</text>
+
+  <!-- Stage 2 (MIDDLE) @ y320 : G2(big,A) - P1(small,B) -->
+  <rect x="85"  y="306" width="190" height="28" rx="5" fill="#8A6FC9" stroke="#5e47a0" stroke-width="1.5"/>
+  <text x="180" y="325" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">G2</text>
+  <rect x="275" y="306" width="60"  height="28" rx="5" fill="#1FAE9C" stroke="#127c70" stroke-width="1.5"/>
+  <text x="305" y="325" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">P1</text>
+
+  <!-- Stage 1 (BOTTOM, motor) @ y450 : P0(small,A) - G1(big,B) -->
+  <rect x="150" y="436" width="60"  height="28" rx="5" fill="#E8833A" stroke="#a85a1e" stroke-width="1.5"/>
+  <text x="180" y="455" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">P0</text>
+  <rect x="210" y="436" width="190" height="28" rx="5" fill="#1FAE9C" stroke="#127c70" stroke-width="1.5"/>
+  <text x="305" y="455" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">G1</text>
+
+  <!-- mesh markers + stage numbers (1 at bottom/motor → 3 at top/output) -->
+  <g font-size="12" font-weight="700">
+    <circle cx="210" cy="450" r="11" fill="#fff" stroke="#444" stroke-width="1.6"/><text x="210" y="454" text-anchor="middle" fill="#444">1</text>
+    <circle cx="275" cy="320" r="11" fill="#fff" stroke="#444" stroke-width="1.6"/><text x="275" y="324" text-anchor="middle" fill="#444">2</text>
+    <circle cx="210" cy="190" r="11" fill="#fff" stroke="#444" stroke-width="1.6"/><text x="210" y="194" text-anchor="middle" fill="#444">3</text>
+  </g>
+
+  <!-- bearing glyphs at idle compounds -->
+  <g stroke="#777" stroke-width="2">
+    <line x1="296" y1="385" x2="314" y2="385"/><line x1="296" y1="391" x2="314" y2="391"/>
+    <line x1="171" y1="255" x2="189" y2="255"/><line x1="171" y1="261" x2="189" y2="261"/>
+  </g>
+  <text x="324" y="391" font-size="10.5" fill="#777">idle on bearing</text>
+  <text x="161" y="261" font-size="10.5" fill="#777" text-anchor="end">idle on bearing</text>
+
+  <!-- power-path arrows: flow runs upward, motor (bottom) → column (top) -->
+  <line x1="305" y1="434" x2="305" y2="340" stroke="#444" stroke-width="1.4" marker-end="url(#arr)"/>
+  <line x1="180" y1="304" x2="180" y2="210" stroke="#444" stroke-width="1.4" marker-end="url(#arr)"/>
+
+  <!-- ===== legend ===== -->
+  <g font-size="11.5">
+    <text x="415" y="120" font-size="12.5" font-weight="700" fill="#1c1c1c">Colour = one rigid body</text>
+    <rect x="415" y="132" width="16" height="12" rx="2" fill="#E8833A"/><text x="437" y="142" fill="#333">motor shaft + pinion P0</text>
+    <rect x="415" y="152" width="16" height="12" rx="2" fill="#1FAE9C"/><text x="437" y="162" fill="#333">idler 1  (G1 + P1)</text>
+    <rect x="415" y="172" width="16" height="12" rx="2" fill="#8A6FC9"/><text x="437" y="182" fill="#333">idler 2  (G2 + P2)</text>
+    <rect x="415" y="192" width="16" height="12" rx="2" fill="#2FA56A"/><text x="437" y="202" fill="#333">column + output G3</text>
+    <text x="415" y="232" font-size="11" fill="#666">Big gear ≈ 3.3× its pinion.</text>
+    <text x="415" y="250" font-size="11" fill="#666">Every stage reuses the same pair.</text>
+  </g>
+
+  <!-- odd-mesh-count rule -->
+  <g font-size="11" fill="#555">
+    <line x1="415" y1="286" x2="565" y2="286" stroke="#ddd" stroke-width="1"/>
+    <text x="415" y="306" font-size="11.5" font-weight="700" fill="#1c1c1c">Why odd stages only</text>
+    <text x="415" y="324">Two-shaft fold works</text>
+    <text x="415" y="339">only for an ODD mesh</text>
+    <text x="415" y="354">count. Even (2 stages)</text>
+    <text x="415" y="369">ends on the motor axis,</text>
+    <text x="415" y="384">so needs a 3rd shaft.</text>
+  </g>
+
+  <!-- ===== why-note ===== -->
+  <g font-size="11.5">
+    <line x1="30" y1="592" x2="550" y2="592" stroke="#ddd" stroke-width="1"/>
+    <text x="30" y="613" font-size="12.5" font-weight="700" fill="#1c1c1c">Why it could beat the planetary:</text>
+    <text x="30" y="633" fill="#444">Each stage is one gear pair. Its only critical dimension — centre distance — is tunable after</text>
+    <text x="30" y="650" fill="#444">printing (slotted mounts). No simultaneous sun + ring + 3-planets tolerance stack.</text>
+    <text x="30" y="667" fill="#444">Cost: two axes (wider than coaxial), and backlash stacks across the meshes.</text>
+  </g>
+</svg>

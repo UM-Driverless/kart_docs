@@ -29,9 +29,14 @@ nav:
           - Fasteners: assembly/powertrain/fasteners.md
       - Steering:
           - assembly/steering/index.md
+          - Reducer: assembly/steering/reducer.md
+          - Alternative reducers:
+              - assembly/steering/alternatives/index.md
+              - Cycloidal: assembly/steering/alternatives/cycloidal.md
+              - Folded compound train: assembly/steering/alternatives/folded-compound-gear-train.md
+          - Motor options: assembly/steering/motor-options.md
           - H-bridge: assembly/steering/h-bridge.md
           - Angle Sensor: assembly/steering/sensor/index.md
-          - Motor options: assembly/steering/motor-options.md
           - Fasteners: assembly/steering/fasteners.md
       - Electronics:
           - Kart Medulla (ESP32-S3):

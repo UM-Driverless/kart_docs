@@ -1,12 +1,12 @@
 # Steering Motor
 
-The actuator sizing — torque, speed, and the power that follows — lives on the [steering page](index.md). Short version: the column needs ~6 Nm to turn the stopped wheels and ~56 rpm to sweep lock-to-lock in ~0.15 s, so about 35 W of mechanical work. With a ~48 V pack and the Cytron driver, electrical power is never the limit; the only real design lever is getting enough torque at the column, which the 11:1 reduction provides.
+The actuator sizing — torque, speed, and the power that follows — lives on the [steering page](index.md). Short version: the column needs ~8 Nm to turn the stopped wheels and ~56 rpm to sweep lock-to-lock in ~0.15 s, so about 47 W of mechanical work. With a ~48 V pack and the Cytron driver, electrical power is never the limit; the only real design lever is getting enough torque at the column, which the 11:1 reduction provides.
 
 This page records the motor in use and the off-the-shelf alternatives the team looked at.
 
 ## Current setup (kept)
 
-The steering actuator is a 24 V geared DC motor pulled out of a discarded massage chair, driven from the battery through the Cytron H-bridge, turning the steering column through a 3D-printed planetary at 11:1. Position feedback comes from an AS5600 magnetic encoder on the column. It turns the stopped wheels with ~6 Nm and sweeps lock-to-lock in ~0.15 s; at stall it has roughly 2 kW available, far more than the ~35 W the job actually needs. The motor was free, the planetary is a few euros of filament plus four 608 bearings and some M3 hardware, and nothing here had to be ordered.
+The steering actuator is a 24 V geared DC motor pulled out of a discarded massage chair, driven from the battery through the Cytron H-bridge, turning the steering column through a 3D-printed planetary at 11:1. Position feedback comes from an AS5600 magnetic encoder on the column. It turns the stopped wheels with ~8 Nm and sweeps lock-to-lock in ~0.15 s; at stall it has roughly 2 kW available, far more than the ~47 W the job actually needs. The motor was free, the planetary is a few euros of filament plus four 608 bearings and some M3 hardware, and nothing here had to be ordered.
 
 The candidates below are worth knowing about but don't replace this setup.
 
@@ -22,7 +22,7 @@ Caveats:
 
 ## Interesting alternatives (not currently planned)
 
-Off-the-shelf parts worth remembering if the salvage motor fails or a procurement window opens. The bar to clear is ~6 Nm at the column (more for cold-tyre / full-lock hard cases) at ~56 rpm. Most of these still need a reduction stage to get there.
+Off-the-shelf parts worth remembering if the salvage motor fails or a procurement window opens. The bar to clear is ~8 Nm at the column (more for cold-tyre / full-lock hard cases) at ~56 rpm. Most of these still need a reduction stage to get there.
 
 | Part | V | Output speed | Torque | Power | Feedback | Indicative price | Comment |
 |---|---:|---:|---:|---:|---|---:|---|

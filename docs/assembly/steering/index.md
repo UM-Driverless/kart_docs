@@ -6,15 +6,20 @@
 ??? example "View steering mechanism with measurements"
     ![Steering mechanism with dimensions](images/steering-mechanism.jpg)
 
-The steering system uses a direct drive motor connected to the steering column. Key dimensions:
+The steering system uses a salvaged DC motor geared down to the steering column through a ~11:1 reducer. Key dimensions:
 - Steering column diameter: 20mm
 - Motor mount spacing: 50mm
 - Connection diameter: 10mm (internal)
 
+## CAD
+
+!!! todo "Steering assembly CAD"
+    Fusion model of the full steering assembly (motor mount, reducer, column coupling) to be embedded here — add a Fusion 360 **Share → Public link** as an Autodesk Viewer iframe + a STEP download. Reducer-specific CAD is on the [Reducer](reducer.md#cad) page.
+
 ## Motor Data
 ![Motor specifications](index/20250622200050.png)
 
-24 V geared DC motor (salvaged), driven from the battery through the Cytron H-bridge with PWM. At stall it pulls 47 V × 43 A ≈ 2 kW; normal steering work is only ~35 W (see sizing below).
+24 V geared DC motor (salvaged), driven from the battery through the Cytron H-bridge with PWM. At stall it pulls 47 V × 43 A ≈ 2 kW; normal steering work is only ~47 W (see sizing below).
 
 ## Main process
 We need to move the steering shaft to the target angle.
@@ -33,13 +38,13 @@ See [H-bridge](h-bridge.md) for more details.
 
 What the steering needs, all measured at the steering column (after the 11:1 reduction). Figures from experience with the built actuator.
 
-**Torque.** Turning the stopped wheels takes ~4 Nm to break the tyres loose, ~6 Nm with comfortable margin. (8 Nm was specified to Maxon in the 2025-01-07 YEP application, with spare capacity.)
+**Torque.** Turning the stopped wheels takes ~4 Nm to break the tyres loose; we size for **~8 Nm** with margin — the figure specified to Maxon in the 2025-01-07 YEP application.
 
 **Speed.** The wheels swing ~±25° (≈50° lock-to-lock). The current motor sweeps that side to side in ~0.15 s on the ground, faster with the wheels lifted — about 6 rad/s (~56 rpm).
 
-**Power** = torque × speed = 6 Nm × 6 rad/s ≈ **35 W**.
+**Power** = torque × speed = 8 Nm × 6 rad/s ≈ **47 W**.
 
-Power is never the constraint here. The 13S pack (~48 V) through the Cytron driver supplies far more than 35 W; at stall the motor pulls 47 V × 43 A ≈ 2 kW, nearly all of it heat. What the 11:1 reduction buys is torque — it trades the motor's cheap speed for the ~6 Nm the column needs, so the motor isn't sitting near stall (and overheating) just to hold an angle.
+Power is never the constraint here. The 13S pack (~48 V) through the Cytron driver supplies far more than 47 W; at stall the motor pulls 47 V × 43 A ≈ 2 kW, nearly all of it heat. What the 11:1 reduction buys is torque — it trades the motor's cheap speed for the ~8 Nm the column needs, so the motor isn't sitting near stall (and overheating) just to hold an angle.
 
 Off-the-shelf motors considered (none adopted) are listed under [steering motor options](motor-options.md).
 
@@ -84,27 +89,8 @@ Off-the-shelf motors considered (none adopted) are listed under [steering motor 
     #### Decision Matrix
     *To be completed once alternatives are evaluated*
 
-### Gear Reduction Investigation
+## Reducer & alternative designs
 
-**Requirements**: Minimum 5:1 reduction ratio, especially shorter teeth on pinion gear
+The motor's speed is geared down to torque through a **~11:1 two-stage reducer** (a 3D-printed planetary + an output gear pair). The design, the gear-material saga (PLA → nylon → PPA-CF → steel), and the failure modes are on the **[Reducer](reducer.md)** page.
 
-??? info "Reduction Alternatives (Click to expand)"
-
-    #### Direct Gear Change
-    - Replace current gears with 5:1 ratio set
-    - Focus on shorter teeth for pinion gear
-    - Crown gear can remain similar size
-
-    #### Planetary Gearbox Addition
-    - Research compatibility with current motor
-    - Options:
-        - 3D print custom adapter if needed
-        - Drill mounting holes in steel L-bracket
-        - Modify existing mounting plate
-
-    #### Complete Motor/Servo Replacement
-    - Consider integrated servo motor with built-in reduction
-    - Higher initial cost but simpler integration
-
-    #### Decision Matrix
-    *To be completed once alternatives are evaluated*
+The other reducer types we weighed — cycloidal, folded compound gear train, worm, harmonic, belt — and the two we're keeping as live alternatives to print and test, are on **[Alternative reducer designs](alternatives/index.md)**.
