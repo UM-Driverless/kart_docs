@@ -50,13 +50,15 @@ The real weak point is the **motor-shaft interface** — a D-flat + set screw in
 
 ## CAD
 
-The printed planetary gears, exported from the Fusion design (`planetary v44`). STL to print, STEP to edit:
+**Full parametric design (Fusion 360):** [planetary-reducer.f3d](cad/planetary-reducer.f3d) (1.6 MB) — open in Fusion to edit the sketches and parameters (teeth counts, module, geometry) with the timeline intact. A STEP would hand you the geometry but drop the parametric history, so the **F3D is the one to grab for editing** (and it's 10× smaller than the STEP would be).
 
-| Part | Print | Edit |
-|---|---|---|
-| Sun gear (12 t, Norelem hub geometry) | [STL](cad/planetary-sun-gear.stl) | [STEP](cad/planetary-sun-gear.step) |
-| Planet gear (16 t, ×4) | [STL](cad/planetary-planet-gear.stl) | [STEP](cad/planetary-planet-gear.step) |
-| Ring gear (44 t, internal) | [STL](cad/planetary-ring-gear.stl) | [STEP](cad/planetary-ring-gear.step) |
+Printable gears (STL):
 
-!!! todo "Interactive 3D viewer + remaining parts"
-    To add a spin-around model, generate a Fusion 360 **Share → Public Link** and paste the iframe here. Still to export: the output-pinion pair (13 / 31), the carrier, lid, and separator plate. The full assembly STEP (incl. bearings) is ~16 MB — host externally, not in-repo.
+| Part | Print |
+|---|---|
+| Sun gear (12 t, Norelem hub geometry) | [STL](cad/planetary-sun-gear.stl) |
+| Planet gear (16 t, ×4) | [STL](cad/planetary-planet-gear.stl) |
+| Ring gear (44 t, internal) | [STL](cad/planetary-ring-gear.stl) |
+
+!!! todo "Optional additions"
+    A spin-around 3D viewer needs a Fusion **Share → Public Link** (iframe). A universal STEP can be re-exported from the F3D for anyone without Fusion. Still to add: the output-pinion pair (13 / 31), carrier, lid, separator plate.
