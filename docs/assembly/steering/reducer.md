@@ -50,15 +50,7 @@ The real weak point is the **motor-shaft interface** — a D-flat + set screw in
 
 ## CAD
 
-**Full parametric design (Fusion 360):** [planetary-reducer.f3d](cad/planetary-reducer.f3d) (1.6 MB) — open in Fusion to edit the sketches and parameters (teeth counts, module, geometry) with the timeline intact. A STEP would hand you the geometry but drop the parametric history, so the **F3D is the one to grab for editing** (and it's 10× smaller than the STEP would be).
+The CAD lives in shared cloud storage (kept out of this repo to keep it light). The folder holds the **Fusion F3D** — the parametric source: open it in Fusion to edit teeth counts, module, and sketches with the full timeline intact — plus a **STEP** (universal geometry, any CAD, non-parametric) and per-gear **STLs** for printing.
 
-Printable gears (STL):
-
-| Part | Print |
-|---|---|
-| Sun gear (12 t, Norelem hub geometry) | [STL](cad/planetary-sun-gear.stl) |
-| Planet gear (16 t, ×4) | [STL](cad/planetary-planet-gear.stl) |
-| Ring gear (44 t, internal) | [STL](cad/planetary-ring-gear.stl) |
-
-!!! todo "Optional additions"
-    A spin-around 3D viewer needs a Fusion **Share → Public Link** (iframe). A universal STEP can be re-exported from the F3D for anyone without Fusion. Still to add: the output-pinion pair (13 / 31), carrier, lid, separator plate.
+!!! todo "CAD download link pending"
+    Public share link to the steering-reducer CAD folder to be added here. Files: `planetary-reducer.f3d` (parametric), `planetary-reducer-assembly.step` (geometry), `planetary-{sun,planet,ring}-gear.stl` (print). Still to export: output-pinion pair (13 / 31), carrier, lid, separator.
