@@ -13,8 +13,8 @@ The steering system uses a salvaged DC motor geared down to the steering column 
 
 ## CAD
 
-!!! todo "Steering assembly CAD"
-    Fusion model of the full steering assembly (motor mount, reducer, column coupling) to be embedded here — add a Fusion 360 **Share → Public link** as an Autodesk Viewer iframe + a STEP download. Reducer-specific CAD is on the [Reducer](reducer.md#cad) page.
+!!! info "CAD available on request"
+    The steering assembly is modelled in Fusion 360. We haven't published the files here yet — if you'd like the CAD for your own build, [get in touch](../../contact.md). Reducer details are on the [Reducer](reducer.md) page.
 
 ## Motor Data
 ![Motor specifications](index/20250622200050.png)

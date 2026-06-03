@@ -50,7 +50,5 @@ The real weak point is the **motor-shaft interface** — a D-flat + set screw in
 
 ## CAD
 
-The CAD lives in shared cloud storage (kept out of this repo to keep it light). The folder holds the **Fusion F3D** — the parametric source: open it in Fusion to edit teeth counts, module, and sketches with the full timeline intact — plus a **STEP** (universal geometry, any CAD, non-parametric) and per-gear **STLs** for printing.
-
-!!! todo "CAD download link pending"
-    Public share link to the steering-reducer CAD folder to be added here. Files: `planetary-reducer.f3d` (parametric), `planetary-reducer-assembly.step` (geometry), `planetary-{sun,planet,ring}-gear.stl` (print). Still to export: output-pinion pair (13 / 31), carrier, lid, separator.
+!!! info "CAD available on request"
+    The reducer is fully modelled in Fusion 360 — the parametric design, a STEP, and print-ready gear STLs. We haven't published the files here yet, but we're happy to share them: if you'd like the CAD for your own build, [get in touch](../../contact.md).
