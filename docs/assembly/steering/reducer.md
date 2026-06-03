@@ -50,6 +50,13 @@ The real weak point is the **motor-shaft interface** — a D-flat + set screw in
 
 ## CAD
 
-!!! todo "CAD embed pending"
-    Interactive Fusion model + STEP download to be added here. Generate a Fusion 360 **Share → Public link** and embed it as an Autodesk Viewer iframe, plus a STEP export for download.
-    Source model: team Fusion `planetary_reducer v1`. Parameters: `kart/steering/planetary_reducer_parameters.md` + `output_pinion_parameters.md`. The Norelem sun-gear STEP (22400-0120200012) is in `kart/steering/resources/`.
+The printed planetary gears, exported from the Fusion design (`planetary v44`). STL to print, STEP to edit:
+
+| Part | Print | Edit |
+|---|---|---|
+| Sun gear (12 t, Norelem hub geometry) | [STL](cad/planetary-sun-gear.stl) | [STEP](cad/planetary-sun-gear.step) |
+| Planet gear (16 t, ×4) | [STL](cad/planetary-planet-gear.stl) | [STEP](cad/planetary-planet-gear.step) |
+| Ring gear (44 t, internal) | [STL](cad/planetary-ring-gear.stl) | [STEP](cad/planetary-ring-gear.step) |
+
+!!! todo "Interactive 3D viewer + remaining parts"
+    To add a spin-around model, generate a Fusion 360 **Share → Public Link** and paste the iframe here. Still to export: the output-pinion pair (13 / 31), the carrier, lid, and separator plate. The full assembly STEP (incl. bearings) is ~16 MB — host externally, not in-repo.
