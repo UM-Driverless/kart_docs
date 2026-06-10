@@ -18,3 +18,27 @@ Suggested H-bridges by gpt:
 - ~~Simple BTS7960: Cheap dual half-bridge module, supports 43 A per channel, needs external PWM and logic control~~
 - ~~IBT-4~~
     - Needs two synced pwm signals to control the H bridge, so it's harder to use. Otherwise it would work and it's cheaper
+
+## Alternative motor controllers (investigated, not adopted)
+
+Beyond a plain H-bridge, a few integrated speed/servo controllers were considered. None replaced the MD25HV, but they're worth knowing about if the control approach is ever revisited.
+
+??? info "Driver alternatives (click to expand)"
+
+    #### VESC (Vedder Electronic Speed Controller)
+    - **Advantages**: multi-purpose, can be reused for other systems.
+    - **Implementation**: test with an existing unit first; ESP32 communication via UART at 3.3 V; keep the AS5600 magnetic sensor on I²C. Note: VESC DC mode doesn't include position control, so an external PID is still needed.
+    - **Alternative unit**: [Flysky FSESC67100 V2 Pro on Wallapop](https://es.wallapop.com/item/flysky-fsesc67100-v2-pro-1133224964)
+
+    #### Kelly Controller KDS series
+    - **Link**: [Kelly Controller shop](https://kellycontroller.com/shop/kds/)
+    - **Specs**: ~60 €, 48 V (max 60 V), 50 A.
+    - **Control**: 0–5 V analog for power, REV/DIR signal for direction. Requires an external microcontroller with PID for position control.
+
+    #### AllMotion EZSV23WV servo controller
+    - **Link**: [AllMotion EZSV23WV](https://www.allmotion.com/ezsv23wv-servo-control)
+    - Integrated servo-control solution.
+
+    #### Generic PWM motor controller
+    - **Link**: [Component Authority DC motor controller](https://componentauthority.com/products/dc-10-55v-max-60a-pwm-motor-speed-controller-cw-ccw-reversible-12v-24v-36v)
+    - **Specs**: 10–55 V DC, max 60 A, CW/CCW reversible. Works like the current Cytron solution — use with an ESP32 for the same control method.
