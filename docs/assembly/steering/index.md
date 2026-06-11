@@ -3,8 +3,21 @@
 
 For the kart to drive itself, something has to turn the wheels. The steering system is the drive-by-wire actuator that does it: a motor turns the steering column to whatever angle the autonomy stack asks for, in a closed loop against an angle sensor.
 
-??? example "View steering mechanism with measurements"
-    ![Steering mechanism with dimensions](images/steering-mechanism.jpg)
+## Key dimensions
+
+| Dimension | Value |
+|---|---|
+| Steering column diameter | 20 mm |
+| Motor shaft / sun-gear bore | 10 mm |
+| Planetary centre distance | 28 mm |
+| Output gear-pair centre distance | 66 mm |
+
+These are the canonical numbers — kept in text (here and in the [reducer](reducer.md) tables) so they can be updated in a diff and a stale value gets caught in review. The Fusion 360 model is the geometric source of truth; this table mirrors it.
+
+??? example "Early hand-measurement photo (historical)"
+    Scribbled measurements from an early build, kept for the workshop record. **Some are now superseded** — e.g. the output-pair spacing marked 55.5 mm is **66 mm** in the current design. Always use the table above (and the reducer page) for current values, never the numbers drawn on this photo.
+
+    ![Steering mechanism with early hand-drawn measurements](images/steering-mechanism.jpg)
 
 ## Actuator architecture — how we drive the column
 
