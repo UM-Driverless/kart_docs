@@ -12,7 +12,7 @@ For the kart to drive itself, something has to turn the wheels. The steering sys
 | Planetary centre distance | 28 mm |
 | Output gear-pair centre distance | 66 mm |
 
-These are the canonical numbers — kept in text (here and in the [reducer](reducer.md) tables) so they can be updated in a diff and a stale value gets caught in review. The Fusion 360 model is the geometric source of truth; this table mirrors it. An early hand-measured photo of the mechanism is on the [previous designs](previous-designs.md) page.
+The **Fusion 360 model is the single source of truth** for all geometry. This table is a convenience copy for quick reference — if it ever disagrees with the CAD, the CAD wins. An early hand-measured photo of the mechanism is on the [previous designs](previous-designs.md) page.
 
 ## Actuator architecture — how we drive the column
 
