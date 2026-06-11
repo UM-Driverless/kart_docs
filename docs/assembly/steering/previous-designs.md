@@ -38,6 +38,10 @@ The first column-drive reducer was also a printed planetary, but with the older 
 
 <!-- TODO image: the grey 3-planet printed set (superseded geometry) → images/planetary-3planet-old.png -->
 
+![Early steering mechanism with hand-drawn measurements](images/steering-mechanism.jpg)
+
+*Early build, hand-measured on the kart: the salvaged DC motor's pinion driving the printed output gear on the column. The numbers scribbled here are a snapshot, not current spec — the output-pair spacing marked 55.5 mm is **66 mm** in the current design. Live values are on the [Steering System](index.md#key-dimensions) and [Reducer](reducer.md) pages.*
+
 **What changed and why:**
 
 - **3 → 4 planets.** With a 12-tooth sun and a 44-tooth ring, the assembly condition `(Z_sun + Z_ring)/N` only divides evenly for 4 planets, not 3 — so the move to an off-the-shelf 12-tooth sun *forced* 4 planets. The upside: load is shared across four meshes instead of three.
