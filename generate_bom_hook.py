@@ -48,8 +48,29 @@ def parse_bom_files(docs_dir: Path) -> tuple[List[Dict], Dict]:
     return components, assemblies
 
 
+# Status / criticality value → badge colour class (see docs/stylesheets/bom.css)
+STATUS_BADGE = {
+    'active': 'green',
+    'planned': 'blue',
+    'pending': 'amber',
+    'legacy': 'grey',
+    'needs_specification': 'red',
+    'needs_replacement': 'red',
+}
+CRITICALITY_BADGE = {
+    'essential': 'red',
+    'important': 'amber',
+    'optional': 'blue',
+}
+
+
 def generate_parts_table_html(components: List[Dict]) -> str:
-    """Generate an HTML table with searchable/filterable parts."""
+    """Generate a themed, searchable/filterable HTML parts table.
+
+    Styling lives in docs/stylesheets/bom.css so the table inherits the
+    Material theme (and works in dark mode). This function emits class-based
+    markup only — no inline styles.
+    """
 
     # Sort components by assembly and criticality
     sorted_components = sorted(
@@ -65,170 +86,132 @@ def generate_parts_table_html(components: List[Dict]) -> str:
     statuses = sorted(set(c.get('status', 'unknown') for c in components))
     categories = sorted(set(c.get('category', 'unknown') for c in components))
 
+    def options(values: List[str]) -> str:
+        return '\n'.join(
+            f'        <option value="{v}">{v.replace("_", " ").title()}</option>'
+            for v in values
+        )
+
     html = [
         '<div class="parts-table-container">',
-        '  <div class="parts-filters" style="margin-bottom: 1em; padding: 1em; background: #f5f5f5; border-radius: 4px;">',
-        '    <label style="margin-right: 1em;">',
-        '      <strong>Search:</strong> ',
-        '      <input type="text" id="partsSearch" placeholder="Search parts..." style="padding: 0.3em; width: 300px;">',
+        '  <div class="parts-filters">',
+        '    <label><strong>Search</strong>',
+        '      <input type="text" id="partsSearch" placeholder="part number, name…">',
         '    </label>',
-        '    <label style="margin-right: 1em;">',
-        '      <strong>Assembly:</strong> ',
-        '      <select id="assemblyFilter" style="padding: 0.3em;">',
-        '        <option value="">All</option>'
-    ]
-
-    for assembly in assemblies:
-        html.append(f'        <option value="{assembly}">{assembly.title()}</option>')
-
-    html.extend([
-        '      </select>',
-        '    </label>',
-        '    <label style="margin-right: 1em;">',
-        '      <strong>Status:</strong> ',
-        '      <select id="statusFilter" style="padding: 0.3em;">',
-        '        <option value="">All</option>'
-    ])
-
-    for status in statuses:
-        html.append(f'        <option value="{status}">{status.replace("_", " ").title()}</option>')
-
-    html.extend([
-        '      </select>',
-        '    </label>',
-        '    <label>',
-        '      <strong>Category:</strong> ',
-        '      <select id="categoryFilter" style="padding: 0.3em;">',
-        '        <option value="">All</option>'
-    ])
-
-    for category in categories:
-        html.append(f'        <option value="{category}">{category.replace("_", " ").title()}</option>')
-
-    html.extend([
-        '      </select>',
-        '    </label>',
-        '    <span id="partsCount" style="margin-left: 1em; font-weight: bold;"></span>',
+        '    <label><strong>Assembly</strong>',
+        '      <select id="assemblyFilter"><option value="">All</option>',
+        options(assemblies),
+        '      </select></label>',
+        '    <label><strong>Status</strong>',
+        '      <select id="statusFilter"><option value="">All</option>',
+        options(statuses),
+        '      </select></label>',
+        '    <label><strong>Category</strong>',
+        '      <select id="categoryFilter"><option value="">All</option>',
+        options(categories),
+        '      </select></label>',
+        '    <span id="partsCount"></span>',
         '  </div>',
         '',
-        '  <table id="partsTable" class="parts-table" style="width: 100%; border-collapse: collapse;">',
+        '  <table id="partsTable" class="parts-table">',
         '    <thead>',
-        '      <tr style="background: #2196F3; color: white;">',
-        '        <th style="padding: 0.75em; text-align: left; cursor: pointer;" onclick="sortTable(0)">ID ↕</th>',
-        '        <th style="padding: 0.75em; text-align: left; cursor: pointer;" onclick="sortTable(1)">Part # ↕</th>',
-        '        <th style="padding: 0.75em; text-align: left; cursor: pointer;" onclick="sortTable(2)">Description ↕</th>',
-        '        <th style="padding: 0.75em; text-align: left; cursor: pointer;" onclick="sortTable(3)">Assembly ↕</th>',
-        '        <th style="padding: 0.75em; text-align: left; cursor: pointer;" onclick="sortTable(4)">Category ↕</th>',
-        '        <th style="padding: 0.75em; text-align: right; cursor: pointer;" onclick="sortTable(5)">Qty ↕</th>',
-        '        <th style="padding: 0.75em; text-align: right; cursor: pointer;" onclick="sortTable(6)">Cost ↕</th>',
-        '        <th style="padding: 0.75em; text-align: left; cursor: pointer;" onclick="sortTable(7)">Status ↕</th>',
-        '        <th style="padding: 0.75em; text-align: left; cursor: pointer;" onclick="sortTable(8)">Critical ↕</th>',
+        '      <tr>',
+        '        <th onclick="sortTable(0)">ID ↕</th>',
+        '        <th onclick="sortTable(1)">Part # ↕</th>',
+        '        <th onclick="sortTable(2)">Description ↕</th>',
+        '        <th onclick="sortTable(3)">Assembly ↕</th>',
+        '        <th onclick="sortTable(4)">Category ↕</th>',
+        '        <th class="num" onclick="sortTable(5)">Qty ↕</th>',
+        '        <th class="num" onclick="sortTable(6)">Cost ↕</th>',
+        '        <th onclick="sortTable(7)">Status ↕</th>',
+        '        <th onclick="sortTable(8)">Critical ↕</th>',
         '      </tr>',
         '    </thead>',
-        '    <tbody>'
-    ])
+        '    <tbody>',
+    ]
 
     # Add component rows
-    for idx, component in enumerate(sorted_components):
-        bg_color = '#f9f9f9' if idx % 2 == 0 else 'white'
-        status_color = {
-            'active': '#4CAF50',
-            'pending': '#FF9800',
-            'needs_specification': '#F44336'
-        }.get(component.get('status', 'unknown'), '#9E9E9E')
-
-        criticality_color = {
-            'essential': '#F44336',
-            'important': '#FF9800',
-            'optional': '#2196F3'
-        }.get(component.get('criticality', 'optional'), '#9E9E9E')
-
-        html.append(f'      <tr style="background: {bg_color};" data-assembly="{component.get("assembly", "")}" data-status="{component.get("status", "")}" data-category="{component.get("category", "")}">')
-        html.append(f'        <td style="padding: 0.5em; font-family: monospace; font-size: 0.9em;">{component.get("id", "N/A")}</td>')
-        html.append(f'        <td style="padding: 0.5em; font-family: monospace; font-size: 0.9em;">{component.get("part_number", "N/A")}</td>')
-        html.append(f'        <td style="padding: 0.5em;">{component.get("description", "N/A")}</td>')
-        html.append(f'        <td style="padding: 0.5em;">{component.get("assembly", "N/A")}</td>')
-        html.append(f'        <td style="padding: 0.5em;">{component.get("category", "N/A").replace("_", " ").title()}</td>')
-        html.append(f'        <td style="padding: 0.5em; text-align: right;">{component.get("quantity", 1)}</td>')
-
+    for component in sorted_components:
+        status = component.get('status', 'unknown')
+        criticality = component.get('criticality', 'optional')
+        status_class = STATUS_BADGE.get(status, 'grey')
+        crit_class = CRITICALITY_BADGE.get(criticality, 'grey')
         unit_cost = component.get('unit_cost', 0.0)
         currency = component.get('currency', 'EUR')
-        html.append(f'        <td style="padding: 0.5em; text-align: right;">{currency} {unit_cost:.2f}</td>')
 
-        status = component.get('status', 'unknown').replace('_', ' ').title()
-        html.append(f'        <td style="padding: 0.5em;"><span style="background: {status_color}; color: white; padding: 0.2em 0.5em; border-radius: 3px; font-size: 0.85em;">{status}</span></td>')
+        html.extend([
+            f'      <tr data-assembly="{component.get("assembly", "")}" data-status="{status}" data-category="{component.get("category", "")}">',
+            f'        <td class="mono">{component.get("id", "—")}</td>',
+            f'        <td class="mono">{component.get("part_number", "—")}</td>',
+            f'        <td>{component.get("description", "—")}</td>',
+            f'        <td>{component.get("assembly", "—")}</td>',
+            f'        <td>{component.get("category", "—").replace("_", " ").title()}</td>',
+            f'        <td class="num">{component.get("quantity", 1)}</td>',
+            f'        <td class="num">{currency} {unit_cost:.2f}</td>',
+            f'        <td><span class="bom-badge bom-badge--{status_class}">{status.replace("_", " ").title()}</span></td>',
+            f'        <td><span class="bom-badge bom-badge--{crit_class}">{criticality.title()}</span></td>',
+            '      </tr>',
+        ])
 
-        criticality = component.get('criticality', 'optional').title()
-        html.append(f'        <td style="padding: 0.5em;"><span style="background: {criticality_color}; color: white; padding: 0.2em 0.5em; border-radius: 3px; font-size: 0.85em;">{criticality}</span></td>')
-        html.append('      </tr>')
-
+    total = len(components)
     html.extend([
         '    </tbody>',
         '  </table>',
         '</div>',
         '',
         '<script>',
-        '  // Filter functionality',
-        '  function filterTable() {',
-        '    const searchTerm = document.getElementById("partsSearch").value.toLowerCase();',
-        '    const assemblyFilter = document.getElementById("assemblyFilter").value;',
-        '    const statusFilter = document.getElementById("statusFilter").value;',
-        '    const categoryFilter = document.getElementById("categoryFilter").value;',
-        '    const table = document.getElementById("partsTable");',
-        '    const rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");',
-        '    let visibleCount = 0;',
+        '(function () {',
+        '  const search = document.getElementById("partsSearch");',
+        '  if (!search) return;',
+        '  const table = document.getElementById("partsTable");',
+        '  const rows = Array.from(table.tBodies[0].rows);',
+        '  const count = document.getElementById("partsCount");',
+        '  const filters = {',
+        '    assembly: document.getElementById("assemblyFilter"),',
+        '    status: document.getElementById("statusFilter"),',
+        '    category: document.getElementById("categoryFilter"),',
+        '  };',
         '',
-        '    for (let row of rows) {',
-        '      const text = row.textContent.toLowerCase();',
-        '      const assembly = row.getAttribute("data-assembly");',
-        '      const status = row.getAttribute("data-status");',
-        '      const category = row.getAttribute("data-category");',
-        '',
-        '      const matchesSearch = text.includes(searchTerm);',
-        '      const matchesAssembly = !assemblyFilter || assembly === assemblyFilter;',
-        '      const matchesStatus = !statusFilter || status === statusFilter;',
-        '      const matchesCategory = !categoryFilter || category === categoryFilter;',
-        '',
-        '      if (matchesSearch && matchesAssembly && matchesStatus && matchesCategory) {',
-        '        row.style.display = "";',
-        '        visibleCount++;',
-        '      } else {',
-        '        row.style.display = "none";',
-        '      }',
+        '  function apply() {',
+        '    const term = search.value.toLowerCase();',
+        '    let visible = 0;',
+        '    for (const row of rows) {',
+        '      const okText = row.textContent.toLowerCase().includes(term);',
+        '      const okA = !filters.assembly.value || row.dataset.assembly === filters.assembly.value;',
+        '      const okS = !filters.status.value || row.dataset.status === filters.status.value;',
+        '      const okC = !filters.category.value || row.dataset.category === filters.category.value;',
+        '      const show = okText && okA && okS && okC;',
+        '      row.hidden = !show;',
+        '      if (show) visible++;',
         '    }',
-        '',
-        f'    document.getElementById("partsCount").textContent = `Showing ${{visibleCount}} of {len(components)} parts`;',
+        f'    count.textContent = visible === {total} ? "{total} parts" : visible + " of {total} parts";',
         '  }',
         '',
-        '  // Add event listeners',
-        '  document.getElementById("partsSearch").addEventListener("keyup", filterTable);',
-        '  document.getElementById("assemblyFilter").addEventListener("change", filterTable);',
-        '  document.getElementById("statusFilter").addEventListener("change", filterTable);',
-        '  document.getElementById("categoryFilter").addEventListener("change", filterTable);',
+        '  search.addEventListener("keyup", apply);',
+        '  Object.values(filters).forEach(sel => sel.addEventListener("change", apply));',
         '',
-        '  // Initialize count',
-        f'  document.getElementById("partsCount").textContent = "Showing {len(components)} of {len(components)} parts";',
-        '',
-        '  // Simple table sorting',
-        '  function sortTable(columnIndex) {',
-        '    const table = document.getElementById("partsTable");',
-        '    const tbody = table.getElementsByTagName("tbody")[0];',
-        '    const rows = Array.from(tbody.getElementsByTagName("tr"));',
-        '    const isNumeric = [5, 6].includes(columnIndex);',
-        '',
+        '  let sortCol = -1, sortAsc = true;',
+        '  window.sortTable = function (col) {',
+        '    const numeric = col === 5 || col === 6;',
+        '    sortAsc = sortCol === col ? !sortAsc : true;',
+        '    sortCol = col;',
         '    rows.sort((a, b) => {',
-        '      const aText = a.getElementsByTagName("td")[columnIndex].textContent.trim();',
-        '      const bText = b.getElementsByTagName("td")[columnIndex].textContent.trim();',
-        '',
-        '      if (isNumeric) {',
-        '        return parseFloat(aText.replace(/[^0-9.-]/g, "")) - parseFloat(bText.replace(/[^0-9.-]/g, ""));',
+        '      let x = a.cells[col].textContent.trim();',
+        '      let y = b.cells[col].textContent.trim();',
+        '      if (numeric) {',
+        '        x = parseFloat(x.replace(/[^0-9.-]/g, "")) || 0;',
+        '        y = parseFloat(y.replace(/[^0-9.-]/g, "")) || 0;',
+        '        return sortAsc ? x - y : y - x;',
         '      }',
-        '      return aText.localeCompare(bText);',
+        '      return sortAsc ? x.localeCompare(y) : y.localeCompare(x);',
         '    });',
+        '    const body = table.tBodies[0];',
+        '    rows.forEach(r => body.appendChild(r));',
+        '  };',
         '',
-        '    rows.forEach(row => tbody.appendChild(row));',
-        '  }',
-        '</script>'
+        '  apply();',
+        '})();',
+        '</script>',
     ])
 
     return '\n'.join(html)

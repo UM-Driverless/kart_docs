@@ -91,3 +91,6 @@ plugins:
 hooks:
   - generate_llm_hook.py
   - generate_bom_hook.py
+
+extra_css:
+  - stylesheets/bom.css
