@@ -194,3 +194,32 @@ team WILL drag around (because the GUI saves time over coordinate math),
 but those diagrams should accept the visual constraint of "labeled
 rectangles with auto-routed edges" rather than fighting for stencils
 and embedded photos.
+
+---
+
+## 2026-06-14 — BOM stays YAML-in-git, kept separate from the Notion AI Inventory (linked, not merged)
+
+**Decision.** The published BOM stays as the `bom.yaml`-in-git system that `generate_bom_hook.py` renders into the searchable parts table. It is not folded into the team's Notion "AI Inventory" database, and it is not replaced by a public filtered view of that database.
+
+**Context.** The Notion AI Inventory is the team's most-used tool — it tracks physical stock (tools, bolts, components) by quantity and location. It overlaps the kart, so the question came up: merge the BOM into it (a `location: kart` value), or publish a filtered Notion view as the BOM, or leave the BOM as-is.
+
+**Why separate-but-linked is the answer.** A BOM and an inventory answer different questions and are *different sets*, not the same set filtered:
+
+- Inventory = "what physical stock do we own, how much, where is it now" — instance/quantity-level, location-tracked.
+- BOM = "what does the kart design call for" — type-level spec, by assembly, with required quantities.
+- The BOM has rows with **no inventory entry**: assemblies/sub-assemblies, custom-fabricated parts (Orin adapter, Kart Medulla PCB), and design-required quantities that are a spec rather than physical stock. The inventory has rows with **no BOM line**: tools, consumables, spares. The overlap is only the COTS purchased parts.
+
+So a "filtered inventory view" can only ever be that purchased-parts subset dressed as the whole BOM. Two pain points the user raised are the same modelling error from opposite sides: "2 bolts in the kart, the rest on a shelf — how to display" is only ugly if you model physical *units* as rows (you want one part row with quantity-by-location, not 50 rows); "two formats are hard to copy-paste on transfer" only exists if the item lives in two places.
+
+**Publish-surface reasons to keep the docs table:** it sits inside MkDocs in-site search, it feeds `llms.txt`/`llms-full.txt` for AI ingestion, it's themed, it works offline, and it carries no dependency on a Notion page staying public. An embedded public-Notion view loses all of those.
+
+**Link mechanism instead of merge.** Give each inventory item an optional shared part ID (`bom_id`) and each BOM part the catalog ID, so inventory↔BOM cross-reference rather than getting copy-pasted. If freshness on the overlapping purchased rows ever becomes a real problem, add a one-way Notion→`bom.yaml` pull for just those IDs — never two-way sync.
+
+**Tipping condition that would flip this.** If the published BOM ever becomes just "the list of components we bought" — purchased COTS only, no assembly hierarchy, no custom parts, and no `llms.txt` need — then the BOM *is* the purchased-parts subset of inventory and a public filtered Notion view becomes the lower-effort, always-fresh choice.
+
+**State found today (drives the follow-up work).**
+
+- **Data is stale.** 6 of 8 `bom.yaml` files untouched since 2025-09 (only `electronics` 2026-05, `steering` 2025-11). Placeholder/unverified data present: `powertrain/bom.yaml` motor lists Amazon ASIN `B0C6WXYZ` (fake) as `verified: true`; several `TBD`/`pending` part numbers and round-number costs.
+- **Render looks bad.** `generate_bom_hook.py` emits hand-rolled inline-styled HTML (hardcoded `background:#f5f5f5`, white-text status badges, fixed colors). It bypasses the Material theme, so there is no dark-mode support and it clashes with the rest of the site.
+
+**Follow-up (not yet done).** (1) Audit each `bom.yaml` against the real kart and `~/dv/kart/<subsystem>/` notes — fix fake/placeholder part numbers, costs, and status flags. (2) Rework the hook's output to use Material-friendly, theme-aware markup (dark-mode safe) instead of inline styles.
