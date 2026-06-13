@@ -65,3 +65,15 @@ This file tracks mistakes made during development and the prevention mechanisms 
 **Prevention added:**
 - Rule: When a user message arrives whose tone/topic doesn't match the current task, surface the mismatch ("this sounds like it might be for a different thread — confirm before I edit") rather than silently incorporating it. Cross-agent / cross-conversation messages are common when the user is multitasking.
 - Rule: Don't extrapolate beyond what was explicitly stated. The "3D-printed motor mount" detail was inferred, not confirmed — extrapolations of physical components must be confirmed before adding them to a BOM.
+
+## 2026-06-13 - segno made a Micro QR (not reliably scannable) for short payloads
+**What happened:** In `scripts/new_part.py`, `segno.make(id)` auto-selected a **Micro QR Code** because the 13-char payload is small. Micro QR is not reliably decoded by phone cameras or the html5-qrcode scanner, which would have silently broken scanning. Caught by decoding the generated PNG with `zxing-cpp` (cv2's detector returned empty — unreliable on small QR, do not trust it for verification).
+**Prevention added:**
+- Rule: use `segno.make_qr(...)` (forces a standard QR Code), never `segno.make(...)`, when the QR must be scanned by phones.
+- Rule: verify generated QR/barcodes with `zxing-cpp`, not OpenCV's `QRCodeDetector` (cv2 silently fails on clean small symbols).
+
+## 2026-06-13 - not_in_nav placed under `validation:` (it is a top-level option)
+**What happened:** Added `validation:\n  not_in_nav:` to `mkdocs.yml` to keep `/p/**` pages out of nav without `--strict` warnings. MkDocs 1.6.1 aborted: "Sub-option 'not_in_nav': Unrecognised configuration name". `not_in_nav` is a **top-level** mkdocs.yml key (see `mkdocs/config/defaults.py:57`), not nested under `validation`.
+**Prevention added:**
+- Rule: `not_in_nav` goes at the root of mkdocs.yml (sibling of `nav:`), not under `validation:`. `validation.nav.omitted_files` is the related (separate) log-level control.
+- Note: the "MkDocs 2.0 is incompatible with Material" banner is promotional output from mkdocs-material, not a build error — it does not count toward `--strict` warnings.

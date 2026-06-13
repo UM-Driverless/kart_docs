@@ -3,6 +3,10 @@ theme:
   name: material
   features:
     - navigation.indexes
+# Part pages under /p/ are reached by QR scan or direct URL, intentionally not in nav.
+not_in_nav: |
+  /p/**
+
 markdown_extensions:
   - admonition
   - pymdownx.details
@@ -67,6 +71,7 @@ nav:
           - Packages: software/ros2/packages.md
           - Simulation: software/ros2/simulation.md
           - Performance: software/ros2/performance.md
+  - Scan: scan.md
   - FAQ: faq.md
   - Contact: contact.md
 repo_url: https://github.com/um-driverless/kart-docs
