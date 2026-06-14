@@ -223,3 +223,17 @@ So a "filtered inventory view" can only ever be that purchased-parts subset dres
 - **Render looks bad.** `generate_bom_hook.py` emits hand-rolled inline-styled HTML (hardcoded `background:#f5f5f5`, white-text status badges, fixed colors). It bypasses the Material theme, so there is no dark-mode support and it clashes with the rest of the site.
 
 **Follow-up (not yet done).** (1) Audit each `bom.yaml` against the real kart and `~/dv/kart/<subsystem>/` notes — fix fake/placeholder part numbers, costs, and status flags. (2) Rework the hook's output to use Material-friendly, theme-aware markup (dark-mode safe) instead of inline styles.
+
+**Update (same day): the styling rework (2) is done.** `docs/stylesheets/bom.css` (new) holds all table styling on Material CSS custom properties (theme-primary header, soft status/criticality badges, dark-mode ready); `generate_bom_hook.py` now emits class-based markup with no inline styles and the filter/sort JS was tidied; `mkdocs.yml` wires `extra_css`. Verified by building + screenshotting. The data audit (1) is still open.
+
+## 2026-06-14 — QR scan resolves to the BOM (kart-docs), not the Notion inventory
+
+**Decision.** The part-label QR system (`/scan/` → `/p/<id>/`) is for **kart parts**, and a scan resolves to that part's **BOM component / engineering docs in kart-docs**, not to the Notion AI Inventory. An inventory link stays optional/secondary on the `/p/` page.
+
+**Why.** The motivating use case is disambiguating **versions that look physically identical** (e.g. Orin adapter v1 vs v2, ESP32-WROOM-32 *legacy* vs ESP32-S3). A QR carries a per-physical-unit opaque ID, so look-alike units get different IDs → different `/p/<id>/` pages → each links to *its* BOM component, which already encodes the revision (`status`, per-version description). The Notion inventory counts stock by *type* and can't say which revision is the one mounted, so it's the wrong primary target here.
+
+**Permanence rule preserved.** The QR holds only the opaque ID; resolution is relative through kart-docs `/p/<id>/`. Labels never encode a Notion URL (long, org-bound → perishable sticker).
+
+**Requirement this imposes.** For disambiguation to actually work, BOM component IDs must separate versions (`orin_adapter_v1` / `orin_adapter_v2`), not collapse to a generic `orin_adapter`.
+
+**Obsolete versions.** Mark the superseded BOM component `status: legacy` (renders as the grey "Legacy" badge) rather than deleting it — keeps the row visible-but-retired and lets an old sticker still resolve. Delete a `/p/<id>/` page only when the physical part *and* its sticker are gone; otherwise a scan would 404. Where a unit is retired in place, point its `/p/` page at the superseding component.
