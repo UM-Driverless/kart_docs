@@ -6,10 +6,18 @@ Resolution is done by the scanner page at ``docs/scan.md``, which navigates rela
 part page. This keeps every printed label permanent: renaming the GitHub org, letting a domain
 lapse, or moving hosting never invalidates a label, because the label carries no external name.
 
-Design notes (full reasoning in ~/vault/inventory/history.md, 2026-06-13):
-- ID = 64 random bits in base36 (lowercase + digits, 13 chars). Base36 (not base62) so IDs are
-  safe as filenames on case-insensitive filesystems (macOS default). 64 bits = UUID-grade:
+Design notes (full reasoning in ~/vault/inventory/history.md, 2026-06-13 addendum 6):
+- ID = 64 random bits in base36, 13 chars. The alphabet is exactly the 36 characters
+  ``0-9`` + ``a-z`` lowercase (``string.digits + string.ascii_lowercase``). 64 bits = UUID-grade:
   collision is negligible without any central list or duplicate check.
+- Why a restricted text alphabet and not the raw 8 bytes: the ID is not only the QR payload, it is
+  also a filename (``docs/p/<id>.md``), a URL path (``/p/<id>/``), the string the JS QR reader
+  returns, and human-typeable. Those are text-only channels where raw bytes (NUL, non-UTF-8, etc.)
+  corrupt or get rejected, so the ID must be safe printable text everywhere it flows.
+- Why base36 and not base62: base62 adds ``A-Z``, but the ID is used as a filename on
+  case-insensitive filesystems (macOS default), where ``A7f`` and ``a7f`` would collide. All-lowercase
+  base36 removes that ambiguity. Cost: ~40% more QR payload (13 byte-mode bytes vs 8 raw) — free,
+  since 13 bytes still fit the smallest QR (Version 1, 21x21).
 
 Usage:
     python scripts/new_part.py --title "Stepper motor NEMA 23" [--bom-id steering_motor] [--notes "..."]
