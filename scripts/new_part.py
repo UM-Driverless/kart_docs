@@ -7,13 +7,13 @@ part page. This keeps every printed label permanent: renaming the GitHub org, le
 lapse, or moving hosting never invalidates a label, because the label carries no external name.
 
 Design notes (full reasoning in ~/vault/inventory/history.md, 2026-06-13 addendum 7):
-- ID = 16 random decimal digits (~53 bits of entropy). The alphabet is exactly ``0-9``.
+- ID = 16 random decimal digits (53.15 bits of entropy, log2(10**16)). The alphabet is exactly ``0-9``.
 - Why all-digit: easiest to read and transcribe by hand (no ``0``/``O`` or ``1``/``l`` ambiguity,
   which is why we left base36 behind), and digits ride the QR's *numeric mode* (3.33 bits/digit,
   ~0% waste) — so the QR payload is actually SMALLER than base36-in-byte-mode despite the longer
   string, and it fits the smallest QR (Version 1, 21x21) even at ECC level H (max error recovery).
   All-digit is also the most standard form there is (GS1 trade/logistics codes are exactly this).
-- ~53 bits is plenty without any central list or duplicate check: ~1-in-160M collision at 10,000
+- 53.15 bits is plenty without any central list or duplicate check: ~1-in-160M collision at 10,000
   parts. The cheap exists() retry below is a safety net, not a real dependency.
 - Still text-safe in every channel the ID flows through — QR payload, filename (``docs/p/<id>.md``),
   URL path (``/p/<id>/``), the string the JS QR reader returns, human typing. Digits are the safest
@@ -38,7 +38,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 PARTS_DIR = REPO_ROOT / "docs" / "p"
 QR_DIR = PARTS_DIR / "qr"
 
-ID_LEN = 16  # 16 decimal digits ~= 53 bits; collision negligible for thousands of parts
+ID_LEN = 16  # 16 decimal digits = 53.15 bits (log2(10**16)); collision negligible for thousands of parts
 
 
 def make_id() -> str:
