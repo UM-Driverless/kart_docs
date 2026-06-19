@@ -17,7 +17,7 @@ inside an app's in-built browser. The first time, allow camera access when asked
 <script src="../assets/js/html5-qrcode.min.js"></script>
 <script>
 (function () {
-  var ID_RE = /^[0-9a-z]{13}$/;            // 13-char base36 part ID
+  var ID_RE = /^[0-9]{16}$/;               // 16-digit numeric part ID
   var statusEl = document.getElementById('scan-status');
   var startBtn = document.getElementById('scan-start');
   var scanner = null;
@@ -25,7 +25,9 @@ inside an app's in-built browser. The first time, allow camera access when asked
 
   function onScan(decodedText) {
     if (handled) return;
-    var id = (decodedText || '').trim();
+    // Strip all whitespace: the QR holds bare digits, but a grouped "1234 5678 ..." form is
+    // what humans read off the label, so tolerate spaces on any future manual-entry path.
+    var id = (decodedText || '').replace(/\s/g, '');
     if (!ID_RE.test(id)) {
       statusEl.textContent = 'QR not recognised as a part ID: ' + id;
       return;

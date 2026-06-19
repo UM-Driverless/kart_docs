@@ -1,23 +1,26 @@
 #!/usr/bin/env python3
 """Create a new part: a random ID, its doc page, and a QR encoding only that ID.
 
-The QR contains ONLY the ID (e.g. ``a7f3k9qm2xp4d``) — no domain, no org name, no URL.
+The QR contains ONLY the ID (e.g. ``1234567890123456``) — no domain, no org name, no URL.
 Resolution is done by the scanner page at ``docs/scan.md``, which navigates relative to the
 part page. This keeps every printed label permanent: renaming the GitHub org, letting a domain
 lapse, or moving hosting never invalidates a label, because the label carries no external name.
 
-Design notes (full reasoning in ~/vault/inventory/history.md, 2026-06-13 addendum 6):
-- ID = 64 random bits in base36, 13 chars. The alphabet is exactly the 36 characters
-  ``0-9`` + ``a-z`` lowercase (``string.digits + string.ascii_lowercase``). 64 bits = UUID-grade:
-  collision is negligible without any central list or duplicate check.
-- Why a restricted text alphabet and not the raw 8 bytes: the ID is not only the QR payload, it is
-  also a filename (``docs/p/<id>.md``), a URL path (``/p/<id>/``), the string the JS QR reader
-  returns, and human-typeable. Those are text-only channels where raw bytes (NUL, non-UTF-8, etc.)
-  corrupt or get rejected, so the ID must be safe printable text everywhere it flows.
-- Why base36 and not base62: base62 adds ``A-Z``, but the ID is used as a filename on
-  case-insensitive filesystems (macOS default), where ``A7f`` and ``a7f`` would collide. All-lowercase
-  base36 removes that ambiguity. Cost: ~40% more QR payload (13 byte-mode bytes vs 8 raw) — free,
-  since 13 bytes still fit the smallest QR (Version 1, 21x21).
+Design notes (full reasoning in ~/vault/inventory/history.md, 2026-06-13 addendum 7):
+- ID = 16 random decimal digits (~53 bits of entropy). The alphabet is exactly ``0-9``.
+- Why all-digit: easiest to read and transcribe by hand (no ``0``/``O`` or ``1``/``l`` ambiguity,
+  which is why we left base36 behind), and digits ride the QR's *numeric mode* (3.33 bits/digit,
+  ~0% waste) — so the QR payload is actually SMALLER than base36-in-byte-mode despite the longer
+  string, and it fits the smallest QR (Version 1, 21x21) even at ECC level H (max error recovery).
+  All-digit is also the most standard form there is (GS1 trade/logistics codes are exactly this).
+- ~53 bits is plenty without any central list or duplicate check: ~1-in-160M collision at 10,000
+  parts. The cheap exists() retry below is a safety net, not a real dependency.
+- Still text-safe in every channel the ID flows through — QR payload, filename (``docs/p/<id>.md``),
+  URL path (``/p/<id>/``), the string the JS QR reader returns, human typing. Digits are the safest
+  possible subset (no case, no special chars), so raw bytes (NUL, non-UTF-8) are avoided for free.
+- Display only: the ID is shown grouped in 4s (``1234 5678 9012 3456``) for readability, exactly like
+  a credit card or IBAN. Those spaces are NEVER stored or encoded — not in the QR, filename, or URL —
+  and are stripped on input. The canonical ID is always the bare 16 digits.
 
 Usage:
     python scripts/new_part.py --title "Stepper motor NEMA 23" [--bom-id steering_motor] [--notes "..."]
@@ -27,7 +30,6 @@ from __future__ import annotations
 
 import argparse
 import secrets
-import string
 from pathlib import Path
 
 import segno
@@ -36,20 +38,17 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 PARTS_DIR = REPO_ROOT / "docs" / "p"
 QR_DIR = PARTS_DIR / "qr"
 
-_BASE36 = string.digits + string.ascii_lowercase  # 0-9a-z
-ID_LEN = 13  # ceil(64 / log2(36)) = 13 chars covers the full 64-bit range
+ID_LEN = 16  # 16 decimal digits ~= 53 bits; collision negligible for thousands of parts
 
 
 def make_id() -> str:
-    """Return a 64-bit random ID encoded as a zero-padded 13-char base36 string."""
-    n = secrets.randbits(64)
-    if n == 0:
-        return _BASE36[0] * ID_LEN
-    chars = []
-    while n:
-        n, rem = divmod(n, 36)
-        chars.append(_BASE36[rem])
-    return "".join(reversed(chars)).rjust(ID_LEN, "0")
+    """Return a random ID as a zero-padded 16-digit decimal string (bare, no spaces)."""
+    return str(secrets.randbelow(10 ** ID_LEN)).rjust(ID_LEN, "0")
+
+
+def grouped(pid: str) -> str:
+    """Human-display form: digits in groups of 4. Display only — never stored or encoded."""
+    return " ".join(pid[i:i + 4] for i in range(0, len(pid), 4))
 
 
 PAGE_TEMPLATE = """\
@@ -60,7 +59,7 @@ part_id: {pid}
 
 # {title}
 
-**Part ID:** `{pid}`
+**Part ID:** `{pid_grouped}`
 {bom_line}
 {notes_line}
 <!-- Edit this page: link to a BOM component, add photos, specs, notes, history. -->
@@ -69,13 +68,14 @@ part_id: {pid}
 
 def zpl_snippet(pid: str) -> str:
     """ZPL for the Zebra GK420t (203 dpi). UNTESTED until the printer arrives — validate on
-    https://labelary.com (set 8 dpmm, label ~25x15mm) before trusting the layout."""
+    https://labelary.com (set 8 dpmm, label ~25x15mm) before trusting the layout.
+    QR data is the bare ID; the printed human line is grouped in 4s for easy transcription."""
     return (
         "^XA\n"
         "^FO20,20^BQN,2,5^FDLA,{pid}^FS\n"
-        "^FO20,170^A0N,22,22^FD{pid}^FS\n"
+        "^FO20,170^A0N,22,22^FD{pid_grouped}^FS\n"
         "^XZ"
-    ).format(pid=pid)
+    ).format(pid=pid, pid_grouped=grouped(pid))
 
 
 def create_part(title: str, bom_id: str | None, notes: str | None) -> str:
@@ -91,15 +91,19 @@ def create_part(title: str, bom_id: str | None, notes: str | None) -> str:
     bom_line = f"\n**BOM component:** `{bom_id}`\n" if bom_id else ""
     notes_line = f"\n{notes}\n" if notes else ""
     page_path.write_text(
-        PAGE_TEMPLATE.format(title=title, pid=pid, bom_line=bom_line, notes_line=notes_line)
+        PAGE_TEMPLATE.format(
+            title=title, pid=pid, pid_grouped=grouped(pid), bom_line=bom_line, notes_line=notes_line
+        )
     )
 
     qr_path = QR_DIR / f"{pid}.png"
     # make_qr (not make) forces a standard QR Code, never a Micro QR — Micro QR is not reliably
-    # read by phone cameras or the html5-qrcode scanner.
-    segno.make_qr(pid, error="m").save(str(qr_path), scale=8, border=4)
+    # read by phone cameras or the html5-qrcode scanner. error="h": 16 digits in numeric mode still
+    # fit Version 1 (21x21) at the highest error-correction level, so the label is as robust as
+    # possible at no extra size.
+    segno.make_qr(pid, error="h").save(str(qr_path), scale=8, border=4)
 
-    print(f"Part ID : {pid}")
+    print(f"Part ID : {pid}  ({grouped(pid)})")
     print(f"Page    : {page_path.relative_to(REPO_ROOT)}")
     print(f"QR PNG  : {qr_path.relative_to(REPO_ROOT)}")
     print(f"URL     : /p/{pid}/")
