@@ -8,11 +8,12 @@ The BOM follows the pneumatic path from compressor/tank to actuator.
 
 ## Compressor & Tank
 
-12V portable compressor with integrated 6 L tank. Fills the system and maintains pressure.
+Salvaged portable inflator (12 V motor + piston only — recovered from a broken Xiaomi-class unit, no original electronics) charges a Festo CRVZS-0,75 reservoir. Target charge **10 bar**; the compressor needs its own over-pressure cutoff (current + temperature) since it lost the factory control. Both items are in the [AI Inventory](https://www.notion.so/34a78747314381a2abe9c158bf7c0a5c). *(Supersedes the VEVOR 6 L compressor+tank used in the May 2026 validation — source side not yet re-validated.)*
 
 | Status | Part No. | Description | Link |
 |---|---|---|---|
-| Buy | — | VEVOR air compressor, 12V, 90-120 psi (6.2-8.3 bar), 6 L tank | [VEVOR](https://www.vevor.es/bocina-aire-comprimido-c_11496/vevor-compresor-de-aire-para-kit-de-bocina-90-120-psi-bomba-de-aire-con-tanque-de-6-l-para-inflar-neumaticos-colchones-de-aire-compatible-con-todos-los-vehiculos-de-12-v-trenes-barcos-coches-taller-p_010247980894) |
+| Have | 160235 | Festo CRVZS-0,75 reservoir — 0.75 L stainless, PS 16 bar / PT 24 bar, G1/4, TÜV. Charged to 10 bar; sized for 3 brake activations 10→6 bar | [datasheet](https://ftp.festo.com/Public/PNEUMATIC/SOFTWARE_SERVICE/DataSheet/EN_GB/160235.pdf) · [Festo](https://www.festo.com/us/en/a/160235/) |
+| Have | — | Salvaged portable inflator, 12 V motor + piston (Xiaomi-class, no electronics) | — |
 
 ## Tubing
 
@@ -24,7 +25,7 @@ Datasheet (local): [`197384datasheet.pdf`](../../assets/datasheets/197384datashe
 
 ## Pressure Sensor 1 (tank side, before regulator)
 
-Monitors tank/supply pressure. Connects directly to tubing via integrated 6 mm push-in fitting. **Max measurement range: 10 bar** — no overpressure rating documented.
+Monitors tank/supply pressure. Connects directly to tubing via integrated 6 mm push-in fitting. **Measurement range: 0–10 bar; overload pressure 15 bar** (Festo SDE5 series operating instructions).
 
 | Status | Part No. | Description | Festo link |
 |---|---|---|---|
@@ -32,7 +33,7 @@ Monitors tank/supply pressure. Connects directly to tubing via integrated 6 mm p
 
 Datasheet (local): [`567465datasheet.pdf`](../../assets/datasheets/567465datasheet.pdf)
 
-> **Warning:** This sensor is rated 0-10 bar. The tank side may see up to 8.3 bar (compressor max). If placed before the regulator, ensure supply pressure stays within 10 bar or the sensor may be damaged.
+> **Warning:** This sensor **measures** 0–10 bar but **survives to 15 bar** (overload). The tank now charges to **10 bar**, so it reads full-scale at the top of its range; above 10 bar it stays intact but saturates (reads a flat 10 — you go blind on the exact value). Since the salvaged compressor has no factory over-pressure cutoff, the compressor control + the (pending) non-adjustable safety relief valve must keep the tank at ≤10 bar so the reading stays meaningful.
 
 > **Supply voltage — needs a boost from the 12 V rail (TODO).** The SDE5 requires a **15–30 V DC** supply (datasheet), but the kart runs a single 12 V rail (48 V → 12 V buck). Both SDE5 sensors therefore need a small step-up (boost) converter — planned, not yet fitted. The 0–10 V analog output is unaffected and feeds the ESP32 ADC as usual.
 

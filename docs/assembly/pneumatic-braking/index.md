@@ -15,6 +15,8 @@ This is the circuit we **built and physically validated (May 2026)**. It uses an
 
 > **Tip:** Click any component in the diagram to open its Festo product page. Yellow dots are CK compression fittings; blue lines are tubing; grey dashed lines are exhaust.
 
+> **Source side under revision (2026-07).** The May 2026 validation used a VEVOR 6 L compressor+tank (max ~8.3 bar). The current plan drops that combo for a **salvaged portable inflator (motor + piston only, no original electronics)** charging a **Festo CRVZS-0,75** 0.75 L reservoir to **10 bar**. The downstream valve circuit below is unchanged, but the source swap is **not yet re-validated**. Two open items: the salvaged compressor needs its own over-pressure cutoff (current + temperature) since it lost the original electronics, and removing the low-pressure regulator is under consideration (redundant once the tank is capped at ≤10 bar — see the pressure note below and the safety-relief-valve task in `dv/tasks.md`).
+
 The compressor keeps the tank topped up. Air passes the manual isolation valve and the regulator (capped at 10 bar), then splits at the NPFC-T into two parallel branches that recombine at the OR valve before reaching the actuator:
 
 | Situation | EBS solenoid (normally-open) | VPPM proportional | Result at actuator |
@@ -81,7 +83,8 @@ Terminology:
 
 | Component | Photo | Max pressure | BOM section | Local docs | Vendor link |
 |---|---|---|---|---|---|
-| Compressor + tank (6 L) |  | 90-120 psi (6.2-8.3 bar) | [`Compressor & Tank`](bom.md#compressor-tank) |  | [VEVOR](https://www.vevor.es/bocina-aire-comprimido-c_11496/vevor-compresor-de-aire-para-kit-de-bocina-90-120-psi-bomba-de-aire-con-tanque-de-6-l-para-inflar-neumaticos-colchones-de-aire-compatible-con-todos-los-vehiculos-de-12-v-trenes-barcos-coches-taller-p_010247980894) |
+| Reservoir — Festo CRVZS-0,75 (160235) |  | **16 bar** rated (charged to 10) | [`Compressor & Tank`](bom.md#compressor-tank) | [`160235`](https://ftp.festo.com/Public/PNEUMATIC/SOFTWARE_SERVICE/DataSheet/EN_GB/160235.pdf) | [Festo](https://www.festo.com/us/en/a/160235/) |
+| Compressor — salvaged portable inflator (motor + piston only) |  | ~10 bar target (being characterised) | [`Compressor & Tank`](bom.md#compressor-tank) |  | — |
 | Pressure sensor (tank side) | ![](images/components/festo-sde5-thumb.png) | **10 bar** (measurement range) | [`Pressure Sensor 1`](bom.md#pressure-sensor-1-tank-side-before-regulator) | [`567465datasheet.pdf`](../../assets/datasheets/567465datasheet.pdf) | [Festo](https://www.festo.com/es/es/a/567465/) |
 | Manual valve (release/isolation) |  | — | [`Manual Valve`](bom.md#manual-valve-brake-release-isolation) |  |  |
 | Pressure regulator (D7) | ![](images/components/festo-ms4-lr-thumb.png) | 0.5-12 bar output | [`Low-Pressure Regulator`](bom.md#low-pressure-regulator) | [`527690datasheet.pdf`](../../assets/datasheets/527690datasheet.pdf) | [Festo](https://www.festo.com/es/es/a/527690/) |
