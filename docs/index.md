@@ -32,3 +32,11 @@ We are currently migrating from a Python-based stack to a ROS-based architecture
 ## Regulatory Requirements and Limitations
 
 This prototype is not intended to compete, so no specific racing regulations apply. Development follows general safety and engineering standards, and deviations are documented. Manual driving must be preserved. Standard kart components are preferred; custom parts are used only when justified.
+
+---
+
+## Follow the build
+
+We're documenting the whole conversion from day one — motor, battery, steering, compute — one post at a time.
+
+[:material-rocket-launch: Read the Build Journey](build-journey/index.md){ .md-button .md-button--primary }

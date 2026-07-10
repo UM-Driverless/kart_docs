@@ -9,15 +9,21 @@ not_in_nav: |
 
 markdown_extensions:
   - admonition
+  - attr_list
+  - md_in_html
   - pymdownx.details
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 nav:
   - Home: index.md
   - About: about.md
+  - Build Journey: build-journey/index.md
   - BOM:
       - bom/index.md
       - Full BOM (shareable): bom/full.md
@@ -73,6 +79,7 @@ nav:
           - Performance: software/ros2/performance.md
   - Scan: scan.md
   - FAQ: faq.md
+  - Credits: credits.md
   - Contact: contact.md
 repo_url: https://github.com/um-driverless/kart-docs
 edit_uri: edit/main/docs/
