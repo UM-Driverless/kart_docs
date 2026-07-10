@@ -51,5 +51,4 @@ Initial steering planetary-reducer design.
 - **Henakart** — donated the kart chassis.
 - **RB Sistemas** — help with the roll-hoop fabrication.
 <!-- TODO: PCB fabrication sponsor — confirm the company name before publishing. -->
-<!-- TODO: check the Monday.com sponsor list for any team-wide sponsors that also apply to the kart. -->
 

@@ -3,14 +3,11 @@
 
 ## Ready
 
-### Complete the sponsor list on the Credits page
-`docs/credits.md` → "Partners & sponsors". Two open items (left as TODO comments in the file):
-- **PCB fabrication sponsor** — confirm the actual company name. The repo only says
-  "JLCPCB-style" (a generic paid fab), never names a sponsor. Rubén to provide.
-- **Team-wide sponsors** — the live sponsor list is on Monday.com (Notion "Sponsors 2025-26"
-  is empty). Check which Formula-Student sponsors also apply to the kart before adding — do
-  NOT dump every FS-car sponsor here (over-claims). Kart-confirmed so far: Festo, Cytron,
-  Henakart, RB Sistemas.
+### Add the PCB sponsor to the Credits page
+`docs/credits.md` → "Partners & sponsors" (TODO comment left in the file).
+Confirm the actual PCB fabrication sponsor's company name — the repo only says
+"JLCPCB-style" (a generic paid fab), never names a sponsor. Rubén to provide.
+Kart sponsors already listed: Festo, Cytron, Henakart, RB Sistemas.
 
 ## In progress
 
