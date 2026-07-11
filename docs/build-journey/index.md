@@ -10,7 +10,7 @@ Posts documenting the build of a competition kart turned autonomous vehicle. Rou
 
 ## Turning a kart into a driverless racing car { #intro }
 
-*2026-04-22 · [Original on LinkedIn →](https://www.linkedin.com/posts/rubenayla_formulastudent-driverless-umotorsport-activity-7452662533024395266-dB_m)*
+*2026-04-22*
 
 We're turning a kart into a driverless racing car.
 
@@ -34,7 +34,7 @@ Everything's going into these [kart docs](../index.md) so anyone can build it th
 
 ## Mounting the motor, and why the first bracket failed { #motor }
 
-*2026-04-29 · [Original on LinkedIn →](https://www.linkedin.com/feed/update/urn:li:activity:7455251314227429377/)*
+*2026-04-29*
 
 For our kart, the first step is to attach the motor. We kept it simple: a 48V 2000W BLDC kit, which included the controller, throttle sensor, and wiring. Our engineering goes into the battery, the safety system, and the autonomy stack.
 
@@ -64,7 +64,7 @@ Months later, the question "wait, which pitch did we use?" kept coming up. That'
 
 ## Using an AI Inventory to design PCBs { #inventory-ai }
 
-*2026-05-04 · [Original on LinkedIn →](https://www.linkedin.com/feed/update/urn:li:activity:7456983051160481793/)*
+*2026-05-04*
 
 We're using an AI Inventory to design PCBs.
 
@@ -109,7 +109,7 @@ If you have a similar workflow, try this and share your experience — I'm lovin
 
 ## Building the battery pack from bare cells { #battery }
 
-*2026-05-14 · [Original on LinkedIn →](https://www.linkedin.com/feed/update/urn:li:activity:7460644047704100864/)*
+*2026-05-14*
 
 We made the battery pack ourselves. Why?
 
@@ -151,7 +151,7 @@ It's interesting to think about how we'd build this at scale. The process would 
 
 ## Why 48V, and not more { #why-48v }
 
-*2026-05-18 · [Original on LinkedIn →](https://www.linkedin.com/feed/update/urn:li:activity:7462034279871643649/)*
+*2026-05-18*
 
 A common question is: why 48V for the kart battery?
 
@@ -171,7 +171,7 @@ So our pack lands at 13 cells in series, near the highest that can be touched wi
 
 ## A roll hoop, a bearing spacer, and a throttle sensor { #main-hoop }
 
-*2026-05-21 · [Original on LinkedIn →](https://www.linkedin.com/feed/update/urn:li:activity:7462759132736114688/)*
+*2026-05-21*
 
 Karts don't come with roll hoops. They sit low, weigh little, and drivers don't wear seatbelts. In a flip, an unbelted driver gets thrown clear: the kart slides on, the driver lands and tumbles. A hoop bolted overhead turns that into a cage you can't be ejected from, and a kart you can be pinned under. So competition karts ride open.
 
@@ -197,7 +197,7 @@ Next: the first manual drive.
 
 ## The first manual drive { #first-drive }
 
-*2026-05-27 · [Original on LinkedIn →](https://www.linkedin.com/feed/update/urn:li:activity:7465296164049977346/)*
+*2026-05-27*
 
 Finally, the kart works.
 
@@ -217,7 +217,7 @@ In parallel, we're working on the code. There's a [legacy Python codebase](https
 
 ## Making the kart steer itself: the actuator search { #steering-actuator }
 
-*2026-06-10 · [Original on LinkedIn →](https://www.linkedin.com/feed/update/urn:li:activity:7470401788328914944/)*
+*2026-06-10*
 
 Here we are, with a completely manual kart, and we have to make it turn itself.
 
@@ -252,7 +252,7 @@ Steering system docs: [Assembly → Steering](../assembly/steering/index.md).
 
 ## Why a planetary reducer { #planetary-reducer }
 
-*2026-06-29 · [Original on LinkedIn →](https://www.linkedin.com/feed/update/urn:li:activity:7477360277299208192/)*
+*2026-06-29*
 
 Last time we talked about the decision to make our own actuator. Why a planetary reducer, of all things?
 
@@ -358,7 +358,7 @@ Dashboard docs: [Software](../software/index.md).
 
 ## The first autonomous drive { #autonomous }
 
-*2026-07-10 · [Original on LinkedIn →](https://www.linkedin.com/feed/update/urn:li:activity:7481241167268077568/)*
+*2026-07-10*
 
 This is the first time the kart really drives itself. It's jerky and slow, but it works.
 
