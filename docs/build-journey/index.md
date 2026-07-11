@@ -362,7 +362,7 @@ Dashboard docs: [Software](../software/index.md).
 
 This is the first time the kart really drives itself. It's jerky and slow, but it works.
 
-<video controls playsinline preload="metadata" style="width: 100%; max-width: 340px; display: block; margin: 1em auto; border-radius: 8px;">
+<video controls playsinline preload="metadata" style="width: 100%; max-width: 720px; display: block; margin: 1em auto; border-radius: 8px;">
   <source src="videos/kart-first-autonomous-drive.mp4" type="video/mp4">
 </video>
 
