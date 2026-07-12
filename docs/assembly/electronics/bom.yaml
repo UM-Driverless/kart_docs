@@ -73,7 +73,7 @@ components:
 
       **GPIO 33–37 are NOT reserved by our pinout.** We will try to leave them free where practical, but that is a courtesy, not a commitment. The pinout may and does use GPIO 33–37 when needed. Therefore the module itself must make those pins available — i.e. never R8. If a future revision ever moves to an R8 variant, the pinout must first be audited to confirm GPIO 33–37 are genuinely unused, and that audit has NOT been performed and is NOT a standard we follow.
 
-      See .agents/history.md 2026-04-23 for the full reasoning.
+      See history.md (repo root) 2026-04-23 for the full reasoning.
 
   - id: "esp32_wroom_32"
     part_number: "ESP32-WROOM-32"
