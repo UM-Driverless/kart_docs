@@ -29,6 +29,59 @@ Hand-crafted SVG. Real Festo product photos for the pneumatic brake chain (VPPM,
 
 > **Tip:** All switches in the shutdown chain are in series — opening any one cuts power to the relay coil, which disables the motor controller.
 
+## Wire list (whole kart)
+
+One row per wire/net across the whole kart — the tabular companion to the diagram above. Read `From` → `To` as the two physical ends; medulla terminals are written `CNx.y` and map to GPIOs on the [Kart Medulla connector pinout](kart-medulla/index.md#connector-pinout-outside-world).
+
+!!! note "Scope and source of truth"
+    Only the **kart-medulla PCB** has a KiCad project (`dv-hardware`) as its authoritative netlist — trust that for the medulla-internal nets. The rest of the kart (power distribution, traction, shutdown chain, motor) is **not** in KiCad; those rows are transcribed from the diagram and subsystem docs and should be **field-verified** before you rely on them. Wire colours follow the [house code](#wire-color-code) for wiring we run ourselves; vendor cables (Festo, power modules) keep their own colours, and 48 V pack cabling has no assigned code colour.
+
+| System | Signal / net | From | To | Nominal | Colour | Notes |
+|---|---|---|---|---|---|---|
+| Power | 48 V pack + | Battery 13S + | Motor Controller (ESC) V+ | 48 V | red (heavy) | High-current traction feed |
+| Power | 48 V pack + | Battery 13S + | Buck Regulator in + | 48 V | red (heavy) | Feeds the 48→12 V converter |
+| Power | GND | Battery 13S − | Common ground | 0 V | black (heavy) | Pack negative = system GND |
+| Power | 12 V rail | Buck Regulator out | 12 V distribution | 12 V | red | Single 48→12 V conversion (Weishuo Y3-T4812) |
+| Power | 12 V | 12 V rail | Jetson AGX Orin barrel jack | 12 V | red | Orin power |
+| Power | 12 V | 12 V rail | Cytron H-bridge V+ | 12 V | red | Steering driver — always powered, **not** switched by mode |
+| Power | 12 V | 12 V rail | SDC chain (Kill 1) | 12 V | red | Source for the shutdown circuit |
+| Power | 5 V + data | Jetson Orin USB-C | Medulla dev-board VBUS | 5 V | orange | Powers the ESP32 board and carries the USB-serial link (split-rail; may instead come from a 12→5 V buck) |
+| Traction | U / V / W | Motor Controller (ESC) | 3-phase BLDC motor | 48 V | — | Traction motor drive |
+| Traction | CMD_ACC (gated) | Mode Switch out | ESC throttle in | 0–5 V | white/gray | Auto = DAC, manual = pedal (SPDT select) |
+| Throttle | PEDAL_ACC | Accelerator pedal (linear Hall) | Medulla CN6.2 (GPIO 4, ADC) | 0–5 V | white/gray | Pedal position; scaled to ADC on the PCB |
+| Throttle | Acc pedal (manual) | Accelerator pedal | Mode Switch (NC contact) | 0–5 V | white/gray | Manual passthrough when ESP32 is not driving |
+| Throttle | CMD_ACC (DAC) | Medulla CN10.1 (MCP4922 A) | Mode Switch (auto input) | 0–5 V | white/gray | Autonomous throttle command |
+| Steering | Angle (I²C, current) | Steering sensor AS5600 | Medulla CN4.1/4.2 (SCL GPIO 9 / SDA GPIO 8) | 3.3 V | white/gray | Front-mounted, short I²C run |
+| Steering | Angle PWM (planned) | MT6701 OUT | Medulla CN5.2 (GPIO 1) | 3.3 V | white/gray | Future rear sensor, single-wire PWM (R10 removed) |
+| Steering | CMD_STEER_PWM | Medulla CN9.1 (GPIO 40) | Cytron H-bridge PWM | 3.3 V | white/gray | Steering speed |
+| Steering | CMD_STEER_DIR | Medulla CN8.3 (GPIO 17) | Cytron H-bridge DIR | 3.3 V | white/gray | Steering direction |
+| Steering | M+ / M− | Cytron H-bridge out | Steering motor | 12 V | — | Motor drive |
+| Brake | PEDAL_BRAKE | Brake pedal (linear Hall) | Medulla CN6.1 (GPIO 5, ADC) | 0–5 V | white/gray | Pedal position; scaled on PCB |
+| Brake | CMD_BRAKE (0–5 V) | Medulla CN10.2 (MCP4922 B) | Op-amp ×2 in | 0–5 V | white/gray | Brake setpoint from DAC |
+| Brake | CMD_BRAKE (0–10 V) | Op-amp ×2 out | VPPM setpoint | 0–10 V | white/gray | Proportional brake pressure command |
+| Brake | Air (regulated) | VPPM valve | Brake actuator (Festo ADN) | pneumatic | — | Autonomous service brake |
+| Brake | Air (full) | EBS solenoid (Festo VUVS) | Brake actuator (Festo ADN) | pneumatic | — | Emergency braking |
+| Brake | EBS coil 12 V | SDC Relay (gated 12 V) | EBS solenoid coil | 12 V | red | Energised only when SDC is closed; Festo form-C connector |
+| SDC | Chain source | 12 V rail | Kill 1 | 12 V | red | Chain start (no panel ignition key) |
+| SDC | Chain | Kill 1 | Impact switch | 12 V | white/gray | Series |
+| SDC | Chain | Impact switch | Remote E-Stop (RES) | 12 V | white/gray | Series |
+| SDC | Chain | Remote E-Stop (RES) | Kill 2 | 12 V | white/gray | Series |
+| SDC | Chain | Kill 2 | Kill 3 | 12 V | white/gray | Series |
+| SDC | Chain → coil | Kill 3 | SDC Relay coil | 12 V | white/gray | Opening any switch drops the coil |
+| SDC | Relay NO | SDC Relay NO contacts | ESC 2-wire key loop | — | — | Closing arms the ESC (kit pigtail) |
+| SDC | Medulla tie-in | Medulla CN8.1 (SDC) | Shutdown chain (Q3 low side) | — | white/gray | On the S3 PCB the medulla can pull the chain low via Q3 (GPIO 18 internal) |
+| Sensors | PRESSURE_1 | Festo SDE5 sensor 1 | Medulla CN7.1 (GPIO 6, ADC) | 24 V / 0–10 V | brown·blue·black | Festo M8, EN 60947-5-2 (see below) |
+| Sensors | PRESSURE_2 | Festo SDE5 sensor 2 | Medulla CN7.2 (GPIO 7, ADC) | 24 V / 0–10 V | brown·blue·black | Festo M8, EN 60947-5-2 |
+| Sensors | HYDRAULIC_1 | Hydraulic pressure sensor 1 | Medulla CN9.2 (GPIO 10, ADC) | ? | white/gray | Supply/range to confirm |
+| Sensors | HYDRAULIC_2 | Hydraulic pressure sensor 2 | Medulla CN5.1 (GPIO 2, ADC) | ? | white/gray | Supply/range to confirm |
+| Sensors | MOTOR_HALL_1 | BLDC motor Hall 1 | Medulla CN7.3 (GPIO 16) | 5 V | white/gray | Level-shifted to 3.3 V on PCB |
+| Sensors | MOTOR_HALL_2 | BLDC motor Hall 2 | Medulla CN2.2 (GPIO 47) | 5 V | white/gray | Level-shifted on PCB |
+| Sensors | MOTOR_HALL_3 | BLDC motor Hall 3 | Medulla CN2.1 (GPIO 21) | 5 V | white/gray | Level-shifted on PCB |
+| Compute | USB serial | Jetson Orin USB | Medulla (ESP32 USB) | 5 V + data | orange | Orin↔ESP32 command/telemetry link (no CAN) |
+| Compute | USB 3.0 | ZED2 stereo camera | Jetson Orin | 5 V + data | — | Perception camera |
+
+Rows marked `?` or "to confirm" are not yet verified — treat them as gaps to close, not facts.
+
 ## Festo pressure sensor connector (M8, 3-pin)
 
 The three pneumatic-pressure sensors are **[Festo SDE5-D10-NF-Q6E-V-M8](https://www.festo.com/es/es/a/567465/)** (part 567465, 0–10 bar range, 0–10 V analog output; [datasheet](../../assets/datasheets/567465datasheet.pdf)). Each has an **M8×1, A-coded, 3-pin** plug and connects with the **[NEBU-M8G3-K-2.5-LE3](https://www.festo.com/es/es/a/541333/)** cable (part 541333, wire colours to EN 60947-5-2). All three sensors share this identical pinout.
