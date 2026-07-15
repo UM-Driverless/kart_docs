@@ -50,6 +50,7 @@ nav:
           - Fasteners: assembly/steering/fasteners.md
           - Previous designs: assembly/steering/previous-designs.md
       - Electronics:
+          - Wiring: assembly/electronics/wiring.md
           - Kart Medulla (ESP32-S3):
               - assembly/electronics/kart-medulla/index.md
               - Firmware: assembly/electronics/kart-medulla/firmware.md
@@ -57,7 +58,6 @@ nav:
           - Computer: assembly/electronics/computer.md
           - Orin Setup: assembly/electronics/orin-setup.md
           - Net Naming: assembly/electronics/net-naming.md
-          - Wiring: assembly/electronics/wiring.md
           - Power:
               - Battery: assembly/electronics/power/battery.md
       - Sensors:
