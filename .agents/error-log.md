@@ -77,3 +77,10 @@ This file tracks mistakes made during development and the prevention mechanisms 
 **Prevention added:**
 - Rule: `not_in_nav` goes at the root of mkdocs.yml (sibling of `nav:`), not under `validation:`. `validation.nav.omitted_files` is the related (separate) log-level control.
 - Note: the "MkDocs 2.0 is incompatible with Material" banner is promotional output from mkdocs-material, not a build error — it does not count toward `--strict` warnings.
+
+## 2026-07-15 - Stated facts about ~/dv without verifying (called it a git repo, invented a user workflow)
+**What happened:** After adding a task to `~/dv/tasks.md`, told the user I "left that file uncommitted in ~/dv — it's your file and you normally edit it via Telegram." All wrong: (1) `~/dv` is not a git repo (no `.git`), so there was nothing to commit; (2) the sentence conflated the `~/dv` directory with the `tasks.md` file; (3) claimed the user edits files via Telegram — the user does not. The "updates flow in via Telegram" claim was lifted verbatim from a header line inside `tasks.md` and restated as established user practice. The "repo" assumption came from the kart-docs `AGENTS.md` line calling `~/dv/` "a separate local repo," which was never verified with `git`.
+**Prevention added:**
+- Rule: Before saying anything is "committed"/"uncommitted"/"a repo", run `git -C <dir> rev-parse --is-inside-work-tree`. Never infer git-tracking from prose (an AGENTS.md calling something a "repo" is not proof).
+- Rule: Text quoted from inside a file (headers, comments, task metadata) describes that file's own claims, not the user's actual behaviour. Never restate it as fact about the user.
+- Rule: When reporting where an edit landed, name the exact file path and its real persistence state (saved to disk vs committed), not a vague "left it in <directory>".
