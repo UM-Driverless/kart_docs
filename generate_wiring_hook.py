@@ -28,7 +28,7 @@ def render_table(data: dict) -> str:
     nets = data.get("nets", []) or []
 
     lines = [
-        "| System | Net | V | Colour | Connected pins | Notes |",
+        "| Net | System | V | Colour | Connected pins | Notes |",
         "|---|---|---|---|---|---|",
     ]
     for net in nets:
@@ -41,7 +41,7 @@ def render_table(data: dict) -> str:
         pins = "<br>".join(f"`{p}`" for p in net.get("pins", []))
         note = net.get("note", "")
         lines.append(
-            f"| {net.get('system', '—')} | **{name}** | {v} | {colour} | {pins} | {note} |"
+            f"| **{name}** | {net.get('system', '—')} | {v} | {colour} | {pins} | {note} |"
         )
 
     # coverage footer
