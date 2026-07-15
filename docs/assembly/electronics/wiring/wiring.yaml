@@ -1,0 +1,71 @@
+# Single source of truth for the kart's electrical connections (netlist model).
+#
+# Model:
+#   devices:  each device declares ALL its pins.
+#   nets:     each net lists the pins tied together (one electrical node).
+#   Pin references are  <device>.<pin>.
+#
+# Completeness is enforced by  scripts/check_wiring.py :
+#   - every pin named in a net must be a declared device pin        (else ERROR: phantom pin)
+#   - every net must connect >= 2 pins, unless  single: true         (else ERROR: dangling net)
+#   - every declared pin must appear on some net or in no_connect    (else GAP: unwired pin)
+#
+# Wire colour is DERIVED from the net's voltage via color_code, unless the net sets `color:`.
+#
+# STATUS: proof slice (steering + throttle + one pressure sensor + hydraulics).
+#         Only the kart-medulla PCB is authoritative in KiCad (dv-hardware); the rest is
+#         transcribed from the wiring diagram/docs and should be field-verified.
+
+color_code:            # house code, for wiring we run ourselves
+  "48V": "—"           # pack cabling: no assigned colour
+  "12V": red
+  "5V": orange
+  "3.3V": yellow
+  "0V": black
+  signal: white/gray
+
+devices:
+  rails:        {desc: "Power distribution rails (virtual node)", pins: [v3v3, v5, v12, gnd]}
+  medulla:      # slice of the 30 CN terminals — full list comes from dv-hardware KiCad
+    desc: "kart-medulla ESP32-S3 interface PCB"
+    authority: "dv-hardware/projects/kart-medulla (KiCad)"
+    pins: [CN1.1, CN1.3, CN4.1, CN4.2, CN5.1, CN5.2, CN6.2, CN7.1, CN8.3, CN9.1, CN9.2, CN10.1]
+  steer_sensor: {desc: "Steering angle sensor (AS5600 now / MT6701 planned)", pins: [vcc, gnd, sda, scl, pwm]}
+  cytron:       {desc: "Cytron MD25HV steering H-bridge", pins: [v12, gnd, pwm, dir, mplus, mminus]}
+  steer_motor:  {desc: "Steering motor", pins: [mplus, mminus]}
+  acc_pedal:    {desc: "Accelerator pedal (linear Hall)", pins: [sig, vcc, gnd]}
+  mode_switch:  {desc: "Manual/Auto SPDT throttle select", pins: [common, manual, auto]}
+  esc:          {desc: "Traction ESC (throttle input — slice)", pins: [throttle]}
+  press1:       {desc: "Festo SDE5 pressure sensor 1", vendor: festo, pins: [supply, gnd, out]}
+  hyd1:         {desc: "Hydraulic pressure sensor 1", pins: [sig, supply, gnd]}
+  hyd2:         {desc: "Hydraulic pressure sensor 2", pins: [sig, supply, gnd]}
+
+nets:
+  # --- power ---
+  - {name: "3V3", voltage: "3.3V", pins: [rails.v3v3, medulla.CN1.1, steer_sensor.vcc]}
+  - {name: "5V",  voltage: "5V",  pins: [rails.v5, acc_pedal.vcc]}
+  - {name: "12V", voltage: "12V", pins: [rails.v12, cytron.v12]}
+  - {name: "GND", voltage: "0V",  pins: [rails.gnd, medulla.CN1.3, steer_sensor.gnd, cytron.gnd, acc_pedal.gnd, press1.gnd]}
+  - {name: "24V", voltage: "24V", single: true, status: planned, pins: [press1.supply], note: "24 V sensor rail not yet fitted"}
+
+  # --- steering ---
+  - {name: I2C_SDA,        voltage: "3.3V", pins: [medulla.CN4.2, steer_sensor.sda]}
+  - {name: I2C_SCL,        voltage: "3.3V", pins: [medulla.CN4.1, steer_sensor.scl]}
+  - {name: STEER_ANGLE_PWM, voltage: "3.3V", status: planned, pins: [medulla.CN5.2, steer_sensor.pwm], note: "Future MT6701 single-wire PWM"}
+  - {name: CMD_STEER_PWM,  voltage: "3.3V", pins: [medulla.CN9.1, cytron.pwm]}
+  - {name: CMD_STEER_DIR,  voltage: "3.3V", pins: [medulla.CN8.3, cytron.dir]}
+  - {name: "STEER_M+",     voltage: "12V", pins: [cytron.mplus, steer_motor.mplus]}
+  - {name: "STEER_M-",     voltage: "12V", pins: [cytron.mminus, steer_motor.mminus]}
+
+  # --- throttle ---
+  - {name: PEDAL_ACC,   voltage: "5V", pins: [acc_pedal.sig, medulla.CN6.2, mode_switch.manual], note: "Pedal feeds both the medulla ADC and the manual mux input"}
+  - {name: CMD_ACC_DAC, voltage: "5V", pins: [medulla.CN10.1, mode_switch.auto]}
+  - {name: CMD_ACC_ESC, voltage: "5V", pins: [mode_switch.common, esc.throttle]}
+
+  # --- sensors ---
+  - {name: PRESSURE_1,  voltage: "0-10V", color: black, pins: [press1.out, medulla.CN7.1], note: "Festo EN 60947-5-2: black = signal"}
+  - {name: HYDRAULIC_1, voltage: "3.3V", pins: [hyd1.sig, medulla.CN9.2]}
+  - {name: HYDRAULIC_2, voltage: "3.3V", pins: [hyd2.sig, medulla.CN5.1]}
+
+# Pins intentionally left unconnected (spare terminals, test points).
+no_connect: []
