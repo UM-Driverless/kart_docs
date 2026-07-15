@@ -9,7 +9,7 @@ The Kart Medulla is the MCU-based control hub between the Orin computer and the 
 
 ## Why ESP32-S3
 
-The classic ESP32 ran out of usable GPIOs once CAN, SPI, status RGB, buzzer, and the Orin link were added on top of the existing I/O (3× halls, 3× pressure, accelerator, brake, SDC, steering, relay). The S3 solves this and adds several quality-of-life wins:
+The classic ESP32 ran out of usable GPIOs once CAN, SPI, status RGB, buzzer, and the Orin link were added on top of the existing I/O (3× halls, 3× pressure, accelerator, brake, SDC — shutdown circuit — steering, relay). The S3 solves this and adds several quality-of-life wins:
 
 - **~45 GPIOs** (vs ~34 on the classic), with fewer of them reserved or strap-pin traps.
 - **Native USB-OTG** — the Orin link becomes a direct USB cable (CDC-ACM), dropping the USB-UART bridge IC and moving from ~1 Mbit/s UART to ~12 Mbit/s full-speed USB.
@@ -44,7 +44,7 @@ The medulla PCB hosts the ESP32-S3 module via a stock **ESP32-S3-DevKitC-1** dev
 | PCB outer width | 25.40 mm (= 22.86 + 2 × 1.27 mm edge offset) |
 | USB-C protrusion past board edge | ~8.00 mm |
 
-**The row spacing is 22.86 mm (0.9 ″), NOT 25.40 mm.** Pin centerlines are inset 1.27 mm from each PCB edge. This was confirmed by physical caliper measurement on an official Espressif board on 2026-05-02 after two earlier wrong PDF-derived answers — the Espressif `DXF_…_V1.1_20220429.pdf` mechanical drawing has ambiguous `1.27 mm` callouts that can be read as either antenna keepout or pin-row offset. **Trust the physical measurement, not any single drawing.** Local mirrors of the Espressif drawing, schematic, and the ground-truth measurement photo are kept in the dv vault at `dv/kart/kart-medulla/resources/esp32-s3-devkitc-1/`.
+**The row spacing is 22.86 mm (0.9 ″), NOT 25.40 mm.** Pin centerlines are inset 1.27 mm from each PCB edge. This is confirmed by physical caliper measurement on an official Espressif board (2026-05-02). The Espressif `DXF_…_V1.1_20220429.pdf` mechanical drawing has ambiguous `1.27 mm` callouts that can be read as either antenna keepout or pin-row offset, so **trust the physical measurement, not any single drawing.** Local mirrors of the Espressif drawing, schematic, and the ground-truth measurement photo are kept in the dv vault at `dv/kart/kart-medulla/resources/esp32-s3-devkitc-1/`.
 
 ## ESP32-S3 Pin Assignment
 

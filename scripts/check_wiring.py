@@ -43,6 +43,7 @@ def check(data: dict) -> tuple[list[str], list[str], dict]:
 
     used: set[str] = set()
     seen_names: set[str] = set()
+    pin_nets: dict[str, list[str]] = {}
     for net in nets:
         name = net.get("name", "<unnamed>")
         if name in seen_names:
@@ -53,8 +54,18 @@ def check(data: dict) -> tuple[list[str], list[str], dict]:
             if p not in declared:
                 errors.append(f"phantom pin '{p}' in net '{name}' (no device declares it)")
             used.add(p)
+            pin_nets.setdefault(p, []).append(name)
         if len(pins) < 2 and not net.get("single"):
             errors.append(f"dangling net '{name}': connects {len(pins)} pin(s), needs >= 2 (or `single: true`)")
+
+    # a pin on more than one net is an accidental short (or the nets should be merged)
+    for p, ns in sorted(pin_nets.items()):
+        if len(ns) > 1:
+            errors.append(f"pin '{p}' is on {len(ns)} nets ({', '.join(ns)}) — accidental short, or merge the nets")
+
+    # no_connect entries must be real declared pins
+    for p in sorted(no_connect - declared):
+        errors.append(f"no_connect pin '{p}' is not declared by any device")
 
     for p in sorted(declared - used - no_connect):
         gaps.append(p)
