@@ -4,7 +4,12 @@ Complete electrical wiring diagram for the kart, covering the shutdown circuit, 
 
 ## Wire Color Code
 
-All wiring on the kart follows this color convention:
+This is the colour convention **for the wiring we build ourselves** — the hand-made harness between subsystems. It is a house guideline, not a rule the whole kart obeys: this is a prototype assembled from third-party parts, and those parts keep their vendors' own colour codes. Two notable exceptions:
+
+- **Off-the-shelf DC-DC power regulators** land on the rear **Wago** connectors with their own fixed output-wire colours, following the module's standard rather than this table.
+- **Festo** sensor and valve cables follow **EN 60947-5-2** (see the [pressure-sensor note](#festo-pressure-sensor-connector-m8-3-pin) below) — e.g. blue is ground and black is a signal output, the opposite of this table.
+
+Where we do run our own wire:
 
 | Color | Meaning | Hex |
 |---|---|---|
@@ -14,7 +19,7 @@ All wiring on the kart follows this color convention:
 | **Yellow** | 3.3 V power | `#f9a825` |
 | **White / Gray** | Unmarked — no voltage meaning | `#bbb` |
 
-Signal wires (I2C, analog, PWM) use **white/gray** unless a specific convention applies to that bus.
+Signal wires we run ourselves (I2C, analog, PWM) use **white/gray** unless a specific convention applies to that bus.
 
 ## Global Wiring Diagram
 
