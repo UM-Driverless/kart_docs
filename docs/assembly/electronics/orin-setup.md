@@ -15,7 +15,7 @@ Complete guide for setting up the Jetson AGX Orin with NVMe boot and all softwar
 | ESP32 link | USB serial to the Kart Medulla ESP32 (no CAN — see note) |
 
 !!! warning "No CAN bus on the kart"
-    The kart has **no CAN bus anywhere**. The Orin talks to the Kart Medulla ESP32 over **USB serial** (a plain USB cable presenting a serial port), and the ZED camera is USB too. Sensors reach the ESP32 as analog signals or I²C, not CAN. Earlier versions of this page listed `can0`/`can1` for ESP32 communication — that was wrong.
+    The kart has **no CAN bus anywhere**. The Orin talks to the Kart Medulla ESP32 over **USB serial** (a plain USB cable presenting a serial port), and the ZED camera is USB too. Sensors reach the ESP32 as analog signals or I²C, not CAN.
 
     CAN only enters the picture on the **Formula Student car**, where it becomes the vehicle bus (a CAN-reader PCB for the Orin exists for that integration). Adding CAN to the kart would only introduce transceivers, drivers, and an extra encode/decode hop for no benefit. If you find CAN setup steps (`can0`/`can1`, `ip link set canX`, SocketCAN) anywhere in the kart docs or configs, they do not apply to the kart. Source: `dv/history.md` 2026-07-14 "The kart uses no CAN"; `kart-brain/README.md` (ESP32 over UART/USB).
 

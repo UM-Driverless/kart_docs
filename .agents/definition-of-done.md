@@ -9,6 +9,7 @@ Pre-commit checklist for kart-docs. Run through before every commit.
 - [ ] No broken links (strict mode catches these)
 
 ### Content Quality
+- [ ] Pages state **current facts**, not the history of wrong turns. No "an earlier version was wrong", "that conclusion turned out mistaken", "we were confused about X" — write what is true now, plainly. The *why-we-changed-our-mind* narrative belongs in `~/dv/**/history.md`, never on a published page. (This is a prototype built from third-party parts; also avoid claiming the whole kart follows one internal standard when vendor parts don't.)
 - [ ] SVGs are valid XML (no HTML-only entities like `&mdash;` — use `&#8212;` instead)
 - [ ] No `file:///` URLs in SVGs or Markdown
 - [ ] All referenced assets (images, PDFs) are tracked in git

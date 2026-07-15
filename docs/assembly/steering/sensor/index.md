@@ -8,9 +8,6 @@ The **AS5600** magnetic angle encoder, read over **I²C**, is the sensor current
 
 ![](images/20250608181732.png)
 
-!!! note "The magnet was never the problem"
-    An earlier decision record claimed the AS5600 could not handle the kart's large shaft magnet and had to be replaced for that reason. **That conclusion was wrong in practice** — the AS5600 reads the mounted magnets fine over I²C. The only real reason to move to a different sensor is **cable distance to a rear board** (see below), not the magnet. Source: `dv/kart/steering/history.md` 2026-07-14.
-
 ### AS5600 wiring (I²C)
 
 !!! warning "Temporary color code"
@@ -29,7 +26,7 @@ The **AS5600** magnetic angle encoder, read over **I²C**, is the sensor current
 
 The next sensor is the **MagnTek MT6701**, a magnetic angle encoder read over its **single-wire PWM output**. It will be **mounted at the REAR**, near the Orin and the Kart Medulla, feeding the ESP32 over one robust signal wire.
 
-**Why swap — cable distance, not the magnet.** The plan is to relocate the Kart Medulla PCB to the rear (it must sit near the Orin, which they connect to over USB). That puts the ESP32 roughly **1.2 m** from the steering shaft. I²C does not survive that run: it is noise-sensitive, and one glitch can hang the **shared PCF8574 bus** on the medulla, taking down more than just the steering read. A single-wire PWM angle signal is robust over the distance and never touches the shared I²C bus. Source: `dv/kart/steering/history.md` 2026-07-11 and 2026-07-14.
+**Why swap — cable distance.** The plan is to relocate the Kart Medulla PCB to the rear (it must sit near the Orin, which they connect to over USB). That puts the ESP32 roughly **1.2 m** from the steering shaft. I²C does not survive that run: it is noise-sensitive, and one glitch can hang the **shared PCF8574 bus** on the medulla, taking down more than just the steering read. A single-wire PWM angle signal is robust over the distance and never touches the shared I²C bus. Source: `dv/kart/steering/history.md` 2026-07-11 and 2026-07-14.
 
 **Hardware status:** the MT6701 module was purchased on AliExpress (~€10) and is expected to arrive around **2026-07-22**. Until then the AS5600 stays in front; the swap is non-gating cleanup, not a blocker for starting steering tests.
 
