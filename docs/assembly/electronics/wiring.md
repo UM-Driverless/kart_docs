@@ -26,7 +26,7 @@ Hand-crafted SVG. Real Festo product photos for the pneumatic brake chain (VPPM,
 
 ## Festo pressure sensor connector (M8, 3-pin)
 
-The three pneumatic-pressure sensors are **Festo SDE5-D10-NF-Q6E-V-M8** (part 567465, 0–10 bar range, 0–10 V analog output). Each has an **M8×1, A-coded, 3-pin** plug and connects with the **NEBU-M8G3-K-2.5-LE3** cable (part 541333, wire colours to EN 60947-5-2). All three sensors share this identical pinout.
+The three pneumatic-pressure sensors are **[Festo SDE5-D10-NF-Q6E-V-M8](https://www.festo.com/es/es/a/567465/)** (part 567465, 0–10 bar range, 0–10 V analog output; [datasheet](../../assets/datasheets/567465datasheet.pdf)). Each has an **M8×1, A-coded, 3-pin** plug and connects with the **[NEBU-M8G3-K-2.5-LE3](https://www.festo.com/es/es/a/541333/)** cable (part 541333, wire colours to EN 60947-5-2). All three sensors share this identical pinout.
 
 | M8 pin | Cable wire | Function | On the kart |
 |---|---|---|---|
@@ -63,8 +63,8 @@ The PWM wire is a plain signal line (kart color code: white/gray); keep it short
 
 Beyond the pressure sensors, the pneumatic brake chain uses two more Festo connector types. Full part detail is in the [Pneumatic Braking BOM](../pneumatic-braking/bom.md); the wiring-relevant summary:
 
-- **VPPM proportional brake valve** (VPPM-8L-L-1-G14-0L10H-V1P-S1C1, part 571293) — sets the autonomous brake pressure. Cable **NEBU-M12W8-K-2-N-LE8** (part 542256), **M12 8-pin shielded**. Supply 24 V (21.6–26.4 V), setpoint 0–10 V from the medulla brake DAC (MCP4922 channel B → ×2 op-amp), max draw ~300 mA. **Pins 1 and 5 are digital inputs D1/D2** (control-response select) — energising them locks out the valve's front-panel button config, so leave them per the datasheet. Take the per-wire colour map from the 542256 cable datasheet (linked in the BOM); it is deliberately not reproduced here rather than risk an unverified pinout.
-- **Solenoid valve coils** (EBS = Emergency Braking System, plus the spare ASB = Autonomous Service Brake) — DIN form connectors, **not** M8/M12. The EBS coil (VACF-B-C1-5, part 8030810) is **form C** and mates with the **MSSD-EB** plug (part 151687); the spare ASB coil (VACF-B-B2-5, part 8030801) is **form B** and needs its own plug — they are not interchangeable. Both coils are 12 V DC / 3.4 W off the 12 V rail. See the [BOM](../pneumatic-braking/bom.md) for the coil-interchangeability warning.
+- **[VPPM proportional brake valve](https://www.festo.com/es/es/a/571293/)** (VPPM-8L-L-1-G14-0L10H-V1P-S1C1, part 571293; [catalog doc](../../assets/datasheets/205274_documentation.pdf) · [datasheet](../../assets/datasheets/VPPM_en.pdf)) — sets the autonomous brake pressure. Cable **[NEBU-M12W8-K-2-N-LE8](https://www.festo.com/es/es/a/542256/)** (part 542256), **M12 8-pin shielded**. Supply 24 V (21.6–26.4 V), setpoint 0–10 V from the medulla brake DAC (MCP4922 channel B → ×2 op-amp), max draw ~300 mA. **Pins 1 and 5 are digital inputs D1/D2** (control-response select) — energising them locks out the valve's front-panel button config, so leave them per the datasheet. Take the per-wire colour map from the 542256 cable datasheet (linked in the BOM); it is deliberately not reproduced here rather than risk an unverified pinout.
+- **Solenoid valve coils** (EBS = Emergency Braking System, plus the spare ASB = Autonomous Service Brake) — DIN form connectors, **not** M8/M12. The EBS coil ([VACF-B-C1-5](https://www.festo.com/es/es/a/8030810/), part 8030810) is **form C** and mates with the **[MSSD-EB](https://www.festo.com/es/es/a/151687/)** plug (part 151687); the spare ASB coil ([VACF-B-B2-5](https://www.festo.com/es/es/a/8030801/), part 8030801) is **form B** and needs its own plug — they are not interchangeable. Both coils are 12 V DC / 3.4 W off the 12 V rail. See the [BOM](../pneumatic-braking/bom.md) for the coil-interchangeability warning.
 
 ## Related Pages
 
