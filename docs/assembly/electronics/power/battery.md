@@ -2,7 +2,7 @@
 
 > To charge the battery with a bench power supply, see this tutorial: [Cómo Cargar una Batería de Litio con una Fuente](https://youtu.be/g1jsSbjsiTo?si=uZ7mVjXA2c-43zzz)
 
-The main pack uses **Molicel P42A** cells in a 13S4P configuration, providing a nominal voltage of about 48 V. A separate 12 V car battery supplies the sensors to remain compatible with the Formula Student car.
+The main pack uses **Molicel P42A** cells in a 13S4P configuration, providing a nominal voltage of about 48 V. The 12 V rail that powers the sensors and low-voltage electronics is stepped down from the pack by the DC-DC converter below; this replaced the separate 12 V battery the kart used earlier to stay compatible with the Formula Student car.
 
 For battery placement rationale see the [FAQ](../../../faq.md#battery).
 
@@ -22,6 +22,24 @@ For battery placement rationale see the [FAQ](../../../faq.md#battery).
 | Cell nominal voltage | 3.6 V (per Molicel INR-21700-P42A datasheet) |
 | Cell maximum voltage | 4.2 V |
 | Cell minimum voltage | 3.2 V |
+
+## 48 V → 12 V converter
+
+The 12 V rail is generated from the 48 V traction pack by a **Weishuo Y3-T4812** step-down (buck) DC-DC converter. There is no separate 12 V battery — this converter replaced the previous 12 V lead-acid aux battery (see the [full BOM](../../../bom/full.md)). Everything on 12 V hangs off it: the pneumatic Festo pressure sensors (via a 12 → 24 V boost), the downstream 12 → 5 V / 3.3 V bucks, and the steering H-bridge.
+
+![Weishuo Y3-T4812 48 V → 12 V DC-DC converter](images/12v-converter-weishuo-y3-t4812.jpg){ width=400 }
+
+| Parameter | Value |
+|-----------|-------|
+| Model | Weishuo Y3-T4812 |
+| Type | Step-down (buck) DC-DC converter |
+| Rated power | 360 W |
+| Input voltage | 36 V / 48 V nominal (20–60 V range) |
+| Output voltage | 12 V |
+| Output current | 30 A max |
+| Terminal polarity | IN ⊕⊖, OUT ⊖⊕ (marked on the label) |
+
+The 13S4P pack operates at roughly 41.6–54.6 V, well inside the converter's 20–60 V input window.
 
 ## BMS
 - Jiabaida BMS, 100A BT UART, NMC 6S-21S
