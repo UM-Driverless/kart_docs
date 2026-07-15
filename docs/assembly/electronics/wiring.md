@@ -79,8 +79,14 @@ One row per wire/net across the whole kart — the tabular companion to the diag
 | Sensors | MOTOR_HALL_3 | BLDC motor Hall 3 | Medulla CN2.1 (GPIO 21) | 5 V | white/gray | Level-shifted on PCB |
 | Compute | USB serial | Jetson Orin USB | Medulla (ESP32 USB) | 5 V + data | orange | Orin↔ESP32 command/telemetry link (no CAN) |
 | Compute | USB 3.0 | ZED2 stereo camera | Jetson Orin | 5 V + data | — | Perception camera |
+| Medulla supply | +3V3 | Medulla CN1.1, CN6.3 | External 3.3 V sensors (e.g. MT6701) | 3.3 V | yellow | Medulla supplies sensor power |
+| Medulla supply | +5V | Medulla CN2.3 | External 5 V loads | 5 V | orange | |
+| Medulla supply | +12V | Medulla CN1.2 | 12 V available at terminal | 12 V | red | |
+| Medulla supply | GND | Medulla CN1.3, CN9.3, CN10.3 | Common ground | 0 V | black | |
+| Medulla I/O | EXP_P1–P4 | Medulla CN3.1–3, CN5.3 (PCF8574 0x20) | Spare I²C-expander I/O terminals | 3.3 V | white/gray | On-board GPIO-expander pins brought to terminals |
+| Medulla I/O | REVERSE | Medulla CN4.3 | Kart electronics-box reverse wire | 5 V | white/gray | Driven by U12; pull to 0 V to engage reverse |
 
-Rows marked `?` or "to confirm" are not yet verified — treat them as gaps to close, not facts.
+Rows marked `?` or "to confirm" are not yet verified — treat them as gaps to close, not facts. Medulla-internal nets are authoritative in the `dv-hardware` KiCad project.
 
 ## Festo pressure sensor connector (M8, 3-pin)
 

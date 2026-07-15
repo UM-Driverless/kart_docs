@@ -147,28 +147,16 @@ Interface PCB hosting the ESP32-S3 module, signal conditioning, the SPI DAC, the
 
 ### Connector Pinout (Outside World)
 
-The fabricated ESP32-S3 interface PCB brings every outside-world signal to ten 3-pin green push-in headers, **CN1–CN10**. The table below is the board's `F.Silkscreen` layer — the authoritative source, which supersedes any earlier CN1–CN4 schematic draft. Signal names follow the [Net Name Nomenclature](../net-naming.md) convention; the GPIO column ties each terminal back to the [ESP32-S3 pin assignment](#esp32-s3-pin-assignment) above.
+The fabricated ESP32-S3 interface PCB brings every outside-world signal to ten 3-pin green push-in headers, **CN1–CN10** (per the board's `F.Silkscreen` layer). Rather than repeat a connector table here, **every wire on these terminals lives in the single [whole-kart wire list](../wiring.md#wire-list-whole-kart)** — filter the `From`/`To` columns for `Medulla CNx.y`. The terminal → GPIO mapping is also in the [ESP32-S3 pin assignment](#esp32-s3-pin-assignment) table above (its `Silkscreen` column is the GPIO on each terminal). Signal names follow the [Net Name Nomenclature](../net-naming.md) convention.
 
 ![Kart Medulla main connector (green push-in)](images/kart-medulla-main-connector.png)
 
-| Conn | Pin 1 | Pin 2 | Pin 3 |
-|---|---|---|---|
-| **CN1** | +3V3 *(power)* | +12V *(power)* | GND *(power)* |
-| **CN2** | HALL3 → GPIO 21 | HALL2 → GPIO 47 | +5V *(power)* |
-| **CN3** | EXP_P1 | EXP_P2 | EXP_P3 |
-| **CN4** | SCL → GPIO 9 *(I²C)* | SDA → GPIO 8 *(I²C)* | REV *(reverse wire)* |
-| **CN5** | HYD2 → GPIO 2 *(ADC)* | **PRES3 → GPIO 1 — steering-angle PWM** | EXP_P4 |
-| **CN6** | PED_BRK → GPIO 5 *(ADC)* | PED_ACC → GPIO 4 *(ADC)* | +3V3 *(power)* |
-| **CN7** | PRES1 → GPIO 6 *(ADC)* | PRES2 → GPIO 7 *(ADC)* | HALL1 → GPIO 16 |
-| **CN8** | SDC *(shutdown chain, Q3 drain)* | **BUZZ → GPIO 3 — compressor PWM** | STEER_DIR → GPIO 17 |
-| **CN9** | STEER_PWM → GPIO 40 *(LEDC)* | HYD1 → GPIO 10 *(ADC)* | GND *(power)* |
-| **CN10** | CMD_ACC *(DAC A)* | CMD_BRK *(DAC B → ×2 op-amp)* | GND *(power)* |
+Terminal notes that aren't obvious from the wire list:
 
-Where:
-
+- **CN1–CN10 are 3-pin.** Supplies sit on CN1 (+3V3 / +12V / GND), CN2.3 (+5V), CN6.3 (+3V3), CN9.3 and CN10.3 (GND).
 - **EXP_P1..P4** (CN3.1–3, CN5.3) are port pins of the on-board **U25 PCF8574** I²C GPIO expander (address 0x20) brought out to terminals — for example `CMD_REVERSE` lives on PCF8574 P0, not on a native GPIO.
 - **CN4.3 REV** is the reverse-command wire to the kart electronics box (driven by U12; 5 V idle via the box's internal pull-up, pulled to 0 V to engage reverse). CN4 carries **no 3V3/GND**.
-- **CN5.2 PRES3** and **CN8.2 BUZZ** are the two repurposed terminals — steering-angle PWM and EBS-compressor PWM respectively (see the callout under the pin table).
+- **CN5.2** (ex-PRES3) and **CN8.2** (ex-BUZZ) are the two repurposed terminals — steering-angle PWM and EBS-compressor PWM respectively (see the callout under the pin table).
 - **CN8.1 SDC** is `SDC_IN_LOW_SIDE`, the Q3 drain that closes the kart shutdown chain's return path. The ESP32 side of that MOSFET (`SDC_NOT_EMERGENCY`, GPIO 18) is internal and deliberately not on any terminal.
 - **CN10** analog commands come from the MCP4922 SPI DAC (the S3 has no native DAC).
 
