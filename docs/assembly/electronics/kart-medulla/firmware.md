@@ -45,7 +45,7 @@ Source: `kart-medulla/README.md`, `kart-medulla/AGENTS.md`.
 
 ## FreeRTOS task architecture
 
-The firmware runs four FreeRTOS tasks. The values below are read from the task-creation calls in `main/main.c` (the source of truth), because the summary tables in `README.md` and `AGENTS.md` disagree with each other and with the code — see the conflict note.
+The firmware runs four FreeRTOS tasks. The values below are read from the task-creation calls in `main/main.c` (the source of truth). The rate tables in `README.md` and `AGENTS.md` are older and no longer match the code — treat them as superseded (see the note).
 
 | Task | Period → target rate | Stack | Priority | Role |
 |---|---|---|---|---|
@@ -56,14 +56,8 @@ The firmware runs four FreeRTOS tasks. The values below are read from the task-c
 
 Source: `main/main.c:311-322`.
 
-!!! warning "Task-rate figures conflict across the docs"
-    Three sources give three different rate sets. Trust the code (`main/main.c`):
-
-    - **Code (`main.c:311-313`):** comms 100 Hz (10 ms), control 500 Hz target (2 ms), heartbeat 1 Hz.
-    - **`README.md` FreeRTOS Tasks table:** comms 20 Hz, control 10 Hz, heartbeat 1 Hz, health 1 Hz.
-    - **`AGENTS.md` Architecture table:** comms 100 Hz, control 100 Hz, heartbeat 1 Hz (lists only three tasks, omits `health`).
-
-    A docstring inside `main.c` itself (`main.c:227`) also still says "comms (20 Hz), control (10 Hz)", contradicting the code a few lines below it.
+!!! warning "Older task-rate figures elsewhere are superseded"
+    The code (`main/main.c`) is authoritative: comms 100 Hz (10 ms), control 500 Hz target (2 ms), heartbeat 1 Hz, health 1 Hz (`main.c:311-322`). Ignore the older, no-longer-matching numbers still sitting in other files — `README.md`'s FreeRTOS table (comms 20 Hz, control 10 Hz) and `AGENTS.md`'s Architecture table (comms 100 Hz, control 100 Hz, `health` omitted). A stale docstring inside `main.c:227` itself still says "comms (20 Hz), control (10 Hz)". These are flagged for cleanup so only the current values remain.
 
 ### Firmware components
 
@@ -98,10 +92,7 @@ There is also a **direct-PWM mode** (`STEER_MODE = 1`): the target is interprete
     The committed gains and limit live in `main/main.c` and are actively tuned (they drift), so treat the code as authoritative rather than any doc table:
 
     - **Code (`main.c:277-279`):** Kp = 1.50, Ki = 0.0, Kd = 0.02. Steering output limited to **0.50** (`main.c:267`; initialised at 0.40 on `main.c:263`).
-    - **`README.md` "PID Configuration (current)":** Kp = 0.15, Ki = 0.0, Kd = 0.01, PWM limit 0.15.
-    - **`AGENTS.md` "Steering Pipeline":** Kp = 0.03, Ki = 0, Kd = 0.0004.
-
-    All three gain sets are different. The output limit is deliberately held below 100 % to protect the steering gears during testing; raise it only as the loop is validated.
+    The gain sets quoted elsewhere are **older values, now superseded** — ignore them: `README.md` "PID Configuration" (Kp = 0.15, Kd = 0.01, limit 0.15) and `AGENTS.md` "Steering Pipeline" (Kp = 0.03, Kd = 0.0004). They are flagged for cleanup so only the code's current gains remain. The output limit is deliberately held below 100 % to protect the steering gears during testing; raise it only as the loop is validated.
 
 ## Orin ↔ ESP32 protocol
 
