@@ -56,6 +56,12 @@ jobs:
             exit 1
           fi
 
+      - name: Check wiring netlist completeness
+        run: |
+          # Fails on structural errors (phantom pins, dangling nets); unwired
+          # pins are reported as gaps but do not fail the build.
+          uv run python scripts/check_wiring.py
+
       - name: Build MkDocs site
         run: |
           uv run mkdocs build --strict --verbose

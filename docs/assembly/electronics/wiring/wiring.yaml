@@ -5,67 +5,125 @@
 #   nets:     each net lists the pins tied together (one electrical node).
 #   Pin references are  <device>.<pin>.
 #
+# The whole-kart wire table on the Wiring page is GENERATED from this file
+# (generate_wiring_hook.py) — edit here, not the table.
+#
 # Completeness is enforced by  scripts/check_wiring.py :
 #   - every pin named in a net must be a declared device pin        (else ERROR: phantom pin)
 #   - every net must connect >= 2 pins, unless  single: true         (else ERROR: dangling net)
 #   - every declared pin must appear on some net or in no_connect    (else GAP: unwired pin)
 #
-# Wire colour is DERIVED from the net's voltage via color_code, unless the net sets `color:`.
-#
-# STATUS: proof slice (steering + throttle + one pressure sensor + hydraulics).
-#         Only the kart-medulla PCB is authoritative in KiCad (dv-hardware); the rest is
-#         transcribed from the wiring diagram/docs and should be field-verified.
+# Wire colour is DERIVED from class + voltage via color_code, unless the net sets `color:`.
+# Scope: ELECTRICAL only. Pneumatic (air) lines live in the Pneumatic Braking docs.
+# Only the kart-medulla PCB is authoritative in KiCad (dv-hardware); the rest is
+# transcribed from the wiring diagram/docs and should be field-verified.
 
-color_code:            # house code, for wiring we run ourselves
+color_code:            # house code, applied to power rails we run ourselves
   "48V": "—"           # pack cabling: no assigned colour
+  "24V": "—"           # sensor rail (planned): no house colour
   "12V": red
   "5V": orange
   "3.3V": yellow
   "0V": black
-  signal: white/gray
+  signal: white/gray   # all signal wires unless a bus convention applies
 
 devices:
-  rails:        {desc: "Power distribution rails (virtual node)", pins: [v3v3, v5, v12, gnd]}
-  medulla:      # slice of the 30 CN terminals — full list comes from dv-hardware KiCad
+  battery:        {desc: "13S LiPo pack (~48 V)", pins: [pos, neg]}
+  buck_48_12:     {desc: "48→12 V buck (Weishuo Y3-T4812)", pins: [in+, in-, out+, out-]}
+  orin:           {desc: "Jetson AGX Orin dev kit", pins: [pwr12, usb_esp32, usb_zed]}
+  zed2:           {desc: "ZED2 stereo camera", pins: [usb]}
+  medulla:
     desc: "kart-medulla ESP32-S3 interface PCB"
     authority: "dv-hardware/projects/kart-medulla (KiCad)"
-    pins: [CN1.1, CN1.3, CN4.1, CN4.2, CN5.1, CN5.2, CN6.2, CN7.1, CN8.3, CN9.1, CN9.2, CN10.1]
-  steer_sensor: {desc: "Steering angle sensor (AS5600 now / MT6701 planned)", pins: [vcc, gnd, sda, scl, pwm]}
-  cytron:       {desc: "Cytron MD25HV steering H-bridge", pins: [v12, gnd, pwm, dir, mplus, mminus]}
-  steer_motor:  {desc: "Steering motor", pins: [mplus, mminus]}
-  acc_pedal:    {desc: "Accelerator pedal (linear Hall)", pins: [sig, vcc, gnd]}
-  mode_switch:  {desc: "Manual/Auto SPDT throttle select", pins: [common, manual, auto]}
-  esc:          {desc: "Traction ESC (throttle input — slice)", pins: [throttle]}
-  press1:       {desc: "Festo SDE5 pressure sensor 1", vendor: festo, pins: [supply, gnd, out]}
-  hyd1:         {desc: "Hydraulic pressure sensor 1", pins: [sig, supply, gnd]}
-  hyd2:         {desc: "Hydraulic pressure sensor 2", pins: [sig, supply, gnd]}
+    pins: [CN1.1, CN1.2, CN1.3, CN2.1, CN2.2, CN2.3, CN3.1, CN3.2, CN3.3,
+           CN4.1, CN4.2, CN4.3, CN5.1, CN5.2, CN5.3, CN6.1, CN6.2, CN6.3,
+           CN7.1, CN7.2, CN7.3, CN8.1, CN8.2, CN8.3, CN9.1, CN9.2, CN9.3,
+           CN10.1, CN10.2, CN10.3, USB]
+  cytron:         {desc: "Cytron MD25HV steering H-bridge", pins: [v12, gnd, pwm, dir, mplus, mminus]}
+  steer_motor:    {desc: "Steering motor", pins: [mplus, mminus]}
+  steer_sensor:   {desc: "Steering angle sensor (AS5600 now / MT6701 planned)", pins: [vcc, gnd, sda, scl, pwm]}
+  esc:            {desc: "BLDC traction ESC (AliExpress 48 V)", pins: [v+, v-, u, v, w, throttle, key1, key2]}
+  motor:          {desc: "3-phase BLDC traction motor + Hall block", pins: [u, v, w, hall1, hall2, hall3, hall5v, hallgnd]}
+  acc_pedal:      {desc: "Accelerator pedal (linear Hall)", pins: [sig, vcc, gnd]}
+  brake_pedal:    {desc: "Brake pedal (linear Hall)", pins: [sig, vcc, gnd]}
+  mode_switch:    {desc: "Manual/Auto SPDT throttle select", pins: [common, manual, auto]}
+  opamp:          {desc: "×2 op-amp (brake 0–5 → 0–10 V)", pins: [in, out]}
+  vppm:           {desc: "Festo VPPM proportional brake valve", pins: [setpoint, v24, gnd]}
+  ebs_coil:       {desc: "Festo EBS solenoid coil (VUVS, form C)", pins: [a, b]}
+  compressor_fet: {desc: "EBS air-compressor MOSFET (low side)", pins: [gate, drain, source]}
+  compressor:     {desc: "Air-compressor motor (~7.4 V)", pins: [pos, neg]}
+  press1:         {desc: "Festo SDE5 pressure sensor 1", vendor: festo, pins: [supply, gnd, out]}
+  press2:         {desc: "Festo SDE5 pressure sensor 2", vendor: festo, pins: [supply, gnd, out]}
+  hyd1:           {desc: "Hydraulic pressure sensor 1", pins: [sig, supply, gnd]}
+  hyd2:           {desc: "Hydraulic pressure sensor 2", pins: [sig, supply, gnd]}
+  kill1:          {desc: "Kill switch 1", pins: [a, b]}
+  kill2:          {desc: "Kill switch 2", pins: [a, b]}
+  kill3:          {desc: "Kill switch 3", pins: [a, b]}
+  impact:         {desc: "Impact / crash switch", pins: [a, b]}
+  res:            {desc: "Remote E-stop relay (contacts in chain)", pins: [a, b]}
+  sdc_relay:      {desc: "SDC relay", pins: [coil+, coil-, no1, no2, no3]}
+  ebox_reverse:   {desc: "Kart electronics-box reverse input", pins: [rev]}
 
 nets:
-  # --- power ---
-  - {name: "3V3", voltage: "3.3V", pins: [rails.v3v3, medulla.CN1.1, steer_sensor.vcc]}
-  - {name: "5V",  voltage: "5V",  pins: [rails.v5, acc_pedal.vcc]}
-  - {name: "12V", voltage: "12V", pins: [rails.v12, cytron.v12]}
-  - {name: "GND", voltage: "0V",  pins: [rails.gnd, medulla.CN1.3, steer_sensor.gnd, cytron.gnd, acc_pedal.gnd, press1.gnd]}
-  - {name: "24V", voltage: "24V", single: true, status: planned, pins: [press1.supply], note: "24 V sensor rail not yet fitted"}
+  # --- power distribution ---
+  - {name: PACK48, system: Power, class: power, voltage: "48V", pins: [battery.pos, buck_48_12.in+, esc.v+], note: "High-current traction feed"}
+  - {name: "12V",  system: Power, class: power, voltage: "12V", pins: [buck_48_12.out+, medulla.CN1.2, cytron.v12, orin.pwr12, kill1.a, compressor.pos]}
+  - {name: "5V",   system: Power, class: power, voltage: "5V",  pins: [medulla.CN2.3, motor.hall5v, acc_pedal.vcc, brake_pedal.vcc], note: "Rail from Orin USB VBUS / XW-1224 buck (split-rail)"}
+  - {name: "3V3",  system: Power, class: power, voltage: "3.3V", pins: [medulla.CN1.1, medulla.CN6.3, steer_sensor.vcc]}
+  - {name: "24V",  system: Power, class: power, voltage: "24V", status: planned, pins: [press1.supply, press2.supply, vppm.v24], note: "Shared sensor/VPPM rail, buck-boost not yet fitted"}
+  - {name: GND,    system: Power, class: power, voltage: "0V", pins: [battery.neg, buck_48_12.in-, buck_48_12.out-, esc.v-, medulla.CN1.3, medulla.CN9.3, medulla.CN10.3, cytron.gnd, steer_sensor.gnd, acc_pedal.gnd, brake_pedal.gnd, press1.gnd, press2.gnd, hyd1.gnd, hyd2.gnd, vppm.gnd, compressor_fet.source, motor.hallgnd, ebs_coil.b, sdc_relay.coil-]}
+
+  # --- compute / perception ---
+  - {name: USB_ESP32, system: Compute, class: signal, voltage: "5V", color: orange, pins: [orin.usb_esp32, medulla.USB], note: "Orin↔ESP32 command/telemetry (USB serial, no CAN)"}
+  - {name: USB_ZED,   system: Compute, class: signal, voltage: "5V", color: orange, pins: [orin.usb_zed, zed2.usb], note: "USB 3.0"}
+
+  # --- traction ---
+  - {name: MOTOR_U, system: Traction, class: drive, voltage: "48V", color: "—", pins: [esc.u, motor.u]}
+  - {name: MOTOR_V, system: Traction, class: drive, voltage: "48V", color: "—", pins: [esc.v, motor.v]}
+  - {name: MOTOR_W, system: Traction, class: drive, voltage: "48V", color: "—", pins: [esc.w, motor.w]}
 
   # --- steering ---
-  - {name: I2C_SDA,        voltage: "3.3V", pins: [medulla.CN4.2, steer_sensor.sda]}
-  - {name: I2C_SCL,        voltage: "3.3V", pins: [medulla.CN4.1, steer_sensor.scl]}
-  - {name: STEER_ANGLE_PWM, voltage: "3.3V", status: planned, pins: [medulla.CN5.2, steer_sensor.pwm], note: "Future MT6701 single-wire PWM"}
-  - {name: CMD_STEER_PWM,  voltage: "3.3V", pins: [medulla.CN9.1, cytron.pwm]}
-  - {name: CMD_STEER_DIR,  voltage: "3.3V", pins: [medulla.CN8.3, cytron.dir]}
-  - {name: "STEER_M+",     voltage: "12V", pins: [cytron.mplus, steer_motor.mplus]}
-  - {name: "STEER_M-",     voltage: "12V", pins: [cytron.mminus, steer_motor.mminus]}
+  - {name: I2C_SDA,         system: Steering, class: signal, voltage: "3.3V", pins: [medulla.CN4.2, steer_sensor.sda]}
+  - {name: I2C_SCL,         system: Steering, class: signal, voltage: "3.3V", pins: [medulla.CN4.1, steer_sensor.scl]}
+  - {name: STEER_ANGLE_PWM, system: Steering, class: signal, voltage: "3.3V", status: planned, pins: [medulla.CN5.2, steer_sensor.pwm], note: "Future MT6701 single-wire PWM (R10 removed)"}
+  - {name: CMD_STEER_PWM,   system: Steering, class: signal, voltage: "3.3V", pins: [medulla.CN9.1, cytron.pwm]}
+  - {name: CMD_STEER_DIR,   system: Steering, class: signal, voltage: "3.3V", pins: [medulla.CN8.3, cytron.dir]}
+  - {name: "STEER_M+",      system: Steering, class: drive, voltage: "12V", color: "—", pins: [cytron.mplus, steer_motor.mplus]}
+  - {name: "STEER_M-",      system: Steering, class: drive, voltage: "12V", color: "—", pins: [cytron.mminus, steer_motor.mminus]}
 
   # --- throttle ---
-  - {name: PEDAL_ACC,   voltage: "5V", pins: [acc_pedal.sig, medulla.CN6.2, mode_switch.manual], note: "Pedal feeds both the medulla ADC and the manual mux input"}
-  - {name: CMD_ACC_DAC, voltage: "5V", pins: [medulla.CN10.1, mode_switch.auto]}
-  - {name: CMD_ACC_ESC, voltage: "5V", pins: [mode_switch.common, esc.throttle]}
+  - {name: PEDAL_ACC,   system: Throttle, class: signal, voltage: "0–5V", pins: [acc_pedal.sig, medulla.CN6.2, mode_switch.manual], note: "Feeds both the medulla ADC and the manual mux input"}
+  - {name: CMD_ACC_DAC, system: Throttle, class: signal, voltage: "0–5V", pins: [medulla.CN10.1, mode_switch.auto]}
+  - {name: CMD_ACC_ESC, system: Throttle, class: signal, voltage: "0–5V", pins: [mode_switch.common, esc.throttle], note: "Gated throttle to the ESC"}
+
+  # --- brake ---
+  - {name: PEDAL_BRAKE,        system: Brake, class: signal, voltage: "0–5V", pins: [brake_pedal.sig, medulla.CN6.1]}
+  - {name: CMD_BRAKE_5V,       system: Brake, class: signal, voltage: "0–5V", pins: [medulla.CN10.2, opamp.in]}
+  - {name: CMD_BRAKE_10V,      system: Brake, class: signal, voltage: "0–10V", pins: [opamp.out, vppm.setpoint], note: "Proportional brake setpoint"}
+  - {name: CMD_COMPRESSOR_PWM, system: Brake, class: signal, voltage: "3.3V", pins: [medulla.CN8.2, compressor_fet.gate], note: "Ex-BUZZ terminal"}
+  - {name: COMPRESSOR_MOTOR,   system: Brake, class: drive, voltage: "12V", color: "—", status: in-design, pins: [compressor.neg, compressor_fet.drain], note: "12 V→~7.4 V via low-side PWM; FET/flyback sizing TBD"}
+  - {name: EBS_COIL,           system: Brake, class: power, voltage: "12V", pins: [sdc_relay.no3, ebs_coil.a], note: "12 V gated by the SDC relay; Festo form-C connector"}
 
   # --- sensors ---
-  - {name: PRESSURE_1,  voltage: "0-10V", color: black, pins: [press1.out, medulla.CN7.1], note: "Festo EN 60947-5-2: black = signal"}
-  - {name: HYDRAULIC_1, voltage: "3.3V", pins: [hyd1.sig, medulla.CN9.2]}
-  - {name: HYDRAULIC_2, voltage: "3.3V", pins: [hyd2.sig, medulla.CN5.1]}
+  - {name: PRESSURE_1,  system: Sensors, class: signal, voltage: "0–10V", color: black, pins: [press1.out, medulla.CN7.1], note: "Festo EN 60947-5-2: black = signal"}
+  - {name: PRESSURE_2,  system: Sensors, class: signal, voltage: "0–10V", color: black, pins: [press2.out, medulla.CN7.2], note: "Festo EN 60947-5-2: black = signal"}
+  - {name: HYDRAULIC_1, system: Sensors, class: signal, voltage: "3.3V", pins: [hyd1.sig, medulla.CN9.2]}
+  - {name: HYDRAULIC_2, system: Sensors, class: signal, voltage: "3.3V", pins: [hyd2.sig, medulla.CN5.1]}
+  - {name: MOTOR_HALL_1, system: Sensors, class: signal, voltage: "5V", pins: [motor.hall1, medulla.CN7.3], note: "Level-shifted to 3.3 V on PCB"}
+  - {name: MOTOR_HALL_2, system: Sensors, class: signal, voltage: "5V", pins: [motor.hall2, medulla.CN2.2], note: "Level-shifted on PCB"}
+  - {name: MOTOR_HALL_3, system: Sensors, class: signal, voltage: "5V", pins: [motor.hall3, medulla.CN2.1], note: "Level-shifted on PCB"}
 
-# Pins intentionally left unconnected (spare terminals, test points).
-no_connect: []
+  # --- shutdown circuit (series chain; opening any switch drops the relay coil) ---
+  - {name: SDC_1, system: Shutdown, class: signal, voltage: "12V", pins: [kill1.b, impact.a]}
+  - {name: SDC_2, system: Shutdown, class: signal, voltage: "12V", pins: [impact.b, res.a]}
+  - {name: SDC_3, system: Shutdown, class: signal, voltage: "12V", pins: [res.b, kill2.a]}
+  - {name: SDC_4, system: Shutdown, class: signal, voltage: "12V", pins: [kill2.b, kill3.a]}
+  - {name: SDC_5, system: Shutdown, class: signal, voltage: "12V", pins: [kill3.b, sdc_relay.coil+, medulla.CN8.1], note: "Coil node; medulla can pull it low via Q3 (S3 board) — verify tie against build"}
+  - {name: ESC_KEY_1, system: Shutdown, class: signal, pins: [sdc_relay.no1, esc.key1], note: "Relay NO closes the ESC 2-wire key loop"}
+  - {name: ESC_KEY_2, system: Shutdown, class: signal, pins: [sdc_relay.no2, esc.key2]}
+
+  # --- misc ---
+  - {name: REVERSE, system: Misc, class: signal, voltage: "5V", pins: [medulla.CN4.3, ebox_reverse.rev], note: "Pull to 0 V to engage reverse (via U12)"}
+
+# Pins intentionally left unconnected (spare PCF8574 expander terminals).
+no_connect: [medulla.CN3.1, medulla.CN3.2, medulla.CN3.3, medulla.CN5.3]

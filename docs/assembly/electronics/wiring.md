@@ -31,63 +31,12 @@ Hand-crafted SVG. Real Festo product photos for the pneumatic brake chain (VPPM,
 
 ## Wire list (whole kart)
 
-One row per wire/net across the whole kart — the tabular companion to the diagram above. Read `From` → `To` as the two physical ends; medulla terminals are written `CNx.y` and map to GPIOs on the [Kart Medulla connector pinout](kart-medulla/index.md#connector-pinout-outside-world).
+One row per **net** (electrical node) across the whole kart — the tabular companion to the diagram above. The **Connected pins** column lists every `device.pin` tied together; medulla `CNx.y` terminals map to GPIOs on the [Kart Medulla connector pinout](kart-medulla/index.md#connector-pinout-outside-world). This table is **generated** from [`wiring/wiring.yaml`](https://github.com/um-driverless/kart-docs/blob/main/docs/assembly/electronics/wiring/wiring.yaml) — edit the YAML, not the table; completeness is checked by `scripts/check_wiring.py`.
 
 !!! note "Scope and source of truth"
     Only the **kart-medulla PCB** has a KiCad project (`dv-hardware`) as its authoritative netlist — trust that for the medulla-internal nets. The rest of the kart (power distribution, traction, shutdown chain, motor) is **not** in KiCad; those rows are transcribed from the diagram and subsystem docs and should be **field-verified** before you rely on them. Wire colours follow the [house code](#wire-color-code) for wiring we run ourselves; vendor cables (Festo, power modules) keep their own colours, and 48 V pack cabling has no assigned code colour.
 
-| System | Signal / net | From | To | Nominal | Colour | Notes |
-|---|---|---|---|---|---|---|
-| Power | 48 V pack + | Battery 13S + | Motor Controller (ESC) V+ | 48 V | red (heavy) | High-current traction feed |
-| Power | 48 V pack + | Battery 13S + | Buck Regulator in + | 48 V | red (heavy) | Feeds the 48→12 V converter |
-| Power | GND | Battery 13S − | Common ground | 0 V | black (heavy) | Pack negative = system GND |
-| Power | 12 V rail | Buck Regulator out | 12 V distribution | 12 V | red | Single 48→12 V conversion (Weishuo Y3-T4812) |
-| Power | 12 V | 12 V rail | Jetson AGX Orin barrel jack | 12 V | red | Orin power |
-| Power | 12 V | 12 V rail | Cytron H-bridge V+ | 12 V | red | Steering driver — always powered, **not** switched by mode |
-| Power | 12 V | 12 V rail | SDC chain (Kill 1) | 12 V | red | Source for the shutdown circuit |
-| Power | 5 V + data | Jetson Orin USB-C | Medulla dev-board VBUS | 5 V | orange | Powers the ESP32 board and carries the USB-serial link (split-rail; may instead come from a 12→5 V buck) |
-| Traction | U / V / W | Motor Controller (ESC) | 3-phase BLDC motor | 48 V | — | Traction motor drive |
-| Traction | CMD_ACC (gated) | Mode Switch out | ESC throttle in | 0–5 V | white/gray | Auto = DAC, manual = pedal (SPDT select) |
-| Throttle | PEDAL_ACC | Accelerator pedal (linear Hall) | Medulla CN6.2 (GPIO 4, ADC) | 0–5 V | white/gray | Pedal position; scaled to ADC on the PCB |
-| Throttle | Acc pedal (manual) | Accelerator pedal | Mode Switch (NC contact) | 0–5 V | white/gray | Manual passthrough when ESP32 is not driving |
-| Throttle | CMD_ACC (DAC) | Medulla CN10.1 (MCP4922 A) | Mode Switch (auto input) | 0–5 V | white/gray | Autonomous throttle command |
-| Steering | Angle (I²C, current) | Steering sensor AS5600 | Medulla CN4.1/4.2 (SCL GPIO 9 / SDA GPIO 8) | 3.3 V | white/gray | Front-mounted, short I²C run |
-| Steering | Angle PWM (planned) | MT6701 OUT | Medulla CN5.2 (GPIO 1) | 3.3 V | white/gray | Future rear sensor, single-wire PWM (R10 removed) |
-| Steering | CMD_STEER_PWM | Medulla CN9.1 (GPIO 40) | Cytron H-bridge PWM | 3.3 V | white/gray | Steering speed |
-| Steering | CMD_STEER_DIR | Medulla CN8.3 (GPIO 17) | Cytron H-bridge DIR | 3.3 V | white/gray | Steering direction |
-| Steering | M+ / M− | Cytron H-bridge out | Steering motor | 12 V | — | Motor drive |
-| Brake | PEDAL_BRAKE | Brake pedal (linear Hall) | Medulla CN6.1 (GPIO 5, ADC) | 0–5 V | white/gray | Pedal position; scaled on PCB |
-| Brake | CMD_BRAKE (0–5 V) | Medulla CN10.2 (MCP4922 B) | Op-amp ×2 in | 0–5 V | white/gray | Brake setpoint from DAC |
-| Brake | CMD_BRAKE (0–10 V) | Op-amp ×2 out | VPPM setpoint | 0–10 V | white/gray | Proportional brake pressure command |
-| Brake | Air (regulated) | VPPM valve | Brake actuator (Festo ADN) | pneumatic | — | Autonomous service brake |
-| Brake | Air (full) | EBS solenoid (Festo VUVS) | Brake actuator (Festo ADN) | pneumatic | — | Emergency braking |
-| Brake | EBS coil 12 V | SDC Relay (gated 12 V) | EBS solenoid coil | 12 V | red | Energised only when SDC is closed; Festo form-C connector |
-| Brake | CMD_COMPRESSOR_PWM | Medulla CN8.2 (GPIO 3) | EBS air-compressor MOSFET gate | 3.3 V | white/gray | Ex-BUZZ terminal. Motor is 12 V→~7.4 V via low-side PWM; FET/flyback-diode sizing still in design |
-| SDC | Chain source | 12 V rail | Kill 1 | 12 V | red | Chain start (no panel ignition key) |
-| SDC | Chain | Kill 1 | Impact switch | 12 V | white/gray | Series |
-| SDC | Chain | Impact switch | Remote E-Stop (RES) | 12 V | white/gray | Series |
-| SDC | Chain | Remote E-Stop (RES) | Kill 2 | 12 V | white/gray | Series |
-| SDC | Chain | Kill 2 | Kill 3 | 12 V | white/gray | Series |
-| SDC | Chain → coil | Kill 3 | SDC Relay coil | 12 V | white/gray | Opening any switch drops the coil |
-| SDC | Relay NO | SDC Relay NO contacts | ESC 2-wire key loop | — | — | Closing arms the ESC (kit pigtail) |
-| SDC | Medulla tie-in | Medulla CN8.1 (SDC) | Shutdown chain (Q3 low side) | — | white/gray | On the S3 PCB the medulla can pull the chain low via Q3 (GPIO 18 internal) |
-| Sensors | PRESSURE_1 | Festo SDE5 sensor 1 | Medulla CN7.1 (GPIO 6, ADC) | 24 V / 0–10 V | brown·blue·black | Festo M8, EN 60947-5-2 (see below) |
-| Sensors | PRESSURE_2 | Festo SDE5 sensor 2 | Medulla CN7.2 (GPIO 7, ADC) | 24 V / 0–10 V | brown·blue·black | Festo M8, EN 60947-5-2 |
-| Sensors | HYDRAULIC_1 | Hydraulic pressure sensor 1 | Medulla CN9.2 (GPIO 10, ADC) | ? | white/gray | Supply/range to confirm |
-| Sensors | HYDRAULIC_2 | Hydraulic pressure sensor 2 | Medulla CN5.1 (GPIO 2, ADC) | ? | white/gray | Supply/range to confirm |
-| Sensors | MOTOR_HALL_1 | BLDC motor Hall 1 | Medulla CN7.3 (GPIO 16) | 5 V | white/gray | Level-shifted to 3.3 V on PCB |
-| Sensors | MOTOR_HALL_2 | BLDC motor Hall 2 | Medulla CN2.2 (GPIO 47) | 5 V | white/gray | Level-shifted on PCB |
-| Sensors | MOTOR_HALL_3 | BLDC motor Hall 3 | Medulla CN2.1 (GPIO 21) | 5 V | white/gray | Level-shifted on PCB |
-| Compute | USB serial | Jetson Orin USB | Medulla (ESP32 USB) | 5 V + data | orange | Orin↔ESP32 command/telemetry link (no CAN) |
-| Compute | USB 3.0 | ZED2 stereo camera | Jetson Orin | 5 V + data | — | Perception camera |
-| Medulla supply | +3V3 | Medulla CN1.1, CN6.3 | External 3.3 V sensors (e.g. MT6701) | 3.3 V | yellow | Medulla supplies sensor power |
-| Medulla supply | +5V | Medulla CN2.3 | External 5 V loads | 5 V | orange | |
-| Medulla supply | +12V | Medulla CN1.2 | 12 V available at terminal | 12 V | red | |
-| Medulla supply | GND | Medulla CN1.3, CN9.3, CN10.3 | Common ground | 0 V | black | |
-| Medulla I/O | EXP_P1–P4 | Medulla CN3.1–3, CN5.3 (PCF8574 0x20) | Spare I²C-expander I/O terminals | 3.3 V | white/gray | On-board GPIO-expander pins brought to terminals |
-| Medulla I/O | REVERSE | Medulla CN4.3 | Kart electronics-box reverse wire | 5 V | white/gray | Driven by U12; pull to 0 V to engage reverse |
-
-Rows marked `?` or "to confirm" are not yet verified — treat them as gaps to close, not facts. Medulla-internal nets are authoritative in the `dv-hardware` KiCad project.
+<!-- WIRING_TABLE -->
 
 ## Festo pressure sensor connector (M8, 3-pin)
 
