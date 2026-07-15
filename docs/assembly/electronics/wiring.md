@@ -62,6 +62,7 @@ One row per wire/net across the whole kart — the tabular companion to the diag
 | Brake | Air (regulated) | VPPM valve | Brake actuator (Festo ADN) | pneumatic | — | Autonomous service brake |
 | Brake | Air (full) | EBS solenoid (Festo VUVS) | Brake actuator (Festo ADN) | pneumatic | — | Emergency braking |
 | Brake | EBS coil 12 V | SDC Relay (gated 12 V) | EBS solenoid coil | 12 V | red | Energised only when SDC is closed; Festo form-C connector |
+| Brake | CMD_COMPRESSOR_PWM | Medulla CN8.2 (GPIO 3) | EBS air-compressor MOSFET gate | 3.3 V | white/gray | Ex-BUZZ terminal. Motor is 12 V→~7.4 V via low-side PWM; FET/flyback-diode sizing still in design |
 | SDC | Chain source | 12 V rail | Kill 1 | 12 V | red | Chain start (no panel ignition key) |
 | SDC | Chain | Kill 1 | Impact switch | 12 V | white/gray | Series |
 | SDC | Chain | Impact switch | Remote E-Stop (RES) | 12 V | white/gray | Series |
