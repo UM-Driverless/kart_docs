@@ -39,7 +39,7 @@ However, the ROS2 and Gazebo parts (`src/kart_sim/`, `src/kart_perception/`, etc
 
 **Pros:**
 
-- **Eliminates the entire UART/protobuf comms layer** between the Orin and ESP32 — no more serial debugging, protocol mismatches, or baud rate issues.
+- **Eliminates the entire UART serial comms layer** between the Orin and ESP32 — no more serial debugging, protocol mismatches, or baud rate issues.
 - **No more ESP32 flashing, crash loops, or boot-button gymnastics** — one fewer device to maintain.
 - **Faster iteration** — change a Python file, restart the node, done. No cross-compilation or firmware uploads.
 - **PID tuning from ROS** — tune parameters with `ros2 param set` or dynamic reconfigure instead of reflashing.

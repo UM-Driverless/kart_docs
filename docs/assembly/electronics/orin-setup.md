@@ -12,7 +12,12 @@ Complete guide for setting up the Jetson AGX Orin with NVMe boot and all softwar
 | Storage | 57 GB eMMC (soldered) + 476 GB NVMe M.2 SSD |
 | Display | **DisplayPort only** (no HDMI). Requires DP-to-HDMI adapter |
 | Camera | ZED 2 stereo (USB) |
-| CAN bus | `can0`, `can1` (for ESP32 communication) |
+| ESP32 link | USB serial to the Kart Medulla ESP32 (no CAN — see note) |
+
+!!! warning "No CAN bus on the kart"
+    The kart has **no CAN bus anywhere**. The Orin talks to the Kart Medulla ESP32 over **USB serial** (a plain USB cable presenting a serial port), and the ZED camera is USB too. Sensors reach the ESP32 as analog signals or I²C, not CAN. Earlier versions of this page listed `can0`/`can1` for ESP32 communication — that was wrong.
+
+    CAN only enters the picture on the **Formula Student car**, where it becomes the vehicle bus (a CAN-reader PCB for the Orin exists for that integration). Adding CAN to the kart would only introduce transceivers, drivers, and an extra encode/decode hop for no benefit. If you find CAN setup steps (`can0`/`can1`, `ip link set canX`, SocketCAN) anywhere in the kart docs or configs, they do not apply to the kart. Source: `dv/history.md` 2026-07-14 "The kart uses no CAN"; `kart-brain/README.md` (ESP32 over UART/USB).
 
 ## Boot Chain
 
@@ -493,6 +498,29 @@ No Cloudflare account needed for team members — only the tunnel owner.
     ssh-keygen -t ed25519
     ```
 
+### 14. Wi-Fi access-point mode (`kart-ap`)
+
+Since 2026-07-06 the Orin boots as **its own Wi-Fi access point** instead of joining lab Wi-Fi. Phones and laptops connect directly to the kart's own network and reach the dashboard at a fixed address — no router, no venue Wi-Fi, no IP hunting in the middle of a field.
+
+| Field | Value |
+|---|---|
+| Connection name (NetworkManager) | `kart-ap` |
+| SSID | `kart` |
+| Host IP (dashboard) | `http://10.42.0.1` |
+| Autoconnect priority | 200 (wins over `Robots_urjc`, which is 10) |
+
+The Orin's single Wi-Fi radio can hold **one** Wi-Fi connection at a time — either it joins an existing network for internet, or it serves its own AP. Access-point mode is a **NetworkManager hotspot** (shared mode): NetworkManager runs DHCP + NAT and places the host at its default shared-subnet address `10.42.0.1`. A quick one-off hotspot on the Orin looks like:
+
+```bash
+# wlP1p1s0 is the Orin's Wi-Fi interface (see step 12; NOT wlan0)
+nmcli dev wifi hotspot ifname wlP1p1s0 ssid kart password <pw>
+```
+
+The deployed setup makes this a persistent connection profile named `kart-ap` with `autoconnect-priority 200`, so it comes up automatically at boot. A second phone joins SSID `kart` and opens `http://10.42.0.1` for the dashboard.
+
+!!! note "Internet while in AP mode (optional)"
+    Because the radio is busy serving the AP, the Orin has no internet from Wi-Fi. To give it internet anyway, plug a phone into the Orin over USB with USB tethering on — it appears as a `usb0` interface and carries the connection over the cable, leaving the radio free for the AP. NetworkManager shared mode NATs, so a dashboard phone on the AP can even reach the internet through the Orin → cable → tethering-phone chain. Source: `dv/tasks/usb-tethering-dashboard.md`, `dv/README.md`, `dv/history.md` 2026-07-06/07-14.
+
 ## Verification Checklist
 
 - [ ] Power mode: `sudo nvpmodel -q` → `MODE_50W`
@@ -509,12 +537,14 @@ No Cloudflare account needed for team members — only the tunnel owner.
 - [ ] Cloudflare Tunnel: `ssh orin-remote` works from outside the network
 - [ ] Dashboard: [kart.rubenayla.xyz](https://kart.rubenayla.xyz) loads and accepts password
 - [ ] WiFi power save off: `iw dev wlP1p1s0 get power_save` → `Power save: off`
+- [ ] Access point: SSID `kart` is broadcast and `http://10.42.0.1` loads the dashboard from a phone
 
 ## Network Access
 
 | Method | Address | Notes |
 |---|---|---|
-| SSH (local WiFi) | `ssh orin` (10.7.20.x, DHCP) | Must be on same network. IP may change |
+| Kart access point | Join Wi-Fi `kart`, open `http://10.42.0.1` | Default field method. Orin is its own AP (`kart-ap`) — no router needed |
+| SSH (local WiFi) | `ssh orin` (10.7.20.x, DHCP) | Only if the Orin is joined to lab Wi-Fi instead of AP mode. IP may change |
 | SSH (remote) | `ssh orin-remote` (via Cloudflare Tunnel) | Works from anywhere. Requires `cloudflared` installed locally |
 | Dashboard (local) | `http://<orin-ip>:9090` | Must be on same network |
 | Dashboard (remote) | [kart.rubenayla.xyz](https://kart.rubenayla.xyz) (via Cloudflare Tunnel) | Works from any network. Password required (default: `0`) |

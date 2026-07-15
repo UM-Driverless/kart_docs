@@ -46,5 +46,7 @@ The 13S4P pack operates at roughly 41.6–54.6 V, well inside the converter's 20
 - https://www.notion.so/BMS-Bater-a-Kart-JBD-16078747314380e68688c3ab787fc1f7?pvs=21
 - https://es.aliexpress.com/item/1005007223779359.html
 ![https://jiabaida-bms.com/blogs/content/jiabaida-sp22s003b-smart-bms-wiring-diagram?spm=a2g0o.detail.1000023.4.58c53GRk3GRk3N](images/20250608185913.png)
-- 
+
+!!! note "Software: reading the BMS"
+    The Jetson Orin reads this BMS over **Bluetooth LE** (no ESP32, no CAN) and publishes it as a ROS `BatteryState` topic that drives the dashboard battery gauge. See the [BMS (battery node)](../../../software/ros2/bms.md) software page for the `kb_bms` node and the JBD BLE protocol.
 

@@ -252,7 +252,7 @@
     <text x="90" y="32" class="small" text-anchor="middle" font-weight="700">AS5600</text>
     <line x1="56" y1="46" x2="124" y2="46" stroke="#0277bd" stroke-width="1.6" stroke-dasharray="3 3"/>
     <text x="90" y="68" class="name" text-anchor="middle">Steering angle</text>
-    <text x="90" y="82" class="small" text-anchor="middle">I²C (SDA + SCL)</text>
+    <text x="90" y="82" class="small" text-anchor="middle">I²C now → MT6701 PWM</text>
     <text x="90" y="96" class="small" text-anchor="middle" font-style="italic">on steering shaft</text>
   </g>
 
@@ -330,7 +330,7 @@
     <line x1="20" y1="42" x2="220" y2="42" stroke="#0d47a1" stroke-width="0.8" opacity="0.4"/>
     <text x="120" y="60" class="desc" text-anchor="middle">ESP32-S3 + interface PCB</text>
     <text x="120" y="78" class="desc" text-anchor="middle">MCP4922 DAC · MOSFETs</text>
-    <text x="120" y="96" class="desc" text-anchor="middle">level shifters · CAN</text>
+    <text x="120" y="96" class="desc" text-anchor="middle">level shifters · analog mux</text>
     <text x="120" y="118" class="small" text-anchor="middle" font-style="italic">5 V from Jetson USB-C</text>
     <text x="120" y="132" class="small" text-anchor="middle" font-style="italic">central brain — see kart-medulla/</text>
   </g>
@@ -356,9 +356,9 @@
   <g transform="translate(1020,690)" filter="url(#shadow)">
     <rect width="220" height="68" fill="#f1f8e9" stroke="#558b2f" stroke-width="1.4" stroke-dasharray="3 2" rx="6"/>
     <text x="110" y="22" class="name" text-anchor="middle">Sensor bundle (to medulla)</text>
-    <text x="14" y="40" class="small">3× pressure (24 V → ADC)</text>
-    <text x="14" y="54" class="small">3× motor Hall (5 V → ADC)</text>
-    <text x="14" y="64" class="small">2× hydraulic ADC · CAN_TX/RX</text>
+    <text x="14" y="40" class="small">2× pressure (24 V → ADC)</text>
+    <text x="14" y="54" class="small">3× motor Hall (5 V) · steering PWM in</text>
+    <text x="14" y="64" class="small">2× hydraulic ADC · USB serial to Orin</text>
   </g>
 
   <!-- ==================== SAFETY chassis (Impact, RES) ==================== -->
@@ -467,9 +467,9 @@
   <polyline points="1480,240 1480,540" stroke="#283593" stroke-width="2.5" fill="none" marker-end="url(#ar-ind)"/>
   <text x="1488" y="400" class="lbl-sm" fill="#283593">USB 3.0</text>
 
-  <!-- AS5600 → medulla (I²C) -->
+  <!-- steering sensor → medulla (I²C now, PWM future) -->
   <polyline points="650,250 650,470 760,470 760,520" stroke="#666" stroke-width="2" fill="none" marker-end="url(#ar-gray)"/>
-  <text x="658" y="464" class="lbl-sm" fill="#444">I²C SDA/SCL</text>
+  <text x="658" y="464" class="lbl-sm" fill="#444">I²C now / PWM future</text>
 
   <!-- medulla → Cytron (PWM + DIR) -->
   <polyline points="820,520 820,470 860,470 860,250" stroke="#666" stroke-width="2" fill="none" marker-end="url(#ar-gray)"/>

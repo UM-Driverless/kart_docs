@@ -52,6 +52,7 @@ nav:
       - Electronics:
           - Kart Medulla (ESP32-S3):
               - assembly/electronics/kart-medulla/index.md
+              - Firmware: assembly/electronics/kart-medulla/firmware.md
               - Legacy wiring (classic ESP32): assembly/electronics/kart-medulla/legacy-wiring.md
           - Computer: assembly/electronics/computer.md
           - Orin Setup: assembly/electronics/orin-setup.md
@@ -69,12 +70,14 @@ nav:
   - Software:
       - software/index.md
       - State Machine: software/state_machine.md
+      - Dashboard: software/dashboard.md
       - 2024 — Python: software/legacy.md
       - 2025 — ROS 2:
           - software/ros2/index.md
           - Getting Started: software/ros2/getting-started.md
           - Architecture: software/ros2/architecture.md
           - Packages: software/ros2/packages.md
+          - BMS (battery node): software/ros2/bms.md
           - Simulation: software/ros2/simulation.md
           - Performance: software/ros2/performance.md
   - Scan: scan.md

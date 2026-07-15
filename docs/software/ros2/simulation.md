@@ -6,7 +6,7 @@ The simulation uses **Gazebo Fortress** running headless on an Ubuntu 22.04 ARM6
 
 ```bash
 source /opt/ros/humble/setup.bash
-source ~/kart_sw/install/setup.bash
+source ~/kart-brain/install/setup.bash
 ros2 launch kart_sim simulation.launch.py
 ```
 

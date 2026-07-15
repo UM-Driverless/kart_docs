@@ -7,7 +7,7 @@ The kart software runs on **Ubuntu 22.04** with **ROS 2 Humble**. There are two 
 | **Machine** | Mac → UTM VM (Ubuntu 22.04 ARM64) | Jetson AGX Orin (Ubuntu 22.04 ARM64) |
 | **Sensor** | Gazebo Fortress simulated RGBD camera | ZED stereo camera |
 | **Perception** | Ground truth from SDF, or YOLO on simulated images | YOLO + depth projection |
-| **Actuators** | Gazebo Ackermann plugin (`/kart/cmd_vel`) | ESP32 via UART (`/kart/cmd_vel` → `cmd_vel_bridge` → protobuf) |
+| **Actuators** | Gazebo Ackermann plugin (`/kart/cmd_vel`) | ESP32 via UART (`/kart/cmd_vel` → `cmd_vel_bridge` → framed int32 protocol) |
 | **GPU** | None (LLVMpipe software rendering) | NVIDIA GPU (CUDA for YOLO + ZED) |
 
 Both targets produce the same `/perception/cones_3d` topic — a controller node works identically in either mode.
@@ -46,9 +46,9 @@ sudo apt install \
 ssh utm
 
 cd ~
-git clone https://github.com/UM-Driverless/KART_SW.git kart_sw
+git clone https://github.com/UM-Driverless/kart-brain.git
 source /opt/ros/humble/setup.bash
-cd ~/kart_sw
+cd ~/kart-brain
 colcon build
 source install/setup.bash
 ```
@@ -56,7 +56,7 @@ source install/setup.bash
 !!! tip "Add to `.bashrc` for convenience"
     ```bash
     echo 'source /opt/ros/humble/setup.bash' >> ~/.bashrc
-    echo 'source ~/kart_sw/install/setup.bash 2>/dev/null' >> ~/.bashrc
+    echo 'source ~/kart-brain/install/setup.bash 2>/dev/null' >> ~/.bashrc
     echo 'export IGN_GAZEBO_RESOURCE_PATH=$(ros2 pkg prefix kart_sim 2>/dev/null)/share/kart_sim/models' >> ~/.bashrc
     ```
 
@@ -92,7 +92,7 @@ In a second SSH terminal:
 ssh utm
 
 source /opt/ros/humble/setup.bash
-source ~/kart_sw/install/setup.bash
+source ~/kart-brain/install/setup.bash
 
 # Check topics are active
 ros2 topic list
@@ -151,7 +151,7 @@ Before launching, connect:
 ### Manual Driving (Teleop)
 
 ```bash
-ros2 launch kart_bringup teleop_launch.py
+ros2 launch kart_bringup teleop.launch.py
 ```
 
 Hold **R1** (deadman switch) and use **R2** for throttle, **L2** for brake, **left stick** for steering.
@@ -178,7 +178,7 @@ ros2 topic echo /perception/cones_3d --once
 
 ### Full Autonomous Stack
 
-Once perception is running, start a controller node that subscribes to `/perception/cones_3d` and publishes `Twist` on `/kart/cmd_vel`. The `cone_follower_node` from kart_sim does exactly this — it works identically in simulation and on real hardware.
+Once perception is running, start a controller node that subscribes to `/perception/cones_3d` and publishes `Twist` on `/kart/cmd_vel`. The `cone_follower_node` from kart_control does exactly this — it works identically in simulation and on real hardware.
 
 ---
 

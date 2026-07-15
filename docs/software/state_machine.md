@@ -2,7 +2,7 @@
 
 The state machine node (`state_machine_node.py`) is the central safety and control authority for the kart. It determines what drives the wheels by muxing `cmd_vel` based on two independent variables: the **mission** (what the kart should do) and the **AS state** (whether the autonomous system is allowed to drive).
 
-**Source:** `src/kart_bringup/scripts/state_machine_node.py`
+**Source:** `src/kart_control/scripts/state_machine_node.py`
 
 ---
 
@@ -124,8 +124,8 @@ These states map to the **FS T14.8 AS Status** (Figure 15 in FS Rules 2026). See
 
 In a real competition, additional checks gate each transition:
 
-- **AS_READY** requires: mission selected + ASMS on + ASB checks OK + TS active + brakes engaged
-- **AS_DRIVING** (R2D) is triggered only via the RES (Remote Emergency System) "Go" signal, after 5 seconds in AS_READY
+- **AS_READY** requires: mission selected + ASMS (Autonomous System Master Switch) on + ASB (Autonomous System Brake) checks OK + TS (Tractive System) active + brakes engaged
+- **AS_DRIVING** (R2D — Ready to Drive) is triggered only via the RES (Remote Emergency System) "Go" signal, after 5 seconds in AS_READY
 - The vehicle must not move until 3 seconds after entering AS_DRIVING
 
 !!! warning "Current limitations"

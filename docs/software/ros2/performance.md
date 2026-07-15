@@ -88,7 +88,7 @@ A safety timer checks every 100 ms whether cones have been seen in the last seco
 
 ### 5. Serial bridge (~5 ms)
 
-`cmd_vel_bridge` polls `/kart/cmd_vel` at 100 Hz (10 ms timer) and encodes protobuf frames for throttle, brake, and steering. `KB_Coms_micro` pushes these onto a TX thread queue and sends them over UART at 115200 baud.
+`cmd_vel_bridge` polls `/kart/cmd_vel` at 100 Hz (10 ms timer) and encodes the framed int32 binary messages for throttle, brake, and steering (see [Packages → kb_coms_micro](packages.md#kb_coms_micro)). `KB_Coms_micro` pushes these onto a TX thread queue and sends them over UART at 115200 baud.
 
 A single frame is typically 8–15 bytes → **~1 ms on the wire** at 115200 baud. The TX thread wakes on a condition variable, so the queue-to-wire delay is near-instant.
 
