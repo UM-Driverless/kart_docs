@@ -237,3 +237,15 @@ So a "filtered inventory view" can only ever be that purchased-parts subset dres
 **Requirement this imposes.** For disambiguation to actually work, BOM component IDs must separate versions (`orin_adapter_v1` / `orin_adapter_v2`), not collapse to a generic `orin_adapter`.
 
 **Obsolete versions.** Mark the superseded BOM component `status: legacy` (renders as the grey "Legacy" badge) rather than deleting it — keeps the row visible-but-retired and lets an old sticker still resolve. Delete a `/p/<id>/` page only when the physical part *and* its sticker are gone; otherwise a scan would 404. Where a unit is retired in place, point its `/p/` page at the superseding component.
+
+---
+
+## 2026-07-16 — tasks.md consolidated to the repo root; `.agents/tasks.md` retired
+
+`.agents/tasks.md` was moved to `tasks.md` at the repo root with `git mv`, so the file's history follows it. `.agents/tasks.md` no longer exists in this repo and must not be recreated — the rule is one `tasks.md` per repo, at the root.
+
+**Rationale:** tasks are the project's tasks regardless of who does them. Two files named `tasks.md` only produce duplicates and stale entries, because whichever one the current session isn't reading quietly goes out of date.
+
+`AGENTS.md` previously didn't mention the task board at all; its "Key Files (Read Before Working)" list now names `tasks.md` first, ahead of `.agents/error-log.md` and `.agents/definition-of-done.md`.
+
+Note: `docs/assembly/pneumatic-braking/index.md` points at `dv/tasks.md`, which is a *different* repo's board, not this one — it was already correct and was left alone. Stale `.agents/tasks.md` paths in append-only records (`history.md`, `.agents/error-log.md`) were also deliberately left as written: they were accurate on the date they were logged, and rewriting them would falsify the record.

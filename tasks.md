@@ -1,4 +1,4 @@
-<!-- consult-selectively: agent task board. Claim a task by setting status In progress + your id, commit, then Done. -->
+<!-- consult-selectively: the project's task board (one per repo, at the root). Claim a task by setting status In progress + your id, commit, then Done. -->
 # Task Board
 
 ## Ready

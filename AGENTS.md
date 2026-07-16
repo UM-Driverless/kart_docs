@@ -2,8 +2,9 @@
 
 ## Key Files (Read Before Working)
 Before making any changes, consult:
-1. **`.agents/error-log.md`** — Past errors and added preventions
-2. **`.agents/definition-of-done.md`** — Pre-commit checklist
+1. **`tasks.md`** (repo root) — Task board. Claim a task by setting status In progress + your id, commit, then Done. One `tasks.md` per repo and it lives at the root — there is no `.agents/tasks.md`.
+2. **`.agents/error-log.md`** — Past errors and added preventions
+3. **`.agents/definition-of-done.md`** — Pre-commit checklist
 
 ## Project Overview
 
