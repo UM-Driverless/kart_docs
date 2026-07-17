@@ -74,6 +74,8 @@ def check(data: dict) -> tuple[list[str], list[str], dict]:
         "devices": len(devices),
         "pins": len(declared),
         "nets": len(nets),
+        "connectable": len(declared - no_connect),
+        "no_connect": len(no_connect & declared),
         "wired": len(declared & used),
         "gaps": len(gaps),
     }
@@ -90,8 +92,11 @@ def main() -> int:
 
     print(f"wiring netlist: {path}")
     print(f"  {s['devices']} devices, {s['pins']} pins, {s['nets']} nets")
-    cov = (100 * s["wired"] / s["pins"]) if s["pins"] else 100
-    print(f"  coverage: {s['wired']}/{s['pins']} pins wired ({cov:.0f}%)")
+    cov = (100 * s["wired"] / s["connectable"]) if s["connectable"] else 100
+    print(
+        f"  coverage: {s['wired']}/{s['connectable']} connectable pins wired "
+        f"({cov:.0f}%); {s['no_connect']} no-connect"
+    )
 
     if errors:
         print(f"\nERRORS ({len(errors)}):")

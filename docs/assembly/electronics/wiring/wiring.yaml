@@ -54,8 +54,8 @@ devices:
   compressor:     {desc: "Air-compressor motor (~7.4 V)", pins: [pos, neg]}
   press1:         {desc: "Festo SDE5 pressure sensor 1", vendor: festo, pins: [supply, gnd, out]}
   press2:         {desc: "Festo SDE5 pressure sensor 2", vendor: festo, pins: [supply, gnd, out]}
-  hyd1:           {desc: "Hydraulic pressure sensor 1", pins: [sig, supply, gnd]}
-  hyd2:           {desc: "Hydraulic pressure sensor 2", pins: [sig, supply, gnd]}
+  hyd1:           {desc: "Hydraulic pressure sensor 1 (planned — not yet installed)", pins: [sig, supply, gnd]}
+  hyd2:           {desc: "Hydraulic pressure sensor 2 (planned — not yet installed)", pins: [sig, supply, gnd]}
   kill1:          {desc: "Kill switch 1", pins: [a, b]}
   kill2:          {desc: "Kill switch 2", pins: [a, b]}
   kill3:          {desc: "Kill switch 3", pins: [a, b]}
@@ -107,8 +107,8 @@ nets:
   # --- sensors ---
   - {name: PRESSURE_1,  system: Sensors, class: signal, voltage: "0–10V", color: black, pins: [press1.out, medulla.CN7.1], note: "Festo EN 60947-5-2: black = signal"}
   - {name: PRESSURE_2,  system: Sensors, class: signal, voltage: "0–10V", color: black, pins: [press2.out, medulla.CN7.2], note: "Festo EN 60947-5-2: black = signal"}
-  - {name: HYDRAULIC_1, system: Sensors, class: signal, voltage: "3.3V", pins: [hyd1.sig, medulla.CN9.2]}
-  - {name: HYDRAULIC_2, system: Sensors, class: signal, voltage: "3.3V", pins: [hyd2.sig, medulla.CN5.1]}
+  - {name: HYDRAULIC_1, system: Sensors, class: signal, voltage: "3.3V", status: planned, pins: [hyd1.sig, medulla.CN9.2], note: "Terminal reserved; hydraulic sensor not installed yet"}
+  - {name: HYDRAULIC_2, system: Sensors, class: signal, voltage: "3.3V", status: planned, pins: [hyd2.sig, medulla.CN5.1], note: "Terminal reserved; hydraulic sensor not installed yet"}
   - {name: MOTOR_HALL_1, system: Sensors, class: signal, voltage: "5V", pins: [motor.hall1, medulla.CN7.3], note: "Level-shifted to 3.3 V on PCB"}
   - {name: MOTOR_HALL_2, system: Sensors, class: signal, voltage: "5V", pins: [motor.hall2, medulla.CN2.2], note: "Level-shifted on PCB"}
   - {name: MOTOR_HALL_3, system: Sensors, class: signal, voltage: "5V", pins: [motor.hall3, medulla.CN2.1], note: "Level-shifted on PCB"}
@@ -125,5 +125,9 @@ nets:
   # --- misc ---
   - {name: REVERSE, system: Misc, class: signal, voltage: "5V", pins: [medulla.CN4.3, ebox_reverse.rev], note: "Pull to 0 V to engage reverse (via U12)"}
 
-# Pins intentionally left unconnected (spare PCF8574 expander terminals).
-no_connect: [medulla.CN3.1, medulla.CN3.2, medulla.CN3.3, medulla.CN5.3]
+# Pins intentionally left unconnected right now.
+#  - spare PCF8574 expander terminals
+#  - hydraulic-sensor supplies: sensors not installed yet, so these are free for now;
+#    they join the sensor rail when the hydraulic sensors are fitted.
+no_connect: [medulla.CN3.1, medulla.CN3.2, medulla.CN3.3, medulla.CN5.3,
+             hyd1.supply, hyd2.supply]
