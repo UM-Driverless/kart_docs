@@ -25,7 +25,11 @@ def on_post_build(config, **kwargs):
         ], capture_output=True, text=True, cwd=config['docs_dir'] + '/..')
         
         if result.returncode != 0:
-            print(f"Warning: Failed to generate LLM files: {result.stderr}")
+            # The script reports its errors on stdout, so stderr alone is
+            # usually empty — printing only stderr hid a real failure for
+            # months. Show both, and never print an empty reason.
+            detail = (result.stderr.strip() + "\n" + result.stdout.strip()).strip()
+            print(f"Warning: Failed to generate LLM files: {detail or '(no output)'}")
             return
         
         print("✓ Generated LLM files successfully")

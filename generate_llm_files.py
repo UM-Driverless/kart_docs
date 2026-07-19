@@ -26,8 +26,20 @@ def load_mkdocs_config(config_path: str = "mkdocs.yml") -> Dict:
         """Handle !ENV tags by ignoring them for our purposes."""
         return None
     
+    def python_name_constructor(loader, suffix, node):
+        """Handle `!!python/name:...` tags by ignoring them.
+
+        mkdocs-material uses these to point at Python callables (emoji index,
+        superfences formatter). SafeLoader refuses them by design; we only read
+        nav and site metadata here, so resolving them is unnecessary.
+        """
+        return None
+
     MkDocsLoader.add_constructor('!ENV', env_constructor)
-    
+    MkDocsLoader.add_multi_constructor(
+        'tag:yaml.org,2002:python/name:', python_name_constructor
+    )
+
     with open(config_path, 'r', encoding='utf-8') as f:
         return yaml.load(f, Loader=MkDocsLoader)
 

@@ -26,17 +26,21 @@ striped-black convention, otherwise the diagram and the generated wire table dis
 Background on the two-ground split: `docs/assembly/electronics/wiring.md`, section
 "Why two grounds".
 
-### `mkdocs build` warns "Failed to generate LLM files"
-Every build prints `Warning: Failed to generate LLM files:` with an empty reason, so
-`llms.txt` / `llms-full.txt` may be stale. Reproduces on a clean checkout, so it is not
-caused by any recent docs edit. Find the swallowed exception in `generate_llm_files.py` /
-`generate_llm_hook.py` and either fix it or make the hook report the real error.
-
 ## In progress
 
 _(none)_
 
 ## Done
+
+### llms.txt and llms-full.txt were 404 on the live site (2026-07-19)
+`generate_llm_files.py` parsed `mkdocs.yml` with a custom `SafeLoader` that knew about
+`!ENV` but not `!!python/name:`, which mkdocs-material uses for its emoji index and
+superfences formatter. The script died on `mkdocs.yml:21` from commit `e0c057c`
+(2026-07-10, the Build Journey section) onward, so both files were missing from every
+deploy for nine days. Fixed with a multi-constructor for the `python/name` tag prefix.
+The failure survived that long because `generate_llm_hook.py` printed only `result.stderr`
+while the script reports errors on stdout — the warning always rendered with an empty
+reason and read as cosmetic noise. The hook now prints both streams.
 
 ### Build Journey section (2026-07-10)
 Ported the portfolio's build-journey into kart-docs as a team-shareable section:
