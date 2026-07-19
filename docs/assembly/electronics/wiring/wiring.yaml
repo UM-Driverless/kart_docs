@@ -128,7 +128,7 @@ nets:
   - {name: SDC_2, system: Shutdown, class: signal, voltage: "12V", pins: [impact.b, res.a]}
   - {name: SDC_3, system: Shutdown, class: signal, voltage: "12V", pins: [res.b, kill2.a]}
   - {name: SDC_4, system: Shutdown, class: signal, voltage: "12V", pins: [kill2.b, kill3.a]}
-  - {name: SDC_5, system: Shutdown, class: signal, voltage: "12V", pins: [kill3.b, sdc_relay.coil+, medulla.CN8.1], note: "Coil node; medulla can pull it low via Q3 (S3 board) — verify tie against build"}
+  - {name: SDC_5, system: Shutdown, class: signal, voltage: "12V", pins: [kill3.b, sdc_relay.coil+, medulla.CN8.1], note: "Coil node; medulla pulls it low via Q3 (S3 board), low-side of the relay coil — Q3 is N-channel so its reference must be ground. Confirmed by Rubén 2026-07-19. Its source belongs on PWR_GND in medulla-v2."}
   - {name: ESC_KEY_1, system: Shutdown, class: signal, pins: [sdc_relay.no1, esc.key1], note: "Relay NO closes the ESC 2-wire key loop"}
   - {name: ESC_KEY_2, system: Shutdown, class: signal, pins: [sdc_relay.no2, esc.key2]}
 
