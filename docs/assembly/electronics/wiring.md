@@ -13,13 +13,41 @@ Where we do run our own wire:
 
 | Color | Meaning | Hex |
 |---|---|---|
-| **Black** | GND (common ground, all systems) | `#333` |
+| **Black** | Power GND — return for motors, valves, coils, and the power rails | `#333` |
+| **Black + white stripe** | Signal GND — return for sensors and analog/logic references | `#333` / `#fff` |
 | **Red** | 12 V power | `#d32f2f` |
 | **Orange** | 5 V power | `#e65100` |
 | **Yellow** | 3.3 V power | `#f9a825` |
-| **White / Gray** | Unmarked — no voltage meaning | `#bbb` |
+| **White / Gray** | Deliberately unassigned — carries no meaning | `#bbb` |
 
-Signal wires we run ourselves (I2C, analog, PWM) use **white/gray** unless a specific convention applies to that bus.
+**White and gray are the escape hatch, and that is their job.** Every other colour in the
+table is a promise about what the wire carries, so using one wrongly is worse than using
+none: someone later reads the promise and trusts it. White carries no promise, so you can
+wire anything with it — a one-off, a bodge, a bus nobody has a convention for — without
+breaking the code or having to invent a new colour first. Reach for white whenever the
+right colour is not obvious. Signal wires we run ourselves (I²C, analog, PWM) use white or
+gray by default, unless a specific convention applies to that bus.
+
+A **stripe** modifies the base colour rather than adding a second meaning, so the white
+stripe on signal ground is not an exception to this: the wire is black, and black means
+ground. Solid white and striped black are hard to confuse in the harness.
+
+### Why two grounds
+
+Motor, valve, and coil currents are large and switch fast. Sharing a return wire with a
+sensor puts that current's voltage drop directly in series with the sensor reading, so the
+measurement moves when the motor does. Separating the returns keeps that drop out of the
+sensitive path.
+
+Both grounds are the same electrical node — they are **joined at exactly one point**, the
+star point. On this kart that point is the **rear ground Wago terminal block**, near the
+battery and the 12 V / 24 V regulators; it appears in the wire list below as the device
+`wago_gnd`. Two joins would create a loop and undo the separation, so no other place in the
+harness may bond the two. The stripe is there so that anyone tracing the harness can tell,
+without a meter, which return a wire belongs to and therefore where it is allowed to land.
+
+If striped wire is hard to source in a given gauge, use plain black with a **white
+heatshrink band at both ends** — same meaning, same rule.
 
 ## Global Wiring Diagram
 
@@ -31,7 +59,7 @@ Hand-crafted SVG. Real Festo product photos for the pneumatic brake chain (VPPM,
 
 ## Wire list (whole kart)
 
-One row per **net** (electrical node) across the whole kart — the tabular companion to the diagram above. The **Connected pins** column lists every `device.pin` tied together; medulla `CNx.y` terminals map to GPIOs on the [Kart Medulla connector pinout](kart-medulla/index.md#connector-pinout-outside-world). This table is **generated** from [`wiring/wiring.yaml`](https://github.com/um-driverless/kart-docs/blob/main/docs/assembly/electronics/wiring/wiring.yaml) — edit the YAML, not the table; completeness is checked by `scripts/check_wiring.py`.
+One row per **net** (electrical node) across the whole kart — the tabular companion to the diagram above. The **Connected pins** column lists every `device.pin` tied together; medulla (the kart's ESP32-S3 interface PCB) `CNx.y` terminals map to GPIOs on the [Kart Medulla connector pinout](kart-medulla/index.md#connector-pinout-outside-world). This table is **generated** from [`wiring/wiring.yaml`](https://github.com/um-driverless/kart-docs/blob/main/docs/assembly/electronics/wiring/wiring.yaml) — edit the YAML, not the table; completeness is checked by `scripts/check_wiring.py`.
 
 !!! note "Scope and source of truth"
     Only the **kart-medulla PCB** has a KiCad project (`dv-hardware`) as its authoritative netlist — trust that for the medulla-internal nets. The rest of the kart (power distribution, traction, shutdown chain, motor) is **not** in KiCad; those rows are transcribed from the diagram and subsystem docs and should be **field-verified** before you rely on them. Wire colours follow the [house code](#wire-color-code) for wiring we run ourselves; vendor cables (Festo, power modules) keep their own colours, and 48 V pack cabling has no assigned code colour.
@@ -65,7 +93,7 @@ The steering-angle sensor tells the medulla where the front wheels point, closin
 | MT6701 module pin | Medulla terminal / ESP32-S3 | Notes |
 |---|---|---|
 | VCC | 3.3 V (CN1.1 / CN6.3) | 5 V only needed for a one-time EEPROM burn |
-| GND | GND (CN1.3 / CN9.3 / CN10.3) | Common ground |
+| GND | Signal GND (`GND_SIG`) | **Not yet resolved to a terminal.** CN1.3 / CN9.3 / CN10.3 are the medulla's ground terminals, but they are currently recorded on the *power* ground net, and this sensor's return belongs on [signal GND](#why-two-grounds). Landing it on a power-ground terminal would bond the two grounds a second time. Check the KiCad project for the board's analog ground before wiring — see the open task in `tasks.md`. |
 | SDA | GPIO 8 (I²C) | MT6701 address 0x06 (PCF8574 is 0x20 — no clash). Used for config + a bench angle cross-check |
 | SCL | GPIO 9 (I²C) | |
 | OUT (PWM) | **CN5.2 → R8 → R9 → GPIO 1** | 20 kΩ series into the ESP32-S3 MCPWM capture. **Board rework: remove R10 only** (keep R8 + R9). |

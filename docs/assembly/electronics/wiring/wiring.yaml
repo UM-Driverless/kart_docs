@@ -24,7 +24,10 @@ color_code:            # house code, applied to power rails we run ourselves
   "12V": red
   "5V": orange
   "3.3V": yellow
-  "0V": black
+  "0V": black          # power GND; signal GND is black/white and set per-net
+  # white/gray is deliberately unassigned: it carries no promise about the wire, so it is
+  # the safe default for anything without an obvious colour. Every other colour here IS a
+  # promise, and a wrong one misleads whoever reads it next.
   signal: white/gray   # all signal wires unless a bus convention applies
 
 devices:
@@ -63,6 +66,12 @@ devices:
   res:            {desc: "Remote E-stop relay (contacts in chain)", pins: [a, b]}
   sdc_relay:      {desc: "SDC relay", pins: [coil+, coil-, no1, no2, no3]}
   ebox_reverse:   {desc: "Kart electronics-box reverse input", pins: [rev]}
+  wago_gnd:
+    desc: "Rear ground Wago block — the ground star point, near the battery and the 12 V / 24 V regulators"
+    note: "One block = one electrical node. The `pwr` and `sig` pins are the two returns
+           meeting here; this block IS the single tie between them. Do not bond GND and
+           GND_SIG anywhere else."
+    pins: [pwr, sig]
 
 nets:
   # --- power distribution ---
@@ -71,7 +80,8 @@ nets:
   - {name: "5V",   system: Power, class: power, voltage: "5V",  pins: [medulla.CN2.3, motor.hall5v, acc_pedal.vcc, brake_pedal.vcc], note: "Rail from Orin USB VBUS / XW-1224 buck (split-rail)"}
   - {name: "3V3",  system: Power, class: power, voltage: "3.3V", pins: [medulla.CN1.1, medulla.CN6.3, steer_sensor.vcc]}
   - {name: "24V",  system: Power, class: power, voltage: "24V", status: planned, pins: [press1.supply, press2.supply, vppm.v24], note: "Shared sensor/VPPM rail, buck-boost not yet fitted"}
-  - {name: GND,    system: Power, class: power, voltage: "0V", pins: [battery.neg, buck_48_12.in-, buck_48_12.out-, esc.v-, medulla.CN1.3, medulla.CN9.3, medulla.CN10.3, cytron.gnd, steer_sensor.gnd, acc_pedal.gnd, brake_pedal.gnd, press1.gnd, press2.gnd, hyd1.gnd, hyd2.gnd, vppm.gnd, compressor_fet.source, motor.hallgnd, ebs_coil.b, sdc_relay.coil-]}
+  - {name: GND,     system: Power, class: power, voltage: "0V", pins: [wago_gnd.pwr, battery.neg, buck_48_12.in-, buck_48_12.out-, esc.v-, medulla.CN1.3, medulla.CN9.3, medulla.CN10.3, cytron.gnd, vppm.gnd, compressor_fet.source, ebs_coil.b, sdc_relay.coil-], note: "Power return: motors, valves, coils, rails. Ties to GND_SIG only at wago_gnd."}
+  - {name: GND_SIG, system: Power, class: power, voltage: "0V", color: black/white, pins: [wago_gnd.sig, steer_sensor.gnd, acc_pedal.gnd, brake_pedal.gnd, press1.gnd, press2.gnd, hyd1.gnd, hyd2.gnd, motor.hallgnd], note: "Sensor/analog return. Black + white stripe. Single tie to GND at the rear wago_gnd block."}
 
   # --- compute / perception ---
   - {name: USB_ESP32, system: Compute, class: signal, voltage: "5V", color: orange, pins: [orin.usb_esp32, medulla.USB], note: "Orin↔ESP32 command/telemetry (USB serial, no CAN)"}
