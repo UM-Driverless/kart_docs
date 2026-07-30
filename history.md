@@ -393,3 +393,48 @@ fabricated, populated, and running the kart; and `wiring.md` linked to the medul
 **Naming note for anyone reading old text:** "N8R8" appears in a few places in the pre-2026-07-30
 docs where "N16R8" was meant. N8R8 is a real Espressif part (8 MB flash, 8 MB octal PSRAM), just
 not the one on this board.
+
+---
+
+## 2026-07-30 — Pin table diffed against dv-hardware; U12 does not exist, the part is Q4
+
+Following the module-suffix fix, the ESP32-S3 pin table was compared row-by-row against its
+declared source of truth, `dv-hardware/projects/kart-medulla/docs/pinout-esp32-s3.md`. The
+kart-docs table claimed to mirror it "as of 2026-05-08"; that file has since been edited twice
+(2026-07-10 bench bring-up, 2026-07-18), so the claim was ~2.5 months stale.
+
+**All 44 rows agree except two, and on those two kart-docs is the more current side.**
+dv-hardware still lists GPIO 1 as `PRESSURE_3` and GPIO 3 as `BUZZER` in its `Signal` column
+even though its own notes describe both reassignments. So the blanket "if the two disagree,
+dv-hardware wins" rule would have *undone* the steering-angle-PWM and compressor-PWM
+repurposings. The rule is now scoped: dv-hardware wins everywhere except those two rows, and
+the underlying fix is filed in `tasks.md` as an upstream job.
+
+**Corrections pulled down from the 2026-07-10 bench session:**
+
+- **GPIO 3 is not a strap pin on this chip.** The old note said "Strap pin (JTAG src select),
+  idle-high at boot is acceptable". Both halves were measured wrong: the `STRAP_JTAG_SEL` eFuse
+  is unburned so GPIO 3 is never sampled at reset, and `IO_MUX_GPIO3 = 0x0a02` shows no
+  internal pull, so it floats and an external pulldown wins at boot. That is precisely why it
+  is safe driving the compressor MOSFET gate.
+- **GPIO 35–37 are `BLOCKED`, not `HOLD`.** With an N16R8 fitted they are not reclaimable at
+  all, so the status legend now separates "kept free by choice" from "physically impossible".
+
+**U12 does not exist.** The docs described the REVERSE-wire driver as "U12, a PC357N1J000F
+optocoupler, swapping to a BSS123 in the next schematic edit, board not yet manufactured, swap
+is free". Every clause was wrong: the part is **Q4**, a BSS123, already fitted on a
+manufactured and bench-tested board. The netlist's reference designators are
+`U1, U02, U5, U13, U14, U19, U23, U24, U25` — no U12 anywhere in schematic, PCB, netlist or
+BOM. The optocoupler was never placed on a sheet; it survives only as an unused library entry
+in the EasyEDA source, and even the 2026-05-03 export already has the BSS123 placed as Q4.
+
+**One conflict left open rather than guessed at.** kart-docs puts the reverse-command wire on
+terminal **CN4.3**; the dv-hardware netlist puts `/REVERSE_WIRE` on **CN8 pin 1**, which
+kart-docs assigns to `SDC_IN_LOW_SIDE`. Mixing up a reverse command with the shutdown-circuit
+terminal is not a harmless error, and nothing on hand settles it — CN6–CN10 are already flagged
+as possibly physically reversed. Both `index.md` and `wiring.yaml` now carry an explicit
+"unverified" marker at that terminal, and it is filed in `tasks.md` for a check against the
+board.
+
+Verified after the edits: `check_wiring.py` still reports 115/115 connectable pins wired, and
+`mkdocs build --strict` is clean.

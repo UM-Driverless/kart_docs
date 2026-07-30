@@ -52,6 +52,29 @@ successful flash". The reasoning is sound (the 115200 cap was the *classic* boar
 this board's CH343 is rated to 6 Mbps), but it should be confirmed by an actual flash and the
 in-file note either removed or downgraded. Fallbacks if it fails: 460800, then 115200.
 
+### Settle which terminal carries the REVERSE wire — CN4.3 or CN8.1
+`docs/assembly/electronics/wiring/wiring.yaml` and `kart-medulla/index.md` both put the
+reverse-command wire on **CN4.3**. The dv-hardware netlist
+(`projects/kart-medulla/output/netlist.net`, dated 2026-05-07) puts the `/REVERSE_WIRE` net on
+**CN8 pin 1** — and CN8.1 is `SDC_IN_LOW_SIDE` in kart-docs, the Q3 drain that closes the
+shutdown-circuit return path. Those two cannot both be right, and confusing a reverse command
+with the SDC terminal is not a harmless mix-up. Check the physical board (CN6–CN10 are already
+flagged as possibly reversed in their physical pin order) and correct whichever side is wrong.
+
+### Upstream pinout doc disagrees with itself on CMD_STEER_DIR
+`dv-hardware/projects/kart-medulla/docs/pinout-esp32-s3.md` has `CMD_STEER_DIR__3V3` on
+**GPIO 17** in its pin table (Pin 32, "Moved here from GPIO 0 on 2026-05-08") but its own prose
+at the end of the file says "`CMD_STEER_PWM` (GPIO 40) and `CMD_STEER_DIR` (GPIO 0) —
+unchanged". kart-docs follows the table (GPIO 17). Fix the prose upstream so the file stops
+contradicting itself; the schematic decides.
+
+### Refresh the two rows dv-hardware has not caught up on
+`dv-hardware`'s pinout table still lists GPIO 1 as `PRESSURE_3` and GPIO 3 as `BUZZER` in its
+`Signal` column, even though the same file's notes describe both reassignments (steering-angle
+PWM capture and `CMD_COMPRESSOR_PWM`). kart-docs is ahead on these two rows and now says so
+explicitly, but the right fix is upstream — update the `Signal` cells there so the
+"dv-hardware wins" rule can go back to being unconditional.
+
 ## In progress
 
 _(none)_
