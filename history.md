@@ -349,3 +349,47 @@ the gate of Q3, the shutdown-circuit MOSFET.
 Also added the **MCP4922-E/SL** as its own `bom.yaml` component (it had none), with the
 MCP4728 recorded under `rejected:`. Its unit cost is a placeholder — the chips came from
 workshop stock and no price was paid.
+
+---
+
+## 2026-07-30 — Module standard changed: the fitted N16R8 is accepted, the "never R8" rule retired
+
+The docs specified **ESP32-S3-WROOM-1-N8R2** and carried an explicit "DO NOT BUY" rule against
+octal-PSRAM (R8) variants. The module actually on the board is an **N16R8** — an R8. So the
+BOM banned the part it was describing, and the earlier edit today that flipped `esp32_s3` to
+`status: active` made it worse by asserting the N8R2 was the installed part.
+
+**Evidence the fitted module is R8:** `esptool` on the hardware reports `ESP32-S3 (QFN56)
+revision v0.2` with `Embedded PSRAM 8MB (AP_3v3)` — 8 MB of PSRAM is octal, quad variants are
+2 MB. Three independent statements in the firmware repo agree: `AGENTS.md` ("the kart-medulla
+PCB now carries an ESP32-S3 (WROOM-1-N16R8)"), `.agents/error-log.md`, and
+`.agents/esp32s3-pinmap.md` ("The fitted module is an **N16R8**").
+
+**Decision (Rubén, 2026-07-30): accept the R8 and rewrite the rule.** The ban was written to
+protect GPIO 33–37, but the pinout had already been changed to leave all five free — 33, 35,
+36 and 37 are `HOLD`, `CMD_REVERSE` moved to the PCF8574 expander on 2026-05-03, and
+`MOTOR_HALL_1` moved off GPIO 37 to GPIO 16. The thing the rule was protecting had already
+been given up voluntarily, so the R8 costs this design nothing and the rule was the stale part.
+
+The constraint that remains real, and is now stated that way: **GPIO 33–37 must never be
+assigned.** Substituting a quad-PSRAM module (N16R2, N8R2) is a safe drop-in that *frees* those
+pins; the failure case is the reverse — assigning 33–37 and then fitting an R8.
+
+**Contradictions this cleared up, all pre-existing.** `index.md` had two adjacent admonitions
+saying opposite things: a note headed "N8R2 preferred; N8R8 still works" immediately above a
+danger block headed "octal-PSRAM variants (R8) are tolerated, never preferred" whose body then
+said "**Do not substitute an R8 variant**" — tolerated and forbidden in the same breath. Both
+are replaced by one block. `bom.yaml` separately claimed "**GPIO 33–37 are NOT reserved by our
+pinout** ... the pinout may and does use GPIO 33–37 when needed", which the pin table on
+`index.md` had contradicted since at least 2026-05-08 by marking all five `HOLD`. And
+`index.md` still described `CMD_REVERSE` as living on GPIO 36 flagged `SPARE/CMD_REVERSE`,
+two months after it moved to the PCF8574.
+
+Also corrected while sweeping: `docs/bom/full.md` still listed the medulla PCB as "next
+revision, blank" with its terminal blocks and level shifters as "Planned", though the board is
+fabricated, populated, and running the kart; and `wiring.md` linked to the medulla page as
+"Kart Medulla (ESP32)".
+
+**Naming note for anyone reading old text:** "N8R8" appears in a few places in the pre-2026-07-30
+docs where "N16R8" was meant. N8R8 is a real Espressif part (8 MB flash, 8 MB octal PSRAM), just
+not the one on this board.

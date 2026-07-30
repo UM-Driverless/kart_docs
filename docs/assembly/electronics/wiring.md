@@ -113,5 +113,5 @@ Beyond the pressure sensors, the pneumatic brake chain uses two more Festo conne
 - [Net Name Nomenclature](net-naming.md) — signal naming conventions across PCBs
 - [Throttle Pedal](../powertrain/throttle-pedal.md) — pedal sensor wiring
 - [Steering Angle Sensor](../steering/sensor/index.md) — AS5600 → MT6701 sensor choice and calibration
-- [Kart Medulla (ESP32)](kart-medulla/index.md#connector-pinout-outside-world) — microcontroller wiring connections
+- [Kart Medulla (ESP32-S3)](kart-medulla/index.md#connector-pinout-outside-world) — microcontroller wiring connections
 - [Pneumatic Braking](../pneumatic-braking/index.md) — ASB + EBS pneumatic circuit and valve coil wiring
