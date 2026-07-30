@@ -3,12 +3,6 @@
 
 ## Ready
 
-### Add the PCB sponsor to the Credits page
-`docs/credits.md` → "Partners & sponsors" (TODO comment left in the file).
-Confirm the actual PCB fabrication sponsor's company name — the repo only says
-"JLCPCB-style" (a generic paid fab), never names a sponsor. Rubén to provide.
-Kart sponsors already listed: Festo, Cytron, Henakart, RB Sistemas.
-
 ### Split the medulla's ground terminals between GND and GND_SIG
 The harness now has two grounds: `GND` (power) and `GND_SIG` (sensors, black + white
 stripe), tied only at the rear ground Wago block near the battery and the 12 V / 24 V
@@ -110,6 +104,10 @@ lists competing as a medium-term objective. Pick one position and make the three
 _(none)_
 
 ## Done
+
+### PCB fabrication sponsor identified: AISLER (2026-07-30)
+Named in the 2026-07-29 LinkedIn post ("Thanks to AISLER for sponsoring the fabrication").
+Added to `docs/credits.md` under Partners & sponsors, and the TODO comment removed.
 
 ### Reconciled the mission lists across the docs (2026-07-30)
 The three pages listed three different subsets. Authoritative set taken from

@@ -50,5 +50,5 @@ Initial steering planetary-reducer design.
 - **Cytron** — sponsored the MD25HV H-bridge motor driver.
 - **Henakart** — donated the kart chassis.
 - **RB Sistemas** — help with the roll-hoop fabrication.
-<!-- TODO: PCB fabrication sponsor — confirm the company name before publishing. -->
+- **AISLER** — sponsored the fabrication of the Kart Medulla interface PCB.
 
