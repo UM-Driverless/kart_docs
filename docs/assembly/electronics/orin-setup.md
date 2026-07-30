@@ -334,12 +334,12 @@ pip3 install platformio
 Flash the firmware (ESP32 must be connected via USB):
 
 ```bash
-cd ~/kart-medulla
-# The image currently flashed to the kart (classic-ESP32 build target):
-pio run --target upload --environment esp32dev
-
-# ESP32-S3 build target — stub, does not link yet. See the Firmware page.
-pio run --target upload --environment esp32-s3-devkitc-1
+cd ~/kart_medulla
+# The kart's board is an ESP32-S3 and enumerates as /dev/ttyACM0 on the Orin.
+# Stop kart-brain first — it holds the serial port.
+sudo systemctl stop kart-brain
+~/.local/bin/pio run --target upload --environment esp32-s3-devkitc-1 --upload-port /dev/ttyACM0
+sudo systemctl start kart-brain
 ```
 
 !!! note "ESP32 bootloader mode"

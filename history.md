@@ -297,3 +297,55 @@ component entry of its own in `bom.yaml` — filed in `tasks.md`.
 
 Verified with `mkdocs build --strict`: no broken links, and "Legacy wiring" no longer appears
 in `site/search/search_index.json`.
+
+---
+
+## 2026-07-30 — Settled: the kart runs the `esp32-s3-devkitc-1` build, not `esp32dev`
+
+The earlier entry today left an open contradiction: `firmware.md` said the board is an
+ESP32-S3 while also calling the classic `esp32dev` environment "the image that actually runs
+on the kart", and the `orin-setup.md` edit in that same commit repeated the claim. Both were
+wrong. A classic-ESP32 image cannot run on an S3 at all — Xtensa LX6 vs LX7, and esptool
+rejects the chip-ID mismatch — so this was never a question of which was more current, only
+of which one was false.
+
+**Checked directly on the kart's Orin over `orin-remote` (read-only, nothing stopped or
+flashed):**
+
+- `~/kart_medulla/.pio/build/` contains exactly one environment, `esp32-s3-devkitc-1`, with a
+  `firmware.bin` from 2026-07-30 11:08. There is no `esp32dev` build directory at all.
+- The ESP32 is on `/dev/ttyACM0`; no `/dev/ttyUSB*` exists on the machine. The classic board's
+  CP2102 enumerated as `ttyUSB0`, so its absence is itself evidence.
+- `lsusb` shows `1a86:55d3 QinHeng Electronics USB Single Serial` — the WCH CH343 on the S3
+  board.
+
+Corroborating, from session transcripts: two `pio run -e esp32-s3-devkitc-1 --target upload
+--upload-port /dev/ttyACM0` runs over `ssh orin-remote` on 2026-07-26 both reported SUCCESS,
+one of them immediately before a commit whose message quotes steering values "measured on the
+kart". `platformio.ini` confirms `[env:esp32dev]` still has `board = esp32dev` — it was never
+repointed at the S3; it is a fallback that is simply not used.
+
+**Where the false claim came from.** `platformio.ini` still carries a comment above the S3 env
+saying it "does NOT link yet", and `.agents/esp32s3-pinmap.md` still says "The S3 build does
+not exist." Both were true when written and were never updated after the S3 target started
+working. `firmware.md` faithfully copied them. The lesson is that a doc which cites its source
+is only as fresh as that source — `firmware.md` even flagged "doc lag" in those two files
+while trusting their substance.
+
+**Fixed here:** `firmware.md` (warning block, env table, and flashing section rewritten around
+the S3 target) and `orin-setup.md`. Two further errors surfaced while verifying the flashing
+commands against the live machine: the repo path on the Orin is `~/kart_medulla` with an
+underscore, not `~/kart-medulla`, and `pio` is **not** on the Orin's PATH (`which pio` returns
+nothing) — it must be called as `~/.local/bin/pio`. The documented flash sequence would have
+failed on both counts. It also now stops and restarts `kart-brain`, which holds the serial
+port.
+
+**Left open in `tasks.md`,** because they live in the `kart-medulla` repo: the three stale
+statements above, and a real unresolved one — `AGENTS.md` says `km_gpio.h` uses the S3 pin map
+while `.agents/esp32s3-pinmap.md` says it still holds the classic map. That one is
+safety-relevant: under the classic map `PIN_STEER_PWM` is GPIO 18, which on the S3 board is
+the gate of Q3, the shutdown-circuit MOSFET.
+
+Also added the **MCP4922-E/SL** as its own `bom.yaml` component (it had none), with the
+MCP4728 recorded under `rejected:`. Its unit cost is a placeholder — the chips came from
+workshop stock and no price was paid.

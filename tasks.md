@@ -26,25 +26,31 @@ striped-black convention, otherwise the diagram and the generated wire table dis
 Background on the two-ground split: `docs/assembly/electronics/wiring.md`, section
 "Why two grounds".
 
-### Resolve how a classic-ESP32 firmware image runs on ESP32-S3 hardware
-`docs/assembly/electronics/kart-medulla/firmware.md` states both that "the physical
-kart-medulla board is an **ESP32-S3**" and that the `esp32dev` environment
-(classic ESP32-WROOM-32E) is "the image that actually runs on the kart", with the S3 target
-listed as a stub that does not link. Those cannot both be true as written: the classic ESP32
-is Xtensa LX6 and the S3 is LX7, so an `esp32dev` binary will not boot on an S3 and esptool
-refuses the chip-ID mismatch. One of three things is the case — the kart runs a build target
-other than the two documented, the board in the kart is not what the page says, or the
-`esp32dev` env has been repointed at the S3 in `platformio.ini`. Check `platformio.ini` in
-the `kart-medulla` repo and the flashing output, then correct the page. Until this is settled,
-`orin-setup.md`'s flashing snippet may be telling people to flash the wrong environment.
+### Fix the stale firmware-target claims inside the kart-medulla repo
+Settled on 2026-07-30: the kart runs the `esp32-s3-devkitc-1` build. `kart-docs` is corrected,
+but three statements **in the `kart-medulla` repo** are still wrong and will mislead the next
+reader there:
 
-### Add the MCP4922 as its own component in bom.yaml
-The Kart Medulla's DAC (**MCP4922-E/SL**, dual 12-bit SPI) is described in
-`docs/assembly/electronics/kart-medulla/index.md` and now appears as a row in
-`docs/bom/full.md`, but has no entry in `docs/assembly/electronics/bom.yaml`, so it is missing
-from the generated reports and from any cost aggregation. It replaced the MCP4728 (quad
-12-bit I²C) on 2026-04-17. Needs a real supplier link and unit cost — the `docs/bom/full.md`
-row currently carries a placeholder "~3" that was inherited from the MCP4728 line.
+1. `platformio.ini` — the comment above `[env:esp32-s3-devkitc-1]` says the env "does NOT link
+   yet ... not because a working S3 image exists". It has built and uploaded from the Orin
+   since 2026-07-26.
+2. `.agents/esp32s3-pinmap.md` — "The S3 build does not exist. `platformio.ini` has only
+   `esp32dev` and `native`." Both halves are false.
+3. `README.md` — still carries classic-ESP32 pin tables (already filed in that repo's own
+   task board on 2026-07-30 as "README's classic tables are a hazard").
+
+**Safety-relevant and genuinely unresolved:** `AGENTS.md` says `components/km_gpio/km_gpio.h`
+uses the `CONFIG_IDF_TARGET_ESP32S3` pin map; `.agents/esp32s3-pinmap.md` says that header
+still holds the classic WROOM-32E map. Under the classic map `PIN_STEER_PWM` is GPIO 18, which
+on the S3 board is the gate of Q3, the shutdown-circuit MOSFET — so getting this wrong means
+the steering PWM drives the SDC. Read `km_gpio.h` and settle it.
+
+### Verify the S3 upload speed of 921600 on hardware
+`platformio.ini` sets `upload_speed = 921600` for `esp32-s3-devkitc-1`, annotated in-file as
+"UNVERIFIED on hardware as of 2026-07-26 — raised from reading the datasheets, not from a
+successful flash". The reasoning is sound (the 115200 cap was the *classic* board's CP2102;
+this board's CH343 is rated to 6 Mbps), but it should be confirmed by an actual flash and the
+in-file note either removed or downgraded. Fallbacks if it fails: 460800, then 115200.
 
 ## In progress
 

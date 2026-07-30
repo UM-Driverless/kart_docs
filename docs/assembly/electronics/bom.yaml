@@ -146,6 +146,40 @@ components:
       gate_drive: "3.3V logic"
     notes: "Shutdown control MOSFET for the Kart Medulla interface PCB"
 
+  - id: "kart-medulla_dac_mcp4922"
+    part_number: "MCP4922-E/SL"
+    description: "Dual 12-bit SPI DAC — generates CMD_ACC and CMD_BRAKE on the Kart Medulla PCB"
+    category: "dac"
+    quantity: 1
+    unit_cost: 3.00
+    currency: "EUR"
+    status: "active"
+    criticality: "essential"
+    suppliers:
+      - name: "Mouser"
+        url: "https://www.mouser.com/c/?q=MCP4922-E%2FSL"
+        verified: false
+      - name: "Workshop stock"
+        notes: "MCP4922 chips were already on hand — that availability is why SPI was chosen over the I2C MCP4728."
+    datasheet: "https://www.microchip.com/en-us/product/MCP4922"
+    specifications:
+      resolution: "12-bit"
+      channels: 2
+      interface: "SPI"
+      supply: "5V"
+      vref: "5V rail via 100R + 10uF RC filter (attenuates ~150 kHz XW-1224 buck ripple)"
+      package: "SOIC-14 (SL)"
+    alternatives:
+      - "MCP4922-E/P — same die in DIP-14, for breadboarding only."
+    rejected:
+      - "MCP4728 (quad 12-bit, I2C) — the original 2026-04-13 choice, dropped 2026-04-17. MCP4922 chips were already in stock and SPI is cleaner for an analogue-command bus with no other slow devices on it."
+    notes: |
+      Channel A -> CMD_ACC, 0-5 V direct to the throttle path. Channel B -> CMD_BRAKE, 0-5 V
+      into a x2 op-amp stage -> 0-10 V for the Festo proportional brake valve.
+      Chip select is GPIO 14; shares the SPI bus with MOSI GPIO 11, CLK GPIO 12, MISO GPIO 13.
+      The ESP32-S3 has no native DAC, which is why this part exists.
+      Unit cost is a placeholder estimate, not a paid price - the chips came from workshop stock.
+
   - id: "kart-medulla_dual_op_amp"
     part_number: "TBD-DUAL-OPAMP"
     description: "Dual op-amp for ESP32 DAC scaling"

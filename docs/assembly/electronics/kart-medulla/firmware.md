@@ -4,32 +4,37 @@ The firmware side of the Kart Medulla ESP32 — the software that receives comma
 
 **Repository:** [UM-Driverless/kart-medulla](https://github.com/UM-Driverless/kart-medulla)
 
-!!! warning "Hardware is ESP32-S3, but the firmware builds for the classic ESP32"
-    The physical kart-medulla board is an **ESP32-S3**, but the firmware still builds for the **classic ESP32-WROOM-32E** — that is the only target that compiles and runs today. The S3 pin map exists in the source but its build target does **not link yet** (missing SPI-DAC, PCF8574, and safety-pin drive). Do not assume "classic" behaviour from the build target: on the real S3 board the same GPIO numbers mean different nets. The authoritative S3 pin map is `.agents/esp32s3-pinmap.md` in the repo; the schematic wins where docs disagree. Source: `kart-medulla/AGENTS.md`.
+!!! warning "The S3 build is the one on the kart — several repo docs still say otherwise"
+    The board is an **ESP32-S3** and `esp32-s3-devkitc-1` is the environment that is built and flashed to it. Verified on the kart's Orin on 2026-07-30: the only build directory present is `~/kart_medulla/.pio/build/esp32-s3-devkitc-1/`, there is no `esp32dev` build at all, and the ESP32 enumerates as `/dev/ttyACM0` behind a WCH CH343 bridge (`lsusb` → `1a86:55d3`) — the classic board's CP2102 would have appeared as `/dev/ttyUSB0`, and no `/dev/ttyUSB*` exists.
+
+    Three statements in the firmware repo are **stale** and should not be believed: the comment above `[env:esp32-s3-devkitc-1]` in `platformio.ini` saying the env "does NOT link yet"; `.agents/esp32s3-pinmap.md` saying "The S3 build does not exist. `platformio.ini` has only `esp32dev` and `native`"; and the classic-ESP32 pin table in `README.md`. The S3 target has built and uploaded successfully from the Orin since 2026-07-26.
+
+    **Unresolved upstream, and safety-relevant:** `AGENTS.md` says `components/km_gpio/km_gpio.h` uses the `CONFIG_IDF_TARGET_ESP32S3` pin map, while `.agents/esp32s3-pinmap.md` says that header "still holds the classic-ESP32 (WROOM-32E) map". These cannot both be true, and the difference matters — under the classic map `PIN_STEER_PWM` is GPIO 18, which on the S3 board is the gate of Q3, the shutdown-circuit MOSFET. The schematic and `dv-hardware/projects/kart-medulla/docs/pinout-esp32-s3.md` win over any of these docs.
 
 ## Framework and build environments
 
 - **Framework:** ESP-IDF (5.x) via **PlatformIO**, platform pinned to `espressif32@6.4.0`. The firmware is bare-metal FreeRTOS with no ROS dependency — its own toolchain and flashing process, deliberately decoupled from the Orin's ROS 2 workspace.
 - **Build environments** in `platformio.ini`:
 
-| Env | Purpose | State |
-|---|---|---|
-| `esp32dev` | Classic ESP32-WROOM-32E — the image that actually runs on the kart | Working |
-| `esp32-s3-devkitc-1` | ESP32-S3 (the real PCB's MCU) | **Does not link yet** — throttle/brake DAC (MCP4922 over SPI), PCF8574, and the safety-pin/watchdog drive are still gaps. Exists so the S3 pin map is buildable-in-progress, not because a working S3 image exists (`platformio.ini` comment) |
-| `native` | Host-side unit tests with hardware fakes | Working |
+| Env | Board | Purpose | State |
+|---|---|---|---|
+| `esp32-s3-devkitc-1` | `esp32-s3-devkitc-1` | **ESP32-S3 — the kart's MCU. This is the image that runs on the kart.** | Working — builds and uploads from the Orin |
+| `esp32dev` | `esp32dev` | Classic ESP32-WROOM-32E. Kept as a fallback only; not flashed to the kart | Present in `platformio.ini`, never built on the Orin |
+| `native` | – | Host-side unit tests with hardware fakes | Working |
 
-!!! note "Doc lag on the S3 env"
-    `AGENTS.md` and `.agents/esp32s3-pinmap.md` state that `platformio.ini` "has only `esp32dev` and `native`". The file now also carries the `esp32-s3-devkitc-1` stub env above. The substance is unchanged — there is still **no working S3 image** — but the env list in those two docs is stale.
+The classic and S3 chips are not interchangeable images — the classic ESP32 is Xtensa LX6 and the S3 is LX7, so an `esp32dev` binary will not boot on the kart's board and `esptool` rejects the chip-ID mismatch. The two envs are separate targets, not two ways of building the same thing.
 
 ## Building and flashing
 
+Flashing happens **from the Orin**, which is where the ESP32 is plugged in; the Mac has no ESP-IDF toolchain. The `kart-brain` service holds the serial port, so it has to be stopped first and restarted afterwards:
+
 ```bash
-# Build the classic-ESP32 image
-pio run -e esp32dev
+ssh orin-remote 'echo 0 | sudo -S systemctl stop kart-brain'
+ssh orin-remote 'cd ~/kart_medulla && ~/.local/bin/pio run -e esp32-s3-devkitc-1 --target upload --upload-port /dev/ttyACM0'
+ssh orin-remote 'echo 0 | sudo -S systemctl start kart-brain'
+```
 
-# Flash (from the Orin, where the ESP32 is connected over USB)
-pio run -t upload -e esp32dev --upload-port /dev/ttyUSB0
-
+```bash
 # Serial monitor
 pio device monitor
 
@@ -37,8 +42,9 @@ pio device monitor
 pio test -e native
 ```
 
-- **Upload baud must be 115200** (`upload_speed = 115200` in `platformio.ini`). The USB-UART bridge fails to flash at higher speeds; 460800 works fine for runtime comms, just not for `esptool` upload.
-- **USB bridge:** the classic hand-wired board uses a CP2102 and enumerates as `/dev/ttyUSB0`. The S3 board uses a WCH **CH343/CH9102** bridge (VID `0x1A86`) and enumerates as `/dev/cu.usbmodem*` (macOS). The S3's two USB-C ports are silkscreened `COM` (the bridge) and `USB` (native USB-OTG / USB-Serial-JTAG).
+- **Port:** the S3 enumerates on the Orin as **`/dev/ttyACM0`** — the CH343 is a CDC-ACM device. It is *not* `/dev/ttyUSB0`; that was the classic board's CP2102.
+- **USB bridge:** WCH **CH343** (`lsusb` → `1a86:55d3`, "QinHeng Electronics USB Single Serial"). On macOS the same board appears as `/dev/cu.usbmodem*`. The S3's two USB-C ports are silkscreened `COM` (the bridge) and `USB` (native USB-OTG / USB-Serial-JTAG).
+- **Upload baud:** `platformio.ini` sets `upload_speed = 921600` for the S3 env. The old 115200 cap belonged to the *classic* board's CP2102 and does not apply to the CH343 (rated to 6 Mbps). The 921600 figure is annotated in `platformio.ini` as raised from the datasheet rather than proven on hardware — if a flash fails to connect or fails verification, try 460800, then 115200.
 - **BOOT-button recovery:** if a flash hangs at `Connecting...`, hold **BOOT**, press **EN**, release **BOOT**; press **EN** afterwards to restart if needed.
 
 Source: `kart-medulla/README.md`, `kart-medulla/AGENTS.md`.
