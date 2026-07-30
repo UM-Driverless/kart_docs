@@ -14,6 +14,38 @@ Documentation repository for the UM Driverless autonomous kart project. Built wi
 
 **Live site:** https://um-driverless.github.io/kart-docs/
 
+## Build-journey post media: `~/ruben-files/videos/kart/linkedin/posts/`
+
+Every build-journey post has a source folder there, named **`<YYYY-MM-DD>_<slug>`** — the date
+is the LinkedIn publication date. Look it up by date; do **not** search for filenames resembling
+the post title, and never conclude the media is missing without listing that directory.
+
+```bash
+ls -d ~/ruben-files/videos/kart/linkedin/posts/2026-07-29*/     # find by date
+```
+
+Each folder holds the raw video and images plus `post.md` (the published LinkedIn text),
+`README.md`, `history.md`, and often a transcript and `.srt`. Numbered files (`01_…`, `02_…`)
+are the ones that went into the post, in order.
+
+**Adding a post's media to this repo:**
+
+1. Videos are **compressed before committing** — the raw files are 100–250 MB. Target ≈20 MB,
+   which is where every existing clip sits (largest is 21.7 MB):
+   ```bash
+   ffmpeg -i <raw>.mp4 -vf scale=1280:-2 -c:v libx264 -crf 30 -preset slow \
+     -pix_fmt yuv420p -movflags +faststart -c:a aac -b:a 96k <slug>.mp4
+   ```
+   CRF 30 at 720p is the setting that lands there for talking-head footage; raise the CRF if a
+   clip comes out heavier. Check a frame (`ffmpeg -ss 12 -i out.mp4 -frames:v 1 f.png`) before
+   committing.
+2. Video → `docs/build-journey/videos/<slug>.mp4`, referenced as `videos/<slug>.mp4`.
+3. Images → `docs/build-journey/images/<YYYY-MM-DD>-<slug>/`, keeping the source filenames,
+   referenced as `images/<YYYY-MM-DD>-<slug>/<file>{ loading=lazy }`.
+4. The same post also goes in the **portfolio repo** (`~/repos/portfolio`), which uses absolute
+   paths (`/videos/…`, `../images/build-journey/…`) and links the post title to its LinkedIn
+   URL. Update the `**Jump to:**` anchor line in both.
+
 ## Related Repository: `~/dv/` (engineering working notes)
 
 The team's raw engineering notes, decisions, datasheets, and component data live in a **separate local repo at `~/dv/`** (the "DV" / driverless working repo). This `kart-docs` repo is the *polished, published* documentation; `~/dv/` is where the messy source material and design reasoning accumulate. **Check it before researching or rewriting any subsystem** — the answer (and its history) is usually already there.

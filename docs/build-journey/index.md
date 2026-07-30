@@ -384,6 +384,10 @@ Software docs: [Software](../software/index.md).
 
 *2026-07-29*
 
+<video controls playsinline preload="metadata" style="width: 100%; max-width: 720px; display: block; margin: 1em auto; border-radius: 8px;">
+  <source src="videos/kart-medulla-pcb.mp4" type="video/mp4">
+</video>
+
 Gabriel Fernández Romero explains how our PCB works and why we need it. Thanks to **AISLER** for sponsoring the fabrication.
 
 The main reason the board exists: the ESP32 only reads up to 3.3 V. The Festo pressure sensors output 0–10 V, one volt per bar, so they go through a voltage divider first.
@@ -402,11 +406,13 @@ Board docs: [Kart Medulla](../assembly/electronics/kart-medulla/index.md).
 
 *2026-07-30*
 
+![How the AS5600 and the MT6701 read a magnet's angle](images/2026-07-30-as5600-magnet/01_as5600_vs_mt6701_diagram.png){ loading=lazy }
+
 Our steering angle sensor reported "no magnet" with the magnet touching the chip. The sensor was not broken, and the magnets are strong.
 
 It started when we wanted to move the ESP32 and its PCB to the rear of the kart, next to the main computer, free from the dirt and bumps. The sensor gives us the angle over I²C, but at that distance the wire is too long for I²C. The AS5600 can supposedly output the angle as a PWM signal instead, but that never worked. While troubleshooting we found that even with the magnet touching the chip — still giving the correct angle over I²C — it reported "no magnet".
 
-The catch is that the AS5600 is designed to work with a *small* diametrically magnetized magnet, not just any one. It measures the field only in the direction perpendicular to the chip, and compares the intensity around a small circle. If the magnet is large, the field across that circle is almost uniform, and the chip sees nothing. At the centre of the chip the field is always zero, but at the edges it should vary strongly: maximum along the North–South direction, zero at 90° to it. From the intensities around that circle it works out the angle.
+The catch is that the AS5600 is designed to work with a *small* diametrically magnetized magnet, not just any one. It measures the field only in the direction perpendicular to the chip, and compares the intensity around a small circle. If the magnet is large, the field across that circle is almost uniform — the pattern is still there, but it falls below the chip's threshold, so the AS5600 decides there is no magnet and disables its output. At the centre of the chip the field is always zero, but at the edges it should vary strongly: maximum along the North–South direction, zero at 90° to it. From the intensities around that circle it works out the angle.
 
 We would rather have a chip that can take advantage of a strong magnet, so the alignment does not have to be perfect, and one that really does output the angle as PWM. So we have switched to the **MT6701**.
 
