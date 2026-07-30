@@ -148,7 +148,7 @@ Terminal notes that aren't obvious from the wire list:
 
 - **CN1–CN10 are 3-pin.** Supplies sit on CN1 (+3V3 / +12V / GND), CN2.3 (+5V), CN6.3 (+3V3), CN9.3 and CN10.3 (GND).
 - **EXP_P1..P4** (CN3.1–3, CN5.3) are port pins of the on-board **U25 PCF8574** I²C GPIO expander (address 0x20) brought out to terminals — for example `CMD_REVERSE` lives on PCF8574 P0, not on a native GPIO.
-- **CN4.3 REV** is the reverse-command wire to the kart electronics box (driven by `Q4`, the BSS123; 5 V idle via the box's internal pull-up, pulled to 0 V to engage reverse). CN4 carries **no 3V3/GND**. **Unverified:** the dv-hardware netlist puts the `/REVERSE_WIRE` net on **CN8 pin 1**, not CN4.3, and CN8.1 is `SDC_IN_LOW_SIDE` here. One of the two is wrong — check the board before wiring this terminal (see `tasks.md`).
+- **CN4.3 REV** is the reverse-command wire to the kart electronics box (driven by `Q4`, the BSS123; 5 V idle via the box's internal pull-up, pulled to 0 V to engage reverse). CN4 carries **no 3V3/GND**.
 - **CN5.2** (ex-PRES3) and **CN8.2** (ex-BUZZ) are the two repurposed terminals — steering-angle PWM and EBS-compressor PWM respectively (see the callout under the pin table).
 - **CN8.1 SDC** is `SDC_IN_LOW_SIDE`, the Q3 drain that closes the kart shutdown chain's return path. The ESP32 side of that MOSFET (`SDC_NOT_EMERGENCY`, GPIO 18) is internal and deliberately not on any terminal.
 - **CN10** analog commands come from the MCP4922 SPI DAC (the S3 has no native DAC).

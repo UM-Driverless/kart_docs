@@ -52,14 +52,19 @@ successful flash". The reasoning is sound (the 115200 cap was the *classic* boar
 this board's CH343 is rated to 6 Mbps), but it should be confirmed by an actual flash and the
 in-file note either removed or downgraded. Fallbacks if it fails: 460800, then 115200.
 
-### Settle which terminal carries the REVERSE wire — CN4.3 or CN8.1
-`docs/assembly/electronics/wiring/wiring.yaml` and `kart-medulla/index.md` both put the
-reverse-command wire on **CN4.3**. The dv-hardware netlist
-(`projects/kart-medulla/output/netlist.net`, dated 2026-05-07) puts the `/REVERSE_WIRE` net on
-**CN8 pin 1** — and CN8.1 is `SDC_IN_LOW_SIDE` in kart-docs, the Q3 drain that closes the
-shutdown-circuit return path. Those two cannot both be right, and confusing a reverse command
-with the SDC terminal is not a harmless mix-up. Check the physical board (CN6–CN10 are already
-flagged as possibly reversed in their physical pin order) and correct whichever side is wrong.
+### The dv-hardware netlist's CN designators do not match the board silkscreen
+Settled 2026-07-30: on the board, **CN4.3 is REVERSE and CN8.1 is `SDC_IN_LOW_SIDE`**, as
+kart-docs has always said. But `dv-hardware/projects/kart-medulla/output/netlist.net`
+(exported 2026-05-07) puts `/REVERSE_WIRE` on **CN8 pin 1** and `/SDC_IN_LOW_SIDE` on **CN5** —
+so its `CN` reference designators are not the silkscreen `CN` numbers, and it is not a simple
+pairwise swap either. Anyone wiring from that netlist would land the reverse command on the
+shutdown-circuit terminal.
+
+The KiCad project is a ConvertEDA import of the EasyEDA original, which is the likely place the
+designators were reassigned. Work out the real mapping, then either renumber the connectors in
+the KiCad schematic to match the silkscreen or put a loud warning at the top of the netlist and
+in `projects/kart-medulla/README.md`. Until that is done, **do not treat the netlist as
+authoritative for terminal numbers** — only for nets and part designators.
 
 ### Upstream pinout doc disagrees with itself on CMD_STEER_DIR
 `dv-hardware/projects/kart-medulla/docs/pinout-esp32-s3.md` has `CMD_STEER_DIR__3V3` on

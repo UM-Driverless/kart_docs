@@ -133,7 +133,7 @@ nets:
   - {name: ESC_KEY_2, system: Shutdown, class: signal, pins: [sdc_relay.no2, esc.key2]}
 
   # --- misc ---
-  - {name: REVERSE, system: Misc, class: signal, voltage: "5V", pins: [medulla.CN4.3, ebox_reverse.rev], note: "Pull to 0 V to engage reverse (via Q4, BSS123). Terminal unverified: the dv-hardware netlist puts this net on CN8.1 — see tasks.md"}
+  - {name: REVERSE, system: Misc, class: signal, voltage: "5V", pins: [medulla.CN4.3, ebox_reverse.rev], note: "Pull to 0 V to engage reverse (via Q4, BSS123)"}
 
 # Pins intentionally left unconnected right now.
 #  - spare PCF8574 expander terminals

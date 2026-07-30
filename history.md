@@ -438,3 +438,33 @@ board.
 
 Verified after the edits: `check_wiring.py` still reports 115/115 connectable pins wired, and
 `mkdocs build --strict` is clean.
+
+---
+
+## 2026-07-30 — CN4.3/CN8.1 settled: kart-docs was right, the dv-hardware netlist's CN numbers are not the silkscreen's
+
+Confirmed by Rubén: on the board, **CN4.3 carries REVERSE and CN8.1 is `SDC_IN_LOW_SIDE`** —
+exactly what `wiring.yaml` and `kart-medulla/index.md` already said. The "unverified" markers
+added to both files earlier today have been removed.
+
+The discrepancy that prompted them is real but lives upstream, and it is worse than a swapped
+pair. `dv-hardware/projects/kart-medulla/output/netlist.net` (exported 2026-05-07) puts
+`/REVERSE_WIRE` on **CN8 pin 1** *and* `/SDC_IN_LOW_SIDE` on **CN5**. Two nets, two different
+mismatches — so the netlist's `CN` reference designators are simply not the silkscreen `CN`
+numbers, rather than being off by a consistent permutation. The KiCad project is a ConvertEDA
+import of the EasyEDA original, which is the likeliest point at which connector designators
+were reassigned.
+
+The consequence is worth stating plainly, because it is the kind of thing that gets someone
+hurt: anyone wiring the kart from that netlist would land the **reverse command on the
+shutdown-circuit terminal**. Filed in `tasks.md` — the netlist stays useful for nets and part
+designators (it is how `Q4`/BSS123 was confirmed), but it is not authoritative for terminal
+numbers until the designators are reconciled.
+
+**Method note.** The mismatch surfaced only because the pin table was diffed against its
+declared source of truth instead of being trusted, and it was resolved only by asking the one
+person who could see the board. Neither half would have worked alone: the diff found the
+conflict but had no way to say which side was right, and the netlist looked authoritative
+precisely because it is machine-generated. Machine-generated does not mean correct about
+physical labels — it means faithful to whatever the schematic's designators say, which is a
+different claim.
