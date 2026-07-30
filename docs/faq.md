@@ -39,16 +39,16 @@ However, the ROS2 and Gazebo parts (`src/kart_sim/`, `src/kart_perception/`, etc
 
 **Pros:**
 
-- **Eliminates the entire UART serial comms layer** between the Orin and ESP32 — no more serial debugging, protocol mismatches, or baud rate issues.
-- **No more ESP32 flashing, crash loops, or boot-button gymnastics** — one fewer device to maintain.
+- **Eliminates the entire serial comms layer** between the Orin and ESP32 — no more serial debugging or protocol mismatches. (The link is USB CDC-ACM on `/dev/ttyACM0`, so baud rate is not actually a constraint.)
+- **No more ESP32 flashing or crash loops** — one fewer device to maintain. (The boot-button dance belonged to the retired classic board; the S3 flashes over USB-Serial-JTAG on the same cable.)
 - **Faster iteration** — change a Python file, restart the node, done. No cross-compilation or firmware uploads.
 - **PID tuning from ROS** — tune parameters with `ros2 param set` or dynamic reconfigure instead of reflashing.
-- **The Orin 40-pin header has the necessary peripherals**: 2 hardware PWM channels (steering servo + motor ESC), I2C (AS5600 steering encoder), and general GPIO.
+- **The Orin 40-pin header has some of the needed peripherals**: hardware PWM (steering, into the Cytron H-bridge), I2C (AS5600 steering encoder), and general GPIO. It does **not** cover throttle and brake, which are analog: those come from an MCP4922 SPI DAC (0–5 V, and 0–10 V through an op-amp for the brake valve). Replacing the ESP32 would mean putting that DAC on the Orin side.
 
 **Cons:**
 
 - **No real-time guarantees.** Linux is not a real-time OS. The ESP32 runs a FreeRTOS task at a fixed rate with no GC pauses or scheduler preemption. On the Orin, PID loop jitter from userspace could cause steering oscillation. This can be mitigated with `SCHED_FIFO` priority and a tight C/Python loop, but it won't match a dedicated MCU.
 - **No hardware safety watchdog.** Currently, if the Orin kernel panics or ROS crashes, the ESP32 detects missing heartbeats and kills the motors. With Orin-only, a kernel hang means motors keep running at the last commanded value. This is relevant for Formula Student AS rules (EBS, ASSI).
-- **Only 2 hardware PWM channels** on the Jetson 40-pin header — just enough for steering + throttle, but no room for additional PWM peripherals.
+- **Limited hardware PWM** on the Jetson 40-pin header. Throttle is not PWM anyway (it is an analog DAC output), so the header alone cannot replace the medulla's analog stage.
 
-**Middle-ground approach:** Simplify the ESP32 to a dumb I/O bridge — it receives PWM values over UART and applies them directly (no PID on the ESP32). Move the PID loop to a high-priority ROS2 node on the Orin. The ESP32 keeps only two jobs: (1) set PWM outputs, (2) hardware watchdog. This gives you fast iteration on PID tuning while preserving the safety watchdog, with minimal firmware to maintain (~100 lines).
+**Middle-ground approach:** Simplify the ESP32 to a dumb I/O bridge — it receives actuator values over the serial link and applies them directly (no PID on the ESP32). Move the PID loop to a high-priority ROS2 node on the Orin. The ESP32 keeps only two jobs: (1) set PWM outputs, (2) hardware watchdog. This gives you fast iteration on PID tuning while preserving the safety watchdog, with minimal firmware to maintain (~100 lines).

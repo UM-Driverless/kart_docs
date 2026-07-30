@@ -12,9 +12,9 @@ This section contains all the information about the kart, organized as a tree of
 | **Chassis** | Tony Kart Extreme | CIK ICA 330/99, 30/32mm CrMo tubing, 40mm rear axle | [Chassis](chassis/index.md) |
 | **Computer** | NVIDIA Jetson AGX Orin | 12-core ARM, 62 GB RAM, Ampere GPU (CUDA 12.6), NVMe boot | [Computer](electronics/computer.md), [Orin Setup](electronics/orin-setup.md) |
 | **Camera** | ZED 2 stereo | USB 3.0, RGB + depth + IMU, used for cone detection | [Camera](sensors/camera.md) |
-| **Microcontroller** | ESP32 "Kart Medulla" | UART 115200 baud to Orin, controls actuators | [Kart Medulla](electronics/kart-medulla/index.md) |
+| **Microcontroller** | ESP32-S3 "Kart Medulla" | USB serial (CDC-ACM) to Orin, controls actuators | [Kart Medulla](electronics/kart-medulla/index.md) |
 | **Steering** | DC motor + H-bridge | Analog position sensor, closed-loop control on ESP32 | [Steering](steering/index.md), [H-bridge](steering/h-bridge.md) |
-| **Throttle** | DAC → motor controller | 0–3.3V analog signal (66% max until 5V DAC available) | [Throttle Pedal](powertrain/throttle-pedal.md) |
+| **Throttle** | MCP4922 SPI DAC → motor controller | 0–5 V analog signal | [Throttle Pedal](powertrain/throttle-pedal.md) |
 | **Motor** | Electric kart motor | Controlled via motor controller + throttle signal | [Motor](powertrain/motor.md) |
 | **Power** | Battery pack | Supplies 12V to Orin (via barrel jack 9–20V) + motor controller | [Battery](electronics/power/battery.md) |
 | **Pneumatic braking** | ASB (proportional) + EBS (emergency) | VPPM + solenoid valve merged by an OR valve; EBS in shutdown circuit | [Pneumatic Braking](pneumatic-braking/index.md) |

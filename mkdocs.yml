@@ -66,6 +66,8 @@ nav:
           - assembly/pneumatic-braking/index.md
           - BOM: assembly/pneumatic-braking/bom.md
       - Hydraulics: hydraulics/index.md
+  - Rules:
+      - AS State Machine: rules/as_state_machine.md
   - Software:
       - software/index.md
       - State Machine: software/state_machine.md

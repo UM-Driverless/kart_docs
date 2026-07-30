@@ -19,12 +19,12 @@ Until now, teachers and researchers lacked a practical outdoor testbed for their
 - Reuse and adapt developed components for the single-seater Formula vehicle.
 - Maintain manual drive capability for supervised operation and data collection.
 
-We are currently migrating from a Python-based stack to a ROS-based architecture to ensure compatibility with more complex vehicle platforms.
+The autonomy stack runs on ROS 2. It replaced an earlier monolithic Python stack, which is kept for reference on the [2024 — Python](software/legacy.md) page.
 
-## Current Status (2025-06-18)
+## Current Status (2026-07-30)
 
 - The kart is fully operational in manual mode.
-- Actuation systems for steering and braking are ordered.
+- Steering actuation is built and running closed-loop; the kart has driven itself under its own control.
 - An emergency brake and telemetry system are in development.
 - The camera used for cone detection is mounted.
 - Work is ongoing to improve cone detection accuracy and software speed.

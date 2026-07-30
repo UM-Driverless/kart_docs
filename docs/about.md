@@ -190,7 +190,7 @@ This kart project solves two problems simultaneously:
 
 **Current status:**
 - Kart fully operational in **manual mode**
-- Actuation systems for **steering and braking ordered**
+- Steering actuation **built, installed and running closed-loop**; braking actuation in progress
 - Cone detection camera **mounted and functional**
 
 ### 3. Motorized Steering System (Steer-by-Wire)
@@ -202,7 +202,6 @@ This kart project solves two problems simultaneously:
 
 **Development:**
 - Finalization of mechanical and electronic design
-- Selection of actuators with adequate torque and speed
 - Implementation of control interface from ROS
 
 ### 4. Emergency Braking System

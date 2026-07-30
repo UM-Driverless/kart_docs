@@ -27,7 +27,7 @@ Designed with [easyeda](https://easyeda.com/), can be downloaded [here](computer
 
 The schematic shows the component values and connections:
 - **Power Supply**: 3.3V, 5V regulated outputs
-- **CAN Interface**: SN65HVD232DR transceiver for CAN communication
+- **CAN Interface**: SN65HVD232DR transceiver, present on the adapter board but **unused** — the kart has no CAN bus. The Orin ↔ medulla link is USB serial.
 - **Connectors**: 2.54-2*20 header for Orin connection
 - **Filtering Capacitors**: C1 (47nF), C2 (100nF) for noise suppression
 - **Resistors**: R1,R2 (60Ω), R3,R_T (330Ω), R4 (30Ω)

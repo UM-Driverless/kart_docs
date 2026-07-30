@@ -7,7 +7,7 @@ The kart software runs on **Ubuntu 22.04** with **ROS 2 Humble**. There are two 
 | **Machine** | Mac → UTM VM (Ubuntu 22.04 ARM64) | Jetson AGX Orin (Ubuntu 22.04 ARM64) |
 | **Sensor** | Gazebo Fortress simulated RGBD camera | ZED stereo camera |
 | **Perception** | Ground truth from SDF, or YOLO on simulated images | YOLO + depth projection |
-| **Actuators** | Gazebo Ackermann plugin (`/kart/cmd_vel`) | ESP32 via UART (`/kart/cmd_vel` → `cmd_vel_bridge` → framed int32 protocol) |
+| **Actuators** | Gazebo Ackermann plugin (`/kart/cmd_vel`) | ESP32 over USB serial (`/kart/cmd_vel` → `state_machine` → `/kart/cmd_vel_muxed` → `cmd_vel_bridge` → framed int32 protocol) |
 | **GPU** | None (LLVMpipe software rendering) | NVIDIA GPU (CUDA for YOLO + ZED) |
 
 Both targets produce the same `/perception/cones_3d` topic — a controller node works identically in either mode.
@@ -145,7 +145,7 @@ Once setup is complete, the kart-brain workspace is already built at `~/kart-bra
 Before launching, connect:
 
 1. **ZED camera** — USB 3.0 port
-2. **ESP32 (Kart Medulla)** — USB port (appears as `/dev/ttyUSB0`)
+2. **ESP32 (Kart Medulla)** — USB port (appears as `/dev/ttyACM0`; the S3's WCH CH343 bridge is a CDC-ACM device, not the retired classic board's `/dev/ttyUSB0`)
 3. **Gamepad** — USB or Bluetooth
 
 ### Manual Driving (Teleop)
@@ -162,7 +162,7 @@ Start the ZED camera node, then launch the perception pipeline:
 
 ```bash
 # Terminal 1: ZED camera
-ros2 launch zed_wrapper zed_camera.launch.py camera_model:=zed2i
+ros2 launch zed_wrapper zed_camera.launch.py camera_model:=zed2
 
 # Terminal 2: Perception pipeline
 ros2 launch kart_perception perception_3d.launch.py

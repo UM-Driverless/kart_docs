@@ -8,7 +8,7 @@ The autonomous loop has six stages from photon to actuator:
 
 ```
 ZED Camera → YOLO Detector → Cone Depth Localizer → Controller → Serial Bridge → ESP32
-  ~33 ms       ~?? ms            ~?? ms              ~2 ms        ~5 ms         ~100 ms
+  ~33 ms       ~?? ms            ~?? ms              ~2 ms        ~5 ms         ~2 ms
 ```
 
 !!! warning "Latency values are estimates"
@@ -24,7 +24,7 @@ The ZED SDK does stereo matching (disparity → depth) on-board, so the depth im
 
 ### 2. YOLO inference (not yet measured)
 
-YOLOv11s runs on each RGB frame to detect cones. This is likely the **largest single latency contributor** in the pipeline.
+YOLOv11n runs on each RGB frame to detect cones. This is likely the **largest single latency contributor** in the pipeline.
 
 **What `rclpy.spin()` is and why it matters:**
 `spin()` is just an infinite loop that waits for ROS messages and calls callbacks one at a time:
@@ -88,13 +88,13 @@ A safety timer checks every 100 ms whether cones have been seen in the last seco
 
 ### 5. Serial bridge (~5 ms)
 
-`cmd_vel_bridge` polls `/kart/cmd_vel` at 100 Hz (10 ms timer) and encodes the framed int32 binary messages for throttle, brake, and steering (see [Packages → kb_coms_micro](packages.md#kb_coms_micro)). `KB_Coms_micro` pushes these onto a TX thread queue and sends them over UART at 115200 baud.
+`cmd_vel_bridge` polls `/kart/cmd_vel_muxed` at 100 Hz (10 ms timer) and encodes the framed int32 binary messages for throttle, brake, and steering (see [Packages → kb_coms_micro](packages.md#kb_coms_micro)). `KB_Coms_micro` pushes these onto a TX thread queue and sends them over UART at 115200 baud.
 
 A single frame is typically 8–15 bytes → **~1 ms on the wire** at 115200 baud. The TX thread wakes on a condition variable, so the queue-to-wire delay is near-instant.
 
-### 6. ESP32 control loop (~100 ms)
+### 6. ESP32 control loop (~2 ms)
 
-The ESP32 runs a PID steering loop at **10 Hz** (100 ms period). When a new steering target arrives over UART, it takes effect on the next PID cycle. Worst case, the target sits for nearly 100 ms before being applied.
+The ESP32 runs its PID steering loop at a **500 Hz target** (2 ms period, `main/main.c`). When a new steering target arrives, it takes effect on the next PID cycle, so the worst-case wait is ~2 ms. The real rate is somewhat below 500 Hz because the AS5600 read over I²C blocks — but this stage is a rounding error in the pipeline, not the tail it was previously documented as.
 
 The AS5600 magnetic encoder is read via I2C (~1–2 ms per read) each cycle for steering feedback.
 
@@ -115,8 +115,8 @@ All topics use default QoS (RELIABLE + VOLATILE) except odometry which uses BEST
 
 These are the key unknowns that require on-hardware profiling:
 
-- [ ] **YOLO inference time** on the Orin GPU (YOLOv11s at 640px). The node already logs FPS every 2 seconds to `/perception/yolo/fps` — run the pipeline and read it.
+- [ ] **YOLO inference time** on the Orin GPU (YOLOv11n at 320 px — `imgsz` default is 320, weights `ruben_yolov11n_2026_03_320`). The node already logs FPS every 2 seconds to `/perception/yolo/fps` — run the pipeline and read it.
 - [ ] **Actual sync delay** in `cone_depth_localizer` — log timestamp deltas between the three synced topics to see if 2.0s slop is causing unnecessary buffering.
 - [ ] **End-to-end latency** from camera frame timestamp to ESP32 PWM output. Could be measured by comparing the image header timestamp with the time the corresponding steering command arrives at the ESP32.
 - [ ] **Camera FPS** under load — does ZED maintain 30 Hz when the Orin GPU is busy with YOLO?
-- [ ] **ESP32 control loop jitter** — is the 10 Hz PID cycle stable, or do UART interrupts cause timing variation?
+- [ ] **ESP32 control loop jitter** — how far below the 500 Hz target does the blocking AS5600 I²C read actually pull the control task?

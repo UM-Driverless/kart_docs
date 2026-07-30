@@ -1,6 +1,6 @@
 # Build Journey
 
-Posts documenting the build of a competition kart turned autonomous vehicle. Roughly one a week on Wednesdays. New posts append at the bottom — read straight through.
+Posts documenting the build of a competition kart turned autonomous vehicle. Roughly one a week. New posts append at the bottom — read straight through.
 
 [Follow on LinkedIn :fontawesome-brands-linkedin:](https://www.linkedin.com/in/rubenayla/){ .md-button }
 
@@ -380,4 +380,4 @@ Software docs: [Software](../software/index.md).
 
 ---
 
-*That's the latest post. New ones land roughly every Wednesday — [follow on LinkedIn](https://www.linkedin.com/in/rubenayla/) to catch them as they ship, or check back here.*
+*That's the latest post. New ones land roughly weekly — [follow on LinkedIn](https://www.linkedin.com/in/rubenayla/) to catch them as they ship, or check back here.*

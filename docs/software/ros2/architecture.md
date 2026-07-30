@@ -70,7 +70,7 @@ The system has two modes that share the same perception interface (`/perception/
                                                      ▼
 ┌──────────────────┐   /esp32/*      ┌───────────────────────┐    UART       ┌────────────┐
 │ kb_dashboard     │◄──(Frame)──────│ kb_coms_micro         │◄────────────►│ ESP32      │
-│ (web UI :8080)   │                │ (serial bridge)       │  115200 8N1   │ (Medulla)  │
+│ (web UI :80)     │                │ (serial bridge)       │  115200 8N1   │ (Medulla)  │
 └──────────────────┘   /orin/*       └───────────────────────┘  int32 frames └────────────┘
 ```
 

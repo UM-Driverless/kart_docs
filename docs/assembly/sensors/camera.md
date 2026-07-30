@@ -8,7 +8,10 @@ Hay que agregar tambien cuales paquetes hay que instalar para poder visualizar l
 
 ## Overview
 
-This document describes the integration of the **ZED2 stereo camera** into the kart, its usage through the **ROS 2 wrapper**, and the combination with **YOLOv5** for cone detection. 
+This document describes the integration of the **ZED2 stereo camera** into the kart and its usage through the **ROS 2 wrapper**.
+
+!!! warning "The YOLOv5 sections below are out of date"
+    Cone detection runs **YOLOv11n** at `imgsz` 320 — the weights are `ruben_yolov11n_2026_03_320` and the node is `kart_perception/yolo_detector_node.py` (see [Packages → kart_perception](../../software/ros2/packages.md#kart_perception)). The "Exporting and Using a Custom YOLOv5 Model" walkthrough further down still describes the v5 export flow, whose steps and config keys differ from v11. Treat it as historical until it is rewritten; it is filed in `tasks.md`.
 
 ## Official Resources
 

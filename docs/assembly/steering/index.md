@@ -34,7 +34,7 @@ The cost is durability: printed gears wear and the motor-shaft interface creeps.
 ## Signal chain
 
 ```
-Orin (target angle)  ──CAN──▶  ESP32 / Kart Medulla
+Orin (target angle)  ──USB──▶  ESP32-S3 / Kart Medulla
                                    │  PID
                                    ▼
               AS5600 ──angle──▶  PWM 3.3 V

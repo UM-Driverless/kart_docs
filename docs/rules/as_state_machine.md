@@ -78,7 +78,7 @@ Our kart (APC entry) doesn't have all the ADS-DV hardware (no physical RES, no A
 We simulate these via dashboard buttons. The state machine in `state_machine_node.py` maps:
 
 - Dashboard "start" button → RES "Go" signal
-- Dashboard "stop" button → equivalent to ASMS off (returns to AS Off)
+- Dashboard "stop" button → returns to `AS_READY` and **stays armed**; it is not equivalent to ASMS off. Switching to the manual mission is what reaches `AS_OFF` (see [state machine](../software/state_machine.md)).
 - Dashboard "ebs" button → EBS activation (AS Emergency)
 - Dashboard mission selector → mission selection + simulated ASMS on
 

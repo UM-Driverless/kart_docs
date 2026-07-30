@@ -142,7 +142,7 @@ In a real competition, additional checks gate each transition:
 | `/dashboard/mission` | `String` | Dashboard | Mission selection |
 | `/dashboard/state_cmd` | `String` | Dashboard | Commands: start, stop, ebs, finish, reset |
 | `/kart/cmd_vel` | `Twist` | Controller | Autonomous velocity command |
-| `/kart/cmd_vel_manual` | `Twist` | Joystick / Dashboard | Manual velocity command |
+| `/kart/cmd_vel_manual` | `Twist` | Dashboard | Manual velocity command. The physical gamepad does **not** publish here — `joy_to_cmd_vel` publishes `/kart/cmd_vel`, the autonomous input |
 
 ### Publications (outputs)
 

@@ -495,3 +495,65 @@ readable the whole time and answered it in one grep.
 
 Remaining stale statements in the firmware repo are consolidated into a single `tasks.md`
 entry, now including `km_gpio.h:108`, whose `#else` branch is still labelled "(current build)".
+
+---
+
+## 2026-07-30 — Audited the docs nobody had opened: software, mechanical, rules, top-level
+
+The electronics sweep earlier today only covered `docs/assembly/electronics/**` and
+`docs/bom/**`. Three parallel audits covered the rest, and their claims were then checked
+against two authorities rather than taken on trust: the `kart-brain` ROS 2 source, and the live
+Orin.
+
+**Two facts settled by looking at the running machine.** `/dev/serial/by-id/` on the Orin holds
+exactly one entry, `usb-1a86_USB_Single_Serial_5C37207028-if00 → ttyACM0`, which matches the
+`serial_port` default in `kb_coms_micro.cpp:6` — so the docs' Silicon Labs CP2102 path was
+stale on both counts (wrong vendor, and the real default is a `by-id` path rather than a bare
+device node). And `ss -tlnp` shows the dashboard process listening on **port 80**, confirming
+`dashboard.md` and refuting the three pages that said 8080.
+
+**The most consequential fix was a latency figure that inverted a conclusion.**
+`performance.md` documented the ESP32 PID loop at 10 Hz / ~100 ms and drew the reasonable
+conclusion that the microcontroller was the pipeline's largest tail after perception. The
+firmware's actual control task targets 500 Hz (2 ms). `firmware.md` had already flagged 10 Hz
+as a superseded number months ago; `performance.md` was the surviving copy. Fixing the number
+also required rewriting the surrounding prose, the pipeline budget diagram, and a measurement
+checklist item that asked whether "the 10 Hz PID cycle" was stable — a stale number does not
+sit in one cell, it grows conclusions around itself.
+
+**Corrections applied.** `/dev/ttyUSB0` → `/dev/ttyACM0`; CP2102 → the real WCH by-id path;
+port 8080 → 80 in three places; `cmd_vel_bridge` documented as subscribing `/kart/cmd_vel`
+when the source says `/kart/cmd_vel_muxed` (the wrong version implied the state-machine safety
+mux was bypassed); `zed2i` → `zed2`; YOLOv11s at 640 px → YOLOv11n at 320; `/esp32/health` →
+the real `/esp32/health/flags` + `/esp32/health/data`; `/esp32/throttle` marked as
+simulator-only, since on hardware `kb_coms_micro` publishes `/esp32/acceleration` and that
+dashboard dial stays blank; `ros2 launch kb_dashboard dashboard.launch.py` → `kart_bringup`
+(both packages have a file by that name, and they are not equivalent); and
+`state_machine.md`'s claim that the gamepad publishes `/kart/cmd_vel_manual` — it publishes
+`/kart/cmd_vel`, the *autonomous* input, which is worth knowing before trusting the mux.
+
+Outside software: `faq.md` argued the Orin's 40-pin header could replace the ESP32 because it
+has "2 hardware PWM channels (steering servo + motor ESC)". There is no ESC and throttle is not
+PWM — it is an analog DAC output — so the trade-off was mis-scoped, not merely mislabelled.
+`index.md` was dated `2025-06-18`, ten months before the kart existed, and both it and
+`about.md` still said steering actuation was "ordered" three weeks after the kart drove itself.
+`assembly/index.md` described the MCU as "ESP32, UART 115200" and throttle as "0–3.3 V (66% max
+until 5V DAC available)" — a limitation the fitted MCP4922 removed. The CAN diagram on
+`steering/index.md` and the CAN transceiver line on `computer.md` both contradicted "no CAN
+anywhere on the kart"; the transceiver is real but unused, so that line now says so.
+`as_state_machine.md` described the dashboard stop button as equivalent to ASMS-off when it
+returns to `AS_READY` and stays armed.
+
+Also: `docs/rules/` was reachable only by an inline link and is now in the nav; the orphaned
+`assembly/electronics/microcontroller/` directory (a Blue Pill page and two pinout images from
+before the medulla existed, referenced by nothing) was deleted; and the build-journey's
+"every Wednesday" claim was softened, since 5 of 13 posts landed on a Wednesday.
+
+**Left open in `tasks.md`, four items that need a person or a multimeter:** what actually powers
+the Cytron H-bridge (two pages say the 12 V rail, `steering/index.md` says the 48 V pack and
+specs stall at 47 V × 43 A); rewriting the camera page's YOLOv5 export walkthrough for v11;
+whether the kart is presented as a competition entry (`index.md` says it will not compete,
+`as_state_machine.md` calls it an APC entry and tracks rule compliance); and reconciling three
+different mission lists — during which the audit turned up a live bug worth repeating here:
+`throttle_test` is gated as an autonomous mission but is missing from `protocol.py`'s
+`MISSIONS` map, so `MISSIONS.get(..., 0)` sends it to the ESP32 as **manual**.

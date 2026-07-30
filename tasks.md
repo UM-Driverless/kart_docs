@@ -83,6 +83,47 @@ PWM capture and `CMD_COMPRESSOR_PWM`). kart-docs is ahead on these two rows and 
 explicitly, but the right fix is upstream — update the `Signal` cells there so the
 "dv-hardware wins" rule can go back to being unconditional.
 
+### Settle what powers the Cytron H-bridge — 12 V rail or the 48 V pack
+`kart-medulla/index.md` ("powered **permanently from kart 12 V**") and
+`electronics/power/battery.md` ("Everything on 12 V hangs off it: ... the steering H-bridge")
+both say 12 V. `steering/index.md` says the opposite in three places — "driven from the battery
+through the Cytron MD25HV", "The 13S pack (~48 V) through the Cytron driver", and an
+"Available voltage" table listing the 13S pack for this actuator — and specs stall as
+47 V × 43 A ≈ 2 kW, which is not a 12 V figure. The motor is a 24 V geared unit, so the answer
+also changes what speed and torque to expect. Measure at the Cytron's supply terminals and fix
+whichever pages are wrong.
+
+### Rewrite the YOLOv5 walkthrough on the camera page for YOLOv11
+`assembly/sensors/camera.md` carries a full "Exporting and Using a Custom YOLOv5 Model"
+section. The kart runs **YOLOv11n** at `imgsz` 320 (`kart_perception/yolo_detector_node.py`
+defaults; weights `ruben_yolov11n_2026_03_320`). A warning banner now sits at the top of the
+page, but the export steps and config keys below it are still v5-specific and need redoing.
+
+### Decide whether the kart is presented as a competition entry
+`docs/index.md` says "This prototype is not intended to compete, so no specific racing
+regulations apply." `docs/rules/as_state_machine.md` calls the kart an "APC entry", tracks
+compliance gaps against FS rules ("NOT currently implemented but are required for competition
+compliance"), and the repo ships `FS-AI_2026_APC_Technical_Rules_v1.pdf`. `docs/about.md` also
+lists competing as a medium-term objective. Pick one position and make the three pages agree.
+
+### Reconcile the mission lists across the docs
+Source of truth is `kart-brain`: `state_machine_node.py:34` gates on `autonomous`,
+`acceleration`, `skidpad`, `autocross`, `trackdrive`, `ebs_test`, `inspection`, `throttle_test`,
+plus `manual` and `remote_control` on the non-autonomous branch. The docs list three different
+subsets — `software/state_machine.md` has 9 (no `autonomous`), `software/dashboard.md` has 8
+(no `throttle_test`/`ebs_test`), `software/ros2/packages.md` has 6. Also worth flagging in the
+docs: `throttle_test` is missing from `protocol.py`'s `MISSIONS` map, so it falls through
+`MISSIONS.get(..., 0)` and is transmitted to the ESP32 as **manual** (ID 0).
+
+### Audit the non-electronics docs for contradictions and stale claims
+The 2026-07-30 sweep covered `docs/assembly/electronics/**` and `docs/bom/**` only. Everything
+else — `docs/software/**`, `docs/assembly/steering/**`, `docs/assembly/sensors/**`,
+`docs/assembly/pneumatic-braking/**`, `docs/assembly/powertrain/**`, `docs/rules/**`,
+`docs/build-journey/**`, and the top-level pages — was never opened. Those pages predate the
+classic-ESP32 → ESP32-S3 change and are likely to repeat retired facts (classic pinout, MCP4728
+DAC, `U12` optocoupler, CAN on the kart). Read them against the corrected electronics pages and
+fix or file what disagrees.
+
 ## In progress
 
 _(none)_

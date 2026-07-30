@@ -17,7 +17,7 @@ The 10 Hz broadcast rate is deliberate — human live-monitoring does not need m
 ## How to run and access
 
 ```bash
-ros2 launch kb_dashboard dashboard.launch.py
+ros2 launch kart_bringup dashboard.launch.py
 ```
 
 This binds **port 80** so URLs need no port suffix. A non-root process binding a port below 1024 requires `net.ipv4.ip_unprivileged_port_start=80` (one `sysctl` line). In production the node is not launched on its own — it starts as part of `kart-brain.service`, which runs `ros2 launch kart_bringup launch.py`.
@@ -76,7 +76,7 @@ The driving cluster: speed, steering, and four mini-instruments.
 | YOLO mini-dial | Cone-inference frame rate | `yolo_fps` ← `/perception/yolo/fps` (`Float32`) |
 | G-G mini-plot | Lateral vs. longitudinal acceleration, in g | `esp32_accel_lat` / `esp32_accel_lon` ← `/esp32/acceleration` (`Frame`, `decode_accel`) **or** `/zed/zed_node/imu/data` (`Imu`) |
 | Battery mini-dial | State of charge dial + pack voltage number | `battery_soc`, `battery_voltage` ← `/battery/state` (`BatteryState`) |
-| Pedals dial | Throttle and brake pedal effort, plus commanded brake | `esp32_throttle` ← `/esp32/throttle`, `esp32_braking` ← `/esp32/braking`, `orin_cmd_brake` ← `/orin/brake` |
+| Pedals dial | Throttle and brake pedal effort, plus commanded brake | `esp32_throttle` ← `/esp32/throttle` (**simulation only** — on the real kart `kb_coms_micro` publishes `/esp32/acceleration` and nothing publishes `/esp32/throttle`, so this dial stays blank on hardware), `esp32_braking` ← `/esp32/braking`, `orin_cmd_brake` ← `/orin/brake` |
 
 The steering sign follows the shared dashboard convention: positive radians render to the **right**.
 
@@ -131,7 +131,7 @@ ESP32 and firmware health, pneumatics, and a debug console.
 
 | Card | Shows | Data field → ROS topic |
 |---|---|---|
-| AS5600 magnet + AGC | Steering-encoder magnet present, AGC (automatic gain control) field strength (20–235 ok) | `health_magnet_ok`, `health_agc` ← `/esp32/health` (`Frame`, `decode_health`) |
+| AS5600 magnet + AGC | Steering-encoder magnet present, AGC (automatic gain control) field strength (20–235 ok) | `health_magnet_ok`, `health_agc` ← `/esp32/health/flags` + `/esp32/health/data` (`Frame`, `decode_health`). Nothing publishes a bare `/esp32/health` on hardware; the simulator does |
 | I2C | Bus status to the AS5600, error count | `health_i2c_ok`, `health_i2c_errors` ← `/esp32/health` |
 | Heap | Free ESP32 heap memory | `health_heap_kb`, `health_heap_ok` ← `/esp32/health` |
 | Stack | Min free task stack (comms/control/heartbeat/health); red < 200 B | `stack_comms` / `stack_control` / `stack_heartbeat` / `stack_health` — **not wired yet, see below** |

@@ -265,7 +265,7 @@ The node does not use one `/esp32/tx` + `/esp32/rx` pair — it exposes **one RO
 
 | Parameter | Default |
 |---|---|
-| `serial_port` | `/dev/serial/by-id/usb-Silicon_Labs_CP2102_USB_to_UART_Bridge_Controller_0001-if00-port0` |
+| `serial_port` | `/dev/serial/by-id/usb-1a86_USB_Single_Serial_5C37207028-if00` (resolves to `/dev/ttyACM0`) |
 | `baudrate` | `115200` |
 
 The node is **payload-agnostic**: a `Frame` carries a `type` byte and an `int32[]` payload, and the node frames/deframes it onto the UART without interpreting the numbers.
@@ -354,7 +354,7 @@ The firmware validates the element count per type (e.g. it drops a `THROTTLE`/`B
 |---|---|
 | **Subscribes** | The per-signal `/esp32/*` telemetry `Frame` topics from [`kb_coms_micro`](#kb_coms_micro); `/kart/state` (`String`); `/battery/state` (`sensor_msgs/BatteryState`) from [`kb_bms`](#kb_bms) |
 | **Publishes** | `/dashboard/mission`, `/dashboard/state_cmd` (`String`) to the state machine |
-| **Web UI** | `http://<orin-ip>:8080` (WebSocket + HTTP) |
+| **Web UI** | `http://<orin-ip>` — port **80**, no suffix (WebSocket + HTTP) |
 
 ### Features
 
@@ -415,7 +415,7 @@ Actual files in `src/kart_bringup/launch/`: `launch.py`, `teleop.launch.py`, `re
 4. **Cone follower** — autonomous controller (`geometric` by default)
 5. **cmd_vel_bridge** — converts `/kart/cmd_vel_muxed` to `/orin/*` ESP32 Frame commands
 6. **kb_coms_micro** — serial bridge to ESP32
-7. **Dashboard** — web UI on port 8080
+7. **Dashboard** — web UI on port 80
 
 **`teleop.launch.py`** — Manual driving with a gamepad:
 
