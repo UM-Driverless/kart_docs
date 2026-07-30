@@ -98,7 +98,7 @@ Mission selection and autonomous-system control.
 | Controls | Start · Stop · EBS · Restart | Start/Stop/EBS → `/dashboard/state_cmd` (`String`, `start`/`stop`/`ebs`); Restart runs `systemctl restart kart-brain` on the Orin |
 | Remote joystick | Touch joystick, shown only in the Remote mission | `/kart/cmd_vel_manual` (`Twist`) |
 
-The eight mission buttons map to the mission keys in `protocol.py`'s `MISSIONS` table (`manual`, `remote_control`, `inspection`, `autonomous`, `acceleration`, `skidpad`, `autocross`, `trackdrive`). The Algorithms pane and the joystick pane appear only for the missions that use them — the grid re-flows so only visible panes share the width.
+The eight mission buttons map to the mission keys in `protocol.py`'s `MISSIONS` table (`manual`, `remote_control`, `inspection`, `autonomous`, `acceleration`, `skidpad`, `autocross`, `trackdrive`). The state machine also accepts `ebs_test` and `throttle_test`, which have no button — see the [full mission list](state_machine.md). The Algorithms pane and the joystick pane appear only for the missions that use them — the grid re-flows so only visible panes share the width.
 
 Only one browser holds the manual-control token at a time; others see who has control and can take it.
 

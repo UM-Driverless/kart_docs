@@ -38,7 +38,6 @@ reader there:
    `esp32dev` and `native`." Both halves are false.
 3. `README.md` — still carries classic-ESP32 pin tables (already filed in that repo's own
    task board on 2026-07-30 as "README's classic tables are a hazard").
-
 4. `.agents/esp32s3-pinmap.md` — "**This is NOT the pin map the firmware currently uses.**
    `components/km_gpio/km_gpio.h` still holds the classic-ESP32 (WROOM-32E) map". Checked
    2026-07-30: the header carries *both* maps behind `#if defined(CONFIG_IDF_TARGET_ESP32S3)`,
@@ -106,29 +105,26 @@ compliance gaps against FS rules ("NOT currently implemented but are required fo
 compliance"), and the repo ships `FS-AI_2026_APC_Technical_Rules_v1.pdf`. `docs/about.md` also
 lists competing as a medium-term objective. Pick one position and make the three pages agree.
 
-### Reconcile the mission lists across the docs
-Source of truth is `kart-brain`: `state_machine_node.py:34` gates on `autonomous`,
-`acceleration`, `skidpad`, `autocross`, `trackdrive`, `ebs_test`, `inspection`, `throttle_test`,
-plus `manual` and `remote_control` on the non-autonomous branch. The docs list three different
-subsets — `software/state_machine.md` has 9 (no `autonomous`), `software/dashboard.md` has 8
-(no `throttle_test`/`ebs_test`), `software/ros2/packages.md` has 6. Also worth flagging in the
-docs: `throttle_test` is missing from `protocol.py`'s `MISSIONS` map, so it falls through
-`MISSIONS.get(..., 0)` and is transmitted to the ESP32 as **manual** (ID 0).
-
-### Audit the non-electronics docs for contradictions and stale claims
-The 2026-07-30 sweep covered `docs/assembly/electronics/**` and `docs/bom/**` only. Everything
-else — `docs/software/**`, `docs/assembly/steering/**`, `docs/assembly/sensors/**`,
-`docs/assembly/pneumatic-braking/**`, `docs/assembly/powertrain/**`, `docs/rules/**`,
-`docs/build-journey/**`, and the top-level pages — was never opened. Those pages predate the
-classic-ESP32 → ESP32-S3 change and are likely to repeat retired facts (classic pinout, MCP4728
-DAC, `U12` optocoupler, CAN on the kart). Read them against the corrected electronics pages and
-fix or file what disagrees.
-
 ## In progress
 
 _(none)_
 
 ## Done
+
+### Reconciled the mission lists across the docs (2026-07-30)
+The three pages listed three different subsets. Authoritative set taken from
+`kart_control/scripts/state_machine_node.py:34` (`AUTONOMOUS_MISSIONS`) plus the
+`manual`/`remote_control` branch at `:148`: ten missions total. `software/state_machine.md`
+now carries the full list and cites its source; `dashboard.md` and `ros2/packages.md` say which
+eight have buttons and link to it. Recorded there as a known bug: `throttle_test` is gated as
+autonomous but missing from `protocol.py`'s `MISSIONS` map, so `MISSIONS.get(..., 0)` sends it
+to the ESP32 as `manual` (ID 0).
+
+### Audited the non-electronics docs for contradictions and stale claims (2026-07-30)
+Covered `docs/software/**`, `docs/assembly/{steering,sensors,pneumatic-braking,powertrain}/**`,
+`docs/rules/**`, `docs/build-journey/**` and the top-level pages, checked against the
+`kart-brain` source and the live Orin. Findings and fixes are in `history.md` (2026-07-30).
+What could not be settled from the desk was split back out into its own Ready entries.
 
 ### llms.txt and llms-full.txt were 404 on the live site (2026-07-19)
 `generate_llm_files.py` parsed `mkdocs.yml` with a custom `SafeLoader` that knew about

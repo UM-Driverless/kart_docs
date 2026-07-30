@@ -16,13 +16,16 @@ The **mission** is selected from the dashboard. It determines the operating mode
 |---------|------|-------------|
 | `manual` | Manual | Direct control via joystick/dashboard |
 | `remote_control` | Manual | Same as manual (dashboard remote) |
-| `throttle_test` | Test | Fixed 50% throttle for hardware debugging |
+| `autonomous` | Autonomous | Generic autonomous run, not tied to an FS event |
+| `throttle_test` | Test | Fixed 50% throttle for hardware debugging. **Known bug:** gated as autonomous in `state_machine_node.py:34` but absent from `protocol.py`'s `MISSIONS` map, so `MISSIONS.get(..., 0)` transmits it to the ESP32 as `manual` (ID 0) |
 | `acceleration` | Autonomous | FS acceleration event |
 | `skidpad` | Autonomous | FS skidpad event |
 | `autocross` | Autonomous | FS autocross event |
 | `trackdrive` | Autonomous | FS trackdrive event |
 | `ebs_test` | Autonomous | Emergency braking system test |
 | `inspection` | Autonomous | Technical inspection demo |
+
+This is the authoritative list, taken from `AUTONOMOUS_MISSIONS` in `kart_control/scripts/state_machine_node.py:34` plus the `manual` / `remote_control` branch at `:148`. The dashboard exposes a button for eight of the ten (no `throttle_test`, no `ebs_test`).
 
 ### AS State (Autonomous System State)
 

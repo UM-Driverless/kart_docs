@@ -362,8 +362,8 @@ The firmware validates the element count per type (e.g. it drops a `THROTTLE`/`B
 - Battery gauge and a dedicated battery tab (voltage, SOC, current, per-cell strip, temperatures) fed by `/battery/state`
 - Health status: magnet (AGC), I2C bus, free heap
 - Heartbeat monitoring with staleness indicator
-- Mission selection (Manual, Accel, Skidpad, Autocross, Trackdrive, Inspect)
-- Machine state control (Start, Stop, EBS)
+- Mission selection — eight buttons (Manual, Remote control, Inspection, Autonomous, Accel, Skidpad, Autocross, Trackdrive); see the [full mission list](../state_machine.md)
+- Machine state control (Start, Stop, EBS, Restart)
 
 ### Protocol Layer
 
