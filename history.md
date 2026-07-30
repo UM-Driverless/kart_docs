@@ -249,3 +249,51 @@ So a "filtered inventory view" can only ever be that purchased-parts subset dres
 `AGENTS.md` previously didn't mention the task board at all; its "Key Files (Read Before Working)" list now names `tasks.md` first, ahead of `.agents/error-log.md` and `.agents/definition-of-done.md`.
 
 Note: `docs/assembly/pneumatic-braking/index.md` points at `dv/tasks.md`, which is a *different* repo's board, not this one — it was already correct and was left alone. Stale `.agents/tasks.md` paths in append-only records (`history.md`, `.agents/error-log.md`) were also deliberately left as written: they were accurate on the date they were logged, and rewriting them would falsify the record.
+
+---
+
+## 2026-07-30 — `legacy-wiring.md` deleted: the ESP32-S3 Medulla PCB is the board in the kart
+
+The classic-ESP32 page has been deleted, executing the plan recorded in the 2026-04-13 entry
+above ("Delete `legacy-wiring.md` once the S3 PCB is manufactured, flashed, and deployed in
+the kart"). Confirmed by Rubén: the ESP32-S3 interface PCB is installed and the hand-wired
+classic ESP32 (ESP32-DevKitC V4, flying wires, no PCB) is out of the kart.
+
+**Trigger.** Searching the live site for "esp32" returned "Legacy wiring (classic ESP32)" as
+the *first* of 24 results, above every current page — so the top hit for the project's main
+microcontroller was a retired pinout. The page carried a prominent "temporary page" warning
+and was correctly nested in the nav, and that still wasn't enough: search surfaces pages
+context-free, so a page that is only correct when read with its banner will be read wrong.
+The lesson is that a legacy page's cost is paid at search time, not at nav time — retire it
+on the day it stops being true rather than leaving it to be sorted out later.
+
+**Removed.** `docs/assembly/electronics/kart-medulla/legacy-wiring.md` plus the five
+classic-ESP32 images it was the only referent of (`esp32-devkitc-v4-pinout.png`,
+`esp32-devkitc-v4-typec-header-pinout.png`, `ESP32-DevKitC-Dimensions.png`, and two that were
+already orphaned: `ESP32-DOIT-DEV-KIT-v1-pinout-mischianti.png`, `ESP32-pinout-diagram.jpg`).
+The nav entry under Kart Medulla is gone. The ESP32-S3 pinout on
+`kart-medulla/index.md` was already complete and correct; nothing was migrated.
+
+**Docs that still claimed the classic board was installed, now corrected.** The repo had been
+inconsistent for a while — `wiring.md` and `kart-medulla/index.md` described the fabricated S3
+board with its `CNx.y` terminals and physical board-rework steps, while `legacy-wiring.md`,
+`bom.yaml`, and both BOM pages said the classic ESP32 was the operational setup:
+
+- `bom.yaml` — `esp32_s3` `status: planned` → `active`; `esp32_wroom_32` description and notes
+  rewritten as retired. Its `pin_assignments:` block was deleted — it held a *third*
+  classic pinout that disagreed with the legacy page itself (it claimed GPIO 18/19 for the
+  Orin UART and GPIO 25/26 for the motor driver) and no script read it.
+- `esp32_wroom_32` keeps `status: legacy` rather than being deleted, per the 2026-06-14 QR
+  convention: the row must stay resolvable so stickers on the physical modules don't 404.
+- `docs/bom/index.md`, `docs/bom/full.md` — "currently hand-wired in the kart" → retired.
+- `orin-setup.md` — the `esp32dev` flashing command is unchanged (it is still the image that
+  gets flashed), but its comment no longer describes it as "the legacy hand-wired classic
+  ESP32 currently in the kart", which is now false about the hardware.
+
+**Stale DAC part name fixed in passing.** `docs/bom/full.md` still listed a planned "MCP4728
+quad 12-bit I²C DAC", and `bom.yaml`'s `esp32_s3` entry referenced the MCP4728 twice. The
+design switched to the **MCP4922** (dual 12-bit SPI) on 2026-04-17. The MCP4922 still has no
+component entry of its own in `bom.yaml` — filed in `tasks.md`.
+
+Verified with `mkdocs build --strict`: no broken links, and "Legacy wiring" no longer appears
+in `site/search/search_index.json`.

@@ -1,9 +1,6 @@
 # Kart Medulla (ESP32-S3)
 
-The Kart Medulla is the MCU-based control hub between the Orin computer and the kart's sensors and actuators. The next revision is an interface PCB built around the **ESP32-S3**, with external level shifting, analog conditioning, an SPI DAC, an on-PCB manual/autonomous signal mux, and Wago-style push-in connectors replacing the hand-wired Dupont setup.
-
-!!! info "Currently hand-wired in the kart: classic ESP32"
-    The kart is currently running a hand-wired classic-ESP32 (no PCB). That setup is documented on the [Legacy wiring](legacy-wiring.md) page and will be removed once the ESP32-S3 board is deployed.
+The Kart Medulla is the MCU-based control hub between the Orin computer and the kart's sensors and actuators. It is an interface PCB built around the **ESP32-S3**, with external level shifting, analog conditioning, an SPI DAC, an on-PCB manual/autonomous signal mux, and Wago-style push-in connectors. This board is the one installed in the kart; the earlier hand-wired classic-ESP32 setup (ESP32-DevKitC V4, flying wires, no PCB) is retired and no longer documented here.
 
 **Firmware repository:** [UM-Driverless/kart-medulla](https://github.com/UM-Driverless/kart-medulla)
 

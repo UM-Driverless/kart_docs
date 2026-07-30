@@ -26,6 +26,26 @@ striped-black convention, otherwise the diagram and the generated wire table dis
 Background on the two-ground split: `docs/assembly/electronics/wiring.md`, section
 "Why two grounds".
 
+### Resolve how a classic-ESP32 firmware image runs on ESP32-S3 hardware
+`docs/assembly/electronics/kart-medulla/firmware.md` states both that "the physical
+kart-medulla board is an **ESP32-S3**" and that the `esp32dev` environment
+(classic ESP32-WROOM-32E) is "the image that actually runs on the kart", with the S3 target
+listed as a stub that does not link. Those cannot both be true as written: the classic ESP32
+is Xtensa LX6 and the S3 is LX7, so an `esp32dev` binary will not boot on an S3 and esptool
+refuses the chip-ID mismatch. One of three things is the case — the kart runs a build target
+other than the two documented, the board in the kart is not what the page says, or the
+`esp32dev` env has been repointed at the S3 in `platformio.ini`. Check `platformio.ini` in
+the `kart-medulla` repo and the flashing output, then correct the page. Until this is settled,
+`orin-setup.md`'s flashing snippet may be telling people to flash the wrong environment.
+
+### Add the MCP4922 as its own component in bom.yaml
+The Kart Medulla's DAC (**MCP4922-E/SL**, dual 12-bit SPI) is described in
+`docs/assembly/electronics/kart-medulla/index.md` and now appears as a row in
+`docs/bom/full.md`, but has no entry in `docs/assembly/electronics/bom.yaml`, so it is missing
+from the generated reports and from any cost aggregation. It replaced the MCP4728 (quad
+12-bit I²C) on 2026-04-17. Needs a real supplier link and unit cost — the `docs/bom/full.md`
+row currently carries a placeholder "~3" that was inherited from the MCP4728 line.
+
 ## In progress
 
 _(none)_

@@ -69,9 +69,9 @@ Numbers marked **`~`** are estimates pending confirmation from receipts.
 |---|---:|---|---:|---:|---|
 | NVIDIA Jetson AGX Orin Developer Kit (64 GB) | 1 | Purchased | 1857.29 | ~2200 | Silicon Highway invoice 2023-04: net €1 821.29 + €36 shipping, intra-EU reverse charge (VAT 0 % on invoice). True project cost is **~€2 247** once URJC self-accounts the 21 % reverse-charge VAT[^vat]; this column shows what was actually transferred to the supplier. Today's retail incl. 21 % VAT for the 64 GB devkit is ~€2 200. |
 | Custom Orin adapter PCB (v1.0) | 1 | Custom | ~25 | ~25 | EasyEDA design + JLCPCB-style fabrication. |
-| ESP32-WROOM-32 dev board (legacy, hand-wired in current kart) | 1 | Purchased | ~3.50 | ~3.50 | Currently flying-wired. |
-| ESP32-S3-WROOM-1-N8R2 dev board (next-revision Kart Medulla) | 1 | Purchased | 8.69 | 8.69 | AliExpress, ordered 2026 for the new interface PCB. |
-| MCP4728 quad 12-bit I²C DAC | 1 | Planned | ~3 | ~3 | For CMD_ACC analogue out. |
+| ESP32-WROOM-32 dev board (retired) | 1 | Purchased | ~3.50 | ~3.50 | Was flying-wired in the kart before the Kart Medulla PCB; no longer installed. |
+| ESP32-S3-WROOM-1-N8R2 dev board (Kart Medulla) | 1 | Purchased | 8.69 | 8.69 | AliExpress, ordered 2026. MCU of the Kart Medulla interface PCB installed in the kart. |
+| MCP4922 dual 12-bit SPI DAC | 1 | Purchased | ~3 | ~3 | `CMD_ACC` and `CMD_BRAKE` analogue out on the Medulla PCB. Replaced the originally planned MCP4728 (I²C) in 2026-04. |
 | Kart Medulla interface PCB (next revision, blank) | 1 | Custom | ~15 | ~15 | Estimate — small 2-layer board, JLCPCB-style. |
 | Wago-style push-in terminal blocks (Medulla) | ~30 | Planned | ~10 | ~10 | Replaces Dupont harness. |
 | Logic-level shifters + op-amps + passives (incl. motor-Hall conditioning) | — | Planned | ~10 | ~10 | Reads the motor's three Hall sensors via the Medulla PCB; no external wheel-speed sensors needed. |

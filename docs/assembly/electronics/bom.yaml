@@ -31,12 +31,12 @@ components:
 
   - id: "esp32_s3"
     part_number: "ESP32-S3-WROOM-1-N8R2"
-    description: "ESP32-S3 microcontroller module (8 MB flash, 2 MB quad PSRAM) — target MCU for the next-revision Kart Medulla PCB"
+    description: "ESP32-S3 microcontroller module (8 MB flash, 2 MB quad PSRAM) — MCU of the Kart Medulla interface PCB"
     category: "microcontroller"
     quantity: 1
     unit_cost: 5.00
     currency: "EUR"
-    status: "planned"
+    status: "active"
     criticality: "essential"
     suppliers:
       - name: "Mouser"
@@ -57,7 +57,7 @@ components:
       bluetooth: "BLE 5"
       gpios: 45
       adcs: "2x 12-bit, multi-channel"
-      dacs: "none (external MCP4728 used instead)"
+      dacs: "none (external MCP4922 dual 12-bit SPI DAC used instead)"
       usb: "native USB-OTG + USB-Serial-JTAG"
       interfaces: "SPI, I2C, UART, CAN (TWAI), I2S"
     alternatives:
@@ -67,7 +67,7 @@ components:
     rejected:
       - "ESP32-S3-WROOM-1-N16R8 — DO NOT BUY. The 8 MB octal PSRAM is hard-wired inside the module to GPIO 33–37; Espressif's datasheet marks those pins as 'not available' on R8 variants. This is a PHYSICAL constraint, not a firmware option — disabling PSRAM in sdkconfig does not reclaim the pins. Treating an N16R8 as an N8R2 by 'ignoring PSRAM' does not work. Any R-suffix octal variant (R8) is rejected for the Kart Medulla."
     notes: |
-      Target MCU for the next revision of the Kart Medulla interface PCB. Pairs with an MCP4728 quad 12-bit I2C DAC for CMD_ACC.
+      MCU of the Kart Medulla interface PCB, the board installed in the kart. Pairs with an MCP4922 dual 12-bit SPI DAC for CMD_ACC and CMD_BRAKE.
 
       **Octal-PSRAM rule (crystal clear):** Only quad-PSRAM WROOM-1 variants (R2, or no PSRAM) are acceptable. Octal-PSRAM variants (R8) are banned because they permanently consume GPIO 33–37 inside the module package.
 
@@ -77,7 +77,7 @@ components:
 
   - id: "esp32_wroom_32"
     part_number: "ESP32-WROOM-32"
-    description: "ESP32 microcontroller module — legacy, hand-wired in the current kart (no PCB)"
+    description: "ESP32 microcontroller module — retired; was hand-wired in the kart (no PCB) before the ESP32-S3 Medulla PCB"
     category: "microcontroller"
     quantity: 1
     unit_cost: 3.50
@@ -106,15 +106,7 @@ components:
       adcs: "18-channel, 12-bit"
       dacs: "2-channel, 8-bit"
       interfaces: "SPI, I2C, UART, CAN, I2S"
-    pin_assignments:
-      gpio_2: "Onboard LED"
-      gpio_18: "UART RX (from Orin)"
-      gpio_19: "UART TX (to Orin)"
-      gpio_21: "I2C SDA (AS5600)"
-      gpio_22: "I2C SCL (AS5600)"
-      gpio_25: "PWM (Motor Driver)"
-      gpio_26: "Direction (Motor Driver)"
-    notes: "Currently hand-wired in the kart. To be retired when the ESP32-S3 interface PCB is deployed. See docs/assembly/electronics/kart-medulla/legacy-wiring.md."
+    notes: "Retired. This module was hand-wired directly in the kart (flying wires to an ESP32-DevKitC V4, no PCB) until the ESP32-S3 Kart Medulla interface PCB replaced it. The row is kept so existing QR stickers on the physical units still resolve; the classic hand-wiring is no longer documented. For the current MCU wiring see the esp32_s3 entry and docs/assembly/electronics/kart-medulla/index.md."
 
   - id: "orin_adapter_board"
     part_number: "CUSTOM-ORIN-ADAPTER-V1.0"

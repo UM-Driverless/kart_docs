@@ -54,7 +54,6 @@ nav:
           - Kart Medulla (ESP32-S3):
               - assembly/electronics/kart-medulla/index.md
               - Firmware: assembly/electronics/kart-medulla/firmware.md
-              - Legacy wiring (classic ESP32): assembly/electronics/kart-medulla/legacy-wiring.md
           - Computer: assembly/electronics/computer.md
           - Orin Setup: assembly/electronics/orin-setup.md
           - Net Naming: assembly/electronics/net-naming.md

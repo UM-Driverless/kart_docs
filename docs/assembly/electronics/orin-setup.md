@@ -335,15 +335,15 @@ Flash the firmware (ESP32 must be connected via USB):
 
 ```bash
 cd ~/kart-medulla
-# Legacy hand-wired classic ESP32 (currently in the kart):
+# The image currently flashed to the kart (classic-ESP32 build target):
 pio run --target upload --environment esp32dev
 
-# Next-revision ESP32-S3 PCB (once firmware migrates):
+# ESP32-S3 build target — stub, does not link yet. See the Firmware page.
 pio run --target upload --environment esp32-s3-devkitc-1
 ```
 
 !!! note "ESP32 bootloader mode"
-    If flashing the classic ESP32 hangs at "Connecting...", put it in bootloader mode: hold **BOOT**, press **EN**, release **BOOT**. The ESP32-S3 has built-in USB-Serial-JTAG and typically does not need this.
+    If flashing hangs at "Connecting...", put the board in bootloader mode: hold **BOOT**, press **EN**, release **BOOT**. The ESP32-S3 has built-in USB-Serial-JTAG and typically does not need this.
 
 ### 11. AnyDesk (remote desktop)
 
