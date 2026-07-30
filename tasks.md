@@ -76,16 +76,6 @@ PWM capture and `CMD_COMPRESSOR_PWM`). kart-docs is ahead on these two rows and 
 explicitly, but the right fix is upstream — update the `Signal` cells there so the
 "dv-hardware wins" rule can go back to being unconditional.
 
-### Settle what powers the Cytron H-bridge — 12 V rail or the 48 V pack
-`kart-medulla/index.md` ("powered **permanently from kart 12 V**") and
-`electronics/power/battery.md` ("Everything on 12 V hangs off it: ... the steering H-bridge")
-both say 12 V. `steering/index.md` says the opposite in three places — "driven from the battery
-through the Cytron MD25HV", "The 13S pack (~48 V) through the Cytron driver", and an
-"Available voltage" table listing the 13S pack for this actuator — and specs stall as
-47 V × 43 A ≈ 2 kW, which is not a 12 V figure. The motor is a 24 V geared unit, so the answer
-also changes what speed and torque to expect. Measure at the Cytron's supply terminals and fix
-whichever pages are wrong.
-
 ### Rewrite the YOLOv5 walkthrough on the camera page for YOLOv11
 `assembly/sensors/camera.md` carries a full "Exporting and Using a Custom YOLOv5 Model"
 section. The kart runs **YOLOv11n** at `imgsz` 320 (`kart_perception/yolo_detector_node.py`
@@ -104,6 +94,14 @@ lists competing as a medium-term objective. Pick one position and make the three
 _(none)_
 
 ## Done
+
+### Cytron H-bridge runs off the 48 V pack, not the 12 V rail (2026-07-30)
+Settled by Rubén. `steering/index.md` was right; `kart-medulla/index.md` and
+`power/battery.md` were wrong and are fixed. In `wiring/wiring.yaml` the Cytron's supply pin
+moved from the `12V` net to `PACK48` and was renamed `v12` → `vin`, and the `STEER_M+`/`STEER_M-`
+motor leads are re-labelled 48 V. The MD25HV accepts 7–58 V so the pack is in spec. The
+"permanent, not switched through the mode switch" part of the original decision stands — that
+was about inrush browning out the Orin, not about which rail.
 
 ### PCB fabrication sponsor identified: AISLER (2026-07-30)
 Named in the 2026-07-29 LinkedIn post ("Thanks to AISLER for sponsoring the fabrication").

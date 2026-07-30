@@ -557,3 +557,25 @@ whether the kart is presented as a competition entry (`index.md` says it will no
 different mission lists — during which the audit turned up a live bug worth repeating here:
 `throttle_test` is gated as an autonomous mission but is missing from `protocol.py`'s
 `MISSIONS` map, so `MISSIONS.get(..., 0)` sends it to the ESP32 as **manual**.
+
+---
+
+## 2026-07-30 — The Cytron runs off the 48 V pack; the 12 V claim was wrong in three files
+
+Settled by Rubén: the steering H-bridge is fed from the **48 V traction pack**, not the 12 V
+rail. So `steering/index.md` — the page flagged as the outlier when the audit found this — was
+the correct one, and the two pages that agreed with each other were both wrong. Worth
+remembering: two sources agreeing is not evidence, when one was written by copying the other.
+
+Corrected `kart-medulla/index.md` (the 2026-05-01 decision entry) and
+`electronics/power/battery.md` (which listed the H-bridge among the 12 V rail's loads). In
+`wiring/wiring.yaml` the Cytron's supply pin moved from the `12V` net to `PACK48` and was
+renamed `v12` → `vin` — the old pin name encoded the wrong answer, so leaving it would have
+re-seeded the error — and `STEER_M+` / `STEER_M-` are re-labelled 48 V. `check_wiring.py` still
+reports 115/115 pins wired.
+
+The Cytron MD25HV takes 7–58 V, so the pack is within spec, which is why nothing downstream
+needs to change. The "powered permanently, not switched through the manual/autonomous mode
+switch" half of the original decision is unaffected: that was about inrush current browning out
+the Orin on every switch into autonomous, which is a question of *when* it is connected, not of
+*which rail*. Only the rail was wrong.

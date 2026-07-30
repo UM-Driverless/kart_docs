@@ -42,7 +42,7 @@ devices:
            CN4.1, CN4.2, CN4.3, CN5.1, CN5.2, CN5.3, CN6.1, CN6.2, CN6.3,
            CN7.1, CN7.2, CN7.3, CN8.1, CN8.2, CN8.3, CN9.1, CN9.2, CN9.3,
            CN10.1, CN10.2, CN10.3, USB]
-  cytron:         {desc: "Cytron MD25HV steering H-bridge", pins: [v12, gnd, pwm, dir, mplus, mminus]}
+  cytron:         {desc: "Cytron MD25HV steering H-bridge (7-58 V input)", pins: [vin, gnd, pwm, dir, mplus, mminus]}
   steer_motor:    {desc: "Steering motor", pins: [mplus, mminus]}
   steer_sensor:   {desc: "Steering angle sensor (AS5600 now / MT6701 planned)", pins: [vcc, gnd, sda, scl, pwm]}
   esc:            {desc: "BLDC traction ESC (AliExpress 48 V)", pins: [v+, v-, u, v, w, throttle, key1, key2]}
@@ -75,8 +75,8 @@ devices:
 
 nets:
   # --- power distribution ---
-  - {name: PACK48, system: Power, class: power, voltage: "48V", pins: [battery.pos, buck_48_12.in+, esc.v+], note: "High-current traction feed"}
-  - {name: "12V",  system: Power, class: power, voltage: "12V", pins: [buck_48_12.out+, medulla.CN1.2, cytron.v12, orin.pwr12, kill1.a, compressor.pos]}
+  - {name: PACK48, system: Power, class: power, voltage: "48V", pins: [battery.pos, buck_48_12.in+, esc.v+, cytron.vin], note: "High-current traction feed. The Cytron sits here permanently, not on the 12 V rail and not switched by the mode switch."}
+  - {name: "12V",  system: Power, class: power, voltage: "12V", pins: [buck_48_12.out+, medulla.CN1.2, orin.pwr12, kill1.a, compressor.pos]}
   - {name: "5V",   system: Power, class: power, voltage: "5V",  pins: [medulla.CN2.3, motor.hall5v, acc_pedal.vcc, brake_pedal.vcc], note: "Rail from Orin USB VBUS / XW-1224 buck (split-rail)"}
   - {name: "3V3",  system: Power, class: power, voltage: "3.3V", pins: [medulla.CN1.1, medulla.CN6.3, steer_sensor.vcc]}
   - {name: "24V",  system: Power, class: power, voltage: "24V", status: planned, pins: [press1.supply, press2.supply, vppm.v24], note: "Shared sensor/VPPM rail, buck-boost not yet fitted"}
@@ -98,8 +98,8 @@ nets:
   - {name: STEER_ANGLE_PWM, system: Steering, class: signal, voltage: "3.3V", status: planned, pins: [medulla.CN5.2, steer_sensor.pwm], note: "Future MT6701 single-wire PWM (R10 removed)"}
   - {name: CMD_STEER_PWM,   system: Steering, class: signal, voltage: "3.3V", pins: [medulla.CN9.1, cytron.pwm]}
   - {name: CMD_STEER_DIR,   system: Steering, class: signal, voltage: "3.3V", pins: [medulla.CN8.3, cytron.dir]}
-  - {name: "STEER_M+",      system: Steering, class: drive, voltage: "12V", color: "—", pins: [cytron.mplus, steer_motor.mplus]}
-  - {name: "STEER_M-",      system: Steering, class: drive, voltage: "12V", color: "—", pins: [cytron.mminus, steer_motor.mminus]}
+  - {name: "STEER_M+",      system: Steering, class: drive, voltage: "48V", color: "—", pins: [cytron.mplus, steer_motor.mplus]}
+  - {name: "STEER_M-",      system: Steering, class: drive, voltage: "48V", color: "—", pins: [cytron.mminus, steer_motor.mminus]}
 
   # --- throttle ---
   - {name: PEDAL_ACC,   system: Throttle, class: signal, voltage: "0–5V", pins: [acc_pedal.sig, medulla.CN6.2, mode_switch.manual], note: "Feeds both the medulla ADC and the manual mux input"}

@@ -25,7 +25,7 @@ For battery placement rationale see the [FAQ](../../../faq.md#battery).
 
 ## 48 V → 12 V converter
 
-The 12 V rail is generated from the 48 V traction pack by a **Weishuo Y3-T4812** step-down (buck) DC-DC converter. There is no separate 12 V battery — this converter replaced the previous 12 V lead-acid aux battery (see the [full BOM](../../../bom/full.md)). Everything on 12 V hangs off it: the pneumatic Festo pressure sensors (via a 12 → 24 V boost), the downstream 12 → 5 V / 3.3 V bucks, and the steering H-bridge.
+The 12 V rail is generated from the 48 V traction pack by a **Weishuo Y3-T4812** step-down (buck) DC-DC converter. There is no separate 12 V battery — this converter replaced the previous 12 V lead-acid aux battery (see the [full BOM](../../../bom/full.md)). Everything on 12 V hangs off it: the pneumatic Festo pressure sensors (via a 12 → 24 V boost) and the downstream 12 → 5 V / 3.3 V bucks. The steering H-bridge is **not** on this rail — the Cytron is fed straight from the 48 V pack.
 
 ![Weishuo Y3-T4812 48 V → 12 V DC-DC converter](images/12v-converter-weishuo-y3-t4812.jpg){ width=400 }
 
