@@ -135,3 +135,9 @@ Before any `git commit`, you MUST:
 3. If build fails: document the error in `.agents/error-log.md`, fix it, and add prevention if recurring
 
 **Never commit blindly.**
+
+## Pushing
+Push finished work without asking. Committing and pushing are one step here — a commit sitting
+unpushed helps nobody, and the deploy workflow is what publishes the site. The checks above are
+the safeguard, not a confirmation prompt. Do not end a turn with "say the word" or "want me to
+push?"; push, then report the branch and commit.

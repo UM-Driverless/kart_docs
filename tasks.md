@@ -39,11 +39,14 @@ reader there:
 3. `README.md` — still carries classic-ESP32 pin tables (already filed in that repo's own
    task board on 2026-07-30 as "README's classic tables are a hazard").
 
-**Safety-relevant and genuinely unresolved:** `AGENTS.md` says `components/km_gpio/km_gpio.h`
-uses the `CONFIG_IDF_TARGET_ESP32S3` pin map; `.agents/esp32s3-pinmap.md` says that header
-still holds the classic WROOM-32E map. Under the classic map `PIN_STEER_PWM` is GPIO 18, which
-on the S3 board is the gate of Q3, the shutdown-circuit MOSFET — so getting this wrong means
-the steering PWM drives the SDC. Read `km_gpio.h` and settle it.
+4. `.agents/esp32s3-pinmap.md` — "**This is NOT the pin map the firmware currently uses.**
+   `components/km_gpio/km_gpio.h` still holds the classic-ESP32 (WROOM-32E) map". Checked
+   2026-07-30: the header carries *both* maps behind `#if defined(CONFIG_IDF_TARGET_ESP32S3)`,
+   and the S3 branch is the one that compiles for the `esp32-s3-devkitc-1` build
+   (`PIN_STEER_PWM` = GPIO 40, `PIN_STEER_DIR` = GPIO 17, `PIN_SDC_NOT_EMERGENCY` = GPIO 18).
+   `AGENTS.md` is right and this file is wrong.
+5. `km_gpio.h:108` — the `#else` branch is labelled `/* CONFIG_IDF_TARGET_ESP32 — classic
+   ESP32-WROOM-32E (current build) */`. It is no longer the current build.
 
 ### Verify the S3 upload speed of 921600 on hardware
 `platformio.ini` sets `upload_speed = 921600` for `esp32-s3-devkitc-1`, annotated in-file as

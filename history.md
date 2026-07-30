@@ -468,3 +468,30 @@ conflict but had no way to say which side was right, and the netlist looked auth
 precisely because it is machine-generated. Machine-generated does not mean correct about
 physical labels — it means faithful to whatever the schematic's designators say, which is a
 different claim.
+
+---
+
+## 2026-07-30 — `km_gpio.h` settled: both pin maps live behind a compile-time switch
+
+The last open safety question is closed, and the alarming version of it was wrong.
+`components/km_gpio/km_gpio.h` does not "hold the classic map" *or* "hold the S3 map" — it
+holds **both**, selected by `#if defined(CONFIG_IDF_TARGET_ESP32S3)` with the classic map in
+the `#else` branch. Building the `esp32-s3-devkitc-1` environment takes the S3 branch:
+
+- `PIN_STEER_PWM` = GPIO 40
+- `PIN_STEER_DIR` = GPIO 17
+- `PIN_SDC_NOT_EMERGENCY` = GPIO 18
+- `PIN_STEER_PWM_IN` = GPIO 1, commented `CN5.2 — MT6701 OUT, ~994 Hz PWM angle frame`
+
+which matches the kart-docs pin table on every one of those pins, including the GPIO 1
+repurposing that dv-hardware's own table has not caught up on.
+
+So `AGENTS.md` was right and `.agents/esp32s3-pinmap.md` is stale. The hazard raised earlier
+today — "under the classic map `PIN_STEER_PWM` is GPIO 18, which is Q3's gate" — is real about
+the `#else` branch and irrelevant in practice, because that branch is not compiled for this
+board. Worth recording as a false alarm rather than quietly dropping: the reasoning was sound
+but rested on treating two docs' disagreement as evidence about the code, when the code was
+readable the whole time and answered it in one grep.
+
+Remaining stale statements in the firmware repo are consolidated into a single `tasks.md`
+entry, now including `km_gpio.h:108`, whose `#else` branch is still labelled "(current build)".

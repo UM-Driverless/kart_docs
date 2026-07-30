@@ -9,7 +9,7 @@ The firmware side of the Kart Medulla ESP32 — the software that receives comma
 
     Three statements in the firmware repo are **stale** and should not be believed: the comment above `[env:esp32-s3-devkitc-1]` in `platformio.ini` saying the env "does NOT link yet"; `.agents/esp32s3-pinmap.md` saying "The S3 build does not exist. `platformio.ini` has only `esp32dev` and `native`"; and the classic-ESP32 pin table in `README.md`. The S3 target has built and uploaded successfully from the Orin since 2026-07-26.
 
-    **Unresolved upstream, and safety-relevant:** `AGENTS.md` says `components/km_gpio/km_gpio.h` uses the `CONFIG_IDF_TARGET_ESP32S3` pin map, while `.agents/esp32s3-pinmap.md` says that header "still holds the classic-ESP32 (WROOM-32E) map". These cannot both be true, and the difference matters — under the classic map `PIN_STEER_PWM` is GPIO 18, which on the S3 board is the gate of Q3, the shutdown-circuit MOSFET. The schematic and `dv-hardware/projects/kart-medulla/docs/pinout-esp32-s3.md` win over any of these docs.
+    **The pin map is fine — checked 2026-07-30.** `components/km_gpio/km_gpio.h` carries *both* maps, selected at compile time by `#if defined(CONFIG_IDF_TARGET_ESP32S3)`. Building the `esp32-s3-devkitc-1` env takes the S3 branch: `PIN_STEER_PWM` = GPIO 40, `PIN_STEER_DIR` = GPIO 17, `PIN_SDC_NOT_EMERGENCY` = GPIO 18. The classic map — where `PIN_STEER_PWM` is GPIO 18, the gate of Q3 — sits in the `#else` branch and is not compiled. `.agents/esp32s3-pinmap.md`'s claim that the header "still holds the classic-ESP32 map" is stale; `AGENTS.md` is correct. The schematic and `dv-hardware/projects/kart-medulla/docs/pinout-esp32-s3.md` still win over any of these docs.
 
 ## Framework and build environments
 
