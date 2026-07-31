@@ -51,8 +51,8 @@ Pin numbers 1–44 follow a chip-style counter-clockwise convention: pin 1 is th
 
 Status legend: **HOLD** = unassigned, kept free for future use. **BLOCKED** = physically off-limits — either a DevKit-side constraint or, for GPIO 35–37, the octal PSRAM inside the fitted N16R8 module. **NC** = not wired on this PCB rev (no-connect symbol in schematic).
 
-| Pin | Silkscreen | GPIO | Signal | Type | Notes |
-|-----|------------|------|--------|------|-------|
+| Physical pin | Silkscreen | GPIO | Signal | Type | Notes |
+|--------------|------------|------|--------|------|-------|
 | 1 | GND | – | GND | Power | Ground (bottom of right edge) |
 | 2 | GND | – | GND | Power | Ground |
 | 3 | 19 | 19 | NC | – | No USB-C connector on the medulla PCB; GPIO 19 unwired this rev |
