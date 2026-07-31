@@ -579,3 +579,33 @@ needs to change. The "powered permanently, not switched through the manual/auton
 switch" half of the original decision is unaffected: that was about inrush current browning out
 the Orin on every switch into autonomous, which is a question of *when* it is connected, not of
 *which rail*. Only the rail was wrong.
+
+---
+
+## 2026-07-31 — Part IDs are per-design, not per-physical-unit (amends 2026-06-14)
+
+**Decision.** A part ID (`part_id`, the 16-digit number in the QR) identifies a **design revision**,
+not an individual physical object. Every board built to the same revision carries the same sticker
+and resolves to the same `/p/<id>/` page. Ruben's call, 2026-07-31.
+
+**What this changes.** The 2026-06-14 entry above ("QR scan resolves to the BOM") wrote "a QR carries
+a per-physical-unit opaque ID". That wording is superseded. Its *reasoning* is untouched and in fact
+argues for per-design: the motivating case is telling apart versions that look physically identical
+(Orin adapter v1 vs v2, ESP32-WROOM-32 vs ESP32-S3), and a per-design ID separates those completely.
+Per-unit IDs would only add distinguishing two boards of the same revision from each other, which
+nothing in the project needs, at the cost of a unique sticker and a unique page per object built.
+
+Everything else in that entry stands: the QR holds only the opaque ID, resolution is relative through
+`/p/<id>/`, superseded revisions get `status: legacy` rather than deletion so old stickers still
+resolve, and a `/p/` page is deleted only when the part and its stickers are gone.
+
+**Vocabulary, so the two levels have real names.** The design-level number is a **part number** (PN;
+**MPN** when it is the manufacturer's own, **GTIN** in the GS1 barcode world). A per-object number is a
+**serial number** (SN; **UII** under MIL-STD-130's IUID scheme, **SGTIN** in GS1/EPC). This project has
+the first and not the second. If per-object tracking is ever needed, add a `serial` field alongside
+`part_id` rather than redefining `part_id` — PN plus SN on one label is the standard form, and it
+extends the scheme without invalidating a single printed sticker.
+
+**Consequence for revisions.** Each revision needs its own part ID and its own page, since the ID *is*
+the revision. Created the same day: `Kart Medulla PCB v2` = `1604 0948 4608 5574`
+(`docs/p/1604094846085574.md`).

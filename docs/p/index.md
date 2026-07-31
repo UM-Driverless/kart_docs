@@ -4,8 +4,13 @@ title: Parts (by ID)
 
 # Parts (by ID)
 
-Each physical part can carry a small QR sticker holding a short random ID. Scanning it with the
+A part carries a small QR sticker holding a short random ID. Scanning it with the
 [Scan a part QR](../scan.md) page opens that part's page here, at `/p/<id>/`.
+
+**An ID names a design revision, not an individual object.** Every unit built to the same revision
+carries the same sticker and resolves to the same page — the ID is a *part number*, not a serial
+number. Two revisions that look physically identical (an adapter board v1 and v2, say) get different
+IDs and different pages, which is what the labels exist to disambiguate.
 
 These pages are reached by **scanning or direct URL**, not from the sidebar — there is one per
 labelled part and they are intentionally kept out of the navigation.

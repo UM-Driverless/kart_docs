@@ -6,6 +6,10 @@ Resolution is done by the scanner page at ``docs/scan.md``, which navigates rela
 part page. This keeps every printed label permanent: renaming the GitHub org, letting a domain
 lapse, or moving hosting never invalidates a label, because the label carries no external name.
 
+An ID names a DESIGN REVISION, not an individual object: every unit built to the same revision gets
+the same sticker and the same page. It is a part number, not a serial number — so run this once per
+revision (``... v2`` is a new part), not once per board built. Rationale in history.md, 2026-07-31.
+
 Design notes (full reasoning in ~/vault/inventory/history.md, 2026-06-13 addendum 7):
 - ID = 16 random decimal digits (53.15 bits of entropy, log2(10**16)). The alphabet is exactly ``0-9``.
 - Why all-digit: easiest to read and transcribe by hand (no ``0``/``O`` or ``1``/``l`` ambiguity,
