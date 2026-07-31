@@ -609,3 +609,18 @@ extends the scheme without invalidating a single printed sticker.
 **Consequence for revisions.** Each revision needs its own part ID and its own page, since the ID *is*
 the revision. Created the same day: `Kart Medulla PCB v2` = `1604 0948 4608 5574`
 (`docs/p/1604094846085574.md`).
+
+**Addendum (same day) — the names we use.** The standard names read backwards to us ("part number"
+sounds like it names the object; "serial" sounds like it must count up, and modern ones often do not),
+so the project uses plain names, with the standard ones kept as the translation for suppliers:
+
+| Level | Our name | Standard name |
+|---|---|---|
+| The design revision — every unit built to it shares this | **design ID** | **PN**, part number (**MPN** when it is the manufacturer's own) |
+| One individual physical object | **unit ID** | **SN**, serial number |
+
+The 16-digit number in the QR is a design ID. There is no unit ID in the system, and adding one would
+mean a second field, not a redefinition of the first. Use PN/MPN when talking to suppliers — that is
+the term they answer to. The `part_id` field name is unchanged for now; renaming it to `design_id`
+would touch `scripts/new_part.py`, `docs/scan.md`, `docs/p/index.md` and the frontmatter of each
+existing part page.
