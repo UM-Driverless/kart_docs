@@ -624,3 +624,11 @@ mean a second field, not a redefinition of the first. Use PN/MPN when talking to
 the term they answer to. The `part_id` field name is unchanged for now; renaming it to `design_id`
 would touch `scripts/new_part.py`, `docs/scan.md`, `docs/p/index.md` and the frontmatter of each
 existing part page.
+
+**Not UII.** MIL-STD-130's unique item identifier was considered as a name for the unit ID and
+rejected: a UII is not a bare number but a concatenation of issuing agency code + enterprise
+identifier (CAGE/DUNS/DoDAAC) + serial (Construct 1), or the same with the part number inserted and
+the serial only unique within it (Construct 2). It presumes a registered enterprise, and the standard
+also specifies the mark as Data Matrix ECC 200 with a defined data syntax rather than a QR carrying
+bare digits. The serial component itself may be random — nothing in the standard requires counting up
+— but that does not make a random number a UII. SN stays the standard equivalent of unit ID.
