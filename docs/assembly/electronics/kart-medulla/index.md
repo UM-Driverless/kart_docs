@@ -45,63 +45,45 @@ The medulla PCB hosts the ESP32-S3 module via a stock **ESP32-S3-DevKitC-1** dev
 
 ## ESP32-S3 Pin Assignment
 
-Pin map for the ESP32-S3 module on the interface PCB. **Source of truth:** the schematic, then [`projects/kart-medulla/docs/pinout-esp32-s3.md`](https://github.com/rubenayla/dv-hardware/blob/main/projects/kart-medulla/docs/pinout-esp32-s3.md) in the `dv-hardware` repo. Compared row-by-row against that file on **2026-07-30**: all 44 rows agree except **GPIO 1** and **GPIO 3**, where the `Signal` column here is deliberately *ahead* — dv-hardware still lists the pre-repurposing names (`PRESSURE_3`, `BUZZER`) even though its own notes describe both reassignments. Do **not** apply a blanket "dv-hardware wins" to those two rows; it would undo them. Everywhere else, dv-hardware wins. For the per-pin capability reference (which GPIOs can do ADC, which are strap pins, etc.) see [`lib/esp32-s3-pin-capabilities.md`](https://github.com/rubenayla/dv-hardware/blob/main/lib/esp32-s3-pin-capabilities.md) in the same repo.
+**The full 44-row pin table is not repeated here. It lives with the schematic**, in
+[`projects/kart-medulla/docs/pinout-esp32-s3.md`](https://github.com/rubenayla/dv-hardware/blob/main/projects/kart-medulla/docs/pinout-esp32-s3.md)
+(`dv-hardware`), because a pin map is only correct relative to a schematic revision and the two have
+to change in one commit. This page carries what you need **with the board in front of you**: which
+pins do something other than their name, and what has been physically modified.
 
-Pin numbers 1–44 follow a chip-style counter-clockwise convention: pin 1 is the bottom-right contact (USB-C at the top, component side facing you), pins 1–22 climb the right edge, pins 23–44 descend the left edge. The medulla's left header is dual-row (44 pads, 22 unique nets — each row is shorted between its two pads for daughterboard pass-through).
+A hand-maintained copy of that table used to sit here. It drifted — on 2026-07-30 someone reconciled
+it row by row and left a note that two rows were deliberately ahead of dv-hardware; one day later
+dv-hardware caught up and the note became wrong. That is why there is now one table, not two.
 
-Status legend: **HOLD** = unassigned, kept free for future use. **BLOCKED** = physically off-limits — either a DevKit-side constraint or, for GPIO 35–37, the octal PSRAM inside the fitted N16R8 module. **NC** = not wired on this PCB rev (no-connect symbol in schematic).
+For the per-pin capability reference (which GPIOs can do ADC, which are strap pins) see
+[`lib/esp32-s3-pin-capabilities.md`](https://github.com/rubenayla/dv-hardware/blob/main/lib/esp32-s3-pin-capabilities.md).
 
-| Physical pin | Silkscreen | GPIO | Signal | Type | Notes |
-|--------------|------------|------|--------|------|-------|
-| 1 | GND | – | GND | Power | Ground (bottom of right edge) |
-| 2 | GND | – | GND | Power | Ground |
-| 3 | 19 | 19 | NC | – | No USB-C connector on the medulla PCB; GPIO 19 unwired this rev |
-| 4 | 20 | 20 | NC | – | Same as Pin 3 |
-| 5 | 21 | 21 | MOTOR_HALL_3 | Digital In | Motor hall sensor 3 |
-| 6 | 47 | 47 | MOTOR_HALL_2 | Digital In | Motor hall sensor 2 |
-| 7 | 48 | 48 | BLOCKED | – | DevKit on-board RGB LED; no external LED on the medulla |
-| 8 | 45 | 45 | HOLD | – | Strap pin (VDD_SPI voltage select). Idle-LOW at boot required. |
-| 9 | 0 | 0 | HOLD | – | Strap pin (BOOT mode, must be HIGH at boot). Was previously `CMD_STEER_DIR` (moved to GPIO 17 on 2026-05-08 to remove strap risk). |
-| 10 | 35 | 35 | BLOCKED | – | Octal-PSRAM pin — wired to the PSRAM die inside the fitted N16R8. Never assign |
-| 11 | 36 | 36 | BLOCKED | – | Octal-PSRAM pin — wired to the PSRAM die inside the fitted N16R8. Was briefly `CMD_REVERSE`; moved to PCF8574 P0 on 2026-05-03. |
-| 12 | 37 | 37 | BLOCKED | – | Octal-PSRAM pin — wired to the PSRAM die inside the fitted N16R8. Never assign |
-| 13 | 38 | 38 | HOLD | – | Was `SDC_NOT_EMERGENCY` until 2026-05-08; signal moved to GPIO 18 (Pin 33) so the gate driver sits next to Q3 on the PCB. |
-| 14 | 39 | 39 | HOLD | – | Free GPIO |
-| 15 | 40 | 40 | CMD_STEER_PWM | LEDC PWM | Steering motor PWM (Cytron H-bridge) |
-| 16 | 41 | 41 | HOLD | – | Held for future CAN_RX (no CAN transceiver this rev — CAN moved to Orin carrier) |
-| 17 | 42 | 42 | HOLD | – | Held for future CAN_TX (same as Pin 16) |
-| 18 | 2 | 2 | HYDRAULIC_2 | ADC1_CH1 | Hydraulic pressure sensor 2 |
-| 19 | 1 | 1 | PRESSURE_3 → steering PWM | Digital In | **Repurposed** to steering-angle PWM capture (terminal CN5.2); the Pressure-3 ADC channel is retired. Board rework: remove R10 only. See the callout below and [Wiring](../wiring.md). |
-| 20 | RX | 44 | BLOCKED | – | DevKit USB-UART bridge owns U0RXD; not reclaimable on DevKitC-1 |
-| 21 | TX | 43 | BLOCKED | – | DevKit USB-UART bridge owns U0TXD |
-| 22 | GND | – | GND | Power | Ground (top of right edge) |
-| 23 | 3V3 | – | 3V3 | Power | 3.3 V supply (S3 module LDO from 5 V) |
-| 24 | 3V3 | – | 3V3 | Power | 3.3 V supply |
-| 25 | EN | – | RST | Reset | Reset (silkscreened `EN`) |
-| 26 | 4 | 4 | PEDAL_ACC | ADC1_CH3 | Accelerator pedal |
-| 27 | 5 | 5 | PEDAL_BRAKE | ADC1_CH4 | Brake pedal |
-| 28 | 6 | 6 | PRESSURE_1 | ADC1_CH5 | Pressure sensor 1 |
-| 29 | 7 | 7 | PRESSURE_2 | ADC1_CH6 | Pressure sensor 2 |
-| 30 | 15 | 15 | SELECT_THROTTLE | Digital Out | Drives the U14 MAX4660 SELECT pin (manual/autonomous throttle mux). 10 kΩ pulldown to GND on this net → hardware default = manual passthrough. |
-| 31 | 16 | 16 | MOTOR_HALL_1 | Digital In | Motor hall sensor 1 (moved off GPIO 37, which the octal PSRAM consumes) |
-| 32 | 17 | 17 | CMD_STEER_DIR__3V3 | Digital Out | Steering motor direction (Cytron H-bridge). Moved from GPIO 0 on 2026-05-08 to drop the BOOT-strap risk. |
-| 33 | 18 | 18 | SDC_NOT_EMERGENCY__3V3 | Digital Out | Drives Q3 (IRLZ44N) gate via R22 (100 Ω). HIGH = Q3 ON = SDC chain return path closed = no emergency. R23 (100 kΩ) gate-pulldown ensures emergency-state at boot until firmware drives HIGH. Moved from GPIO 38 on 2026-05-08. |
-| 34 | 8 | 8 | SDA | I²C | I²C data — steering angle sensor (AS5600 now, 0x36; MT6701 planned, 0x06) + U25 PCF8574 expander (0x20) share the bus |
-| 35 | 3 | 3 | BUZZER → compressor PWM | Digital Out | **Repurposed** to `CMD_COMPRESSOR_PWM` — drives the EBS air-compressor MOSFET gate (terminal CN8.2); the buzzer was dropped. **Not** a strap pin on this chip: the `STRAP_JTAG_SEL` eFuse is unburned, so GPIO 3 is never sampled at reset, and it has no internal pull (`IO_MUX_GPIO3 = 0x0a02`), so it floats and an external pulldown wins at boot — which is what makes it safe on a MOSFET gate. Measured on the hardware 2026-07-10. See the callout below. |
-| 36 | 46 | 46 | HOLD | – | Strap pin (ROM-print enable). Default LOW = silent boot — required idle state. |
-| 37 | 9 | 9 | SCL | I²C | I²C clock (same bus as SDA) |
-| 38 | 10 | 10 | HYDRAULIC_1 | ADC1_CH9 | Hydraulic pressure sensor 1 |
-| 39 | 11 | 11 | MOSI | SPI | SPI data out → MCP4922 SDI |
-| 40 | 12 | 12 | CLK | SPI | SPI clock → MCP4922 SCK |
-| 41 | 13 | 13 | MISO | SPI | SPI data in (unused by MCP4922; available for future SPI peripheral) |
-| 42 | 14 | 14 | CMD_DAC_CS | SPI | MCP4922 chip select (active low) |
-| 43 | 5V | – | +5V_USB | Power | 5 V from medulla USB-C VBUS — powers the ESP32 dev board only (split-rail design) |
-| 44 | GND | – | GND | Power | Ground (bottom of left edge) |
+Pin numbers 1–44 follow a chip-style counter-clockwise convention: pin 1 is the bottom-right contact
+(USB-C at the top, component side facing you), pins 1–22 climb the right edge, pins 23–44 descend the
+left edge. **Use these numbers when probing or talking about a contact** — they are not the
+schematic-symbol pin numbers. The medulla's left header is dual-row (44 pads, 22 unique nets — each
+row is shorted between its two pads for daughterboard pass-through).
+
+### What the assembled board actually does
+
+Board `84d6dd0` (the gerber-export commit, written on the board itself). Deviations from the pin
+table only — everything not listed does what the table says.
+
+| Pin | GPIO | Terminal | Name on the schematic | What it actually does |
+|---|---|---|---|---|
+| 19 | 1 | CN5.2 | `PRESSURE_3` | Reads the steering-angle sensor's PWM |
+| 35 | 3 | CN8.2 | `BUZZER` | Drives the EBS compressor MOSFET gate |
+
+Both are permanent, and neither displaced anything: no pressure-3 sensor is fitted, and the kart
+carries no buzzer or ASSI at all (those are formula-vehicle parts — settled 2026-07-18). The same two
+rows, plus the planned throttle-PWM pin, are listed in the "As-built pin use" section of the
+dv-hardware pinout file; **physical modifications are tracked in that board's rework list** in
+[`projects/kart-medulla/README.md`](https://github.com/rubenayla/dv-hardware/blob/main/projects/kart-medulla/README.md).
 
 !!! info "Two repurposed terminals on the current board"
-    Two nets no longer do what their original name says. The firmware header (`km_gpio.h`) hasn't caught up; the authoritative map is the schematic and [`.agents/esp32s3-pinmap.md`](https://github.com/UM-Driverless/kart-medulla/blob/main/.agents/esp32s3-pinmap.md).
+    Detail for the two rows in the table above — what to do with a probe and a soldering iron. The firmware header (`km_gpio.h`) hasn't caught up; the authoritative map is the schematic and [`.agents/esp32s3-pinmap.md`](https://github.com/UM-Driverless/kart-medulla/blob/main/.agents/esp32s3-pinmap.md).
 
-    - **CN5.2 / GPIO 1 — steering-angle PWM (was `PRESSURE_3`).** The Pressure-3 ADC channel is retired; the terminal now reads the steering-angle sensor's **single-wire PWM output — the wheel angle is encoded in the PWM duty cycle** — decoded on the ESP32-S3 with the MCPWM capture peripheral (edge timing), not read as an analog voltage. **Board rework: remove R10 only** (the pulldown to GND), keeping R8 + R9. The net is `CN5.2 —[R8 10k]— node —[R9 10k]— GPIO 1 —[R10 10k]— GND`, so R10 is the only shunt to ground and R8 + R9 stay in place as a 20 kΩ series into the pin — too high-impedance for the ADC, which is why this pin reads digital PWM (MCPWM capture), not analog. The current steering sensor (AS5600) still reads over I²C; this PWM path is for the planned MT6701 — see [Angle Sensor](../../steering/sensor/index.md) and [Wiring](../wiring.md).
+    - **CN5.2 / GPIO 1 — steering-angle PWM (was `PRESSURE_3`).** The Pressure-3 ADC channel is retired; the terminal now reads the steering-angle sensor's **single-wire PWM output — the wheel angle is encoded in the PWM duty cycle** — decoded on the ESP32-S3 with the MCPWM capture peripheral (edge timing), not read as an analog voltage. **Board rework: remove R10 only** (the pulldown to GND), keeping R8 + R9. The net is `CN5.2 —[R8 10k]— node —[R9 10k]— GPIO 1 —[R10 10k]— GND`, so R10 is the only shunt to ground and R8 + R9 stay in place as a 20 kΩ series into the pin — too high-impedance for the ADC, which is why this pin reads digital PWM (MCPWM capture), not analog. **This is the live path as of 2026-07-31: the MT6701 is mounted and validated working on the kart, reading over PWM** — it replaced the AS5600/I²C arrangement rather than waiting as a later cleanup. See [Angle Sensor](../../steering/sensor/index.md) and [Wiring](../wiring.md).
     - **CN8.2 / GPIO 3 — EBS compressor PWM (was `BUZZER`).** The old buzzer output now drives the EBS air-compressor MOSFET gate (net `CMD_COMPRESSOR_PWM`); the buzzer was dropped. An external 100 kΩ gate pulldown holds the FET off through boot.
 
 !!! note "CMD_ACC and CMD_BRAKE go through the external SPI DAC"
