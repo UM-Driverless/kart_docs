@@ -40,7 +40,7 @@ docs/assembly/
 ├── electronics/
 │   ├── bom.yaml              # Orin, ESP32, DAC, level shifter
 │   └── power/bom.yaml        # Battery cells, BMS, auxiliary battery
-└── sensors/bom.yaml          # ZED2 camera, YOLOv5 models
+└── sensors/bom.yaml          # ZED2 camera, YOLOv11 models
 ```
 
 ## Assembly Overview
@@ -96,7 +96,7 @@ docs/assembly/
 
 **Key Components:**
 - Stereolabs ZED2 stereo camera (€450.00)
-- Custom YOLOv5 cone detection model
+- Custom YOLOv11 cone detection model
 
 ## Estimated Project Costs
 

@@ -39,9 +39,9 @@ components:
       supported_ros: "ROS 2 Jazzy"
     notes: "Primary vision sensor for autonomous navigation and cone detection"
 
-  - id: "yolov5_detection_model"
-    part_number: "CUSTOM-YOLOV5-CONES"
-    description: "Custom YOLOv5 model for cone detection"
+  - id: "yolov11_detection_model"
+    part_number: "CUSTOM-YOLOV11-CONES"
+    description: "Custom YOLOv11 model for cone detection"
     category: "software"
     quantity: 1
     unit_cost: 0.00
@@ -50,9 +50,9 @@ components:
     criticality: "essential"
     suppliers:
       - name: "Custom trained model"
-        notes: "In-house training using YOLOv5 framework"
+        notes: "In-house training using the YOLOv11 framework"
     specifications:
-      framework: "YOLOv5"
+      framework: "YOLOv11"
       format: "ONNX for TensorRT optimization"
       input_resolution: "TBD"
       classes: "Traffic cones (various types)"

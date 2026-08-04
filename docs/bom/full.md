@@ -108,7 +108,7 @@ The traction pack was assembled by the team from individual components rather th
 | Part | Qty | Source | Team cost (€) | Market cost (€) | Notes |
 |---|---:|---|---:|---:|---|
 | Stereolabs ZED 2 stereo camera | 1 | Purchased | 450 | 450 | Primary perception sensor. |
-| Custom YOLOv5 cone-detection model | 1 | Custom | 0 | 0 | Trained in-house. |
+| Custom YOLOv11 cone-detection model | 1 | Custom | 0 | 0 | Trained in-house. |
 | Motor Hall sensors (×3) | 0 | Built-in | 0 | 0 | Internal to the Kunray motor; read via level shifters on the Kart Medulla PCB. No external sensors needed. |
 
 **Sensors subtotal — team: €450 · market: €450**
