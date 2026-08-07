@@ -146,3 +146,8 @@ sponsors. Full names resolved from the Notion workspace member list. Team member
 own LinkedIn/GitHub via the GitHub "Edit" pencil (git-practice on-ramp); how-to is a source
 comment, not shown on the page. Lead entry kept modest — shared work (ROS 2, dashboard)
 credited to the people who did it, not the lead.
+
+## Build-journey mini-entries (added 2026-08-07) — status: Ready (blocked on media)
+Convention in `AGENTS.md` (build-journey section): small dated entries for build moments too minor for a LinkedIn post, no LinkedIn link, mirrored to the portfolio build journey. First two to write, both waiting on photos + facts from Rubén:
+- Steel steering gear arrived (replaces the worn 3D-printed gear the steering posts documented).
+- MOSFET driver board 3.3 V fix (5 V-designed input stage: bridge rectifier removed, input resistor swapped; verify part numbers/values against the schematic in `~/dv/kart/kart-medulla/` before publishing).

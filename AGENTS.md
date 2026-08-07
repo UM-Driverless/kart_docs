@@ -46,6 +46,15 @@ are the ones that went into the post, in order.
    paths (`/videos/…`, `../images/build-journey/…`) and links the post title to its LinkedIn
    URL. Update the `**Jump to:**` anchor line in both.
 
+**Mini-entries (decided 2026-08-07):** the build journey also carries small dated entries for
+build moments too minor for a LinkedIn post (a part arriving, a quick board fix, a bench
+observation) — the page is the build log, not only a post mirror. Anatomy: same `## <title>
+{ #<anchor> }` section, `*<YYYY-MM-DD>*` date line with **no LinkedIn link** (the missing link is
+what marks it as a mini), one photo + a few sentences, inserted in chronological order among the
+posts. Add its anchor to `**Jump to:**` like any other. Mirror every mini into the portfolio's
+build journey the same way. Facts in a mini get the same verification bar as a post — check
+numbers against `~/dv/` before publishing them.
+
 ## Related Repository: `~/dv/` (engineering working notes)
 
 The team's raw engineering notes, decisions, datasheets, and component data live in a **separate local repo at `~/dv/`** (the "DV" / driverless working repo). This `kart-docs` repo is the *polished, published* documentation; `~/dv/` is where the messy source material and design reasoning accumulate. **Check it before researching or rewriting any subsystem** — the answer (and its history) is usually already there.
