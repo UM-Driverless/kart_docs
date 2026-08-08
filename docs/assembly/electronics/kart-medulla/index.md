@@ -139,5 +139,5 @@ Terminal notes that aren't obvious from the wire list:
 - **CN8.1 SDC** is `SDC_IN_LOW_SIDE`, the Q3 drain that closes the kart shutdown chain's return path. The ESP32 side of that MOSFET (`SDC_NOT_EMERGENCY`, GPIO 18) is internal and deliberately not on any terminal.
 - **CN10** analog commands come from the MCP4922 SPI DAC (the S3 has no native DAC).
 
-!!! warning "Physical pin order on CN6–CN10"
-    The silkscreen pin *numbering* (1/2/3) above is the logical net assignment. On the fabricated board, physical top-to-bottom order matches the numbering **only for CN1–CN5**; CN6–CN10 may be physically reversed. Verify against the board before wiring.
+!!! warning "Physical pin order runs opposite on the two sides"
+    Pin 1 is **at the top** on CN1–CN5 (right side, footprint rotation −90°) and **at the bottom** on CN6–CN10 (left side, +90°) — verified against `kart-medulla.kicad_pcb` on 2026-07-10, superseding an earlier "1/2/3 top to bottom" reading that only held on the right. Because the CNs themselves advance bottom→top on the right and top→bottom on the left, pin numbering runs *counter* to connector numbering on both sides. Details and the staggered-footprint consequence are on the [Connector Pinout](pinout.md) page.
