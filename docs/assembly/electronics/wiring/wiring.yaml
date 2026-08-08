@@ -106,7 +106,7 @@ nets:
   - {name: STEER_ANGLE_PWM, system: Steering, class: signal, voltage: "3.3V", status: planned, pins: [medulla.CN5.2, steer_sensor.pwm], note: "Future MT6701 single-wire PWM (R10 removed)"}
   - {name: CMD_STEER_PWM,   system: Steering, class: signal, voltage: "3.3V", pins: [medulla.CN9.1, cytron.pwm]}
   - {name: CMD_STEER_DIR,   system: Steering, class: signal, voltage: "3.3V", pins: [medulla.CN8.3, cytron.dir]}
-  - {name: "STEER_M+_SW",   system: Steering, class: drive, voltage: "48V", color: "—", pins: [cytron.mplus, mode_switch.steer_in], note: "Cytron output up to the mode switch's second pole. Field-verify which conductor the switch actually breaks — modelled here as M+; if it breaks M- instead, or both, move this row."}
+  - {name: "STEER_M+_SW",   system: Steering, class: drive, voltage: "48V", color: "—", pins: [cytron.mplus, mode_switch.steer_in], note: "Cytron output up to the mode switch's second pole. M+ is the switched conductor — confirmed by Rubén 2026-08-08; M- runs straight through."}
   - {name: "STEER_M+",      system: Steering, class: drive, voltage: "48V", color: "—", pins: [mode_switch.steer_out, steer_motor.mplus], note: "Open in manual mode — the switch's second pole physically disconnects the steering motor, so a firmware fault cannot steer the kart while a human is driving it."}
   - {name: "STEER_M-",      system: Steering, class: drive, voltage: "48V", color: "—", pins: [cytron.mminus, steer_motor.mminus]}
 

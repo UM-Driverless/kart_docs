@@ -263,7 +263,7 @@
     <rect x="14" y="14" width="172" height="40" fill="#fff" stroke="#ef6c00" stroke-width="1.4" rx="2"/>
     <text x="100" y="38" class="small" text-anchor="middle" font-weight="700">MD25HV</text>
     <text x="100" y="68" class="name" text-anchor="middle">Cytron H-bridge</text>
-    <text x="100" y="84" class="desc" text-anchor="middle">25 A · 12 V</text>
+    <text x="100" y="84" class="desc" text-anchor="middle">25 A · 7–58 V in</text>
     <text x="100" y="96" class="small" text-anchor="middle" font-style="italic">drives steering motor</text>
   </g>
 
@@ -276,7 +276,7 @@
     <g stroke="#ef6c00" stroke-width="2"><line x1="78" y1="50" x2="92" y2="50"/></g>
     <text x="116" y="42" class="name" text-anchor="middle">Steering</text>
     <text x="116" y="58" class="name" text-anchor="middle">Motor</text>
-    <text x="116" y="78" class="small" text-anchor="middle">DC 12 V</text>
+    <text x="116" y="78" class="small" text-anchor="middle">fed from the 48 V bridge</text>
   </g>
 
   <!-- ==================== COCKPIT band ==================== -->
@@ -456,9 +456,11 @@
   <line x1="1290" y1="630" x2="1240" y2="630" stroke="#c62828" stroke-width="2.5" marker-end="url(#ar-red)"/>
   <text x="1265" y="622" class="lbl-sm" fill="#c62828" text-anchor="middle">12 V → relay coil</text>
 
-  <!-- 12 V branch: rail → Cytron (top route, via right column up to top channel) -->
-  <polyline points="1290,540 1290,275 860,275 860,250" stroke="#c62828" stroke-width="2.5" fill="none" marker-end="url(#ar-red)"/>
-  <text x="1090" y="268" class="lbl-sm" fill="#c62828" text-anchor="middle">12 V → Cytron</text>
+  <!-- 48 V pack → Cytron. Branches off the battery run, NOT the 12 V rail: the Cytron sits
+       directly on the pack (settled 2026-07-30). Bold stroke = 48 V, per the legend. -->
+  <polyline points="900,1410 1610,1410 1610,275 860,275 860,250" stroke="#c62828" stroke-width="5" fill="none" marker-end="url(#ar-red)"/>
+  <circle cx="900" cy="1410" r="5" fill="#c62828"/>
+  <text x="1080" y="268" class="lbl-sm" fill="#c62828" text-anchor="middle" font-weight="700">48 V pack → Cytron (direct from battery)</text>
 
   <!-- (Removed: bogus "12 V → KEY" stub. The ESC key is a low-current 2-wire
        signal loop on the ESC itself, not a 12 V rail. SDC source enters the

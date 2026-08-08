@@ -703,3 +703,22 @@ medulla pin is part of the v2 allocation being decided in `dv-hardware`.
 **Found and not fixed:** the SVG still shows the Cytron on 12 V, contradicting the 2026-07-30
 decision that it runs off the 48 V pack. Filed in `tasks.md` — it needs a reroute, not a
 relabel, so it was left alone rather than half-corrected.
+
+### Same day — both open questions closed by Rubén
+
+1. **"motor + is the one switched."** The mode switch's second pole breaks **M+**; M− runs
+   straight through. The `STEER_M+_SW` / `STEER_M+` split in `wiring.yaml` was already modelled
+   that way and is now stated as confirmed rather than assumed.
+2. **"cytron is powered directly from the battery. confirmed."** So the SVG's `12 V → Cytron`
+   wire was wrong in topology, not just in its label. Rerouted to branch off the battery run at
+   (900, 1410) and climb the x = 1610 corridor to the Cytron, drawn in bold stroke because the
+   legend already defines bold red as 48 V. First attempt routed it up x = 1900 and it crossed
+   straight through the acronym legend box (1620–1960, y 80–350) and Kill 2 at (1700, 910) —
+   caught by rendering the SVG to PNG and looking at it, which is the only way these collisions
+   show up in a hand-written SVG. x = 1610 threads between the perception zone (ends 1600) and
+   the legend (starts 1620).
+
+Also corrected while there: the Cytron box said `25 A · 12 V`, now `25 A · 7–58 V in` (its real
+input range, so the number stops implying a supply choice), and the steering motor box said
+`DC 12 V`, now `fed from the 48 V bridge`. The motor's own voltage rating is still not recorded
+anywhere — worth measuring or finding, but it is no longer being asserted wrongly.
