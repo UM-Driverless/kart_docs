@@ -3,6 +3,41 @@
 
 ## Ready
 
+### Add a pulldown on CMD_STEER_PWM so a resetting ESP32 cannot drive the steering motor
+On 2026-08-08 the steering swung hard to one lock while the ESP32-S3 was being reflashed and
+broke teeth off the steering gears. The kart was in autonomous at the time. Rubén's reading of
+the event is that the swing happened during the flash itself, while the chip sat in the
+bootloader running no code at all — which means no firmware change and no change on the Orin
+can prevent a repeat, because nothing on the ESP32 is executing during that window.
+
+The board has no hardware default for steering. `docs/assembly/electronics/kart-medulla/index.md`
+states it plainly: "Steering is NOT muxed — the ESP32 always drives the Cytron H-bridge
+directly; in manual mode firmware sets PWM = 0." So the steering's only safety is firmware
+writing zero, which by definition does not exist while the chip is unbooted, resetting, or
+crashed. `CMD_STEER_PWM` (CN9.1, ESP32-S3 GPIO 40) is left floating in all three cases, and a
+floating CMOS line can sit above the Cytron MD25HV's input threshold indefinitely.
+
+Fix: a pulldown from `CMD_STEER_PWM` to GND, at the Cytron end of the net so it also protects
+against the connector being unplugged. 10 kΩ matches the pulldown already used on this board
+for `SELECT_THROTTLE` (GPIO 15) and is nowhere near the ESP32's drive limit. The firmware
+drives the Cytron in sign-magnitude mode — PWM duty for magnitude, a separate DIR pin for sign
+(`km_act`) — so zero on the PWM line means the motor is off and DIR does not matter. **Confirm
+the Cytron's mode switches actually select sign-magnitude before relying on that**: in a
+locked-antiphase mode a low PWM line would mean full reverse, i.e. the pulldown would cause the
+exact failure it is meant to prevent. A second pulldown on `CMD_STEER_DIR` (CN8.3) is cheap and
+makes the resting direction deterministic.
+
+This is the same protection throttle already has and steering was never given. Do it as a
+rework on the current board, not only in v2 — the kart is being flashed regularly today.
+
+Worth confirming with a meter while the fix is being made: probe CN9.1 against GND, motor
+unplugged, and flash. A reading clearly above 0 V during the bootloader window confirms the
+mechanism; near 0 V the whole time means the cause was something else and the fix is the
+firmware/Orin side instead (see kart-brain `tasks.md`, same date).
+
+Until the resistor exists, the operating rule is to de-power the Cytron or unplug the steering
+motor before every flash.
+
 ### Split the medulla's ground terminals between GND and GND_SIG
 The harness now has two grounds: `GND` (power) and `GND_SIG` (sensors, black + white
 stripe), tied only at the rear ground Wago block near the battery and the 12 V / 24 V
