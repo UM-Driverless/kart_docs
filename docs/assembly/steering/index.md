@@ -62,6 +62,27 @@ See [H-bridge](h-bridge.md) and [Angle sensor](sensor/index.md) for the electron
 
 24 V geared DC motor (salvaged), driven from the battery through the Cytron MD25HV H-bridge with PWM. At stall it pulls 47 V × 43 A ≈ 2 kW; normal steering work is only ~47 W (see sizing below).
 
+### Why a 24 V motor runs off the 48 V pack
+
+This is deliberate, not an oversight — the motor is run at roughly twice its rated voltage and the
+team accepts it. Rubén's reasoning, recorded 2026-08-08:
+
+- **The duty is nothing like continuous.** Steering draws real power only while the column is
+  actually turning, which is a fraction of a second at a time. Average load is far below the
+  ~47 W the sizing calls for, and nowhere near the 2 kW stall figure.
+- **The motor is well cooled** in its mounted position.
+- **PWM is limited to 50 % duty**, so the average voltage the motor sees is about 24 V — its
+  rating. Removing that limit is still considered safe given the duty cycle and cooling; the limit
+  is margin, not the thing keeping the motor alive.
+
+**Consequence for firmware:** the 50 % PWM cap exists for this hardware reason, so it should not be
+raised as if it were an arbitrary tuning value without knowing that. Rated voltage is the reason it
+is there.
+
+The thing that would actually change this judgement is the duty cycle, not the voltage — if the
+steering ever ends up holding a large angle against load for sustained periods (rather than moving
+and releasing), the heat picture is different and this should be revisited.
+
 ![Motor mounted to the bracket in Fusion 360, sun gear on the shaft](images/steering-motor-mount-cad.png)
 
 *Motor on its bracket (Fusion `steering_motor_assembly v20`): the carrier/sun mounts straight onto the motor shaft, so the reducer is coaxial with the motor.*

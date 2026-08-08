@@ -43,7 +43,7 @@ devices:
            CN7.1, CN7.2, CN7.3, CN8.1, CN8.2, CN8.3, CN9.1, CN9.2, CN9.3,
            CN10.1, CN10.2, CN10.3, USB]
   cytron:         {desc: "Cytron MD25HV steering H-bridge (7-58 V input)", pins: [vin, gnd, pwm, dir, mplus, mminus]}
-  steer_motor:    {desc: "Steering motor", pins: [mplus, mminus]}
+  steer_motor:    {desc: "Steering motor — salvaged 24 V geared DC, deliberately run off the 48 V pack (intermittent duty, well cooled, PWM capped at 50%). See steering/index.md.", pins: [mplus, mminus]}
   steer_sensor:   {desc: "Steering angle sensor (AS5600 now / MT6701 planned)", pins: [vcc, gnd, sda, scl, pwm]}
   esc:            {desc: "BLDC traction ESC (AliExpress 48 V)", pins: [v+, v-, u, v, w, throttle, key1, key2]}
   motor:          {desc: "3-phase BLDC traction motor + Hall block", pins: [u, v, w, hall1, hall2, hall3, hall5v, hallgnd]}

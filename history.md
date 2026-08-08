@@ -722,3 +722,28 @@ Also corrected while there: the Cytron box said `25 A · 12 V`, now `25 A · 7�
 input range, so the number stops implying a supply choice), and the steering motor box said
 `DC 12 V`, now `fed from the 48 V bridge`. The motor's own voltage rating is still not recorded
 anywhere — worth measuring or finding, but it is no longer being asserted wrongly.
+
+### Same day — the steering motor is a 24 V part run at 48 V, on purpose
+
+Closing the "motor voltage not recorded" note I left earlier that day: it **was** already recorded
+— `docs/assembly/steering/index.md` has said "24 V geared DC motor (salvaged), driven from the
+battery" all along. What was missing was the reason that is acceptable, which is the part a reader
+would otherwise file as a bug.
+
+Rubén, 2026-08-08: the motor is rated 24 V and runs off the ~48 V pack deliberately. It is never
+worked hard continuously, it is well cooled, and firmware caps PWM at 50 % duty, so the average
+voltage across it is about its rating. He is explicit that even removing the 50 % cap would not
+damage it, given the duty cycle — so the cap is margin rather than the thing keeping the motor
+alive.
+
+Recorded in three places so it survives: a "Why a 24 V motor runs off the 48 V pack" section on the
+steering page, the `steer_motor` description in `wiring.yaml`, and the motor box in the global SVG
+(now "24 V motor on 48 V / intentional — PWM capped 50%") instead of the vague "fed from the 48 V
+bridge" I had put there hours earlier.
+
+**The firmware consequence worth carrying forward:** the 50 % PWM cap exists for a hardware reason.
+Anyone treating it as an arbitrary tuning number and raising it should at least know why it is
+there. Noted on the steering page next to the reasoning.
+
+What would actually change this judgement is duty cycle, not voltage — sustained holding against
+load rather than move-and-release.

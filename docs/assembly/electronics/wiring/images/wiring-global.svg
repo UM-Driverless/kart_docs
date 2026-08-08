@@ -276,7 +276,8 @@
     <g stroke="#ef6c00" stroke-width="2"><line x1="78" y1="50" x2="92" y2="50"/></g>
     <text x="116" y="42" class="name" text-anchor="middle">Steering</text>
     <text x="116" y="58" class="name" text-anchor="middle">Motor</text>
-    <text x="116" y="78" class="small" text-anchor="middle">fed from the 48 V bridge</text>
+    <text x="116" y="78" class="small" text-anchor="middle">24 V motor on 48 V</text>
+    <text x="116" y="92" class="small" text-anchor="middle" font-style="italic">intentional — PWM capped 50%</text>
   </g>
 
   <!-- ==================== COCKPIT band ==================== -->
