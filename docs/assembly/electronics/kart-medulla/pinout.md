@@ -1,12 +1,12 @@
 <!-- sync_pinout source-sha256: 4c007950a4b6fbab3b441a112788482767e1653f03925b96a5a09a23b91621df -->
 <!-- sync_pinout source-commit: 61f5a1c94826288269cd0dfda17092a2abbbfda4 -->
 !!! info "Generated page — edit it in `dv-hardware`, not here"
-    This is a verbatim copy of [`projects/kart-medulla/docs/pinout-cn-connectors.md`](https://github.com/rubenayla/dv-hardware/blob/61f5a1c94826288269cd0dfda17092a2abbbfda4/projects/kart-medulla/docs/pinout-cn-connectors.md) in the **dv-hardware**
+    This is a verbatim copy of [`projects/kart-medulla/docs/pinout-cn-connectors.md`](https://github.com/UM-Driverless/dv-hardware/blob/61f5a1c94826288269cd0dfda17092a2abbbfda4/projects/kart-medulla/docs/pinout-cn-connectors.md) in the **dv-hardware**
     repo, which holds the KiCad schematic that defines these assignments. Changes
     made here are overwritten. To update: edit the file in dv-hardware, then run
     `uv run python scripts/sync_pinout.py` in kart-docs and commit the result.
 
-    Pinned to dv-hardware commit [`61f5a1c94826`](https://github.com/rubenayla/dv-hardware/commit/61f5a1c94826288269cd0dfda17092a2abbbfda4) (2026-07-31). The link above is a permalink to that exact revision, so it keeps meaning what it meant when this copy was made; dv-hardware may have newer commits.
+    Pinned to dv-hardware commit [`61f5a1c94826`](https://github.com/UM-Driverless/dv-hardware/commit/61f5a1c94826288269cd0dfda17092a2abbbfda4) (2026-07-31). The link above is a permalink to that exact revision, so it keeps meaning what it meant when this copy was made; dv-hardware may have newer commits.
 
     Related: [Kart Medulla board](index.md) · [whole-kart wire list](../wiring.md#wire-list-whole-kart)
     · ESP32-S3 GPIO map in dv-hardware's `pinout-esp32-s3.md`.

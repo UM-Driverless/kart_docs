@@ -632,3 +632,39 @@ the serial only unique within it (Construct 2). It presumes a registered enterpr
 also specifies the mark as Data Matrix ECC 200 with a defined data syntax rather than a QR carrying
 bare digits. The serial component itself may be random — nothing in the standard requires counting up
 — but that does not make a random number a UII. SN stays the standard equivalent of unit ID.
+
+## 2026-08-08 — CN1–CN10 pinout published, and cross-repo links pinned to commits
+
+The medulla connector table was never missing, just invisible from here: it lives in dv-hardware as
+`projects/kart-medulla/docs/pinout-cn-connectors.md`, next to the KiCad schematic that defines it,
+and this repo only linked at it in prose. `scripts/sync_pinout.py` now copies it verbatim into
+`docs/assembly/electronics/kart-medulla/pinout.md` under a provenance banner. Still one authored
+table, so the drift that got the old hand-maintained tables deleted cannot return.
+
+The copy is committed rather than rendered by a mkdocs hook the way the wiring and BOM tables are,
+because GitHub Actions checks out kart-docs alone and cannot reach dv-hardware at build time.
+`--check` reports staleness wherever the source is visible and exits 0 where it is not.
+
+**Cross-repo links are pinned to a commit, never `main`** (Ruben's rule, this session): a `main`
+link silently changes meaning as the other repo moves, so a reader comparing the copy against
+"the source" would be reading a different document than the one that produced it. The banner
+carries a permalink to the exact revision plus its date; syncing from a dirty dv-hardware working
+tree is refused, because such a copy would correspond to no commit. `--allow-dirty` overrides.
+`pinout-esp32-s3.md` and `esp32-s3-pin-capabilities.md` links in the medulla page are pinned too;
+dv-hardware's `projects/kart-medulla/README.md` is deliberately left on `main`, because it is a
+living rework list that is meant to be read as current state.
+
+Three things found while doing it:
+
+- **Every `dv-hardware` link in this repo pointed at `github.com/rubenayla/dv-hardware`, which
+  404s.** The remote is `UM-Driverless/dv-hardware`. All of them were dead; all are fixed.
+- Two stale pointers on the medulla page: it told readers to filter the wire list's `From`/`To`
+  columns (the column is `Connected pins`, and pins read `medulla.CN1.2`), and claimed the
+  "ESP32-S3 Pin Assignment" section above held a table with a `Silkscreen` column — that section
+  explicitly carries no table.
+- kart-docs and kart-medulla disagreed on the CN5.2 rework. This repo said remove R10 only; the
+  firmware repo said R9+R10. Ruben confirmed this repo was right, and kart-medulla was corrected
+  (`078e34e` there). kart-medulla also still called the steering sensor an AS5600.
+
+kart-medulla reads dv-hardware directly rather than going through kart-docs: it is a peer of the
+hardware repo, and a hop through the docs site could only ever be staler than what it reads today.

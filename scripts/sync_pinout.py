@@ -37,7 +37,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SOURCE_REL = "projects/kart-medulla/docs/pinout-cn-connectors.md"
 OUTPUT = REPO_ROOT / "docs/assembly/electronics/kart-medulla/pinout.md"
-SOURCE_REPO = "https://github.com/rubenayla/dv-hardware"
+SOURCE_REPO = "https://github.com/UM-Driverless/dv-hardware"
 HASH_PREFIX = "<!-- sync_pinout source-sha256: "
 
 

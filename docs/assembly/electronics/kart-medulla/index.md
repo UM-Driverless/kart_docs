@@ -46,7 +46,7 @@ The medulla PCB hosts the ESP32-S3 module via a stock **ESP32-S3-DevKitC-1** dev
 ## ESP32-S3 Pin Assignment
 
 **The full 44-row pin table is not repeated here. It lives with the schematic**, in
-[`projects/kart-medulla/docs/pinout-esp32-s3.md`](https://github.com/rubenayla/dv-hardware/blob/main/projects/kart-medulla/docs/pinout-esp32-s3.md)
+[`projects/kart-medulla/docs/pinout-esp32-s3.md`](https://github.com/UM-Driverless/dv-hardware/blob/3da3b4655835a0bff6131b18d9e9947db73568ae/projects/kart-medulla/docs/pinout-esp32-s3.md)
 (`dv-hardware`), because a pin map is only correct relative to a schematic revision and the two have
 to change in one commit. This page carries what you need **with the board in front of you**: which
 pins do something other than their name, and what has been physically modified.
@@ -56,7 +56,7 @@ it row by row and left a note that two rows were deliberately ahead of dv-hardwa
 dv-hardware caught up and the note became wrong. That is why there is now one table, not two.
 
 For the per-pin capability reference (which GPIOs can do ADC, which are strap pins) see
-[`lib/esp32-s3-pin-capabilities.md`](https://github.com/rubenayla/dv-hardware/blob/main/lib/esp32-s3-pin-capabilities.md).
+[`lib/esp32-s3-pin-capabilities.md`](https://github.com/UM-Driverless/dv-hardware/blob/c3e9dcc223ffe28ebb7667a7d0dcd2dbe9d412cb/lib/esp32-s3-pin-capabilities.md).
 
 Pin numbers 1–44 follow a chip-style counter-clockwise convention: pin 1 is the bottom-right contact
 (USB-C at the top, component side facing you), pins 1–22 climb the right edge, pins 23–44 descend the
@@ -78,7 +78,7 @@ Both are permanent, and neither displaced anything: no pressure-3 sensor is fitt
 carries no buzzer or ASSI at all (those are formula-vehicle parts — settled 2026-07-18). The same two
 rows, plus the planned throttle-PWM pin, are listed in the "As-built pin use" section of the
 dv-hardware pinout file; **physical modifications are tracked in that board's rework list** in
-[`projects/kart-medulla/README.md`](https://github.com/rubenayla/dv-hardware/blob/main/projects/kart-medulla/README.md).
+[`projects/kart-medulla/README.md`](https://github.com/UM-Driverless/dv-hardware/blob/main/projects/kart-medulla/README.md).
 
 !!! info "Two repurposed terminals on the current board"
     Detail for the two rows in the table above — what to do with a probe and a soldering iron. The firmware header `km_gpio.h` carries both (`PIN_STEER_PWM_IN` = GPIO 1, documented there as the MT6701's ~994 Hz PWM angle frame; `PIN_CMD_COMPRESSOR` = GPIO 3) — checked 2026-07-31, an earlier note here saying it hadn't caught up was stale. The authoritative map is still the schematic and [`.agents/esp32s3-pinmap.md`](https://github.com/UM-Driverless/kart-medulla/blob/main/.agents/esp32s3-pinmap.md).
