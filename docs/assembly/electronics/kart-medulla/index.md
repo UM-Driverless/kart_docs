@@ -122,7 +122,11 @@ Interface PCB hosting the ESP32-S3 module, signal conditioning, the SPI DAC, the
 
 ### Connector Pinout (Outside World)
 
-The fabricated ESP32-S3 interface PCB brings every outside-world signal to ten 3-pin green push-in headers, **CN1–CN10** (per the board's `F.Silkscreen` layer). Rather than repeat a connector table here, **every wire on these terminals lives in the single [whole-kart wire list](../wiring.md#wire-list-whole-kart)** — filter the `From`/`To` columns for `Medulla CNx.y`. The terminal → GPIO mapping is also in the [ESP32-S3 pin assignment](#esp32-s3-pin-assignment) table above (its `Silkscreen` column is the GPIO on each terminal). Signal names follow the [Net Name Nomenclature](../net-naming.md) convention.
+The fabricated ESP32-S3 interface PCB brings every outside-world signal to ten 3-pin green push-in headers, **CN1–CN10** (per the board's `F.Silkscreen` layer).
+
+**What is on each terminal: [Connector Pinout (CN1–CN10)](pinout.md).** That page carries the per-connector assignment table, the silkscreen block, the physical pin-order rules, and the two naming traps (`BUZZ` on CN8.2 is not a buzzer; `EXP_P2` is CN3.2). It is generated from the schematic-side file in `dv-hardware` — see the banner at the top of it.
+
+**Which wire runs where: the [whole-kart wire list](../wiring.md#wire-list-whole-kart).** One row per net; search the `Connected pins` column for `medulla.CNx.y`. **Which GPIO a terminal reaches:** `projects/kart-medulla/docs/pinout-esp32-s3.md` in `dv-hardware`. Signal names follow the [Net Name Nomenclature](../net-naming.md) convention.
 
 ![Kart Medulla main connector (green push-in)](images/kart-medulla-main-connector.png)
 

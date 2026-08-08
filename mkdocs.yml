@@ -53,6 +53,7 @@ nav:
           - Wiring: assembly/electronics/wiring.md
           - Kart Medulla (ESP32-S3):
               - assembly/electronics/kart-medulla/index.md
+              - Connector Pinout (CN1–CN10): assembly/electronics/kart-medulla/pinout.md
               - Firmware: assembly/electronics/kart-medulla/firmware.md
           - Computer: assembly/electronics/computer.md
           - Orin Setup: assembly/electronics/orin-setup.md

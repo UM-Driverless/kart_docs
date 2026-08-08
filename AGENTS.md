@@ -103,7 +103,8 @@ kart-docs/
 │   └── assets/
 │       └── datasheets/       # PDF datasheets
 ├── scripts/
-│   └── aggregate_bom.py      # BOM report generation
+│   ├── aggregate_bom.py      # BOM report generation
+│   └── sync_pinout.py        # Pulls the CN1–CN10 pinout page from dv-hardware
 ├── generate_bom_hook.py      # MkDocs hook for dynamic parts table
 ├── generate_bom_reports.sh   # Helper script for reports
 └── pyproject.toml            # uv-compatible project config
@@ -115,7 +116,24 @@ uv sync                        # Install dependencies
 uv run mkdocs serve            # Local dev server
 uv run mkdocs build --strict   # Build with strict warnings (CI uses this)
 ./generate_bom_reports.sh      # Generate BOM reports
+uv run python scripts/sync_pinout.py          # Refresh the CN1–CN10 pinout page
+uv run python scripts/sync_pinout.py --check  # Fail if that page is stale
 ```
+
+### Pin maps come from dv-hardware
+
+A pin map is only correct relative to a schematic revision, so `dv-hardware` owns
+both medulla pin tables and kart-docs never hand-writes them:
+
+- **`projects/kart-medulla/docs/pinout-cn-connectors.md`** — the CN1–CN10 terminal
+  assignments. Republished at `docs/assembly/electronics/kart-medulla/pinout.md` by
+  `scripts/sync_pinout.py`, which copies it verbatim under a provenance banner.
+  Edit the dv-hardware file, then re-run the script and commit the result — the
+  generated page is committed, because GitHub Actions checks out kart-docs alone
+  and cannot reach dv-hardware at build time. The script finds dv-hardware as a
+  sibling directory, or via `$DV_HARDWARE`.
+- **`projects/kart-medulla/docs/pinout-esp32-s3.md`** — the 44-row terminal → GPIO
+  map. Linked, not copied.
 
 ## Key Features
 
