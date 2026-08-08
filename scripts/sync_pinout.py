@@ -6,6 +6,12 @@ so dv-hardware owns the table and kart-docs republishes it. This script copies
 `projects/kart-medulla/docs/pinout-cn-connectors.md` verbatim, prepending a
 provenance banner and a hash of the source.
 
+The banner links to the **exact dv-hardware commit** the copy was taken from, not
+to `main`. A `main` link silently changes meaning when dv-hardware moves on, so a
+reader checking the copy against "the source" would be comparing against a
+different document than the one that produced it. Syncing from a dirty working
+tree is refused for the same reason: the copy would correspond to no commit.
+
 The result IS committed to kart-docs, unlike the wiring and BOM tables which are
 rendered at build time by mkdocs hooks. GitHub Actions checks out kart-docs
 alone, so a build-time hook could not reach dv-hardware; committing the copy
@@ -24,17 +30,61 @@ from __future__ import annotations
 import argparse
 import hashlib
 import os
+import subprocess
 import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 SOURCE_REL = "projects/kart-medulla/docs/pinout-cn-connectors.md"
 OUTPUT = REPO_ROOT / "docs/assembly/electronics/kart-medulla/pinout.md"
-SOURCE_URL = (
-    "https://github.com/rubenayla/dv-hardware/blob/main/"
-    "projects/kart-medulla/docs/pinout-cn-connectors.md"
-)
+SOURCE_REPO = "https://github.com/rubenayla/dv-hardware"
 HASH_PREFIX = "<!-- sync_pinout source-sha256: "
+
+
+def git(repo: Path, *args: str) -> str:
+    """Run git in `repo` and return stripped stdout, or '' if it fails."""
+    try:
+        out = subprocess.run(
+            ["git", "-C", str(repo), *args],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return ""
+    return out.stdout.strip()
+
+
+class Provenance:
+    """Which dv-hardware commit the copied file came from."""
+
+    def __init__(self, source: Path):
+        repo = source.parent
+        self.commit = git(repo, "log", "-1", "--format=%H", "--", str(source))
+        self.date = git(repo, "log", "-1", "--format=%ad", "--date=short", "--", str(source))
+        self.dirty = bool(git(repo, "status", "--porcelain", "--", str(source)))
+
+    @property
+    def permalink(self) -> str:
+        ref = self.commit or "main"
+        return f"{SOURCE_REPO}/blob/{ref}/{SOURCE_REL}"
+
+    @property
+    def short(self) -> str:
+        return self.commit[:12] if self.commit else "unknown"
+
+    def describe(self) -> str:
+        if not self.commit:
+            return (
+                "Taken from a copy of dv-hardware that is **not under git here**, so no "
+                "commit could be pinned and the link above tracks `main` — it may have "
+                "moved on since. Re-run the sync from a git checkout to pin it."
+            )
+        return (
+            f"Pinned to dv-hardware commit [`{self.short}`]({SOURCE_REPO}/commit/{self.commit}) "
+            f"({self.date}). The link above is a permalink to that exact revision, so it keeps "
+            "meaning what it meant when this copy was made; dv-hardware may have newer commits."
+        )
 
 
 def default_source() -> Path:
@@ -44,14 +94,17 @@ def default_source() -> Path:
     return base / SOURCE_REL
 
 
-def render(source_text: str) -> str:
+def render(source_text: str, prov: Provenance) -> str:
     digest = hashlib.sha256(source_text.encode("utf-8")).hexdigest()
     banner = f"""{HASH_PREFIX}{digest} -->
+<!-- sync_pinout source-commit: {prov.commit or "unknown"} -->
 !!! info "Generated page — edit it in `dv-hardware`, not here"
-    This is a verbatim copy of [`{SOURCE_REL}`]({SOURCE_URL}) in the **dv-hardware**
+    This is a verbatim copy of [`{SOURCE_REL}`]({prov.permalink}) in the **dv-hardware**
     repo, which holds the KiCad schematic that defines these assignments. Changes
     made here are overwritten. To update: edit the file in dv-hardware, then run
     `uv run python scripts/sync_pinout.py` in kart-docs and commit the result.
+
+    {prov.describe()}
 
     Related: [Kart Medulla board](index.md) · [whole-kart wire list](../wiring.md#wire-list-whole-kart)
     · ESP32-S3 GPIO map in dv-hardware's `pinout-esp32-s3.md`.
@@ -64,6 +117,12 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", type=Path, default=None, help="path to pinout-cn-connectors.md")
     parser.add_argument("--check", action="store_true", help="verify the page is up to date")
+    parser.add_argument(
+        "--allow-dirty",
+        action="store_true",
+        help="sync even though the source has uncommitted edits (the copy will cite a commit "
+        "that does not contain them)",
+    )
     args = parser.parse_args()
 
     source = args.source or default_source()
@@ -78,7 +137,17 @@ def main() -> int:
         print(f"error: {message}", file=sys.stderr)
         return 1
 
-    expected = render(source.read_text(encoding="utf-8"))
+    prov = Provenance(source)
+    if prov.dirty and not args.check and not args.allow_dirty:
+        print(
+            f"error: {source} has uncommitted changes, so the copy would cite commit "
+            f"{prov.short}, which does not contain them.\n"
+            "Commit in dv-hardware first, or pass --allow-dirty.",
+            file=sys.stderr,
+        )
+        return 1
+
+    expected = render(source.read_text(encoding="utf-8"), prov)
     current = OUTPUT.read_text(encoding="utf-8") if OUTPUT.is_file() else None
 
     if args.check:

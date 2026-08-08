@@ -132,6 +132,11 @@ both medulla pin tables and kart-docs never hand-writes them:
   generated page is committed, because GitHub Actions checks out kart-docs alone
   and cannot reach dv-hardware at build time. The script finds dv-hardware as a
   sibling directory, or via `$DV_HARDWARE`.
+  **Cross-repo links are pinned to a commit, never to `main`.** The banner links
+  the exact dv-hardware revision the copy came from, so it keeps meaning what it
+  meant when the copy was made instead of drifting as dv-hardware moves on.
+  Syncing from a dirty dv-hardware working tree is refused (`--allow-dirty`
+  overrides) because such a copy would correspond to no commit.
 - **`projects/kart-medulla/docs/pinout-esp32-s3.md`** — the 44-row terminal → GPIO
   map. Linked, not copied.
 
