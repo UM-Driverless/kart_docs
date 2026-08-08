@@ -747,3 +747,26 @@ there. Noted on the steering page next to the reasoning.
 
 What would actually change this judgement is duty cycle, not voltage — sustained holding against
 load rather than move-and-release.
+
+## 2026-08-08 — Steering gears broken during a reflash; the board has no hardware default for steering
+
+The steering swung to full lock while the ESP32-S3 was being reflashed with the kart in autonomous,
+and broke teeth off the steering gears. Full diagnosis and the firmware response are in the
+kart-medulla repo's `history.md`, same date; the requirement that came out of it is dv-hardware
+`projects/kart-medulla/requirements.md` REQ-08.
+
+What matters for these docs: the line in
+`docs/assembly/electronics/kart-medulla/index.md` that reads *"Steering is NOT muxed — the ESP32
+always drives the Cytron H-bridge directly; in manual mode firmware sets PWM = 0"* turned out to be
+the whole story of the failure. It was written as a description of the mux's scope. It is also a
+statement that steering has no safe state when firmware is not running, which is every reset and so
+every flash — and nothing in these docs said that out loud.
+
+The contrast is on the same page: `SELECT_THROTTLE` gets R32's 10 kΩ pulldown so the driver's pedal
+takes over whenever the ESP32 is unbooted or crashed, and the compressor MOSFET gate has a 100 kΩ
+pulldown holding it off through boot. Two outputs designed to fail safe, one that was not, and the
+asymmetry was documented without ever being named as one.
+
+A task is filed in this repo's `tasks.md` for the pulldown, including the meter test that separates
+the two candidate causes, because the cause is not settled — Ruben's reading is that the swing
+happened during the flash itself rather than just after the reboot.
