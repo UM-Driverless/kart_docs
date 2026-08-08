@@ -57,6 +57,35 @@ Hand-crafted SVG. Real Festo product photos for the pneumatic brake chain (VPPM,
 
 > **Tip:** All switches in the shutdown chain are in series — opening any one cuts power to the relay coil, which disables the motor controller.
 
+## Manual / autonomous mode switch
+
+A single **DPDT** (double-pole double-throw) switch on the kart panel decides the mode. Both poles
+are in use, and both are plain metal contacts — which is the point of the design:
+
+- **Pole 1 — throttle source.** Selects what reaches the traction ESC's throttle input: the
+  accelerator pedal in manual, or the medulla's autonomous command (`CMD_ACC_DAC`, out of the
+  medulla on CN10.1) in autonomous.
+- **Pole 2 — steering motor.** Breaks the cable from the Cytron H-bridge to the steering motor, so
+  in manual mode the steering motor is physically disconnected from its driver.
+
+**What this buys, and why it is a switch rather than electronics.** Manual mode does not depend on
+the medulla, on firmware, or on anything being powered. With the whole electronics side dead, the
+pedal still reaches the ESC and the steering motor is still disconnected, because metal is touching
+metal. No software fault can accelerate or steer the kart while a human is driving it — the
+firmware is not in the path to make a mistake in. Any scheme where a chip or a microcontroller
+output performs this selection is strictly weaker, because it can only be as trustworthy as the
+code and the supply behind it.
+
+**The Cytron's 48 V supply is deliberately not switched.** It stays permanently powered on the
+PACK48 rail. Gating it through the mode switch was tried and reverted: the inrush at every
+switch-to-autonomous browned out the Orin. Only the motor cable is broken, not the driver's supply.
+
+**The medulla cannot currently tell which mode the kart is in.** Nothing routes the switch position
+back to it, so firmware knows only what it last commanded. The intended fix for the next board
+revision is a **third pole** on the switch, shorting a sense wire to ground in autonomous against a
+pull-up on the medulla — one wire, read-only, which firmware can observe but never drive. It is not
+built yet; the medulla pin is part of the v2 pin allocation still being decided in `dv-hardware`.
+
 ## Wire list (whole kart)
 
 One row per **net** (electrical node) across the whole kart — the tabular companion to the diagram above. The **Connected pins** column lists every `device.pin` tied together; medulla (the kart's ESP32-S3 interface PCB) `CNx.y` terminals map to GPIOs on the [Kart Medulla connector pinout](kart-medulla/index.md#connector-pinout-outside-world). This table is **generated** from [`wiring/wiring.yaml`](https://github.com/um-driverless/kart-docs/blob/main/docs/assembly/electronics/wiring/wiring.yaml) — edit the YAML, not the table; completeness is checked by `scripts/check_wiring.py`.

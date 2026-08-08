@@ -3,6 +3,26 @@
 
 ## Ready
 
+### The wiring SVG still shows the Cytron on 12 V, which was settled as wrong on 2026-07-30
+
+Found 2026-08-08 while adding the mode switch's second pole to the diagram. The Done entry
+"Cytron H-bridge runs off the 48 V pack, not the 12 V rail" fixed `wiring.yaml` and the prose
+pages, but nobody touched `wiring/images/wiring-global.svg`, which still carries three stale
+claims:
+
+- line 266 — the Cytron box reads `25 A · 12 V`
+- line 279 — the steering motor box reads `DC 12 V`
+- line 461 — a red wire drawn from the **12 V rail** to the Cytron, labelled `12 V → Cytron`
+
+The labels alone are a one-minute fix, but the third is a topology error, not a wording one: the
+wire physically starts at the 12 V rail node at (1290, 540) and has to be re-sourced from the
+48 V pack. Relabelling without rerouting would make the diagram assert a connection that does not
+exist, so this needs the redraw, not a find-and-replace. Deliberately left undone rather than
+half-fixed.
+
+Also unverified while I was there: the steering motor's own voltage. The box says 12 V and the
+motor leads are labelled 48 V in `wiring.yaml`. One of those is wrong — check the motor.
+
 ### Split the medulla's ground terminals between GND and GND_SIG
 The harness now has two grounds: `GND` (power) and `GND_SIG` (sensors, black + white
 stripe), tied only at the rear ground Wago block near the battery and the 12 V / 24 V

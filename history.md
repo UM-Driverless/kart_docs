@@ -668,3 +668,38 @@ Three things found while doing it:
 
 kart-medulla reads dv-hardware directly rather than going through kart-docs: it is a peer of the
 hardware repo, and a hop through the docs site could only ever be staler than what it reads today.
+
+## 2026-08-08 — the mode switch is DPDT and the diagram only showed one of its poles
+
+Rubén, correcting a wrong assumption of mine: the manual/autonomous selector is "a normal DPDT
+switch in the panel of the kart". Both poles matter and only one was documented.
+
+- **Pole 1 — throttle source.** Already in `wiring.yaml`: pedal or medulla `CMD_ACC_DAC` to the ESC.
+- **Pole 2 — steering motor.** Was missing entirely. It breaks the cable from the Cytron H-bridge
+  to the steering motor, so in manual the motor is physically disconnected from its driver. The
+  netlist had `STEER_M+` running straight from `cytron.mplus` to `steer_motor.mplus`; it is now
+  split into `STEER_M+_SW` (Cytron → switch) and `STEER_M+` (switch → motor).
+
+**The Cytron's supply is not what the switch gates**, which is the part that had been confusing.
+It sits permanently on PACK48; gating it was tried and reverted because the inrush at every
+switch-to-autonomous browned out the Orin. Only the motor cable is broken.
+
+**Which conductor pole 2 actually breaks is not verified** — M+ is what the netlist now assumes.
+Buzz it before trusting the row; if it is M− or both, move it.
+
+**Why the design is a switch and not electronics.** Manual mode works with the entire electronics
+side unpowered, because metal contacts hold their position with no supply and no firmware. This
+came up because `dv-hardware` had a MAX4660 analog mux on the medulla doing the same throttle
+selection, believed to pass the pedal through when unpowered. It does not — a CMOS switch is open
+at V+ = 0 (see the `dv-hardware` history entry of the same date for the datasheet evidence). The
+panel switch was doing the real work all along, so the mux is redundant and is being deleted in
+medulla-v2 rather than fixed.
+
+**Still missing: the medulla cannot read the mode.** Nothing routes the switch position back to
+it. Planned fix is a third pole shorting a sense wire to ground in autonomous, against a pull-up
+on the medulla — read-only, so firmware can observe the mode but never cause it. Not built; the
+medulla pin is part of the v2 allocation being decided in `dv-hardware`.
+
+**Found and not fixed:** the SVG still shows the Cytron on 12 V, contradicting the 2026-07-30
+decision that it runs off the 48 V pack. Filed in `tasks.md` — it needs a reroute, not a
+relabel, so it was left alone rather than half-corrected.

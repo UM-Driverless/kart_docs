@@ -82,7 +82,7 @@
     <text x="14" y="124" class="small"><tspan font-weight="700">VUVS</tspan> = Festo solenoid valve product family</text>
     <text x="14" y="140" class="small"><tspan font-weight="700">ADC</tspan> = Analog-to-Digital input · <tspan font-weight="700">DAC</tspan> = D-to-A out</text>
     <text x="14" y="156" class="small"><tspan font-weight="700">PWM</tspan> = pulse-width-modulated motor signal</text>
-    <text x="14" y="172" class="small"><tspan font-weight="700">SPDT</tspan> = single-pole double-throw (mode switch)</text>
+    <text x="14" y="172" class="small"><tspan font-weight="700">DPDT</tspan> = double-pole double-throw (mode switch)</text>
     <text x="14" y="188" class="small"><tspan font-weight="700">I²C</tspan> = serial bus (SDA + SCL lines)</text>
     <text x="14" y="204" class="small"><tspan font-weight="700">RES</tspan> = Remote E-Stop (radio-controlled)</text>
     <text x="14" y="220" class="small"><tspan font-weight="700">ESC key</tspan> = 2-wire enable on ESC (from kit)</text>
@@ -267,8 +267,9 @@
     <text x="100" y="96" class="small" text-anchor="middle" font-style="italic">drives steering motor</text>
   </g>
 
-  <!-- Steering motor (smaller motor symbol) -->
-  <g transform="translate(980,140)" filter="url(#shadow)">
+  <!-- Steering motor (smaller motor symbol). Shifted right of the Cytron to leave room for the
+       mode switch's second pole, which breaks this cable in manual mode. -->
+  <g transform="translate(1060,140)" filter="url(#shadow)">
     <rect width="160" height="120" fill="#ffe0b2" stroke="#ef6c00" stroke-width="1.6" rx="6"/>
     <circle cx="50" cy="50" r="26" fill="#fff" stroke="#ef6c00" stroke-width="2"/>
     <text x="50" y="58" class="name" text-anchor="middle" font-size="18" font-weight="700">M</text>
@@ -296,19 +297,27 @@
     <text x="110" y="62" class="mono" text-anchor="middle">PEDAL_BRAKE__0_5V</text>
   </g>
 
-  <!-- Mode switch SPDT (manual / auto) -->
+  <!-- Mode switch DPDT (manual / auto) — pole 1 throttle source, pole 2 steering motor break -->
   <g transform="translate(960,365)" filter="url(#shadow)">
     <rect width="180" height="66" fill="#f3e5f5" stroke="#6a1b9a" stroke-width="1.6" rx="6"/>
-    <!-- SPDT schematic: one input dot, two output dots, hinged arm -->
+    <!-- two ganged poles, both drawn in the manual position -->
     <g stroke="#6a1b9a" stroke-width="1.6" fill="none">
-      <circle cx="22" cy="30" r="2.4" fill="#6a1b9a"/>
-      <circle cx="56" cy="20" r="2.4" fill="#6a1b9a"/>
-      <circle cx="56" cy="42" r="2.4" fill="#6a1b9a"/>
-      <line x1="22" y1="30" x2="54" y2="20"/>
+      <!-- pole 1: SPDT, common to the manual (upper) contact -->
+      <circle cx="18" cy="24" r="2.2" fill="#6a1b9a"/>
+      <circle cx="48" cy="16" r="2.2" fill="#6a1b9a"/>
+      <circle cx="48" cy="32" r="2.2" fill="#6a1b9a"/>
+      <line x1="18" y1="24" x2="46" y2="16"/>
+      <!-- pole 2: breaks the steering motor cable; shown open (manual) -->
+      <circle cx="18" cy="52" r="2.2" fill="#6a1b9a"/>
+      <circle cx="48" cy="52" r="2.2" fill="#6a1b9a"/>
+      <line x1="18" y1="52" x2="44" y2="44"/>
+      <!-- mechanical gang: both poles move together -->
+      <line x1="33" y1="20" x2="33" y2="48" stroke-dasharray="3 2" stroke-width="1.2"/>
     </g>
-    <text x="115" y="28" class="name" text-anchor="middle">Mode Switch</text>
-    <text x="115" y="44" class="desc" text-anchor="middle">SPDT · Manual / Auto</text>
-    <text x="115" y="58" class="small" text-anchor="middle" font-style="italic">throttle source</text>
+    <text x="118" y="22" class="name" text-anchor="middle">Mode Switch</text>
+    <text x="118" y="37" class="desc" text-anchor="middle">DPDT · Manual / Auto</text>
+    <text x="118" y="50" class="small" text-anchor="middle" font-style="italic">1: throttle source</text>
+    <text x="118" y="62" class="small" text-anchor="middle" font-style="italic">2: steering motor cable</text>
   </g>
 
   <!-- ==================== BRAIN ==================== -->
@@ -475,9 +484,18 @@
   <polyline points="820,520 820,470 860,470 860,250" stroke="#666" stroke-width="2" fill="none" marker-end="url(#ar-gray)"/>
   <text x="868" y="464" class="lbl-sm" fill="#444">PWM + DIR</text>
 
-  <!-- Cytron → Steering motor (M+ / M−) -->
-  <line x1="960" y1="200" x2="980" y2="200" stroke="#ef6c00" stroke-width="3" marker-end="url(#ar-orn)"/>
-  <text x="970" y="192" class="lbl-sm" fill="#ef6c00" text-anchor="middle">M± 12 V</text>
+  <!-- Cytron → Steering motor (M+ / M−), broken by mode-switch pole 2 in manual -->
+  <line x1="960" y1="200" x2="994" y2="200" stroke="#ef6c00" stroke-width="3"/>
+  <line x1="1026" y1="200" x2="1060" y2="200" stroke="#ef6c00" stroke-width="3" marker-end="url(#ar-orn)"/>
+  <text x="1010" y="178" class="lbl-sm" fill="#ef6c00" text-anchor="middle">M±</text>
+  <!-- mode-switch pole 2 in this cable, drawn open (manual position) -->
+  <circle cx="996" cy="200" r="3" fill="#fff" stroke="#6a1b9a" stroke-width="1.6"/>
+  <circle cx="1024" cy="200" r="3" fill="#fff" stroke="#6a1b9a" stroke-width="1.6"/>
+  <line x1="996" y1="200" x2="1022" y2="188" stroke="#6a1b9a" stroke-width="2"/>
+  <!-- dashed gang: this pole moves with the throttle pole below -->
+  <polyline points="1010,200 1010,365" stroke="#6a1b9a" stroke-width="1.2" stroke-dasharray="3 2" fill="none"/>
+  <text x="1018" y="292" class="lbl-sm" fill="#6a1b9a">pole 2 — open in manual:</text>
+  <text x="1018" y="306" class="lbl-sm" fill="#6a1b9a">steering motor disconnected</text>
 
   <!-- Acc pedal → medulla (ADC) -->
   <polyline points="600,436 600,490 800,490 800,520" stroke="#666" stroke-width="2" fill="none" marker-end="url(#ar-gray)"/>

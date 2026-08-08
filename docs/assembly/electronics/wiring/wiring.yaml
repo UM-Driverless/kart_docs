@@ -49,7 +49,15 @@ devices:
   motor:          {desc: "3-phase BLDC traction motor + Hall block", pins: [u, v, w, hall1, hall2, hall3, hall5v, hallgnd]}
   acc_pedal:      {desc: "Accelerator pedal (linear Hall)", pins: [sig, vcc, gnd]}
   brake_pedal:    {desc: "Brake pedal (linear Hall)", pins: [sig, vcc, gnd]}
-  mode_switch:    {desc: "Manual/Auto SPDT throttle select", pins: [common, manual, auto]}
+  mode_switch:
+    desc: "Manual/Auto mode switch on the kart panel — DPDT, both poles in use"
+    note: "Pole 1 selects the throttle source reaching the ESC (manual pedal / autonomous command).
+      Pole 2 breaks the Cytron-to-steering-motor cable, so the steering motor is physically
+      disconnected in manual mode. The Cytron's own 48 V supply is NOT switched — it stays
+      permanently powered, a deliberate choice because gating it caused inrush brownouts on the
+      Orin at every mode change. Metal contacts, so both poles hold their manual position with
+      the whole kart unpowered and no firmware can override them."
+    pins: [common, manual, auto, steer_in, steer_out]
   opamp:          {desc: "×2 op-amp (brake 0–5 → 0–10 V)", pins: [in, out]}
   vppm:           {desc: "Festo VPPM proportional brake valve", pins: [setpoint, v24, gnd]}
   ebs_coil:       {desc: "Festo EBS solenoid coil (VUVS, form C)", pins: [a, b]}
@@ -98,11 +106,12 @@ nets:
   - {name: STEER_ANGLE_PWM, system: Steering, class: signal, voltage: "3.3V", status: planned, pins: [medulla.CN5.2, steer_sensor.pwm], note: "Future MT6701 single-wire PWM (R10 removed)"}
   - {name: CMD_STEER_PWM,   system: Steering, class: signal, voltage: "3.3V", pins: [medulla.CN9.1, cytron.pwm]}
   - {name: CMD_STEER_DIR,   system: Steering, class: signal, voltage: "3.3V", pins: [medulla.CN8.3, cytron.dir]}
-  - {name: "STEER_M+",      system: Steering, class: drive, voltage: "48V", color: "—", pins: [cytron.mplus, steer_motor.mplus]}
+  - {name: "STEER_M+_SW",   system: Steering, class: drive, voltage: "48V", color: "—", pins: [cytron.mplus, mode_switch.steer_in], note: "Cytron output up to the mode switch's second pole. Field-verify which conductor the switch actually breaks — modelled here as M+; if it breaks M- instead, or both, move this row."}
+  - {name: "STEER_M+",      system: Steering, class: drive, voltage: "48V", color: "—", pins: [mode_switch.steer_out, steer_motor.mplus], note: "Open in manual mode — the switch's second pole physically disconnects the steering motor, so a firmware fault cannot steer the kart while a human is driving it."}
   - {name: "STEER_M-",      system: Steering, class: drive, voltage: "48V", color: "—", pins: [cytron.mminus, steer_motor.mminus]}
 
   # --- throttle ---
-  - {name: PEDAL_ACC,   system: Throttle, class: signal, voltage: "0–5V", pins: [acc_pedal.sig, medulla.CN6.2, mode_switch.manual], note: "Feeds both the medulla ADC and the manual mux input"}
+  - {name: PEDAL_ACC,   system: Throttle, class: signal, voltage: "0–5V", pins: [acc_pedal.sig, medulla.CN6.2, mode_switch.manual], note: "One net, two consumers: the medulla reads it on an ADC, and it goes to the mode switch's manual contact. In manual mode the pedal reaches the ESC through metal contacts only — the medulla is not in that path and does not need to be powered."}
   - {name: CMD_ACC_DAC, system: Throttle, class: signal, voltage: "0–5V", pins: [medulla.CN10.1, mode_switch.auto]}
   - {name: CMD_ACC_ESC, system: Throttle, class: signal, voltage: "0–5V", pins: [mode_switch.common, esc.throttle], note: "Gated throttle to the ESC"}
 
