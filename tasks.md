@@ -1,6 +1,11 @@
 <!-- consult-selectively: the project's task board (one per repo, at the root). Claim a task by setting status In progress + your id, commit, then Done. -->
 # Task Board
 
+Done items do not stay on the board. When one closes, move it — with its date and closing note —
+to `tasks/done-archive.md`, which holds nothing actionable. Exception: a done step of a task that is
+still open stays put, since archiving it strips the remaining open step of the context saying what
+was already settled. A cluster moves to the archive whole, once its last step closes.
+
 ## Ready
 
 ### Add a pulldown on CMD_STEER_PWM so a resetting ESP32 cannot drive the steering motor
