@@ -97,7 +97,7 @@ One row per **net** (electrical node) across the whole kart — the tabular comp
 
 ## Festo pressure sensor connector (M8, 3-pin)
 
-The three pneumatic-pressure sensors are **[Festo SDE5-D10-NF-Q6E-V-M8](https://www.festo.com/es/es/a/567465/)** (part 567465, 0–10 bar range, 0–10 V analog output; [datasheet](../../assets/datasheets/567465datasheet.pdf)). Each has an **M8×1, A-coded, 3-pin** plug and connects with the **[NEBU-M8G3-K-2.5-LE3](https://www.festo.com/es/es/a/541333/)** cable (part 541333, wire colours to EN 60947-5-2). All three sensors share this identical pinout.
+The two pneumatic-pressure sensors are **[Festo SDE5-D10-NF-Q6E-V-M8](https://www.festo.com/es/es/a/567465/)** (part 567465, 0–10 bar range, 0–10 V analog output; [datasheet](../../assets/datasheets/567465datasheet.pdf)). Each has an **M8×1, A-coded, 3-pin** plug and connects with the **[NEBU-M8G3-K-2.5-LE3](https://www.festo.com/es/es/a/541333/)** cable (part 541333, wire colours to EN 60947-5-2). Both sensors share this identical pinout.
 
 | M8 pin | Cable wire | Function | On the kart |
 |---|---|---|---|
