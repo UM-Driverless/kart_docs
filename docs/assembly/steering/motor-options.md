@@ -6,7 +6,7 @@ This page records the motor in use and the off-the-shelf alternatives the team l
 
 ## Current setup (kept)
 
-The steering actuator is a 24 V geared DC motor pulled out of a discarded massage chair, driven from the battery through the Cytron H-bridge, turning the steering column through a 3D-printed planetary at 11:1. Position feedback comes from an AS5600 magnetic encoder on the column. It turns the stopped wheels with ~8 Nm and sweeps lock-to-lock in ~0.15 s; at stall it has roughly 2 kW available, far more than the ~47 W the job actually needs. The motor was free, the planetary is a few euros of filament plus four 608 bearings and some M3 hardware, and nothing here had to be ordered.
+The steering actuator is a 24 V geared DC motor pulled out of a discarded massage chair, driven from the battery through the Cytron H-bridge, turning the steering column through a 3D-printed planetary at 11:1. Position feedback comes from an MT6701 magnetic encoder on the column. It turns the stopped wheels with ~8 Nm and sweeps lock-to-lock in ~0.15 s; at stall it has roughly 2 kW available, far more than the ~47 W the job actually needs. The motor was free, the planetary is a few euros of filament plus four 608 bearings and some M3 hardware, and nothing here had to be ordered.
 
 The candidates below are worth knowing about but don't replace this setup.
 
@@ -32,7 +32,7 @@ Off-the-shelf parts worth remembering if the salvage motor fails or a procuremen
 | **Doga 319.4860.30.00** | 24 | 30 rpm | 50 Nm | ~150 W | none | ~€200 (RS) | Plenty of torque, but 30 rpm is too slow for the ~56 rpm target. Skip. |
 | Generic 24 V planetary gearmotor (GEMS / ISL / AliExpress) | 24 | 100 rpm typical | 20–30 Nm | 100–200 W | optional encoder | ~€80–150 | Backdrivable (different failsafe behaviour from a worm); still needs external reduction to match the current setup. |
 
-If procurement ever opens up, the Doga 319H at 100 rpm is the most interesting — its 972 ppr Hall feedback would let us drop the AS5600 and one I²C bus from the Kart Medulla. Useful to know, not a planned change.
+If procurement ever opens up, the Doga 319H at 100 rpm is the most interesting — its 972 ppr Hall feedback would let us drop the separate MT6701 encoder and its wire from the Kart Medulla. Useful to know, not a planned change.
 
 Sources for the candidate motors:
 

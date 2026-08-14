@@ -27,7 +27,7 @@ Beyond a plain H-bridge, a few integrated speed/servo controllers were considere
 
     #### VESC (Vedder Electronic Speed Controller)
     - **Advantages**: multi-purpose, can be reused for other systems.
-    - **Implementation**: test with an existing unit first; ESP32 communication via UART at 3.3 V; keep the AS5600 magnetic sensor on I²C. Note: VESC DC mode doesn't include position control, so an external PID is still needed.
+    - **Implementation**: test with an existing unit first; ESP32 communication via UART at 3.3 V; keep the column's magnetic angle sensor as it is. Note: VESC DC mode doesn't include position control, so an external PID is still needed.
     - **Alternative unit**: [Flysky FSESC67100 V2 Pro on Wallapop](https://es.wallapop.com/item/flysky-fsesc67100-v2-pro-1133224964)
 
     #### Kelly Controller KDS series

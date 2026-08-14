@@ -16,7 +16,7 @@ The **Fusion 360 model is the single source of truth** for all geometry. This ta
 
 ## Actuator architecture — how we drive the column
 
-The current design is a **rotary actuator on the steering column**: a salvaged DC motor geared down through a ~11:1 reducer turns the column directly, with an AS5600 magnetic encoder closing the loop. This is the second architecture the team built — the first was a Maxon linear actuator on the steering linkage, since dropped (see [previous designs](previous-designs.md)).
+The current design is a **rotary actuator on the steering column**: a salvaged DC motor geared down through a ~11:1 reducer turns the column directly, with an MT6701 magnetic encoder closing the loop. This is the second architecture the team built — the first was a Maxon linear actuator on the steering linkage, since dropped (see [previous designs](previous-designs.md)).
 
 ![Steering actuator in Fusion 360 — motor, planetary reducer and mount](images/steering-actuator-cad.png)
 
@@ -37,8 +37,8 @@ The cost is durability: printed gears wear and the motor-shaft interface creeps.
 Orin (target angle)  ──USB──▶  ESP32-S3 / Kart Medulla
                                    │  PID
                                    ▼
-              AS5600 ──angle──▶  PWM 3.3 V
-              (column)              │
+             MT6701 ──angle──▶  PWM 3.3 V
+             (column)               │
                                     ▼
                               MD25HV H-bridge ──▶ DC motor ──▶ ~11:1 reducer ──▶ column
 ```
@@ -47,7 +47,7 @@ Orin (target angle)  ──USB──▶  ESP32-S3 / Kart Medulla
 
 We need to move the steering shaft to the target angle.
 
-1. The microcontroller reads the target position from the main computer (Orin) and the current position from the **AS5600 magnetic encoder** on the column.
+1. The microcontroller reads the target position from the main computer (Orin) and the current position from the **MT6701 magnetic encoder** on the column, which sends the angle as a PWM duty cycle on one wire (see [Angle Sensor](sensor/index.md)).
     - The microcontroller is the ESP32-S3 on the [Kart Medulla](../electronics/kart-medulla/index.md) board (earlier prototypes used a Blue Pill / Teensy 4.0).
 2. It computes a PWM duty cycle with a PID loop and sends 3.3 V PWM to the H-bridge.
 3. The H-bridge (MD25HV) receives the PWM and powers the DC motor.

@@ -131,8 +131,8 @@ ESP32 and firmware health, pneumatics, and a debug console.
 
 | Card | Shows | Data field → ROS topic |
 |---|---|---|
-| AS5600 magnet + AGC | Steering-encoder magnet present, AGC (automatic gain control) field strength (20–235 ok) | `health_magnet_ok`, `health_agc` ← `/esp32/health/flags` + `/esp32/health/data` (`Frame`, `decode_health`). Nothing publishes a bare `/esp32/health` on hardware; the simulator does |
-| I2C | Bus status to the AS5600, error count | `health_i2c_ok`, `health_i2c_errors` ← `/esp32/health` |
+| Magnet + AGC | **Always empty on this board.** These fields come from the retired AS5600 encoder's automatic-gain-control reading. The kart's MT6701 is read as PWM and reports nothing equivalent, so the card stays blank rather than showing a value | `health_magnet_ok`, `health_agc` ← `/esp32/health/flags` + `/esp32/health/data` (`Frame`, `decode_health`) |
+| I2C | **Always empty on this board**, same reason — this was the bus status to the AS5600 | `health_i2c_ok`, `health_i2c_errors` ← `/esp32/health` |
 | Heap | Free ESP32 heap memory | `health_heap_kb`, `health_heap_ok` ← `/esp32/health` |
 | Stack | Min free task stack (comms/control/heartbeat/health); red < 200 B | `stack_comms` / `stack_control` / `stack_heartbeat` / `stack_health` — **not wired yet, see below** |
 | YOLO | Cone-inference rate; green > 30 Hz | `yolo_fps` ← `/perception/yolo/fps` |

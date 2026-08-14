@@ -95,6 +95,21 @@ compliance gaps against FS rules ("NOT currently implemented but are required fo
 compliance"), and the repo ships `FS-AI_2026_APC_Technical_Rules_v1.pdf`. `docs/about.md` also
 lists competing as a medium-term objective. Pick one position and make the three pages agree.
 
+### The steering fastener docs still mount an AS5600
+`assembly/steering/fasteners.md` (and `fasteners/bom.yaml`) give the screws and the assembly order
+for mounting an **AS5600** sensor board to its bracket — "Install AS5600 with Item #3 screws",
+"AS5600 must be centered over magnet". The kart has run an MT6701 since 2026-07 and its breakout is
+a different board. Needs somebody at the kart to say what is physically bolted on now: same
+bracket and screws with a different board, or a new mount. Not guessable from the desk, which is
+why it was left rather than edited.
+
+### Add the MT6701 to the BOM
+`assembly/steering/bom.yaml` lists the AS5600 (€2.00) as the steering angle sensor and the MT6701
+is absent, so the BOM describes a kart that no longer exists. The AS5600 rows should stay — the
+parts were bought and the classic-ESP32 fallback build still uses that driver — but they need
+marking as superseded, with the MT6701 module (~€10, AliExpress) added as the fitted part.
+`bom/index.md` and `bom/full.md` regenerate from the YAML.
+
 ### Confirm which Sensata PTE7100 variant is on the kart
 `docs/assembly/hydraulics/index.md` records the part code `PTE7100-33CC-2E200BN`, but the Mouser
 link on the same page is `PTE7100-32DC-0B200BN`. The two differ in pressure port, connector and

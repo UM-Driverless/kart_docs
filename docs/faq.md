@@ -43,7 +43,7 @@ However, the ROS2 and Gazebo parts (`src/kart_sim/`, `src/kart_perception/`, etc
 - **No more ESP32 flashing or crash loops** — one fewer device to maintain. (The boot-button dance belonged to the retired classic board; the S3 flashes over USB-Serial-JTAG on the same cable.)
 - **Faster iteration** — change a Python file, restart the node, done. No cross-compilation or firmware uploads.
 - **PID tuning from ROS** — tune parameters with `ros2 param set` or dynamic reconfigure instead of reflashing.
-- **The Orin 40-pin header has some of the needed peripherals**: hardware PWM (steering, into the Cytron H-bridge), I2C (AS5600 steering encoder), and general GPIO. It does **not** cover throttle and brake, which are analog: those come from an MCP4922 SPI DAC (0–5 V, and 0–10 V through an op-amp for the brake valve). Replacing the ESP32 would mean putting that DAC on the Orin side.
+- **The Orin 40-pin header has some of the needed peripherals**: hardware PWM (steering, into the Cytron H-bridge) and general GPIO. It does **not** cover throttle and brake, which are analog — those come from an MCP4922 SPI DAC (0–5 V, and 0–10 V through an op-amp for the brake valve) — and it would struggle with the steering angle, which arrives as a ~994 Hz PWM signal whose *duty cycle* carries the angle. The ESP32 decodes that with a hardware capture peripheral; on Linux, timing edges to the required 244 ns from userspace is exactly the kind of job an MCU exists for. Replacing the ESP32 means moving both problems to the Orin side.
 
 **Cons:**
 

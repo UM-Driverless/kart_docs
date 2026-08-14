@@ -839,3 +839,67 @@ Structure, since the same request asked whether the organisation makes sense:
 - `electronics/computer.md` was three H1s deep with "Power consumption:" left blank and "Specs:
   TODO". Filled the specs from `orin-setup.md` (they were already recorded there), fixed the
   heading levels, and pointed the software half at the setup page instead of half-duplicating it.
+
+## 2026-08-14 (later) — The AS5600 → MT6701 swap was never written into kart-docs
+
+Ruben asked where the "why we dropped the AS5600" reasoning should live, and whether `faq.md` was
+the place. It isn't: the FAQ holds whole-project questions (why pneumatic braking, why electric,
+why an ESP32 at all) that someone asks before they know where anything lives. A decision about one
+component belongs on that component's page, or the page has to link out for its own most important
+fact. Rough test used: if the answer would change when you swap the part out, it goes on the part's
+page.
+
+Then his correction, which was the right one and I should have reached myself: obsolete material
+must not be laid out like current material. Collapsed `??? info` blocks, not normal headings.
+House style already had this — `powertrain/fasteners.md`, `steering/h-bridge.md`.
+
+`assembly/steering/sensor/index.md` was written from before the swap: "Current sensor: AS5600 over
+I2C (validated)… it is the validated, in-use sensor", with the MT6701 as "plan of record" that
+"**will be** mounted", hardware "expected to arrive around 2026-07-22". The AS5600 was retired
+2026-07-12 and the MT6701 has been reading on the kart since the end of July. Rewritten: MT6701
+current, the two reasons for the change promoted to their own section, everything AS5600 collapsed
+under a `## History` heading.
+
+**The reason for the swap was only ever in `kart-medulla/history.md`,** which is the actual gap
+behind his question. Now stated on the page: the AS5600 reconstructs the angle from how the *axial*
+field varies across a 1 mm circle on the die, and the kart's shaft magnet is two large magnets stuck
+sideways, which gives a field that is strong but nearly uniform over that span — nothing to measure,
+so it reports no-magnet and gates its own output even touching the magnet. The MT6701 senses the
+*direction* of the in-plane field at a point, which a big magnet defines cleanly. Sensing principle,
+not resolution or price. The cable-length reason (medulla at the rear, ~1.2 m, I2C glitch hangs the
+shared PCF8574 bus) is real but second — it is why PWM rather than I2C, not why this chip.
+
+Kept two honesty caveats from the source notes rather than letting the page read as a win: the
+MT6701 wants essentially the same small magnet and tight gap as the AS5600 (it tolerates our
+uniform-field problem, not sloppy mounting), and past its 0.3 mm off-axis figure it degrades
+smoothly rather than failing — a different failure class from the AS5600's detection failure.
+
+**Five more pages still called the AS5600 current**, found by grepping rather than assumed:
+
+- `wiring.md` — "Current (validated): an AS5600 … it works today", with the MT6701 as "Planned".
+- `steering/index.md` — three places: the architecture paragraph, the signal-chain ASCII diagram,
+  and step 1 of "Main process".
+- `steering/motor-options.md` — feedback source, and a Doga-motor note about dropping "the AS5600
+  and one I2C bus".
+- `steering/h-bridge.md` — a VESC alternative saying to keep the sensor on I2C.
+- `software/ros2/performance.md` — the same wrong claim already fixed on the firmware page earlier
+  today: that the loop runs below 500 Hz because the I2C read blocks. It runs at 500 Hz, measured
+  via `control_iters`; the cap is UART bandwidth. Also an open measurement item built on the same
+  false premise, rewritten to ask about UART-write jitter instead.
+- `faq.md` — one line listing I2C/AS5600 among peripherals the Orin's header could absorb. Replaced
+  with the real obstacle: the angle now arrives as a ~994 Hz PWM whose duty carries the value, and
+  one count is 244 ns of edge timing — a hardware-capture job, which strengthens rather than
+  weakens the answer that the ESP32 earns its place.
+- `software/dashboard.md` — the Magnet+AGC and I2C cards were documented as live readouts. They are
+  permanently blank on this board, and kart-brain's own `index.html` already said so ("never
+  populated on this board… would peg the chip to a permanent false alarm"). Marked as such.
+
+Left alone deliberately: `build-journey/index.md` (dated posts — the June entry was true when
+written, and the 2026-07-30 post already explains the swap), `pinout.md` (generated from
+dv-hardware by `sync_pinout.py`, must be fixed upstream), and `packages.md`'s `ESP_DIAG_STEERING`
+row (checked against `km_coms.h` — the frame really is AS5600 diagnostic registers, still valid on
+the classic build).
+
+Filed rather than guessed: `steering/fasteners.md` and `fasteners/bom.yaml` give screws and an
+assembly order for mounting an AS5600 board to a bracket, and the MT6701 breakout is a different
+board — needs someone at the kart. And the steering BOM lists the AS5600 with no MT6701 at all.

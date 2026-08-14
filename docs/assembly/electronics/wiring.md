@@ -115,9 +115,9 @@ The outputs feed the ESP32 medulla as `PRESSURE_1` and `PRESSURE_2` (terminals C
 
 The steering-angle sensor tells the medulla where the front wheels point, closing the steering position loop.
 
-**Current (validated):** an **AS5600** magnetic encoder at the front of the steering, read over **I²C** (medulla `SDA` = GPIO 8, `SCL` = GPIO 9; address 0x36). The bus run is short, and it works today.
+**A MagnTek MT6701** encoder, sending its angle as a **PWM duty cycle on a single wire** (3.3 V CMOS square wave, ~994 Hz frame), into the freed `PRESSURE_3` terminal. Mounted and reading on the kart since 2026-07.
 
-**Planned (rear-mounted board): MT6701 over single-wire PWM.** Once the medulla PCB moves to the rear near the Orin, the I²C run (~1.2–2 m) becomes unreliable — a single glitch can hang the shared bus (the on-board PCF8574 sits on the same bus). The fix is a **MagnTek MT6701** encoder that sends its angle as a **PWM duty cycle on a single wire** (3.3 V CMOS square wave, ~994 Hz frame). It reuses the freed `PRESSURE_3` terminal.
+One wire rather than a bus, for two reasons: the medulla PCB sits at the rear next to the Orin, ~1.2 m from the steering shaft, and I²C does not survive that run — a single glitch can hang the shared bus, which the on-board PCF8574 also sits on. And the previous **AS5600** encoder could not read the kart's large shaft magnet at all, whatever the wiring. Both reasons are written out on the [Angle Sensor](../steering/sensor/index.md) page.
 
 | MT6701 module pin | Medulla terminal / ESP32-S3 | Notes |
 |---|---|---|

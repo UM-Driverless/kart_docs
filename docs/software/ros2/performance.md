@@ -94,9 +94,9 @@ A single frame is typically 8–15 bytes → **~1 ms on the wire** at 115200 bau
 
 ### 6. ESP32 control loop (~2 ms)
 
-The ESP32 runs its PID steering loop at a **500 Hz target** (2 ms period, `main/main.c`). When a new steering target arrives, it takes effect on the next PID cycle, so the worst-case wait is ~2 ms. The real rate is somewhat below 500 Hz because the AS5600 read over I²C blocks — but this stage is a rounding error in the pipeline, not the tail it was previously documented as.
+The ESP32 runs its PID steering loop at **500 Hz** (2 ms period, `main/main.c`). When a new steering target arrives, it takes effect on the next PID cycle, so the worst-case wait is ~2 ms. Either way this stage is a rounding error in the pipeline, not the tail.
 
-The AS5600 magnetic encoder is read via I2C (~1–2 ms per read) each cycle for steering feedback.
+500 Hz is measured on the kart, not just the configured period: the firmware's `control_iters` counter advances by exactly 25 between consecutive 20 Hz telemetry frames. Nothing in the loop blocks — the MT6701 steering angle arrives as a PWM signal decoded by a hardware capture peripheral, and the loop reads the newest decoded frame from memory. What caps the rate is UART bandwidth, not the sensor: the per-cycle steering feedback frame uses about 87 % of the 115200-baud link, and transmission is unbuffered.
 
 ## QoS and queue depths
 
@@ -119,4 +119,4 @@ These are the key unknowns that require on-hardware profiling:
 - [ ] **Actual sync delay** in `cone_depth_localizer` — log timestamp deltas between the three synced topics to see if 2.0s slop is causing unnecessary buffering.
 - [ ] **End-to-end latency** from camera frame timestamp to ESP32 PWM output. Could be measured by comparing the image header timestamp with the time the corresponding steering command arrives at the ESP32.
 - [ ] **Camera FPS** under load — does ZED maintain 30 Hz when the Orin GPU is busy with YOLO?
-- [ ] **ESP32 control loop jitter** — how far below the 500 Hz target does the blocking AS5600 I²C read actually pull the control task?
+- [ ] **ESP32 control loop jitter** — `control_iters` shows the loop hitting its nominal 500 Hz, but not how much cycle-to-cycle jitter the blocking UART write adds. Worth measuring before anyone tries to raise the rate.
