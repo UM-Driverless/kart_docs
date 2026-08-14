@@ -117,12 +117,12 @@ The steering-angle sensor tells the medulla where the front wheels point, closin
 
 **A MagnTek MT6701** encoder, sending its angle as a **PWM duty cycle on a single wire** (3.3 V CMOS square wave, ~994 Hz frame), into the freed `PRESSURE_3` terminal. Mounted and reading on the kart since 2026-07.
 
-Sensor and board are both at the front, so the run is short. The single-wire PWM interface was chosen anyway — see [Angle Sensor](../steering/sensor/index.md), which also records that the two repos disagree about how much of the decision was the AS5600's magnet handling and how much was the interface.
+One wire rather than a bus, because the run is long: the **kart-medulla PCB** is at the **rear** of the kart next to the Orin (they connect over USB), while the sensor stays on the steering shaft at the front — about **1.2 m** apart. I²C does not survive that: it is single-ended open-drain, easy to glitch alongside the 48 V motor phases, and one glitch on SCL hangs the bus — which the on-board PCF8574 shares, so a front-cable disturbance would take down more than the steering read. A PWM duty cycle on one wire is robust over the distance and never touches that bus. See [Angle Sensor](../steering/sensor/index.md).
 
 | MT6701 module pin | Medulla terminal / ESP32-S3 | Notes |
 |---|---|---|
 | VCC | 3.3 V (CN1.1 / CN6.3) | 5 V only needed for a one-time EEPROM burn |
-| GND | Signal GND (`GND_SIG`) | **Not yet resolved to a terminal.** CN1.3 / CN9.3 / CN10.3 are the medulla's ground terminals, but they are currently recorded on the *power* ground net, and this sensor's return belongs on [signal GND](#why-two-grounds). Landing it on a power-ground terminal would bond the two grounds a second time. Check the KiCad project for the board's analog ground before wiring — see the open task in `tasks.md`. |
+| GND | Signal GND (`GND_SIG`) | **Not yet resolved to a terminal.** CN1.3 / CN9.3 / CN10.3 are the medulla's ground terminals, but they are currently recorded on the *power* ground net, and this sensor's return belongs on [signal GND](#why-two-grounds). Landing it on a power-ground terminal would bond the two grounds a second time. Check the KiCad project for the kart-medulla PCB's analog ground before wiring — see the open task in `tasks.md`. |
 | SDA | GPIO 8 (I²C) | MT6701 address 0x06 (PCF8574 is 0x20 — no clash). Used for config + a bench angle cross-check |
 | SCL | GPIO 9 (I²C) | |
 | OUT (PWM) | **CN5.2 → R8 → R9 → GPIO 1** | 20 kΩ series into the ESP32-S3 MCPWM capture. **Board rework: remove R10 only** (keep R8 + R9). |

@@ -59,22 +59,20 @@ than being fixed by the print.
     Both may be true of different setups — the bench magnet was handheld, the kart's is mounted — but
     nobody has reconciled them. Filed in `tasks.md`.
 
-### The cable-length argument no longer applies
+### The cable run
 
-Earlier docs give the reason as distance, and that needs untangling because the wording survives in
-several places.
+The **kart-medulla PCB is at the rear** of the kart, next to the Orin — the two have to connect over
+USB, and the compressor and Hall sensors are already back there. The **sensor stays at the front**,
+on the steering shaft, because that is what it measures. So the kart-medulla PCB sits about **1.2 m** from the sensor.
 
-On 2026-07-11 the plan was to **move the Kart Medulla PCB to the rear**, next to the Orin — the two
-have to connect over USB, and the compressor and Hall sensors are already back there. The steering
-sensor would have stayed on the shaft at the front, leaving the board about **1.2 m** from it. I²C
-does not survive that run: it is single-ended open-drain, easy to glitch next to the 48 V motor
-phases, and one glitch on SCL hangs the bus — which the on-board PCF8574 shares. So a single-wire
-PWM sensor was the recommended fix.
+I²C does not survive that run. It is single-ended open-drain with weak pull-ups, easy to glitch
+routed past the 48 V motor phases and the compressor, and one glitch on SCL **hangs the bus** — a bad
+failure mode on a steering signal. The on-board PCF8574 shares that same bus, so extending it to the
+front would expose the whole bus to the front cable's noise, not just the steering read.
 
-**That board relocation never happened and is not pending.** Board and sensor are both at the front,
-the run is short, and since no I²C mode is used for the angle the shared-bus concern does not arise
-either. The MT6701 stayed regardless: it was already bought, configured and validated, and PWM
-works fine over a short run too.
+A PWM duty cycle on a single wire is robust over the distance and keeps I²C entirely on the
+kart-medulla PCB.
+That is why the interface matters more here than it would on a short bench run.
 
 !!! note "A bigger magnet is not a licence for sloppy mounting"
     The MT6701's datasheet asks for essentially the same small diametric magnet, tight air gap and
@@ -87,7 +85,7 @@ The wiring and firmware detail for the sensor input — the CN5.2 terminal, GPIO
 removing the R10 pulldown, and MCPWM pulse capture — is **not duplicated here**. See:
 
 - [Wiring](../../electronics/wiring.md) — the electrical connection (which terminal, which GPIO, resistor changes).
-- [Kart Medulla](../../electronics/kart-medulla/index.md) — the board and pinout.
+- [Kart Medulla](../../electronics/kart-medulla/index.md) — the kart-medulla PCB and its pinout.
 - [Firmware](../../electronics/kart-medulla/firmware.md) — how the angle feeds the steering PID.
 
 ## Operating point (steering actuator context)

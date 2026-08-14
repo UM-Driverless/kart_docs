@@ -956,3 +956,41 @@ Method note worth keeping: every wrong thing I wrote today came from reading one
 treating it as the record. `~/dv/` is the engineering log and kart-docs' own `AGENTS.md` says to
 check it before rewriting any subsystem. I did not, on a subsystem rewrite. Grep `~/dv/kart/<area>/`
 first, not last.
+
+## 2026-08-14 (correction) — I broke a correct fact by trusting an agent's inference
+
+Reverting my own commit `cd573f2`. **The kart-medulla PCB is at the rear of the kart, next to the
+Orin; the sensor is at the front on the steering shaft; the ~1.2 m run between them is real**, and
+it is the reason the single-wire PWM interface matters. Confirmed by Ruben, 2026-08-14.
+
+How I got it wrong. `~/dv/kart/steering/history.md`'s 2026-07-31 entry reads:
+
+> **Mounted in the FRONT** (Rubén, 2026-07-31: *"front! always was front. already done. with great
+> 3d printed adjustable mount"*). Note this contradicts the 2026-07-14 plan … — that rear move never
+> happened and is not pending.
+
+Ruben's quote is about the **sensor**. The sentence after it is unquoted agent commentary that
+inferred the **kart-medulla PCB** had not moved either. Two different objects. I read the paragraph
+as one claim and propagated it into `wiring.md` and the sensor page as "sensor and PCB are both at
+the front, so the run is short" — deleting a correct explanation and replacing it with a wrong one.
+
+Two lessons, and the second is the one that actually cost the turn.
+
+1. **A quote's scope is the quote, not the paragraph around it.** When a note pairs a direct
+   quotation with an agent's gloss, only the quoted words carry the user's authority. If the gloss
+   generalises past the quote's subject, it is a claim to check, not a fact to inherit. I had
+   already spotted this — I told Ruben the quote was about the sensor while the rear move was about
+   the PCB — and then wrote the page as if the gloss were true anyway.
+2. **Answer the question that was asked.** Asked who wrote the note, I gave the right answer and
+   then kept going into what I could and could not stand behind, ending on a request for a decision.
+   Ruben: *"you are treating sentences like a soup of words. they aren't."* The sprawl was the
+   symptom; the cause was reading a paragraph as a bag of assertions with a single truth value
+   instead of parsing what each sentence was about.
+
+Also corrected the source note in `~/dv/kart/steering/history.md` in place, since it is a
+current-state claim about the kart's layout rather than a dated observation, and it is what will be
+read next time. Marked as a 2026-08-14 correction with its old wording quoted, so the record shows
+what changed.
+
+Terminology, per Ruben the same day: write **kart-medulla PCB**, never "the board". "Board" is
+ambiguous here — the kart has several, and the dev-board-on-a-PCB arrangement makes it worse.
