@@ -71,9 +71,9 @@ These `history.md` files are the authoritative record of *why* a design is the w
 
 Three sibling repos hold the actual implementation; when a doc describes them, verify against these, not memory:
 
-- **`~/repos/dv-hardware/`** — the KiCad PCB projects. `projects/kart-medulla/` is the authoritative source for the medulla board: `output/drc_report.json` carries the exact `F.Silkscreen` connector layout (CN1–CN10), and `docs/pinout-esp32-s3.md` the pin map. Use this for any connector/pinout claim.
-- **`~/repos/kart-brain/`** — the ROS 2 software stack on the Orin (`src/kb_*`, `src/kart_*`), including the `kb_dashboard` web dashboard and `kb_bms` battery node. `history.md` holds the design rationale.
-- **`~/repos/kart-medulla/`** — the ESP32 firmware. `components/km_coms/km_coms.c` is the ground truth for the Orin↔ESP32 wire protocol; `.agents/esp32s3-pinmap.md` is the firmware pin map; `history.md` logs the bring-up decisions.
+- **`~/repos/hardware/dv-hardware/`** — the KiCad PCB projects. `projects/kart-medulla/` is the authoritative source for the medulla board: `output/drc_report.json` carries the exact `F.Silkscreen` connector layout (CN1–CN10), and `docs/pinout-esp32-s3.md` the pin map. Use this for any connector/pinout claim.
+- **`~/repos/hardware/kart-brain/`** — the ROS 2 software stack on the Orin (`src/kb_*`, `src/kart_*`), including the `kb_dashboard` web dashboard and `kb_bms` battery node. `history.md` holds the design rationale.
+- **`~/repos/hardware/kart-medulla/`** — the ESP32 firmware. `components/km_coms/km_coms.c` is the ground truth for the Orin↔ESP32 wire protocol; `.agents/esp32s3-pinmap.md` is the firmware pin map; `history.md` logs the bring-up decisions.
 
 ## Tech Stack
 
