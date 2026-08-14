@@ -109,12 +109,14 @@ The framed binary serial protocol between the Orin and the ESP32 (message types,
 
 A comms watchdog runs inside `control_task` with `COMMS_WATCHDOG_MS = 1000`. If no command has arrived within that window **or** the mission is `MISSION_MANUAL`, the firmware hands the throttle mux back to the driver's pedal, calls `KM_ACT_Stop()` on throttle, brake **and** steering, and resets the PID.
 
-!!! danger "On comms loss the firmware coasts — it does NOT brake"
-    `KM_ACT_Stop()` **zeroes** the actuator outputs. Zeroing the brake command **releases the brake**, so on lost comms the kart **coasts** rather than stopping.
+**By design, losing comms brakes the kart** — but not through the actuator outputs above. `KM_ACT_Stop()` **zeroes** them, and zeroing the brake command **releases** the proportional valve. The stop comes from the shutdown circuit instead: fresh comms is one of the conditions that keeps the chain closed, so a timeout opens it and fires the EBS. That route was chosen over commanding a brake value because it does not depend on the Orin still being able to talk, and it reuses the path an emergency already takes.
 
-    **The two sides disagree.** `kart-brain/docs/ACTUATION_PROTOCOL.md:26` specifies that on timeout the actuator should "apply full brake, zero steering, zero throttle." The medulla firmware does not do this. Anyone relying on the ACTUATION_PROTOCOL behaviour for safety must fix the firmware first, not assume it already brakes. Making loss of comms assert braking is an open task in `kart-medulla/tasks.md`.
+!!! danger "Today the kart coasts — the shutdown-circuit gate is not wired"
+    The firmware already opens the chain on stale comms. It fires nothing, because Q3's gate is not connected to anything downstream (see [Shutdown circuit](#shutdown-circuit-sdc) below). **Until that wire exists, a comms timeout leaves the kart coasting.**
 
-    Source: `main/main.c` (`control_task`), `kart-brain/docs/ACTUATION_PROTOCOL.md:26`.
+    `kart-brain/docs/ACTUATION_PROTOCOL.md` specifies "apply full brake, zero steering, zero throttle" on timeout. That is the intended behaviour and the mechanism above is how it is delivered — but do not rely on it for safety yet. Wiring the gate is tracked in `kart-brain/tasks.md`, "Verify the shutdown-circuit drive on the bench, then wire the Q3 gate".
+
+    Source: `main/main.c` (`control_task`), `kart-brain/docs/ACTUATION_PROTOCOL.md`.
 
 ## Shutdown circuit (SDC)
 
