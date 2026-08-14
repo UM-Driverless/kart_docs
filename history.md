@@ -903,3 +903,56 @@ the classic build).
 Filed rather than guessed: `steering/fasteners.md` and `fasteners/bom.yaml` give screws and an
 assembly order for mounting an AS5600 board to a bracket, and the MT6701 breakout is a different
 board — needs someone at the kart. And the steering BOM lists the AS5600 with no MT6701 at all.
+
+## 2026-08-14 (later still) — Three "ask Ruben" items were lookups, and two of my claims were wrong
+
+Ruben on the three questions I ended the previous handoff with: *"super imprecise and unneeded
+question. 3d printed holder, pressure sensor should be from the festo sponsorship notes, in
+inventory also, i dont know what a bearing-spacer is, but we have the whole cad in fusion 360."*
+
+He is right, and the shared instructions already say so — his repos are more accurate than his
+recall, so asking him to enumerate facts on disk spends his turn on a lookup. All three were
+answerable from `~/dv/`.
+
+Worse, going to look turned up two things I had asserted wrongly on the sensor page, both because I
+built it from `kart-medulla/history.md` and never opened `~/dv/kart/steering/history.md`:
+
+1. **The sensor is FRONT-mounted, and always was.** Ruben, 2026-07-31: *"front! always was front.
+   already done. with great 3d printed adjustable mount"*. I had written the cable-length argument —
+   medulla moving to the rear, ~1.2 m, I2C unreliable over that run — as a reason for choosing PWM.
+   That was the 2026-07-14 plan, which the same entry records as never having happened and not
+   pending. The page now says so explicitly, because the claim is still sitting in `wiring.md`'s
+   history and will otherwise get copied forward again.
+2. **The two repos disagree about why the AS5600 was dropped**, which is the thing he originally
+   asked me to document. `kart-medulla/history.md` has the magnet-physics story: axial field must
+   vary across a 1 mm circle, the kart's two big sideways magnets give a uniform field, magnet-detect
+   read zero with the chip touching the magnet. `~/dv/kart/steering/history.md` (2026-07-31) says
+   *"magnet tolerance turned out not to be a real risk on this kart — the AS5600 already read the
+   installed magnets fine, and the MT6701 confirms it."* The bench magnet was handheld and the kart's
+   is mounted, which plausibly explains both, but nobody has reconciled them. I had written the
+   magnet story as settled fact with a mechanism. Now presented as an open disagreement with both
+   sides quoted, and filed.
+
+The other two lookups:
+
+- **The Sensata hydraulic pressure sensor is not fitted.** `~/dv/kart/pneumatics/README.md`:
+  *"Hydraulic pressure sensor (Sensata PTE/700-33) - not used in this system"*, and the 2026-04 Festo
+  price sheet lists it as *"Not Festo; on hand, currently unused"*. The kart-docs hydraulics page
+  presented it as "our pressure sensor" with a spec table, i.e. as installed hardware. Rewritten as
+  bought-but-not-fitted, with a pointer that the *pneumatic* sensors (Festo SDE5-D10) are the ones
+  actually reading. The variant-code mismatch I had filed as a task is moot next to that — dv records
+  it as PTE/700-33, matching the `-33` in the recorded code, so the Mouser link was simply the wrong
+  listing.
+- **The steering sensor mount is a 3D-printed adjustable holder**, not a bracket with screws.
+  `steering/fasteners.md` and its `bom.yaml` said "AS5600 sensor board to mounting bracket" and
+  "AS5600 must be centered over magnet". Corrected, and the adjustability is now stated as the point:
+  it is what lets the air gap and angular zero be trimmed after assembly. Still unrecorded anywhere,
+  per the dv entry: the mount's CAD source and its adjustment range. Filed.
+- **The bearing spacer is a CAD lookup**, not a workshop trip — the whole kart is modelled in Fusion
+  360. The task said "measure them off the kart", which is why it read as a chore. Also renamed: the
+  original note called it "a tube", which is why the item was unrecognisable to its own owner.
+
+Method note worth keeping: every wrong thing I wrote today came from reading one repo's history and
+treating it as the record. `~/dv/` is the engineering log and kart-docs' own `AGENTS.md` says to
+check it before rewriting any subsystem. I did not, on a subsystem rewrite. Grep `~/dv/kart/<area>/`
+first, not last.

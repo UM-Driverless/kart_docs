@@ -95,32 +95,35 @@ compliance gaps against FS rules ("NOT currently implemented but are required fo
 compliance"), and the repo ships `FS-AI_2026_APC_Technical_Rules_v1.pdf`. `docs/about.md` also
 lists competing as a medium-term objective. Pick one position and make the three pages agree.
 
-### The steering fastener docs still mount an AS5600
-`assembly/steering/fasteners.md` (and `fasteners/bom.yaml`) give the screws and the assembly order
-for mounting an **AS5600** sensor board to its bracket — "Install AS5600 with Item #3 screws",
-"AS5600 must be centered over magnet". The kart has run an MT6701 since 2026-07 and its breakout is
-a different board. Needs somebody at the kart to say what is physically bolted on now: same
-bracket and screws with a different board, or a new mount. Not guessable from the desk, which is
-why it was left rather than edited.
+### Reconcile the two accounts of why the AS5600 was dropped
+The repos disagree, and `assembly/steering/sensor/index.md` now says so rather than picking.
+`kart-medulla/history.md` (2026-07-11/12) says the AS5600 physically cannot read the kart's magnet —
+it needs the axial field to vary across a 1 mm circle, and two large magnets stuck sideways give a
+field that is strong but uniform, so magnet-detect stayed at zero even touching the chip.
+`~/dv/kart/steering/history.md` (2026-07-31) says *"magnet tolerance turned out not to be a real risk
+on this kart — the AS5600 already read the installed magnets fine"*. The bench magnet was handheld
+and the kart's is mounted, which may explain both, but nobody has written that down. It matters
+because it decides whether a future sensor choice carries a magnet constraint or not.
+
+### Record the steering sensor mount's CAD source and adjustment range
+The MT6701 sits on a 3D-printed adjustable mount at the front of the kart; the adjustment is what
+sets the air gap and angular zero after assembly. `~/dv/kart/steering/history.md` (2026-07-31) notes
+that the mount's CAD source and its adjustment range are recorded nowhere — worth capturing from the
+Fusion 360 model before anyone reprints it. The fastener page and the Angle Sensor page both
+reference the mount now, so they are where it goes.
 
 ### Add the MT6701 to the BOM
-`assembly/steering/bom.yaml` lists the AS5600 (€2.00) as the steering angle sensor and the MT6701
-is absent, so the BOM describes a kart that no longer exists. The AS5600 rows should stay — the
-parts were bought and the classic-ESP32 fallback build still uses that driver — but they need
-marking as superseded, with the MT6701 module (~€10, AliExpress) added as the fitted part.
-`bom/index.md` and `bom/full.md` regenerate from the YAML.
+`assembly/steering/bom.yaml` lists the AS5600 (€2.00) as the steering angle sensor and the MT6701 is
+absent, so the BOM describes a kart that no longer exists. The AS5600 rows should stay — the parts
+were bought, and the classic-ESP32 fallback build still uses that driver — but need marking as
+superseded, with the MT6701 module (~€10, AliExpress) added as the fitted part. `bom/index.md` and
+`bom/full.md` regenerate from the YAML.
 
-### Confirm which Sensata PTE7100 variant is on the kart
-`docs/assembly/hydraulics/index.md` records the part code `PTE7100-33CC-2E200BN`, but the Mouser
-link on the same page is `PTE7100-32DC-0B200BN`. The two differ in pressure port, connector and
-output options, so at most one of them describes the sensor actually fitted. Read the code off the
-sensor body and delete the wrong one — a page flagging its own contradiction is a placeholder, not
-an answer.
-
-### Fill in the wheel-bearing spacer dimensions
-`docs/assembly/index.md` describes the spacer tube between the wheel bearings but records its ID,
-OD and length as `?`. Measure them off the kart. Small, but nobody can order or make a replacement
-from the page as it stands.
+### Pull the wheel-bearing spacer dimensions out of the Fusion 360 model
+`docs/assembly/index.md` describes the spacer tube between the wheel bearings with its ID, OD and
+length written as `?`. The whole kart is modelled in Fusion 360, so this is a CAD lookup rather than
+a trip to the workshop. While filling it in, name it properly and say which assembly it belongs to —
+the original note just called it "a tube", which is why the item was unrecognisable.
 
 ### Document the ZED2's published topics and the RViz2 cone-detection setup
 Two gaps left as a source comment on `docs/assembly/sensors/camera.md` since the page was written:

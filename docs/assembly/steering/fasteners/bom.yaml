@@ -87,7 +87,7 @@ components:
     maintenance:
       check_frequency: "monthly"
       torque_check: "quarterly"
-    notes: "AS5600 sensor board mount - Item #3 in assembly photo. CAUTION: Do not over-torque"
+    notes: "Angle-sensor board to its 3D-printed adjustable mount - Item #3 in assembly photo. CAUTION: Do not over-torque"
 
   - id: "motor_bracket_bolts"
     part_number: "M6x30-HEX"
@@ -127,7 +127,7 @@ assembly_info:
     - "Torque wrench: 0-25 Nm range"
     - "Loctite 243 threadlocker"
   installation_sequence:
-    1: "Install AS5600 sensor with M3x8 screws"
+    1: "Install the angle sensor on its printed mount with M3x8 screws"
     2: "Mount motor to chassis with M6x30 bracket bolts"
     3: "Connect motor to shaft coupling with M6x20 bolts"
     4: "Install main coupling bolt M8x25 (CRITICAL)"

@@ -32,31 +32,42 @@ steering motor instead of acting on an unknown angle.
     once-per-revolution distortion, and the angle stays continuous and repeatable. That number is
     where the datasheet *guarantees* rated accuracy, not a cliff. For kart steering, where a few
     degrees is acceptable, mounting tolerance is not a hard constraint. This is a different failure
-    class from the AS5600's problem below, which was a *detection* failure.
+    class from the AS5600's reported bench behaviour, which was a *detection* failure.
 
 ## Why this sensor, and not the AS5600
 
-Two reasons, in the order they mattered.
+**Mounted at the front**, on a 3D-printed adjustable mount, close to the steering shaft. The mount is
+adjustable so the magnet-to-sensor air gap and the angular zero can be trimmed after assembly rather
+than being fixed by the print.
 
-**The magnet.** This is the one that settled it. The AS5600 works by sensing how the *axial* field
-varies across a 1 mm circle on the die — it reconstructs the angle from the shape of that variation.
-The kart's shaft "magnet" is two large magnets stuck on sideways, and a big magnet produces a field
-that is strong but almost **uniform** over a 1 mm span. There is no variation for the AS5600 to
-measure, so it reports *no magnet detected* and gates its own output, even with the chip touching
-the magnet. The MT6701 instead senses the **direction** of the in-plane field at a single point,
-which a large magnet defines strongly and cleanly. That difference in sensing principle — not
-resolution, not price — is the reason for the change.
+!!! warning "The two repos give different reasons for the swap — unresolved"
+    This page cannot state the reason as settled, because the sources disagree and the difference
+    matters for anyone choosing a sensor later.
 
-**The cable run.** The Kart Medulla sits at the rear, next to the Orin, because the two connect over
-USB. That puts it roughly **1.2 m** from the steering shaft. I²C does not survive that distance
-reliably: it is noise-sensitive, and a single glitch can hang the medulla's shared I²C bus, taking
-down more than the steering read. One PWM wire is robust over the run and never touches that bus.
+    **`kart-medulla/history.md` (2026-07-11/12)** says the AS5600 could not work here at all. It
+    reconstructs the angle from how the *axial* field varies across a 1 mm circle on its die, and the
+    kart's shaft magnet is two large magnets stuck sideways, giving a field that is strong but nearly
+    uniform over that span. On the bench, with the chip touching the magnet, its magnet-detect flag
+    stayed at zero and it gated its own output. The MT6701 senses in-plane field *direction* at a
+    point instead, which a large magnet defines cleanly.
 
-!!! warning "A bigger magnet is not a licence for sloppy mounting"
-    It would be easy to read the above as "the MT6701 tolerates anything". It does not. Its
-    datasheet asks for essentially the *same* small diametric magnet, tight air gap and centring as
-    the AS5600. What it tolerates is our specific problem — a strong, spatially uniform field — not
-    arbitrary mounting error.
+    **`~/dv/kart/steering/history.md` (2026-07-31)** says the opposite: *"magnet tolerance turned out
+    not to be a real risk on this kart — the AS5600 already read the installed magnets fine, and the
+    MT6701 confirms it."* On that reading, the MT6701 won on its single-wire PWM output rather than on
+    magnet handling.
+
+    Both may be true of different setups — the bench magnet was handheld, the kart's is mounted — but
+    nobody has reconciled them. Filed in `tasks.md`.
+
+What is **not** a reason, despite appearing in earlier docs: cable length. A 2026-07-14 plan would
+have moved the Kart Medulla PCB to the rear, ~1.2 m from the shaft, making an I²C run unreliable.
+That move never happened and is not pending — the sensor was always front-mounted. Since no I²C mode
+is used for the angle, the shared-bus hang concern does not apply either.
+
+!!! note "A bigger magnet is not a licence for sloppy mounting"
+    The MT6701's datasheet asks for essentially the same small diametric magnet, tight air gap and
+    centring as the AS5600. Whatever it tolerates, it is not arbitrary mounting error — which is why
+    the mount is adjustable.
 
 ## Electrical connection
 
@@ -93,11 +104,11 @@ can be re-checked, not followed.
     steering shaft to keep the I²C run short. It was in use through the 2025 bench work and into
     2026.
 
-    It was retired after bench testing showed it could not read the kart's shaft magnet at all — see
-    "Why this sensor, and not the AS5600" above for the mechanism. On the bench with the chip
-    touching the magnet, its magnitude reading peaked erratically and its magnet-detect flag stayed
-    mostly at zero; with that flag clear, the chip deliberately gates its output regardless of
-    output mode. It was not a wiring fault and no firmware change could have recovered it.
+    Retired 2026-07-12 after bench work in which it would not report a valid angle: with the chip
+    touching a handheld magnet its magnitude reading peaked erratically and its magnet-detect flag
+    stayed mostly at zero, and with that flag clear the chip gates its output regardless of output
+    mode. That was not a wiring fault. Whether the same would have happened with the kart's *mounted*
+    magnet is the open question in the callout above.
 
     ![AS5600 breakout board, as bought — with its header strip and a small diametric magnet](images/20250608181732.png)
 
@@ -126,7 +137,7 @@ can be re-checked, not followed.
 
 ??? info "Options considered and not used"
     - **AS5600 in PWM mode.** Attempted so that the front-mounted AS5600 could send a single wire
-      to the rear and dodge the cable-length problem, before the magnet issue settled the matter.
+      to the rear, back when the plan still had the medulla moving there.
       It never produced a usable signal on the bench: the output pin read as floating, which
       traced to an open connection somewhere in the path from the chip's OUT pad through the
       terminal and its series resistors to the ESP32 — not to a proven dead chip. It also needs a

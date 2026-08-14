@@ -41,7 +41,7 @@ This page documents all fasteners used in the steering assembly with precise ide
 ### Item #3: Sensor Mount Screws
 - **Quantity**: 2 bolts
 - **Size**: M3 x 8mm hex head cap screws
-- **Location**: AS5600 sensor board to mounting bracket
+- **Location**: angle-sensor board to its 3D-printed adjustable mount
 - **Torque**: 3 Nm (be careful not to over-torque small screws)
 - **Material**: Steel, zinc plated
 - **Installation**: Hand-tighten plus 1/4 turn
@@ -59,7 +59,7 @@ This page documents all fasteners used in the steering assembly with precise ide
 ## Assembly Instructions
 
 ### Installation Sequence
-1. **Mount sensor first**: Install AS5600 with Item #3 screws
+1. **Mount sensor first**: fit the MT6701 board to its printed mount with the Item #3 screws
 2. **Position motor**: Mount motor to chassis with bracket bolts
 3. **Install coupling**: Connect motor to shaft with Item #1 bolts
 4. **Final connection**: Install main coupling bolt (Item #2)
@@ -67,7 +67,7 @@ This page documents all fasteners used in the steering assembly with precise ide
 
 ### Critical Notes
 - **Alignment**: Ensure motor shaft and steering shaft are properly aligned before tightening
-- **Sensor position**: AS5600 must be centered over magnet (see sensor documentation)
+- **Sensor position**: the sensor must be centred over the magnet at the right air gap. The printed mount is *adjustable* for exactly this — gap and angular zero are trimmed after assembly, not fixed by the print. See [Angle Sensor](sensor/index.md)
 - **Threadlocker**: Use blue (medium strength) on all bolts except sensor screws
 
 ## Maintenance Schedule
