@@ -770,3 +770,72 @@ asymmetry was documented without ever being named as one.
 A task is filed in this repo's `tasks.md` for the pulldown, including the meter test that separates
 the two candidate causes, because the cause is not settled — Ruben's reading is that the swing
 happened during the flash itself rather than just after the reboot.
+
+## 2026-08-14 — Removed the "other repos are stale" banners, and a structure pass
+
+Ruben, on the S3-build warning at the top of
+`docs/assembly/electronics/kart-medulla/firmware.md`: noting that the repos are wrong instead of
+fixing them is a botched idea. He is right, and the banner had already rotted — two of the three
+statements it warned about had been corrected in `kart-medulla` on 2026-08-10, so the warning was
+itself the stale doc by the time it was read. Fixed the sources (written up in
+`kart-medulla/history.md`, same date) and deleted all three banners here: the S3-build one, the
+"older task-rate figures elsewhere are superseded" one, and the "PID gains differ across sources"
+one.
+
+Corrections that came out of doing it, all checked against `main/main.c` and `kart-brain`:
+
+- The PID callout's own numbers were stale. It said Kp 1.50 / Kd 0.02 citing `main.c:277-279`; the
+  code has `PID_DEFAULT_KP` 1.00 and `PID_DEFAULT_KD` 0.05. A banner warning that other files drift
+  had drifted. The page now names the constants and their file instead of citing line numbers,
+  which move.
+- The task table said `control`'s real rate was "capped by the blocking I2C AS5600 read, so it runs
+  below 500 Hz". It is not — the MT6701 is read by MCPWM capture, nothing in the loop blocks, and
+  500 Hz is measured via `control_iters`. The cap is UART bandwidth.
+- The steering pipeline said the AS5600 is read over I2C. Sensor changed 2026-07-12.
+- The comms-loss section said the firmware "does not drive [the SDC] yet". It has since 2026-07-26;
+  what is missing is the wire from Q3's gate. Split into its own "Shutdown circuit (SDC)" section
+  with the whitelist conditions spelled out, so the distinction between "logic runs" and "nothing
+  happens physically" is visible rather than buried in a negative.
+- Added a danger callout about de-powering the steering before a flash. The steering pins float
+  through the bootloader window and this broke gear teeth on 2026-08-08; it was recorded in
+  `kart-medulla/AGENTS.md` and in this repo's `tasks.md`, but nowhere on the published site, which
+  is what a human at the kart actually reads.
+- `kart-medulla/index.md` claimed "Native USB-OTG — the Orin link becomes a direct USB cable,
+  dropping the USB-UART bridge IC". That is the S3's capability, not the kart's wiring: the link
+  runs over UART0 through the DevKitC's CH343 bridge at 115200. Both the "Why ESP32-S3" bullet and
+  the "Orin link" hardware-decision line now say what is actually connected.
+- `assembly/sensors/camera.md` carried a "the YOLOv5 sections below are out of date" banner over a
+  walkthrough for the ZED wrapper's built-in ONNX detection. Both halves needed work: the version
+  (YOLOv11n now) and the framing. There are genuinely two modes — our own `yolo_detector` node,
+  which is the default, and the ZED SDK's built-in detection, which `perception_zed_od.launch.py`
+  exists for. The ONNX steps belong to the second and are now labelled as such, so nothing had to
+  be deleted.
+- `software/ros2/packages.md`'s `yolo_detector` parameter table was checked against the node while
+  there: `conf_threshold` 0.25 -> 0.10, `imgsz` 640 -> 320, `device` default is auto-detect not
+  `cpu`, and `crop_top` was missing entirely.
+- `orin-setup.md` listed YOLOv5 in the JetPack-compatibility sentence.
+
+Structure, since the same request asked whether the organisation makes sense:
+
+- `docs/hydraulics/` sat at the top level while the nav filed it under Assembly, so the two braking
+  systems lived in different places. Moved to `docs/assembly/hydraulics/` and rewritten — it opened
+  with a bare bullet and no statement of what the hydraulics are for. It now says the pneumatics
+  actuate these brakes, which is the fact that makes the two pages make sense together. Flagged
+  that the recorded Sensata part code and the Mouser link on the same page are different variants;
+  filed as a task rather than guessed at.
+- `diego-design.md` renamed to `design-history.md` (named for the job, not the author) and added to
+  the nav — it was linked from the pneumatics page but invisible in the sidebar, and was the only
+  page mkdocs reported as missing from the nav. The build is now warning-free.
+- Deleted `TODO.md`: a second, Spanish, task list at the repo root next to `tasks.md`, holding a
+  plan for a Blue Pill v2 board with an AliExpress I2C DAC module. Superseded by the medulla PCB
+  and its MCP4922. The CAN part link it also held moved to `stuff.md`, which is the declared home
+  for links with no better place.
+- `tasks.md` had a `## Done` section on the board while its own header said closed items live in
+  `tasks/done-archive.md`, a file that did not exist. Created it and moved the eight closed entries
+  across, plus the three this session closed.
+- `assembly/index.md`'s trailing "Notes" was two bullets and a literal `...`. Kept the facts, said
+  what the section is for, and turned the unknown bearing-spacer dimensions into an explicit
+  measure-this rather than a `?` that reads as a typo.
+- `electronics/computer.md` was three H1s deep with "Power consumption:" left blank and "Specs:
+  TODO". Filled the specs from `orin-setup.md` (they were already recorded there), fixed the
+  heading levels, and pointed the software half at the setup page instead of half-duplicating it.

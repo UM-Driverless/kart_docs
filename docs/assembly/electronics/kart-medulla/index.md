@@ -9,7 +9,7 @@ The Kart Medulla is the MCU-based control hub between the Orin computer and the 
 The classic ESP32 ran out of usable GPIOs once CAN, SPI, status RGB, buzzer, and the Orin link were added on top of the existing I/O (3× halls, 3× pressure, accelerator, brake, SDC — shutdown circuit — steering, relay). The S3 solves this and adds several quality-of-life wins:
 
 - **~45 GPIOs** (vs ~34 on the classic), with fewer of them reserved or strap-pin traps.
-- **Native USB-OTG** — the Orin link becomes a direct USB cable (CDC-ACM), dropping the USB-UART bridge IC and moving from ~1 Mbit/s UART to ~12 Mbit/s full-speed USB.
+- **Native USB-OTG** — makes a direct ~12 Mbit/s USB link to the Orin possible without a USB-UART bridge IC. Not what the kart runs today: the fitted DevKitC-1 carries a WCH CH343 bridge on its `COM` port and the Orin link goes over UART0 through it, at 115200 baud. The native port (silkscreened `USB`, on GPIO 19/20) is available if that link ever becomes the bottleneck — see [Firmware](firmware.md) for what switching cables changes.
 - **Built-in USB-Serial-JTAG** — flashing, serial monitor, and step-debugging all over the same USB cable. No external ESP-Prog / FT2232H needed.
 - **External DAC on the PCB** (MCP4922, dual 12-bit, SPI) — replaces the classic ESP32's built-in 8-bit DAC. 12-bit resolution × 2 channels covers `CMD_ACC` (accelerator, 0–5 V direct) and `CMD_BRAKE` (brake, 0–5 V → ×2 op-amp → 0–10 V for the Festo proportional valve) with no extra pin cost beyond the existing SPI bus.
 
@@ -81,7 +81,7 @@ dv-hardware pinout file; **physical modifications are tracked in that board's re
 [`projects/kart-medulla/README.md`](https://github.com/UM-Driverless/dv-hardware/blob/main/projects/kart-medulla/README.md).
 
 !!! info "Two repurposed terminals on the current board"
-    Detail for the two rows in the table above — what to do with a probe and a soldering iron. The firmware header `km_gpio.h` carries both (`PIN_STEER_PWM_IN` = GPIO 1, documented there as the MT6701's ~994 Hz PWM angle frame; `PIN_CMD_COMPRESSOR` = GPIO 3) — checked 2026-07-31, an earlier note here saying it hadn't caught up was stale. The authoritative map is still the schematic and [`.agents/esp32s3-pinmap.md`](https://github.com/UM-Driverless/kart-medulla/blob/main/.agents/esp32s3-pinmap.md).
+    Detail for the two rows in the table above — what to do with a probe and a soldering iron. The firmware header `km_gpio.h` carries both (`PIN_STEER_PWM_IN` = GPIO 1, documented there as the MT6701's ~994 Hz PWM angle frame; `PIN_CMD_COMPRESSOR` = GPIO 3). The authoritative map is the schematic, with [`.agents/esp32s3-pinmap.md`](https://github.com/UM-Driverless/kart-medulla/blob/main/.agents/esp32s3-pinmap.md) as its firmware-side copy.
 
     - **CN5.2 / GPIO 1 — steering-angle PWM (was `PRESSURE_3`).** The Pressure-3 ADC channel is retired; the terminal now reads the steering-angle sensor's **single-wire PWM output — the wheel angle is encoded in the PWM duty cycle** — decoded on the ESP32-S3 with the MCPWM capture peripheral (edge timing), not read as an analog voltage. **Board rework: remove R10 only** (the pulldown to GND), keeping R8 + R9. The net is `CN5.2 —[R8 10k]— node —[R9 10k]— GPIO 1 —[R10 10k]— GND`, so R10 is the only shunt to ground and R8 + R9 stay in place as a 20 kΩ series into the pin — too high-impedance for the ADC, which is why this pin reads digital PWM (MCPWM capture), not analog. **This is the live path as of 2026-07-31: the MT6701 is mounted and validated working on the kart, reading over PWM** — it replaced the AS5600/I²C arrangement rather than waiting as a later cleanup. See [Angle Sensor](../../steering/sensor/index.md) and [Wiring](../wiring.md).
     - **CN8.2 / GPIO 3 — EBS compressor PWM (was `BUZZER`).** The old buzzer output now drives the EBS air-compressor MOSFET gate (net `CMD_COMPRESSOR_PWM`); the buzzer was dropped. An external 100 kΩ gate pulldown holds the FET off through boot.
@@ -117,7 +117,7 @@ Interface PCB hosting the ESP32-S3 module, signal conditioning, the SPI DAC, the
 - **Pressure sensor inputs (3× Festo, 24 V):** voltage divider + input clamp / TVS protection on each channel to bring the signal into the S3's ADC range (≤ 3.3 V).
 - **Hydraulic pressure sensor inputs (2×):** routed to ADC1_CH9 (GPIO 10) and ADC1_CH1 (GPIO 2).
 - **Hall sensor inputs (3× 5 V):** dedicated level translator (NOT the optocoupler) to 3.3 V before the GPIO pins.
-- **Orin link:** native USB-OTG on GPIO 19/20 (D∓). No USB-UART bridge chip.
+- **Orin link:** UART0 over the DevKitC-1's on-board WCH CH343 bridge (the `COM` USB-C port), 115200 baud, appearing on the Orin as `/dev/ttyACM0`. The PCB adds no bridge chip of its own. GPIO 19/20 (D∓) go to the module's native USB port, which is wired but unused — switching the Orin onto it would move the serial console too, so it is not a drop-in change.
 - **Power architecture:** kart 12 V → external XW-1224 buck → 5 V kart-wide rail → medulla 5 V (H1.21) → ESP32-S3 module LDO → 3.3 V. The medulla can alternatively be powered from an on-board LM2596SX-ADJ buck (qty 8 in stock) if the kart-wide 5 V rail is unavailable. MCP4922 VDD and MAX4660 Vcc both run from the same 5 V rail.
 
 ### Connector Pinout (Outside World)

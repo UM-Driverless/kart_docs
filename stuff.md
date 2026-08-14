@@ -29,3 +29,7 @@ For now: just use our own phones. Buy a dedicated one later if the dashboard wor
 Kiosk app: [FreeKiosk](https://github.com/RushB-fr/freekiosk) (free, open-source, locks phone to one browser tab)
 Dashboard: [ROSboard](https://github.com/dheera/rosboard) (`pip install rosboard`) for instant ROS2 topic visualization + custom FastAPI for mission control buttons.
 
+# CAN-bus parts, if the kart ever gets a CAN link (moved here from TODO.md, 2026-08-14)
+There is no CAN on the kart today — the Orin talks to the medulla over plain USB serial. GPIO 41/42
+on the ESP32-S3 are held unassigned in case that changes. Part that was being considered:
+- CAN driver module: https://es.aliexpress.com/item/1005006299445174.html

@@ -1,8 +1,7 @@
-<!-- TODO
-Hay que agregar el uso de los sensores, ademas de que habria que hacer una documentacion de los topics que se usan de la camara.
-
-Hay que agregar tambien cuales paquetes hay que instalar para poder visualizar la deteccion de los conos en rviz2
--->
+<!-- Two gaps on this page are tracked in tasks.md, "Document the ZED2's published topics and the
+     RViz2 cone-detection setup": (1) which ZED topics the stack consumes — the commented-out table
+     further down was never corrected; (2) which packages to install to see cone detections in
+     RViz2. -->
 
 # ZED2 Camera Integration Documentation
 
@@ -10,8 +9,7 @@ Hay que agregar tambien cuales paquetes hay que instalar para poder visualizar l
 
 This document describes the integration of the **ZED2 stereo camera** into the kart and its usage through the **ROS 2 wrapper**.
 
-!!! warning "The YOLOv5 sections below are out of date"
-    Cone detection runs **YOLOv11n** at `imgsz` 320 — the weights are `ruben_yolov11n_2026_03_320` and the node is `kart_perception/yolo_detector_node.py` (see [Packages → kart_perception](../../software/ros2/packages.md#kart_perception)). The "Exporting and Using a Custom YOLOv5 Model" walkthrough further down still describes the v5 export flow, whose steps and config keys differ from v11. Treat it as historical until it is rewritten; it is filed in `tasks.md`.
+Cone detection itself is not done by the camera — it is a separate ROS 2 node. This page covers getting images out of the ZED; what happens to them is on the [ROS 2 packages](../../software/ros2/packages.md#kart_perception) page.
 
 ## Official Resources
 
@@ -141,36 +139,27 @@ CORREGIR POR TOPICS CORRECTOS
 | `/zed2/zed_node/point_cloud/cloud_registered` | `sensor_msgs/PointCloud2` | Registered 3D point cloud                      |
 | `/zed2/zed_node/odom`                  | `nav_msgs/Odometry`         | Visual odometry (pose estimation)              | -->
 
-## Cone Detection with YOLOv5
+## Where cone detection happens
 
-In this project, **YOLOv5** is used to perform **real-time cone detection** on images captured by the ZED2 camera.
-The ZED ROS 2 Wrapper supports custom object detection models through **ONNX integration**, allowing you to run your own trained detectors such as YOLOv5 directly on the GPU using **TensorRT** for real-time inference.
+There are two ways to detect cones from this camera, and the kart normally uses the first.
 
-### Exporting and Using a Custom YOLOv5 Model
+### 1. Our own YOLO node (default)
 
-If you have trained a YOLOv5 model (e.g., for cone detection), follow these steps to integrate it into the ZED wrapper:
+`kart_perception/yolo_detector_node.py` subscribes to the ZED's rectified RGB topic and runs **YOLOv11n** through Ultralytics at `imgsz` 320, with TensorRT `.engine` weights on the Orin. The ZED wrapper is left as a plain image source — its built-in object detection stays off. Launch it with `perception_3d.launch.py`.
 
-1. **Export the model to ONNX format**:  
-   You can do this using PyTorch and the YOLOv5 export tools (e.g., `export.py` script from the [YOLOv5 repository](https://github.com/ultralytics/yolov5)):
+This is the path that is tuned and tested: the detector's parameters, the weights files, and the 2D → 3D projection that follows are documented under [ROS 2 → Packages → kart_perception](../../software/ros2/packages.md#kart_perception).
 
-   This will generate a `.onnx` file.
+### 2. The ZED SDK's built-in object detection (alternative)
 
-2. **Enable object detection in the ZED wrapper** by editing the configuration file:
+The ZED wrapper can also run a custom detector itself, on the GPU, and publish `ObjectsStamped` with 3D positions already resolved — which removes our depth-projection step. `perception_zed_od.launch.py` runs the pipeline in this mode; it launches only the marker visualiser, because the detector and the depth localiser are not needed.
 
-   Open your `common_stereo.yaml` (located in your ROS 2 workspace, inside `zed-ros2-wrapper/zed_wrapper/config`), and modify or add the following lines:
+To enable it, export the model to ONNX and point the wrapper at it in `common_stereo.yaml` (in `zed-ros2-wrapper/zed_wrapper/config`):
 
-   ```yaml
-   object_detection:
-        od_enabled: true 
-        model: 'CUSTOM_YOLOLIKE_BOX_OBJECTS'
-        custom_onnx_file: '$path to model'
-   ```
+```yaml
+object_detection:
+     od_enabled: true
+     model: 'CUSTOM_YOLOLIKE_BOX_OBJECTS'
+     custom_onnx_file: '<path to model>'
+```
 
-### First-Time Optimization
-
-The first time you launch the node with your custom ONNX model, **TensorRT will optimize the model for inference**, which may take additional time (several seconds to minutes depending on the system).  
-Subsequent runs will be much faster, as the optimized engine will be cached and reused.
-
----
-
-Once all dependencies are correctly installed and the YOLOv5 model is configured, you should be able to run real-time object detection with the ZED2 camera using ROS 2.
+The first launch with a new ONNX file is slow — TensorRT optimises the model then, taking seconds to minutes depending on the machine. The optimised engine is cached, so later runs start quickly.

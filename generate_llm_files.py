@@ -158,7 +158,7 @@ def generate_llms_txt(pages: List[Tuple[str, str, str]]) -> str:
                 content.append("## Hardware")
                 content.append("")
                 current_section = "Hardware"
-        elif any(section in file_path for section in ['electrical/', 'pneumatics/', 'hydraulics/']):
+        elif any(section in file_path for section in ['electrical/', 'pneumatics/']):
             if current_section != "Systems":
                 content.append("## Systems")
                 content.append("")

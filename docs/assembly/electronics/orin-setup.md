@@ -58,7 +58,7 @@ The flash tool writes to all three. This is expected.
     ZED SDK 5.2 does not provide a build for L4T 36.5 as of February 2026. The 4.2 build for L4T 36.4 installs successfully on L4T 36.5 with a compatibility warning. Upgrade when a 5.2 build for L4T 36.5 becomes available.
 
 !!! note "Why JetPack 6.2.2 and not JetPack 7?"
-    JetPack 7 does not support AGX Orin as of February 2026. Only the newer Jetson Thor family is supported. Orin support is expected in JetPack 7.2 (Q2 2026). Our full stack (ROS 2 Humble, ZED SDK, PyTorch, YOLOv5) is confirmed compatible with JetPack 6.2.2.
+    JetPack 7 does not support AGX Orin as of February 2026. Only the newer Jetson Thor family is supported. Orin support is expected in JetPack 7.2 (Q2 2026). Our full stack (ROS 2 Humble, ZED SDK, PyTorch, Ultralytics/YOLOv11) is confirmed compatible with JetPack 6.2.2.
 
 ## Flashing to NVMe
 

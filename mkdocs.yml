@@ -66,7 +66,8 @@ nav:
       - Pneumatic Braking:
           - assembly/pneumatic-braking/index.md
           - BOM: assembly/pneumatic-braking/bom.md
-      - Hydraulics: hydraulics/index.md
+          - Design history (superseded): assembly/pneumatic-braking/design-history.md
+      - Hydraulics: assembly/hydraulics/index.md
   - Rules:
       - AS State Machine: rules/as_state_machine.md
   - Software:

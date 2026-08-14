@@ -105,4 +105,4 @@ Terminology:
 
 ## Historical archive
 
-Two earlier candidate circuits — a super-simplified version (no OR valve, no ASB valve) and a full/conservative version (ASB valve **and** OR valve) — are kept with their diagrams on the [**Design History page**](diego-design.md), along with why each was dropped in favour of the validated design (OR valve, no series ASB).
+Two earlier candidate circuits — a super-simplified version (no OR valve, no ASB valve) and a full/conservative version (ASB valve **and** OR valve) — are kept with their diagrams on the [**Design History page**](design-history.md), along with why each was dropped in favour of the validated design (OR valve, no series ASB).

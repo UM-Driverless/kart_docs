@@ -15,22 +15,27 @@ This package contains the full perception pipeline: YOLO-based 2D detection, dep
 
 Runs YOLOv11 inference on RGB images to detect cones.
 
+Inference runs on its own thread so ROS callbacks are never blocked by GPU work; the image subscription has queue depth 1, so a frame that arrives mid-inference replaces the previous one instead of queueing.
+
 | | |
 |---|---|
-| **Subscribes** | Image topic (default `/zed/zed_node/rgb/image_rect_color`) |
+| **Subscribes** | Image topic — `/image_raw` by default, overridden by the launch files to `/zed/zed_node/rgb/image_rect_color` |
 | **Publishes** | `/perception/cones_2d` (`Detection2DArray`) |
 | | `/perception/yolo/annotated` (`Image` — debug view with bounding boxes) |
+| | `/perception/yolo/fps` (`Float32`) |
+
+Parameters, with the node's own declared defaults:
 
 | Parameter | Default | Description |
 |---|---|---|
 | `weights_path` | `models/perception/yolo/ruben_yolov11n_2026_03_320.engine` | Path to YOLO weights (`.pt` or TensorRT `.engine`) |
-| `conf_threshold` | 0.25 | Minimum confidence to keep a detection |
+| `conf_threshold` | 0.10 | Minimum confidence to keep a detection |
 | `iou_threshold` | 0.45 | Non-max suppression IoU threshold |
-| `imgsz` | 640 | Input image size for inference |
-| `device` | `cpu` | PyTorch device (`cpu`, `cuda:0`) |
+| `imgsz` | 320 | Input image size for inference |
+| `device` | *(empty)* | PyTorch device. Empty means auto: `cuda:0` when available, else `cpu` |
+| `crop_top` | 0.35 | Fraction of image height cropped off the top before inference — the sky holds no cones |
 
-!!! note "YOLO version"
-    The current model is **YOLOv11** (Ultralytics backend, loads `.pt` or TensorRT `.engine` weights). The default weights above are the node's own default; the launch files override it — `perception_3d.launch.py` defaults to `ruben_yolov11n_2026_03_320_orin_trt10.engine` (TensorRT, for the Orin), and `perception_test.launch.py` to `ruben_yolov11n_2026_03.pt` (portable). The older YOLOv5 model (`best_adri.pt`) was the 2024 stack and is no longer the default.
+The launch files override the weights: `perception_3d.launch.py` uses `ruben_yolov11n_2026_03_320_orin_trt10.engine` (TensorRT, built for the Orin) and `perception_test.launch.py` uses `ruben_yolov11n_2026_03.pt` (portable, runs anywhere). The model is **YOLOv11n** through the Ultralytics backend. The 2024 stack's YOLOv5 model (`best_adri.pt`) is no longer used.
 
 #### `cone_depth_localizer`
 
