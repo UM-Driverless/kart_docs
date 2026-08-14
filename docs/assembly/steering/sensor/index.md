@@ -59,10 +59,22 @@ than being fixed by the print.
     Both may be true of different setups — the bench magnet was handheld, the kart's is mounted — but
     nobody has reconciled them. Filed in `tasks.md`.
 
-What is **not** a reason, despite appearing in earlier docs: cable length. A 2026-07-14 plan would
-have moved the Kart Medulla PCB to the rear, ~1.2 m from the shaft, making an I²C run unreliable.
-That move never happened and is not pending — the sensor was always front-mounted. Since no I²C mode
-is used for the angle, the shared-bus hang concern does not apply either.
+### The cable-length argument no longer applies
+
+Earlier docs give the reason as distance, and that needs untangling because the wording survives in
+several places.
+
+On 2026-07-11 the plan was to **move the Kart Medulla PCB to the rear**, next to the Orin — the two
+have to connect over USB, and the compressor and Hall sensors are already back there. The steering
+sensor would have stayed on the shaft at the front, leaving the board about **1.2 m** from it. I²C
+does not survive that run: it is single-ended open-drain, easy to glitch next to the 48 V motor
+phases, and one glitch on SCL hangs the bus — which the on-board PCF8574 shares. So a single-wire
+PWM sensor was the recommended fix.
+
+**That board relocation never happened and is not pending.** Board and sensor are both at the front,
+the run is short, and since no I²C mode is used for the angle the shared-bus concern does not arise
+either. The MT6701 stayed regardless: it was already bought, configured and validated, and PWM
+works fine over a short run too.
 
 !!! note "A bigger magnet is not a licence for sloppy mounting"
     The MT6701's datasheet asks for essentially the same small diametric magnet, tight air gap and
