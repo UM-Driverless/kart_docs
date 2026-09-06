@@ -40,7 +40,8 @@ docs/assembly/
 ├── electronics/
 │   ├── bom.yaml              # Orin, ESP32, DAC, level shifter
 │   └── power/bom.yaml        # Battery cells, BMS, auxiliary battery
-└── sensors/bom.yaml          # ZED2 camera, YOLOv11 models
+├── sensors/bom.yaml          # ZED2 camera, YOLOv11 models
+└── hydraulics/bom.yaml       # Hydraulic brake components and service spares
 ```
 
 ## Assembly Overview
@@ -97,6 +98,18 @@ docs/assembly/
 **Key Components:**
 - Stereolabs ZED2 stereo camera (€450.00)
 - Custom YOLOv11 cone detection model
+
+### 🛑 Hydraulic Braking Assembly
+**Components**: Installed brake circuit and compatible service spares
+- **Main Components**: [Hydraulics BOM](../assembly/hydraulics/bom.yaml)
+- **Documentation**: [Hydraulics Assembly](../assembly/hydraulics/index.md)
+
+**Key Components:**
+- Legacy Tony Kart BS1-family brake pump, caliper, rear disc and hoses (installed; exact fitted part numbers need physical confirmation)
+- Catalogue-era BS1/BS2 pump spare (€176.95)
+- Catalogue-era pre-2000 BS1 rear-caliper spare (€193.95)
+- BS1/BS3 steel-braided hose kit (€140.00)
+- Newfren replacement pad set (supplier listing: AUD $71.50; confirm fit before ordering)
 
 ## Estimated Project Costs
 

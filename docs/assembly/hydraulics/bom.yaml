@@ -1,0 +1,123 @@
+assembly: "hydraulics"
+description: "Kart hydraulic brake circuit and compatible service spares"
+components:
+  - id: "tony_extreme_brake_pump"
+    part_number: "Tony Kart BS1 family; exact fitted part number unrecorded"
+    description: "Twin-piston hydraulic brake master cylinder, legacy Tony Kart Extreme arrangement, without recovery reservoir"
+    category: "brake"
+    quantity: 1
+    unit_cost: 0.0
+    currency: "EUR"
+    status: "installed"
+    criticality: "essential"
+    specifications:
+      brake_family: "Tony Kart BS1; identification inferred from the late-1990s Extreme chassis and period brake description"
+      reservoir: "No recovery reservoir"
+      fluid: "Confirm the fluid currently used before servicing"
+    notes: "The kart documentation confirms the original hydraulic brake circuit is retained. Confirm the casting, piston and mounting dimensions on the kart before ordering a replacement."
+
+  - id: "tony_extreme_rear_caliper"
+    part_number: "Tony Kart BS1 family; exact fitted part number unrecorded"
+    description: "Legacy rear hydraulic brake caliper, two-piece construction"
+    category: "brake"
+    quantity: 1
+    unit_cost: 0.0
+    currency: "EUR"
+    status: "installed"
+    criticality: "essential"
+    specifications:
+      period_reference: "Tony Kart Extreme 1997-1999"
+      piston_diameter: "Period article reports 28 mm; later BS1 catalogue lists a 30 mm rear piston — verify physically"
+      mounting: "Measure mounting spacing before ordering"
+    notes: "The complete BS1/BS2 calipers remain listed in legacy catalogues, but the pre-2000 and later versions must not be assumed interchangeable."
+
+  - id: "tony_extreme_rear_disc"
+    part_number: "Tony Kart BS1/BS2 rear disc reference TK0051.00"
+    description: "Rear hydraulic brake disc"
+    category: "brake"
+    quantity: 1
+    unit_cost: 0.0
+    currency: "EUR"
+    status: "installed"
+    criticality: "essential"
+    specifications:
+      diameter: "Approximately 210 mm according to the period Extreme brake description"
+      fitment: "Verify outer diameter, thickness and carrier pattern on the fitted disc"
+    notes: "The part number and catalogue price are retained as a sourcing reference, not as confirmation that the current disc is this exact revision."
+
+  - id: "tony_extreme_brake_hoses"
+    part_number: "M10x1.0 female inverted flare; exact hose part number unrecorded"
+    description: "Flexible hydraulic brake hoses"
+    category: "brake"
+    quantity: 1
+    unit_cost: 0.0
+    currency: "EUR"
+    status: "installed"
+    criticality: "essential"
+    specifications:
+      connectors: "M10x1.0 female inverted flare"
+      replacement_options: "Custom or karting steel-braided hoses; measure each required length"
+    notes: "The kart documentation records the connector standard but not the hose lengths. Do not order by thread alone; confirm length, end angle and flare geometry."
+
+  - id: "tony_bs1_pump_spare"
+    part_number: "TK0029.BB"
+    description: "Complete Tony Kart BS1/BS2 twin-pump assembly, compatible spare candidate"
+    category: "brake"
+    quantity: 1
+    unit_cost: 176.95
+    currency: "EUR"
+    status: "compatible_spare"
+    criticality: "essential"
+    suppliers:
+      - name: "Tony Kart legacy parts catalogue"
+        url: "https://forums.kartpulse.com/uploads/short-url/q2LkxLOz4d8Akc3W1q68pZDRR2O.pdf"
+        verified: true
+    notes: "Catalogue price only; live stock and direct fit to the fitted pump still need confirmation."
+
+  - id: "tony_bs1_caliper_spare_pre2000"
+    part_number: "TK0082.BA"
+    description: "Tony Kart BS1 rear caliper, pre-2000 catalogue reference"
+    category: "brake"
+    quantity: 1
+    unit_cost: 193.95
+    currency: "EUR"
+    status: "compatible_spare"
+    criticality: "essential"
+    suppliers:
+      - name: "Tony Kart legacy parts catalogue"
+        url: "https://forums.kartpulse.com/uploads/short-url/q2LkxLOz4d8Akc3W1q68pZDRR2O.pdf"
+        verified: true
+    notes: "Best catalogue-era match for the 1997-1999 chassis, but verify caliper body, piston and mounting dimensions before purchase."
+
+  - id: "tony_bs1_hose_kit"
+    part_number: "TK0081.B1"
+    description: "Tony Kart BS1/BS3 steel-braided brake hose kit"
+    category: "brake"
+    quantity: 1
+    unit_cost: 140.00
+    currency: "EUR"
+    status: "compatible_spare"
+    criticality: "essential"
+    suppliers:
+      - name: "Tony Kart legacy parts catalogue"
+        url: "https://forums.kartpulse.com/uploads/short-url/q2LkxLOz4d8Akc3W1q68pZDRR2O.pdf"
+        verified: true
+    notes: "Use only after comparing hose lengths, fitting orientation and flare type with the kart."
+
+  - id: "tony_bs1_pad_set"
+    part_number: "BRTK015N"
+    description: "Newfren replacement rear brake pads listed for Tony Kart Extreme hydraulic brakes"
+    category: "brake"
+    quantity: 1
+    unit_cost: 0.0
+    currency: "EUR"
+    status: "compatible_spare"
+    criticality: "essential"
+    specifications:
+      mounting: "5 mm threaded holes on 60 mm centres"
+      thickness: "16 mm"
+    suppliers:
+      - name: "Australian Go Kart Parts"
+        url: "https://www.agskartparts.com.au/products/456/BRAKE-PAD-SOFT-OTK-BS2"
+        verified: true
+    notes: "The supplier lists the part as available at AUD $71.50. Confirm the fitted pad outline and hole spacing before ordering."

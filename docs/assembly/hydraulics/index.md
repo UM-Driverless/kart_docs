@@ -5,6 +5,9 @@ The kart keeps its original hydraulic brakes. They are what actually stops the w
 normal autonomous braking (ASB) and for the emergency circuit (EBS). This page covers the fluid
 side: hoses, bleeding, and the pressure sensor that tells the kart how hard it is braking.
 
+The installed brake components and compatible service-spare candidates are listed in the
+[hydraulic brake BOM](bom.yaml).
+
 ## Brake lines
 
 Flexible brake hoses with `M10x1.0 female inverted flare` connectors.
