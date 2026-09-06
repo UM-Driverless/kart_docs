@@ -994,3 +994,17 @@ what changed.
 
 Terminology, per Ruben the same day: write **kart-medulla PCB**, never "the board". "Board" is
 ambiguous here — the kart has several, and the dev-board-on-a-PCB arrangement makes it worse.
+
+## 2026-09-06 — Legacy Tony Kart Extreme brake spares research
+
+The kart documentation identifies the chassis as a Tony Kart Extreme and says the original
+hydraulic circuit remains in service, with flexible hoses using **M10×1.0 female inverted-flare
+connectors**. A period analysis of the 1998 Extreme describes the matching legacy system as a
+two-piston master cylinder without a recovery reservoir, a two-piece caliper with 28 mm pistons,
+and a grooved 210 mm disc. A separate BS1 identification for late-1990s Extreme chassis matches
+that description. Current catalogue data still lists BS1/BS2 pump assemblies and components, a
+BS1 steel-braided hose kit, calipers, pads, and discs, but availability of the old complete parts
+should be confirmed before ordering. Sources: <https://tkart.it/en/magazine/first-analysis/historic-tony-kart-extreme-1998>,
+<https://forums.kartpulse.com/uploads/short-url/q2LkxLOz4d8Akc3W1q68pZDRR2O.pdf>,
+<https://www.agskartparts.com.au/products/456/BRAKE-PAD-SOFT-OTK-BS2>,
+<https://www.kart24.eu/kartshop/bremsen/leitungen-verschraubungen/>.
